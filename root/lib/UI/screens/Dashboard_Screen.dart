@@ -1,0 +1,452 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/screens/Nutitrion_Screen.dart';
+import 'package:gym/UI/screens/workouts_screen.dart';
+
+class Dashboard_Screen extends StatefulWidget {
+  const Dashboard_Screen({super.key});
+
+  @override
+  State<Dashboard_Screen> createState() => _Dashboard_ScreenState();
+}
+
+class _Dashboard_ScreenState extends State<Dashboard_Screen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Expanded(
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  "lib/assets/images/Nutback.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              Positioned(
+                top: 10,
+                left: 25,
+                right: 10,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Kurd  Fit",
+                      style: GoogleFonts.pacifico(
+                        color: Colors.white,
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.settings_outlined, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 85),
+                  child: Text(
+                    "Today's progress",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              Positioned(
+                top: 150,
+                right: 25,
+                left: 35,
+                child: Row(
+                  children: [
+                    glassycontainer("Calories", "200g"),
+                    SizedBox(width: 20),
+                    glassycontainer("Workout Streak", "7"),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 280, horizontal: 30),
+                child: ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Container(
+                        height: 120,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.1),
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 5),
+                            Center(
+                              child: Text(
+                                "Macro Breakdown",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 5),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Pfctext("P", 22, Alignment.centerLeft),
+                                SizedBox(width: 10),
+                                Pfctext("C", 22, Alignment.center),
+                                SizedBox(width: 10),
+                                Pfctext("F", 22, Alignment.centerRight),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Pfctext("200g", 14, Alignment.centerLeft),
+                                SizedBox(width: 10),
+                                Pfctext("100g", 14, Alignment.center),
+                                SizedBox(width: 10),
+                                Pfctext("700g", 14, Alignment.centerRight),
+                              ],
+                            ),
+
+                            // Center(
+                            //   child: Text(
+                            //     "+10%",
+                            //     style: TextStyle(
+                            //       color: const Color.fromARGB(255, 0, 255, 8),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              Positioned(
+                bottom: 1,
+                top: 240,
+                left: 25,
+                right: 25,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Today’s workout",
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Container(
+                          height: 150,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.symmetric(
+                              horizontal: BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                              vertical: BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 8,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "lib/assets/images/dashman.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 5, right: 50),
+                                child: Text(
+                                  "3D Upper Body Workout For Beginner",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 5, right: 130),
+                                child: Text(
+                                  "11 Min  72Kcal   Beginner",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.6),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Positioned(
+              //   bottom: 80,
+              //   left: 25,
+              //   right: 25,
+              //   child: dashboradBottom(
+              //     () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => Workouts_Screen(),
+              //         ),
+              //       );
+              //     },
+              //     "Start Workouts",
+              //     Colors.white,
+              //   ),
+              // ),
+              Positioned(
+                bottom: 50,
+
+                left: 10,
+                right: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Nutitrion_Screen(),
+                      ),
+                    );
+                  },
+                  child: SizedBox(
+                    height: 100,
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Container(
+                            height: 40,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                              color: Color(0xff727bff),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Text(
+                                  "Nutrition Calculator",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text(
+                                    """Click me & Get your personalized nutrition \n           plan by filling out the details.""",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white60,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class dashboradBottom extends StatelessWidget {
+  final VoidCallback ontap;
+  final String text;
+  final Color color;
+  const dashboradBottom(this.ontap, this.text, this.color, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        width: 350,
+        height: 50,
+
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.white.withOpacity(0.8)),
+          color: Color(0xff727bff),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 100),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: text == "Start Workout"
+                  ? Icon(Icons.arrow_forward_ios, color: Colors.black)
+                  : SizedBox(width: 10),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Pfctext extends StatelessWidget {
+  final String text;
+  final Alignment alignment;
+
+  final double fontsize;
+  const Pfctext(this.text, this.fontsize, this.alignment, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontsize,
+          color: Colors.black,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+    );
+  }
+}
+
+class glassycontainer extends StatelessWidget {
+  late final String title;
+  late final String subtitle;
+
+  glassycontainer(this.title, this.subtitle, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+        child: Container(
+          height: 100,
+          width: 160,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            border: Border.all(color: Colors.white),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 5),
+              Center(
+                child: Text(
+                  title,
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 5),
+
+              Center(
+                child: Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 26,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+
+              Center(
+                child: Text(
+                  "+10%",
+                  style: TextStyle(color: const Color.fromARGB(255, 0, 255, 8)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
