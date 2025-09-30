@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Nutitrion_Screen.dart';
-import 'package:gym/UI/screens/workouts_screen.dart';
 
 class Dashboard_Screen extends StatefulWidget {
   const Dashboard_Screen({super.key});
@@ -44,7 +43,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.settings_outlined, color: Colors.black),
+                      icon: Icon(Icons.settings_outlined, color: Colors.white),
                     ),
                   ],
                 ),
@@ -343,14 +342,15 @@ class dashboradBottom extends StatelessWidget {
 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.white.withOpacity(0.8)),
+          border: Border.all(color: Colors.white.withOpacity(0.5)),
           color: Color(0xff727bff),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(width: 0),
             Padding(
-              padding: const EdgeInsets.only(left: 100),
+              padding: const EdgeInsets.only(),
               child: Text(
                 text,
                 style: TextStyle(
@@ -361,10 +361,12 @@ class dashboradBottom extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: text == "Start Wokrout"
+                  ? const EdgeInsets.only(right: 10)
+                  : EdgeInsets.all(0),
               child: text == "Start Workout"
                   ? Icon(Icons.arrow_forward_ios, color: Colors.black)
-                  : SizedBox(width: 10),
+                  : SizedBox(width: 0),
             ),
           ],
         ),

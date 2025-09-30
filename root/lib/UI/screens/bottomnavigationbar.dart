@@ -31,7 +31,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
       bottomNavigationBar: Stack(
         children: [
           CurvedNavigationBar(
-            backgroundColor: Color(0xff0011FF).withOpacity(0.5),
+            backgroundColor: Color(0xff0011FF).withOpacity(0.3),
             index: currentindex,
             height: 70,
             key: _key,

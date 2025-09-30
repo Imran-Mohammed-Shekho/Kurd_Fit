@@ -80,26 +80,25 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
             children: [
               SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 130),
-                    child: Text(
-                      "Workouts",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.only(left: 100),
+                    padding: EdgeInsets.only(left: 20),
                     child: Image.asset(
                       "lib/assets/images/man.png",
                       height: 40,
                       width: 40,
+                    ),
+                  ),
+                  SizedBox(width: 100),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text(
+                      "Workouts",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -128,8 +127,14 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: ListTile(
-                              title: Text(workouts[index]["title"] ?? "unkown"),
-                              subtitle: Text(workouts[index]["number"] ?? "0x"),
+                              title: Text(
+                                workouts[index]["title"] ?? "unkown",
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              ),
+                              subtitle: Text(
+                                workouts[index]["number"] ?? "0x",
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              ),
                               leading: Image.asset(
                                 workouts[index]["image"] ??
                                     "the image dos not load",

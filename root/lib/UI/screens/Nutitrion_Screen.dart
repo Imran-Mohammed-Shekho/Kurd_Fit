@@ -109,7 +109,7 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
                   calculateresult();
                 },
                 "Calculate",
-                Color(0xff727bff),
+                Colors.white,
               ),
               SizedBox(height: 10),
 
