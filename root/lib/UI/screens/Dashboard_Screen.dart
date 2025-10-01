@@ -32,14 +32,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Kurd  Fit",
-                      style: GoogleFonts.pacifico(
-                        color: Colors.white,
-                        fontSize: 34,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    kurdfittext(),
 
                     IconButton(
                       onPressed: () {},
@@ -321,6 +314,22 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class kurdfittext extends StatelessWidget {
+  const kurdfittext({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Kurd  Fit",
+      style: GoogleFonts.pacifico(
+        color: Colors.white,
+        fontSize: 34,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
