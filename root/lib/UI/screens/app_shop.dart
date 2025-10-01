@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
+import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
 
 class App_Shop extends StatefulWidget {
@@ -84,42 +88,100 @@ class _App_ShopState extends State<App_Shop> {
 
               Expanded(
                 child: GridView.builder(
+                  itemCount: supplements.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
+                    crossAxisSpacing: 2,
                     mainAxisSpacing: 10,
+                    childAspectRatio: 1,
                   ),
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 4,
-                            offset: Offset(2, 2),
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 4,
+                                offset: Offset(2, 2),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            supplements[index].imagePath,
-                            height: 30,
-                            width: 30,
-                            fit: BoxFit.cover,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.red,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Text(
+                                      "${supplements[index].price} \$",
+                                      style: GoogleFonts.pacifico(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Image.asset(
+                                supplements[index].imagePath,
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.only(left: 5),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    supplements[index].title,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 5, bottom: 5),
+                                child: Text(
+                                  supplements[index].description,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 10),
-                        ],
+                        ),
                       ),
                     );
                   },
                 ),
               ),
+
+              SizedBox(height: 10),
             ],
           ),
         ),

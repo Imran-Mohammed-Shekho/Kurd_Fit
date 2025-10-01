@@ -15,72 +15,66 @@ class Supplement {
 List<Supplement> supplements = [
   Supplement(
     title: "Whey Protein",
-    description:
-        "Supports muscle recovery and growth. Best taken after workouts to help repair muscles and improve strength.",
-    imagePath: "assets/images/whey_protein.png",
+    description: "Supports muscle recovery and growth. .",
+    imagePath: "lib/assets/images/item1.png",
     price: 45.0,
   ),
   Supplement(
     title: "Creatine Monohydrate",
     description:
-        "Increases strength, power, and endurance by boosting ATP production. Ideal for high-intensity training.",
-    imagePath: "assets/images/creatine.png",
+        "Increases strength, power, and endurance by\nboosting ATP production. ",
+    imagePath: "lib/assets/images/item1.png",
     price: 25.0,
   ),
   Supplement(
-    title: "BCAA (Branched-Chain Amino Acids)",
-    description:
-        "Helps reduce muscle soreness and fatigue. Supports muscle recovery and prevents breakdown during workouts.",
-    imagePath: "assets/images/bcaa.png",
+    title: "BCAA ",
+    description: "Helps reduce muscle soreness and fatigue.",
+    imagePath: "lib/assets/images/item1.png",
     price: 30.0,
   ),
   Supplement(
     title: "Pre-Workout",
-    description:
-        "Boosts energy, focus, and endurance before training. Often contains caffeine, beta-alanine, and nitric oxide boosters.",
-    imagePath: "assets/images/preworkout.png",
+    description: "Boosts energy, focus, and endurance before training.\n .",
+    imagePath: "lib/assets/images/item1.png",
     price: 35.0,
   ),
   Supplement(
     title: "Glutamine",
-    description:
-        "Supports muscle recovery and immune health. Helps reduce muscle breakdown after intense training.",
-    imagePath: "assets/images/glutamine.png",
+    description: "Supports muscle recovery and immune health.",
+    imagePath: "lib/assets/images/item1.png",
     price: 20.0,
   ),
   Supplement(
     title: "Fish Oil (Omega-3)",
     description:
-        "Promotes heart health, reduces inflammation, and supports joint recovery. Essential for overall fitness.",
-    imagePath: "assets/images/fish_oil.png",
+        "Promotes heart health, reduces inflammation\n and supports joint recovery. ",
+    imagePath: "lib/assets/images/item1.png",
     price: 18.0,
   ),
   Supplement(
     title: "Multivitamins",
     description:
-        "Provides essential vitamins and minerals to fill nutritional gaps and support general health.",
-    imagePath: "assets/images/multivitamins.png",
+        "Provides essential vitamins and minerals\nto fill nutritional gaps",
+    imagePath: "lib/assets/images/item1.png",
     price: 15.0,
   ),
   Supplement(
     title: "Casein Protein",
-    description:
-        "Slow-digesting protein ideal for overnight recovery. Helps prevent muscle breakdown during sleep.",
-    imagePath: "assets/images/casein.png",
+    description: "Slow-digesting protein ideal for overnight recovery.",
+    imagePath: "lib/assets/images/item1.png",
     price: 42.0,
   ),
   Supplement(
     title: "Mass Gainer",
-    description:
-        "High-calorie supplement that helps build size and strength. Great for people struggling to gain weight.",
-    imagePath: "assets/images/mass_gainer.png",
+    description: "High-calorie supplement that helps build size and strength. ",
+    imagePath: "lib/assets/images/item1.png",
     price: 50.0,
   ),
   Supplement(
     title: "Electrolytes",
     description:
-        "Helps maintain hydration and muscle function during intense workouts or long training sessions.",
-    imagePath: "assets/images/electrolytes.png",
+        "Helps maintain hydration and muscle\nfunction during intense workouts ",
+    imagePath: "lib/assets/images/item1.png",
     price: 12.0,
   ),
 ];
