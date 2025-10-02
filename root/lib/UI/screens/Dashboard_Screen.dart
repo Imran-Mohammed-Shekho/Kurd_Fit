@@ -11,10 +11,145 @@ class Dashboard_Screen extends StatefulWidget {
 }
 
 class _Dashboard_ScreenState extends State<Dashboard_Screen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
+        endDrawer: Drawer(
+          child: Container(
+            decoration: BoxDecoration(color: Colors.deepPurpleAccent.shade100),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Center(
+                    child: Icon(Icons.person, color: Colors.white, size: 100),
+                  ),
+                ),
+
+                listTiles(
+                  Text(
+                    "Enabble Notifications ",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.notification_add_rounded, color: Colors.black),
+                  () {},
+                ),
+
+                listTiles(
+                  Text(
+                    "Change password ",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.lock, color: Colors.black),
+                  () {},
+                ),
+                dividers(),
+
+                listTiles(
+                  Text(
+                    "Change language",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.language, color: Colors.black),
+                  () {},
+                ),
+
+                listTiles(
+                  Text(
+                    "Change Theme",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.light_mode, color: Colors.black),
+                  () {},
+                ),
+                dividers(),
+                listTiles(
+                  Text(
+                    "Payment & Subscription",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.payment_outlined, color: Colors.black),
+                  () {},
+                ),
+                listTiles(
+                  Text(
+                    "Share App",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.share, color: Colors.black),
+                  () {},
+                ),
+
+                dividers(),
+                listTiles(
+                  Text(
+                    "Help & Support",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.support_agent, color: Colors.black),
+                  () {},
+                ),
+
+                listTiles(
+                  Text(
+                    "About Us",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.info, color: Colors.black),
+                  () {},
+                ),
+
+                dividers(),
+                listTiles(
+                  Text(
+                    "Log Out",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Icon(Icons.logout_rounded, color: Colors.black),
+                  () {},
+                ),
+              ],
+            ),
+          ),
+        ),
         body: Expanded(
           child: Stack(
             children: [
@@ -25,23 +160,17 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 ),
               ),
 
+              Positioned(top: 10, left: 25, right: 10, child: kurdfittext()),
               Positioned(
-                top: 10,
-                left: 25,
                 right: 10,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    kurdfittext(),
-
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.settings_outlined, color: Colors.white),
-                    ),
-                  ],
+                top: 10,
+                child: IconButton(
+                  onPressed: () {
+                    _scaffoldKey.currentState!.openEndDrawer();
+                  },
+                  icon: Icon(Icons.menu, color: Colors.white),
                 ),
               ),
-
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
@@ -320,6 +449,31 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class dividers extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Divider(color: Colors.white54, endIndent: 5, indent: 5);
+  }
+}
+
+class listTiles extends StatelessWidget {
+  final Widget title;
+  final Widget icon;
+  final VoidCallback ontap;
+
+  const listTiles(this.title, this.icon, this.ontap);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: title,
+      trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
+      onTap: ontap,
+      leading: icon,
     );
   }
 }
