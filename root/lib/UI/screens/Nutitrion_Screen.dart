@@ -38,82 +38,86 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
               fit: BoxFit.fill,
             ),
           ),
-          child: Column(
+          child: ListView(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back_ios_new_outlined),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Nutrition Calculator",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back_ios_new_outlined),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Fill in the following details to get your\n             daily nutritaion paln.",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      "Nutrition Calculator",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Fill in the following details to get your\n             daily nutritaion paln.",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    GlassyTextField("age", (value) {
-                      setState(() {
-                        age = int.tryParse(value);
-                      });
-                    }),
-                    SizedBox(height: 15),
-                    GlassyTextField("Gender", (value) {
-                      setState(() {
-                        gender = value;
-                      });
-                    }),
-                    SizedBox(height: 15),
-                    GlassyTextField("Weight", (value) {
-                      setState(() {
-                        weight = double.tryParse(value);
-                      });
-                    }),
-                    SizedBox(height: 15),
-                    GlassyTextField("Height", (value) {
-                      setState(() {
-                        tall = double.tryParse(value);
-                      });
-                    }),
-                  ],
-                ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        GlassyTextField("age", (value) {
+                          setState(() {
+                            age = int.tryParse(value);
+                          });
+                        }),
+                        SizedBox(height: 15),
+                        GlassyTextField("Gender", (value) {
+                          setState(() {
+                            gender = value;
+                          });
+                        }),
+                        SizedBox(height: 15),
+                        GlassyTextField("Weight", (value) {
+                          setState(() {
+                            weight = double.tryParse(value);
+                          });
+                        }),
+                        SizedBox(height: 15),
+                        GlassyTextField("Height", (value) {
+                          setState(() {
+                            tall = double.tryParse(value);
+                          });
+                        }),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 100),
+
+                  dashboradBottom(
+                    () {
+                      calculateresult();
+                    },
+                    "Calculate",
+                    Colors.white,
+                  ),
+                  SizedBox(height: 10),
+
+                  if (_showcard) (ResultCard()),
+                ],
               ),
-
-              SizedBox(height: 100),
-
-              dashboradBottom(
-                () {
-                  calculateresult();
-                },
-                "Calculate",
-                Colors.white,
-              ),
-              SizedBox(height: 10),
-
-              if (_showcard) Expanded(child: (ResultCard())),
             ],
           ),
         ),

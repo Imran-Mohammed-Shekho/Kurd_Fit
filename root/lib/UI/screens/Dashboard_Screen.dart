@@ -146,6 +146,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: 15),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -194,7 +195,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(bottom: 5, right: 50),
+                                padding: EdgeInsets.only(
+                                  bottom: 5,
+                                  right: 50,
+                                  left: 10,
+                                ),
                                 child: Text(
                                   "3D Upper Body Workout For Beginner",
                                   style: TextStyle(
@@ -243,7 +248,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               //   ),
               // ),
               Positioned(
-                bottom: 50,
+                bottom: 30,
 
                 left: 10,
                 right: 10,
@@ -435,13 +440,12 @@ class glassycontainer extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 5),
 
               Center(
                 child: Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 20,
                     color: Colors.black,
                     fontWeight: FontWeight.w900,
                   ),

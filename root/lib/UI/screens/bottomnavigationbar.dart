@@ -69,12 +69,12 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
                   lables[1],
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900),
                 ),
-                SizedBox(width: 55),
+                SizedBox(width: 40),
                 Text(
                   lables[2],
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900),
                 ),
-                SizedBox(width: 45),
+                SizedBox(width: 47),
                 Text(
                   lables[3],
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900),

@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/UI/screens/SignUp_screen.dart';
+import 'package:gym/UI/screens/favorite_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
 
 class App_Shop extends StatefulWidget {
@@ -41,7 +39,14 @@ class _App_ShopState extends State<App_Shop> {
                     kurdfittext(),
                     Spacer(),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Favorite_screen(),
+                          ),
+                        );
+                      },
                       icon: Icon(Icons.favorite, color: Colors.red, size: 30),
                     ),
                   ],
@@ -233,6 +238,8 @@ class _App_ShopState extends State<App_Shop> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     supplements[index].title,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w900,

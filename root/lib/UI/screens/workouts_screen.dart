@@ -129,11 +129,17 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                             child: ListTile(
                               title: Text(
                                 workouts[index]["title"] ?? "unkown",
-                                style: TextStyle(fontWeight: FontWeight.w900),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                ),
                               ),
                               subtitle: Text(
                                 workouts[index]["number"] ?? "0x",
-                                style: TextStyle(fontWeight: FontWeight.w900),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white54,
+                                ),
                               ),
                               leading: Image.asset(
                                 workouts[index]["image"] ??
