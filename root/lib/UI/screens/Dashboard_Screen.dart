@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/screens/Change_password.dart';
 import 'package:gym/UI/screens/Nutitrion_Screen.dart';
 
 class Dashboard_Screen extends StatefulWidget {
@@ -51,7 +52,12 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                     ),
                   ),
                   Icon(Icons.lock, color: Colors.black),
-                  () {},
+                  () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (contex) => Change_password()),
+                    );
+                  },
                 ),
                 dividers(),
 
