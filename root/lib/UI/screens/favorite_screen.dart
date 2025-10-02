@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Favorite_screen extends StatefulWidget {
@@ -10,6 +12,7 @@ class Favorite_screen extends StatefulWidget {
 class _Favorite_screenState extends State<Favorite_screen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -22,6 +25,7 @@ class _Favorite_screenState extends State<Favorite_screen> {
           ),
           child: Column(
             children: [
+              SizedBox(height: 10),
               Row(
                 children: [
                   SizedBox(width: 10),
@@ -46,6 +50,50 @@ class _Favorite_screenState extends State<Favorite_screen> {
                     ),
                   ),
                 ],
+              ),
+              SizedBox(height: 10),
+
+              Expanded(
+                child: SizedBox(
+                  height: size.height * 0.6,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
+                    ),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                      child: Container(
+                        width: double.infinity,
+
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          border: Border.all(
+                            color: Colors.white,
+                            strokeAlign: BorderSide.strokeAlignCenter,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(height: 10),
+                              Text(
+                                "NO favorite products add yet!!",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
