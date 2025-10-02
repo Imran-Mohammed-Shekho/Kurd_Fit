@@ -58,14 +58,95 @@ class _App_ShopState extends State<App_Shop> {
                 child: Container(
                   height: 150,
                   width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
 
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(
-                      "lib/assets/images/creatine.jpg",
-                      fit: BoxFit.cover,
-                      scale: 0.5,
-                    ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 15,
+                        top: 15,
+                        right: 5,
+
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            text: "Discount  ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "20% off\n",
+                                style: GoogleFonts.pacifico(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "On This  products",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Container(
+                            height: 150,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Image.asset(
+                              "lib/assets/images/creatine.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        left: 20,
+                        bottom: 15,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 40,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade600,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Buy Now",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
