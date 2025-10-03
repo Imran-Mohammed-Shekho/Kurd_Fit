@@ -5,21 +5,21 @@ import 'package:gym/state/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
 void showmodelbottomsheet(BuildContext context) {
-  final language = Provider.of<LanguageProvider>(context, listen: false);
   showModalBottomSheet(
     barrierLabel: "Select Language",
-    backgroundColor: Colors.deepPurpleAccent.shade200,
+    backgroundColor: Colors.white.withOpacity(0.1),
     context: context,
     builder: (context) => ClipRRect(
+      borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white60.withOpacity(0.5),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
+            border: Border.all(color: Colors.white.withOpacity(0.4)),
           ),
           child: Consumer<LanguageProvider>(
             builder:
@@ -37,14 +37,18 @@ void showmodelbottomsheet(BuildContext context) {
                             lang,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 18,
+                              color: Colors.white,
                             ),
                           ),
                           trailing: language.isselected(lang)
-                              ? Icon(Icons.check, color: Colors.black)
+                              ? Icon(Icons.check, color: Colors.white, size: 30)
                               : null,
 
-                          onTap: () => language.change_language(lang),
+                          onTap: () {
+                            language.change_language(lang);
+                            Navigator.pop(context);
+                          },
                         );
                       }).toList(),
                     ],
