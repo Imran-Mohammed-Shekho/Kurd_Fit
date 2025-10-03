@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/Change_password.dart';
+import 'package:gym/UI/screens/Dashboard_Screen.dart';
+import 'package:gym/UI/screens/language_screen.dart';
+
+class drawer_section extends StatelessWidget {
+  const drawer_section({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(color: Colors.deepPurpleAccent.shade100),
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Center(
+              child: Icon(Icons.person, color: Colors.white, size: 100),
+            ),
+          ),
+
+          listTiles(
+            Text(
+              "Enabble Notifications ",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.notification_add_rounded, color: Colors.black),
+            () {},
+          ),
+
+          listTiles(
+            Text(
+              "Change password ",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.lock, color: Colors.black),
+            () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (contex) => Change_password()),
+              );
+            },
+          ),
+          dividers(),
+
+          listTiles(
+            Text(
+              "Change language",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.language, color: Colors.black),
+            () => showmodelbottomsheet(context),
+          ),
+          listTiles(
+            Text(
+              "Change Theme",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.light_mode, color: Colors.black),
+            () {},
+          ),
+          dividers(),
+          listTiles(
+            Text(
+              "Payment & Subscription",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.payment_outlined, color: Colors.black),
+            () {},
+          ),
+          listTiles(
+            Text(
+              "Share App",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.share, color: Colors.black),
+            () {},
+          ),
+
+          dividers(),
+          listTiles(
+            Text(
+              "Help & Support",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.support_agent, color: Colors.black),
+            () {},
+          ),
+
+          listTiles(
+            Text(
+              "About Us",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.info, color: Colors.black),
+            () {},
+          ),
+
+          dividers(),
+          listTiles(
+            Text(
+              "Log Out",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
+              ),
+            ),
+            Icon(Icons.logout_rounded, color: Colors.black),
+            () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
