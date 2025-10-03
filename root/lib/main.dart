@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Introduction_screen.dart';
+import 'package:gym/state/providers/language_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(Gym());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => LanguageProvider()),
+      ],
+      child: Gym(),
+    ),
+  );
 }
 
 class Gym extends StatelessWidget {
