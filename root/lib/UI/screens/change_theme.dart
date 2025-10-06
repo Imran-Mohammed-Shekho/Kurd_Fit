@@ -4,7 +4,14 @@ import 'package:gym/UI/screens/custom_colors.dart';
 ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: Colors.black,
-  extensions: [CustomColors(drawerbg: Colors.deepPurpleAccent)],
+  extensions: [
+    CustomColors(
+      ButtonFrombottomNavigationbar: Colors.black,
+      drawerbg: Colors.deepPurpleAccent,
+      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.5),
+      TextFrombottomNavigationbar: Colors.black,
+    ),
+  ],
   colorScheme: ColorScheme.dark(
     background: Colors.black,
 
@@ -17,11 +24,19 @@ ThemeData darkmode = ThemeData(
 ThemeData lightmode = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: Colors.white,
-  extensions: [CustomColors(drawerbg: Colors.deepPurpleAccent.shade100)],
+  extensions: [
+    CustomColors(
+      ButtonFrombottomNavigationbar: Colors.black,
+      drawerbg: Colors.deepPurpleAccent.shade100,
+      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.3),
+      TextFrombottomNavigationbar: Colors.black,
+    ),
+  ],
   colorScheme: ColorScheme.light(
     background: Colors.white,
 
     surface: Colors.white.withOpacity(0.1),
+    onSurface: Colors.black,
     onBackground: Colors.black,
     primary: Color(0xff727bff),
   ),
