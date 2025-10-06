@@ -244,6 +244,7 @@ class _App_ShopState extends State<App_Shop> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 16,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
@@ -255,6 +256,7 @@ class _App_ShopState extends State<App_Shop> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
+                                    color: Colors.black,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
