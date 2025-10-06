@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Change_password.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
+import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,9 @@ class drawer_section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Themeprovider = context.watch<ThemeProvider>();
+    final colors = Theme.of(context).extension<CustomColors>();
     return Container(
-      decoration: BoxDecoration(color: Colors.deepPurpleAccent.shade100),
+      decoration: BoxDecoration(color: colors?.drawerbg ?? Colors.deepPurple),
       child: ListView(
         children: [
           DrawerHeader(

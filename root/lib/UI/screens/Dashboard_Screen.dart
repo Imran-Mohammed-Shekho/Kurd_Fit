@@ -17,6 +17,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         key: scaffoldKey,
         endDrawer: Drawer(child: drawer_section()),
         body: Stack(
@@ -56,7 +57,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
             Positioned(
               top: 150,
-              right: 25,
+              right: 10,
               left: 35,
               child: Row(
                 children: [
@@ -79,7 +80,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                       height: 120,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        color: Theme.of(context).colorScheme.surface,
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -91,7 +92,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                               "Macro Breakdown",
                               style: TextStyle(
                                 fontSize: 20,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                           ),
@@ -273,7 +274,9 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                                 offset: Offset(0, 4),
                               ),
                             ],
-                            color: Color(0xff727bff),
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primary.withOpacity(0.1),
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -421,7 +424,7 @@ class Pfctext extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: fontsize,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.onSurface,
           fontWeight: FontWeight.w900,
         ),
       ),
@@ -442,9 +445,9 @@ class glassycontainer extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
           height: 100,
-          width: 160,
+          width: 170,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.surface,
             border: Border.all(color: Colors.white),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -454,7 +457,10 @@ class glassycontainer extends StatelessWidget {
               Center(
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
               ),
 
@@ -463,7 +469,7 @@ class glassycontainer extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w900,
                   ),
                 ),

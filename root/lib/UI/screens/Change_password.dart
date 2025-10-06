@@ -29,12 +29,7 @@ class _Change_passwordState extends State<Change_password> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Dashboard_Screen(),
-                        ),
-                      );
+                      Navigator.pop(context);
                     },
                     icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),
