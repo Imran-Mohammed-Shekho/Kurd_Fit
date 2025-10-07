@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 class Favorite_screen extends StatefulWidget {
   const Favorite_screen({super.key});
@@ -63,16 +64,12 @@ class _Favorite_screenState extends State<Favorite_screen> {
                     ),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                      child: Container(
+                      child: GlowContainer(
                         width: double.infinity,
-
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          border: Border.all(
-                            color: Colors.white,
-                            strokeAlign: BorderSide.strokeAlignCenter,
-                          ),
-                        ),
+                        blurRadius: 15,
+                        spreadRadius: 5,
+                        glowColor: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.1),
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(

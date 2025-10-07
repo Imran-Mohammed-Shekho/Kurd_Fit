@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/favorite_screen.dart';
 import 'package:gym/UI/screens/preview_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
+import 'package:page_transition/page_transition.dart';
 
 class App_Shop extends StatefulWidget {
   const App_Shop({super.key});
@@ -132,13 +134,12 @@ class _App_ShopState extends State<App_Shop> {
                         bottom: 15,
                         child: GestureDetector(
                           onTap: () {},
-                          child: Container(
+                          child: GlowContainer(
                             height: 40,
                             width: 120,
-                            decoration: BoxDecoration(
-                              color: Colors.lightBlue.shade600,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.lightBlue.shade600,
+                            glowColor: Colors.black,
                             child: Center(
                               child: Text(
                                 "Buy Now",
@@ -187,16 +188,15 @@ class _App_ShopState extends State<App_Shop> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PreviewScreen(
-                                supplements[index].imagePath,
+                          context.pushTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(microseconds: 200),
+                            childBuilder: (context) => PreviewScreen(
+                              supplements[index].imagePath,
 
-                                supplements[index].title,
-                                supplements[index].price,
-                                supplements[index].description,
-                              ),
+                              supplements[index].title,
+                              supplements[index].price,
+                              supplements[index].description,
                             ),
                           );
                         },

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Nutitrion_Screen.dart';
 import 'package:gym/UI/screens/drawer_section.dart';
@@ -370,15 +371,12 @@ class dashboradBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
-      child: Container(
+      child: GlowContainer(
         width: 350,
-        height: 50,
-
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.white.withOpacity(0.5)),
-          color: Color(0xff727bff),
-        ),
+        height: 60,
+        borderRadius: BorderRadius.circular(10),
+        glowColor: Colors.white,
+        color: Color(0xff727bff),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
