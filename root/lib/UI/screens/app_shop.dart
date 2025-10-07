@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/favorite_screen.dart';
+import 'package:gym/UI/screens/preview_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
 
 class App_Shop extends StatefulWidget {
@@ -185,7 +186,20 @@ class _App_ShopState extends State<App_Shop> {
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PreviewScreen(
+                                supplements[index].imagePath,
+
+                                supplements[index].title,
+                                supplements[index].price,
+                                supplements[index].description,
+                              ),
+                            ),
+                          );
+                        },
                         child: Container(
                           height: 100,
                           width: 100,
@@ -221,6 +235,7 @@ class _App_ShopState extends State<App_Shop> {
                                       style: GoogleFonts.pacifico(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ],
