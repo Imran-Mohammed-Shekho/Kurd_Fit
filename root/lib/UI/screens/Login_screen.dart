@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:gym/UI/screens/Forget_screen.dart';
@@ -93,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Positioned(
               right: 30,
-              bottom: 280,
+              bottom: 260,
+
               child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(),
-                  child: Text(
+                  child: GlowText(
                     "Forget Password?",
                     style: TextStyle(
                       color: Colors.white,
@@ -111,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       decoration: TextDecoration.underline,
                       decorationColor: Colors.white,
-                      decorationThickness: 1.5,
+                      decorationThickness: 2,
                     ),
                   ),
                 ),
@@ -160,7 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (context) => SignupScreen()),
                     );
                   },
-                  child: Text(
+                  child: GlowText(
+                    glowColor: Colors.white,
                     "Don't have an account? Sign Up",
                     style: TextStyle(
                       color: Colors.white,

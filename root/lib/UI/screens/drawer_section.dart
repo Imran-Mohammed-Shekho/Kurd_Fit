@@ -15,7 +15,7 @@ class drawer_section extends StatelessWidget {
     final Themeprovider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).extension<CustomColors>();
     return Container(
-      decoration: BoxDecoration(color: colors?.drawerbg ?? Colors.deepPurple),
+      decoration: BoxDecoration(color: colors?.drawerbg ?? Colors.blue),
       child: ListView(
         children: [
           DrawerHeader(
@@ -33,7 +33,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.notification_add_rounded, color: Colors.black),
+            Icon(
+              Icons.notification_add_rounded,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
 
@@ -46,7 +49,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.lock, color: Colors.black),
+            Icon(
+              Icons.lock,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {
               Navigator.pushReplacement(
                 context,
@@ -70,7 +76,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.language, color: Colors.black),
+            Icon(
+              Icons.language,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () => showmodelbottomsheet(context),
           ),
           listTiles(
@@ -84,7 +93,7 @@ class drawer_section extends StatelessWidget {
             ),
             Icon(
               Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
-              color: Colors.black,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
             ),
             () {
               Themeprovider.chnagetheme();
@@ -100,7 +109,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.payment_outlined, color: Colors.black),
+            Icon(
+              Icons.payment_outlined,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
           listTiles(
@@ -112,7 +124,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.share, color: Colors.black),
+            Icon(
+              Icons.share,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
 
@@ -126,7 +141,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.support_agent, color: Colors.black),
+            Icon(
+              Icons.support_agent,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
 
@@ -139,7 +157,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.info, color: Colors.black),
+            Icon(
+              Icons.info,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
 
@@ -153,7 +174,10 @@ class drawer_section extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Icon(Icons.logout_rounded, color: Colors.black),
+            Icon(
+              Icons.logout_rounded,
+              color: Themeprovider.isDark ? Colors.white : Colors.black,
+            ),
             () {},
           ),
         ],

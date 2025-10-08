@@ -3,11 +3,11 @@ import 'package:gym/UI/screens/custom_colors.dart';
 
 ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.black,
+  scaffoldBackgroundColor: Colors.black.withOpacity(0.1),
   extensions: [
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
-      drawerbg: Colors.deepPurpleAccent,
+      drawerbg: Color(0xff181a65),
       bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.5),
       TextFrombottomNavigationbar: Colors.black,
     ),

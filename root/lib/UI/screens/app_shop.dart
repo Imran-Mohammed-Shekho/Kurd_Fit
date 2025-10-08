@@ -188,15 +188,19 @@ class _App_ShopState extends State<App_Shop> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GestureDetector(
                         onTap: () {
-                          context.pushTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(microseconds: 200),
-                            childBuilder: (context) => PreviewScreen(
-                              supplements[index].imagePath,
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 600),
+                              reverseDuration: Duration(milliseconds: 500),
+                              child: PreviewScreen(
+                                supplements[index].imagePath,
 
-                              supplements[index].title,
-                              supplements[index].price,
-                              supplements[index].description,
+                                supplements[index].title,
+                                supplements[index].price,
+                                supplements[index].description,
+                              ),
                             ),
                           );
                         },
@@ -241,11 +245,14 @@ class _App_ShopState extends State<App_Shop> {
                                   ],
                                 ),
                               ),
-                              Image.asset(
-                                supplements[index].imagePath,
-                                height: 100,
-                                width: 100,
-                                fit: BoxFit.cover,
+                              Hero(
+                                tag: "tag1",
+                                child: Image.asset(
+                                  supplements[index].imagePath,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
 
                               Padding(

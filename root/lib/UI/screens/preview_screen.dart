@@ -31,7 +31,12 @@ class PreviewScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
-              ClipRRect(child: Image.asset(path, height: 300, width: 300)),
+              ClipRRect(
+                child: Hero(
+                  tag: "tag1",
+                  child: Image.asset(path, height: 300, width: 300),
+                ),
+              ),
               Expanded(
                 child: GlowContainer(
                   width: double.infinity,

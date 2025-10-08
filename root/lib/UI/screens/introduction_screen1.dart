@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Introduction1 extends StatefulWidget {
   const Introduction1({super.key});
@@ -59,13 +61,18 @@ class _IntroductionState extends State<Introduction1> {
             ),
           ),
           Positioned(
-            bottom: 80,
+            bottom: 90,
             left: 30,
             child: IntorductionButtons(
               () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 600),
+                    reverseDuration: Duration(milliseconds: 500),
+                    child: LoginScreen(),
+                  ),
                 );
               },
               "Login",
@@ -74,17 +81,22 @@ class _IntroductionState extends State<Introduction1> {
           ),
 
           Positioned(
-            bottom: 15,
+            bottom: 20,
             left: 30,
             child: IntorductionButtons(
               () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignupScreen()),
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 600),
+                    reverseDuration: Duration(milliseconds: 500),
+                    child: SignupScreen(),
+                  ),
                 );
               },
               "Sign Up ",
-              Colors.white.withOpacity(0.6),
+              Colors.blue,
             ),
           ),
         ],
@@ -102,38 +114,45 @@ class IntorductionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
-      child: Container(
-        width: 350,
-        height: 50,
+      child: GlowContainer(
+        blurRadius: 10,
+        borderRadius: BorderRadius.circular(20),
+        spreadRadius: 0.5,
+        shape: BoxShape.rectangle,
+        glowColor: Colors.white,
+        child: Container(
+          width: 350,
+          height: 50,
 
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: const Color.fromARGB(255, 139, 139, 139),
-            style: BorderStyle.solid,
-            strokeAlign: BorderSide.strokeAlignCenter,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color.fromARGB(255, 139, 139, 139),
+              style: BorderStyle.solid,
+              strokeAlign: BorderSide.strokeAlignCenter,
+            ),
+            color: color,
           ),
-          color: color,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 140),
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 140),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Icon(Icons.arrow_forward_ios, color: Colors.white),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Icon(Icons.arrow_forward_ios, color: Colors.white),
+              ),
+            ],
+          ),
         ),
       ),
     );

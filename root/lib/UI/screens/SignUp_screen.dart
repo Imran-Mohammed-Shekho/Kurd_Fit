@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -96,8 +97,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Bottomnavigationbar(),
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 600),
+                        reverseDuration: Duration(milliseconds: 500),
+                        child: Bottomnavigationbar(),
                       ),
                     );
                   },
