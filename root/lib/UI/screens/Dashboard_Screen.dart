@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -259,7 +260,21 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Nutitrion_Screen()),
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 600),
+                      pageBuilder:
+                          (
+                            BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                          ) {
+                            return FadeThroughTransition(
+                              animation: animation,
+                              secondaryAnimation: secondaryAnimation,
+                              child: Nutitrion_Screen(),
+                            );
+                          },
+                    ),
                   );
                 },
                 child: SizedBox(

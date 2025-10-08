@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
 
@@ -63,8 +64,22 @@ class _IntroductionState extends State<Introduction> {
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Introduction1()),
-                  (Route<dynamic> route) => false,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 600),
+                    pageBuilder:
+                        (
+                          BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secondaryAnimation,
+                        ) {
+                          return FadeThroughTransition(
+                            animation: animation,
+                            secondaryAnimation: secondaryAnimation,
+                            child: Introduction1(),
+                          );
+                        },
+                  ),
+                  (route) => false,
                 );
               },
               child: Container(

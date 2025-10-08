@@ -8,7 +8,6 @@ import 'package:gym/UI/screens/Forget_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
-import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
