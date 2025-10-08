@@ -18,9 +18,15 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        endDrawerEnableOpenDragGesture: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         key: scaffoldKey,
-        endDrawer: Drawer(child: drawer_section()),
+        endDrawer: AnimatedContainer(
+          duration: Duration(milliseconds: 800),
+          curve: Curves.easeOut,
+          transform: Matrix4.translationValues(0, 0, 0),
+          child: Drawer(child: drawer_section()),
+        ),
         body: Stack(
           children: [
             Positioned.fill(

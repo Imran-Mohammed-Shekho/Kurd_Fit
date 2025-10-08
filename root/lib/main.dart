@@ -24,19 +24,14 @@ class Gym extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (BuildContext context, providertheme, Widget? child) {
-        return AnimatedTheme(
-          data: ThemeData(),
-          duration: Duration(seconds: 2),
-          curve: Curves.linear,
-          child: MaterialApp(
-            home: Introduction(),
-            debugShowCheckedModeBanner: false,
-            themeMode: providertheme.themeMode,
-            theme: lightmode,
-            darkTheme: darkmode,
+        return MaterialApp(
+          home: Introduction(),
+          debugShowCheckedModeBanner: false,
+          themeMode: providertheme.themeMode,
+          theme: lightmode,
+          darkTheme: darkmode,
 
-            title: "Gym app",
-          ),
+          title: "Gym app",
         );
       },
     );

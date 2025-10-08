@@ -4,6 +4,7 @@ import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/state/providers/theme_provider.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class drawer_section extends StatelessWidget {
@@ -49,7 +50,12 @@ class drawer_section extends StatelessWidget {
             () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (contex) => Change_password()),
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  reverseDuration: Duration(milliseconds: 600),
+                  duration: Duration(milliseconds: 600),
+                  child: Change_password(),
+                ),
               );
             },
           ),

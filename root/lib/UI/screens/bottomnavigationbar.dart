@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
@@ -38,7 +39,19 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     }
 
     return Scaffold(
-      body: pages[currentindex],
+      body: PageTransitionSwitcher(
+        duration: const Duration(milliseconds: 600),
+
+        transitionBuilder: (child, animation, secondaryAnimation) =>
+            SharedAxisTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+              child: child,
+            ),
+        child: pages[currentindex],
+      ),
+
       bottomNavigationBar: Stack(
         children: [
           CurvedNavigationBar(

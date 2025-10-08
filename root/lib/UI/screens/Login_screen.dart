@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,6 +8,7 @@ import 'package:gym/UI/screens/Forget_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -125,8 +127,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Bottomnavigationbar(),
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 600),
+                        pageBuilder:
+                            (
+                              BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation,
+                            ) {
+                              return FadeThroughTransition(
+                                animation: animation,
+                                secondaryAnimation: secondaryAnimation,
+                                child: Bottomnavigationbar(),
+                              );
+                            },
                       ),
                     );
                   },
