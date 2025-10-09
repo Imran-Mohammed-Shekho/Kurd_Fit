@@ -25,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
           children: [
             Positioned.fill(
               child: Image.asset(
-                'lib/assets/images/Background1.png',
+                'lib/assets/images/Nutback.png',
                 fit: BoxFit.cover,
               ),
             ),

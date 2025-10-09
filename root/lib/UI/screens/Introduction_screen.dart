@@ -31,14 +31,13 @@ class _IntroductionState extends State<Introduction> {
             ),
           ),
 
-          Positioned(
-            bottom: 150,
-            left: 110,
+          Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  " Your fitness \njourney starts \n         here",
+                  textAlign: TextAlign.center,
+                  " Your fitness \njourney starts \nhere",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
@@ -47,74 +46,80 @@ class _IntroductionState extends State<Introduction> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  """ Achieve your fitness goals with\npersonalized workouts and expert\n                   guidance.""",
+                  textAlign: TextAlign.center,
+                  """ Achieve your fitness goals with\npersonalized workouts and expert\nguidance.""",
                   style: TextStyle(
                     color: const Color(0xffB5B5B5).withOpacity(0.8),
                     fontSize: 14,
                   ),
                 ),
                 SizedBox(height: 30),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 80,
-            left: 30,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: Duration(milliseconds: 600),
-                    pageBuilder:
-                        (
-                          BuildContext context,
-                          Animation<double> animation,
-                          Animation<double> secondaryAnimation,
-                        ) {
-                          return FadeThroughTransition(
-                            animation: animation,
-                            secondaryAnimation: secondaryAnimation,
-                            child: Introduction1(),
-                          );
-                        },
-                  ),
-                  (route) => false,
-                );
-              },
-              child: Container(
-                width: 350,
-                height: 50,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 146, 146, 146),
-                    style: BorderStyle.solid,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color(0xff5B58FB),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 100),
-                      child: Text(
-                        "Get Started",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 600),
+                        pageBuilder:
+                            (
+                              BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation,
+                            ) {
+                              return FadeThroughTransition(
+                                animation: animation,
+                                secondaryAnimation: secondaryAnimation,
+                                child: Introduction1(),
+                              );
+                            },
+                      ),
+                      (route) => false,
+                    );
+                  },
+                  child: SizedBox(
+                    width: 350,
+                    height: 50,
+
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 146, 146, 146),
+                          style: BorderStyle.solid,
+                          strokeAlign: BorderSide.strokeAlignCenter,
                         ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xff5B58FB),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 100),
+                            child: Text(
+                              "Get Started",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Icon(Icons.arrow_forward_ios, color: Colors.white),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+
+                SizedBox(height: 40),
+              ],
             ),
           ),
         ],

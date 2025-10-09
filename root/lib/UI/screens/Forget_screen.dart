@@ -20,7 +20,11 @@ class _ForgetScreenState extends State<ForgetScreen> {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                if (Navigator.canPop(context)) {
+                  Navigator.pop(context);
+                } else {
+                  print("can not rout");
+                }
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,

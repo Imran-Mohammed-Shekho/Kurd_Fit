@@ -33,14 +33,13 @@ class _IntroductionState extends State<Introduction1> {
             ),
           ),
 
-          Positioned(
-            bottom: 150,
-            left: 50,
+          Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "        Your Fitness\n Journey Starts Now",
+                  textAlign: TextAlign.center,
+                  "Your Fitness\n Journey Starts Now",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
@@ -49,54 +48,48 @@ class _IntroductionState extends State<Introduction1> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  """ Get personalized workout plans, track your 
-         progress, and join our community.""",
+                  textAlign: TextAlign.center,
+                  """ Get personalized workout plans, track your\nprogress, and join our community.""",
                   style: TextStyle(
                     color: const Color(0xffB5B5B5).withOpacity(0.8),
                     fontSize: 14,
                   ),
                 ),
                 SizedBox(height: 30),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 90,
-            left: 30,
-            child: IntorductionButtons(
-              () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 600),
-                    reverseDuration: Duration(milliseconds: 500),
-                    child: LoginScreen(),
-                  ),
-                );
-              },
-              "Login",
-              const Color(0xff5B58FB),
-            ),
-          ),
 
-          Positioned(
-            bottom: 20,
-            left: 30,
-            child: IntorductionButtons(
-              () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 600),
-                    reverseDuration: Duration(milliseconds: 500),
-                    child: SignupScreen(),
-                  ),
-                );
-              },
-              "Sign Up ",
-              Colors.blue,
+                IntorductionButtons(
+                  () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 600),
+                        reverseDuration: Duration(milliseconds: 500),
+                        child: LoginScreen(),
+                      ),
+                    );
+                  },
+                  "Login",
+                  const Color(0xff5B58FB),
+                ),
+                SizedBox(height: 20),
+                IntorductionButtons(
+                  () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 600),
+                        reverseDuration: Duration(milliseconds: 500),
+                        child: SignupScreen(),
+                      ),
+                    );
+                  },
+                  "Sign Up ",
+                  Colors.blue,
+                ),
+                SizedBox(height: 30),
+              ],
             ),
           ),
         ],
@@ -114,25 +107,20 @@ class IntorductionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
-      child: GlowContainer(
-        blurRadius: 10,
-        borderRadius: BorderRadius.circular(20),
-        spreadRadius: 0.5,
-        shape: BoxShape.rectangle,
-        glowColor: Colors.white,
-        child: Container(
-          width: 350,
-          height: 50,
-
+      child: SizedBox(
+        height: 50,
+        width: 350,
+        child: DecoratedBox(
           decoration: BoxDecoration(
+            color: color,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color.fromARGB(255, 139, 139, 139),
+              color: const Color(0xffffffff).withOpacity(0.5),
               style: BorderStyle.solid,
               strokeAlign: BorderSide.strokeAlignCenter,
             ),
-            color: color,
           ),
+
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -149,7 +137,10 @@ class IntorductionButtons extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                child: Icon(
+                  text == "Login" ? null : Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

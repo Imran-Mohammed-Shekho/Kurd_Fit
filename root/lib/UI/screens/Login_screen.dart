@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Positioned.fill(
               child: Image.asset(
-                'lib/assets/images/Background1.png',
+                'lib/assets/images/Nutback.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -162,8 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (context) => SignupScreen()),
                     );
                   },
-                  child: GlowText(
-                    glowColor: Colors.white,
+                  child: Text(
                     "Don't have an account? Sign Up",
                     style: TextStyle(
                       color: Colors.white,
