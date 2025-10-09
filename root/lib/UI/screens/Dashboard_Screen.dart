@@ -84,59 +84,64 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
+                    child: SizedBox(
                       height: 120,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Center(
-                            child: Text(
-                              "Macro Breakdown",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Theme.of(context).colorScheme.onSurface,
+
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 5),
+                            Center(
+                              child: Text(
+                                "Macro Breakdown",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 5),
+                            SizedBox(height: 5),
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Pfctext("P", 22, Alignment.centerLeft),
-                              SizedBox(width: 10),
-                              Pfctext("C", 22, Alignment.center),
-                              SizedBox(width: 10),
-                              Pfctext("F", 22, Alignment.centerRight),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Pfctext("200g", 14, Alignment.centerLeft),
-                              SizedBox(width: 10),
-                              Pfctext("100g", 14, Alignment.center),
-                              SizedBox(width: 10),
-                              Pfctext("700g", 14, Alignment.centerRight),
-                            ],
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Pfctext("P", 22, Alignment.centerLeft),
+                                SizedBox(width: 10),
+                                Pfctext("C", 22, Alignment.center),
+                                SizedBox(width: 10),
+                                Pfctext("F", 22, Alignment.centerRight),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Pfctext("200g", 14, Alignment.centerLeft),
+                                SizedBox(width: 10),
+                                Pfctext("100g", 14, Alignment.center),
+                                SizedBox(width: 10),
+                                Pfctext("700g", 14, Alignment.centerRight),
+                              ],
+                            ),
 
-                          // Center(
-                          //   child: Text(
-                          //     "+10%",
-                          //     style: TextStyle(
-                          //       color: const Color.fromARGB(255, 0, 255, 8),
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
+                            // Center(
+                            //   child: Text(
+                            //     "+10%",
+                            //     style: TextStyle(
+                            //       color: const Color.fromARGB(255, 0, 255, 8),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -285,47 +290,50 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 8,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.primary.withOpacity(0.1),
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(height: 10),
-                              Text(
-                                "Nutrition Calculator",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white,
+
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
                                 ),
-                              ),
-                              SizedBox(height: 5),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  """Click me & Get your personalized nutrition \n           plan by filling out the details.""",
+                              ],
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.primary.withOpacity(0.1),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Text(
+                                  "Nutrition Calculator",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 24,
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                   ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: 5),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text(
+                                    """Click me & Get your personalized nutrition \n           plan by filling out the details.""",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white60,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -462,45 +470,50 @@ class glassycontainer extends StatelessWidget {
     return ClipRRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-        child: Container(
+        child: SizedBox(
           height: 100,
           width: 170,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 5),
-              Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Theme.of(context).colorScheme.onSurface,
+
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 5),
+                Center(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
-              ),
 
-              Center(
-                child: Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeight.w900,
+                Center(
+                  child: Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
-              ),
 
-              Center(
-                child: Text(
-                  "+10%",
-                  style: TextStyle(color: const Color.fromARGB(255, 0, 255, 8)),
+                Center(
+                  child: Text(
+                    "+10%",
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 0, 255, 8),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

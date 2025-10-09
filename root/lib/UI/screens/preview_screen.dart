@@ -6,11 +6,13 @@ class PreviewScreen extends StatelessWidget {
   final double price;
   final String title;
   final String descrption;
+  final int index;
   const PreviewScreen(
     this.path,
     this.title,
     this.price,
-    this.descrption, {
+    this.descrption,
+    this.index, {
     super.key,
   });
 
@@ -33,7 +35,7 @@ class PreviewScreen extends StatelessWidget {
             children: [
               ClipRRect(
                 child: Hero(
-                  tag: "tag1",
+                  tag: "tag$index",
                   child: Image.asset(path, height: 300, width: 300),
                 ),
               ),

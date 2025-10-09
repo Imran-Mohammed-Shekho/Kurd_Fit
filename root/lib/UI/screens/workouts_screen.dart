@@ -116,38 +116,41 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                       child: ClipRRect(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                          child: Container(
+                          child: SizedBox(
                             height: 80,
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              border: Border.all(
-                                color: Colors.white.withOpacity(0.8),
+
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.2),
+                                border: Border.all(
+                                  color: Colors.white.withOpacity(0.8),
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ListTile(
-                              title: Text(
-                                workouts[index]["title"] ?? "unkown",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w900,
+                              child: ListTile(
+                                title: Text(
+                                  workouts[index]["title"] ?? "unkown",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  workouts[index]["number"] ?? "0x",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                                leading: Image.asset(
+                                  workouts[index]["image"] ??
+                                      "the image dos not load",
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
                                   color: Colors.white,
                                 ),
-                              ),
-                              subtitle: Text(
-                                workouts[index]["number"] ?? "0x",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              leading: Image.asset(
-                                workouts[index]["image"] ??
-                                    "the image dos not load",
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.white,
                               ),
                             ),
                           ),

@@ -200,91 +200,96 @@ class _App_ShopState extends State<App_Shop> {
                                 supplements[index].title,
                                 supplements[index].price,
                                 supplements[index].description,
+                                index,
                               ),
                             ),
                           );
                         },
-                        child: Container(
+
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
-                                offset: Offset(2, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Colors.red,
-                                        size: 20,
+
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 4,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.red,
+                                          size: 20,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "${supplements[index].price} \$",
-                                      style: GoogleFonts.pacifico(
+                                      Text(
+                                        "${supplements[index].price} \$",
+                                        style: GoogleFonts.pacifico(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Hero(
+                                  tag: "tag$index}",
+                                  child: Image.asset(
+                                    supplements[index].imagePath,
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      supplements[index].title,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         color: Colors.black,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                              Hero(
-                                tag: "tag1",
-                                child: Image.asset(
-                                  supplements[index].imagePath,
-                                  height: 100,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.only(left: 5),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5, bottom: 5),
                                   child: Text(
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    supplements[index].title,
+                                    supplements[index].description,
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
                                       color: Colors.black,
                                     ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 5, bottom: 5),
-                                child: Text(
-                                  supplements[index].description,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
