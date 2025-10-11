@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:page_transition/page_transition.dart';
