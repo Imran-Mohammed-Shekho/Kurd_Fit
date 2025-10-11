@@ -8,7 +8,7 @@ ThemeData darkmode = ThemeData(
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
       drawerbg: Color(0xff181a65).withOpacity(0.1),
-      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.5),
+      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.1),
       TextFrombottomNavigationbar: Colors.black,
     ),
   ],
@@ -27,7 +27,7 @@ ThemeData lightmode = ThemeData(
   extensions: [
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
-      drawerbg: const Color.fromARGB(255, 78, 28, 188).withOpacity(0.3),
+      drawerbg: Colors.white.withOpacity(0.1),
       bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.3),
       TextFrombottomNavigationbar: Colors.black,
     ),
