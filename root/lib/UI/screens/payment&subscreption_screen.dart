@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/introduction_screen1.dart';
+import 'package:gym/UI/screens/adding_paymentmethod_screen.dart';
 
 class PaymentsubscreptionScreen extends StatefulWidget {
   const PaymentsubscreptionScreen({super.key});
@@ -109,45 +109,52 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
 
                 Spacer(),
 
-                GestureDetector(
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 50,
-                    width: 350,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: const Color(0xff5B58FB),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: const Color(0xffffffff).withOpacity(0.5),
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                      ),
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 30, right: 30),
-                            child: Text(
-                              "Add payment method",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          Icon(Icons.arrow_forward_ios, color: Colors.white),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                ADDPMB("Add payment method"),
                 SizedBox(height: 20),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ADDPMB extends StatelessWidget {
+  final String text;
+  const ADDPMB(this.text, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddingPaymentmethodScreen()),
+        );
+      },
+      child: SizedBox(
+        height: 50,
+        width: 350,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: const Color(0xff5B58FB),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color(0xffffffff).withOpacity(0.5),
+              style: BorderStyle.solid,
+              strokeAlign: BorderSide.strokeAlignCenter,
+            ),
+          ),
+
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
