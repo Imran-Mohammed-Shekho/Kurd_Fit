@@ -25,11 +25,11 @@ class _IntroductionState extends State<Introduction1> {
           ),
 
           Padding(
-            padding: EdgeInsets.only(top: 100),
+            padding: EdgeInsets.only(top: 0),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Image.asset(
-                "lib/assets/images/1i.png",
+                "lib/assets/images/11.png",
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
@@ -89,7 +89,7 @@ class _IntroductionState extends State<Introduction1> {
                     );
                   },
                   "Sign Up ",
-                  Colors.white.withOpacity(0.3),
+                  Colors.white.withOpacity(0.1),
                 ),
                 SizedBox(height: 30),
               ],

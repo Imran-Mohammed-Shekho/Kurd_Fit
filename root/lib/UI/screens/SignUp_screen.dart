@@ -77,13 +77,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       setState(() {
                         email = value;
                       });
-                    }),
+                    }, 60),
                     SizedBox(height: 15),
                     GlassyTextField("Password", (value) {
                       setState(() {
                         password = value;
                       });
-                    }),
+                    }, 60),
                   ],
                 ),
               ),

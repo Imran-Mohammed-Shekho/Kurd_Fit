@@ -23,15 +23,12 @@ class _IntroductionState extends State<Introduction> {
             ),
           ),
 
-          Padding(
-            padding: EdgeInsets.only(top: 100),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Image.asset(
-                "lib/assets/images/1i.png",
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Image.asset(
+              "lib/assets/images/11.png",
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ),
 

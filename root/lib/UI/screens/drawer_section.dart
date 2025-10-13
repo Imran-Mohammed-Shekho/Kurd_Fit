@@ -7,6 +7,7 @@ import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/UI/screens/payment&subscreption_screen.dart';
+import 'package:gym/UI/screens/support_screen.dart';
 import 'package:gym/state/providers/general_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:page_transition/page_transition.dart';
@@ -314,7 +315,12 @@ class drawer_section extends StatelessWidget {
                         ? Color(0xFFA5D6A7)
                         : Color(0xFF66BB6A),
                   ),
-                  () {},
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SupportScreen()),
+                    );
+                  },
                 ),
 
                 listTiles(

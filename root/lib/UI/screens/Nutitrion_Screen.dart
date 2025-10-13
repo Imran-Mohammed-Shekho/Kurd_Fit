@@ -81,25 +81,25 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
                           setState(() {
                             age = int.tryParse(value);
                           });
-                        }),
+                        }, 60),
                         SizedBox(height: 15),
                         GlassyTextField("Gender", (value) {
                           setState(() {
                             gender = value;
                           });
-                        }),
+                        }, 60),
                         SizedBox(height: 15),
                         GlassyTextField("Weight", (value) {
                           setState(() {
                             weight = double.tryParse(value);
                           });
-                        }),
+                        }, 60),
                         SizedBox(height: 15),
                         GlassyTextField("Height", (value) {
                           setState(() {
                             tall = double.tryParse(value);
                           });
-                        }),
+                        }, 60),
                       ],
                     ),
                   ),

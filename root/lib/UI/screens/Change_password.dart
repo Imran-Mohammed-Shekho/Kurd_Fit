@@ -64,7 +64,11 @@ class _Change_passwordState extends State<Change_password> {
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Enter current password", (value) {}),
+                child: GlassyTextField(
+                  "Enter current password",
+                  (value) {},
+                  60,
+                ),
               ),
               SizedBox(height: 10),
               Padding(
@@ -84,7 +88,7 @@ class _Change_passwordState extends State<Change_password> {
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Enter new passowrd", (value) {}),
+                child: GlassyTextField("Enter new passowrd", (value) {}, 60),
               ),
               SizedBox(height: 10),
               Padding(
@@ -148,7 +152,7 @@ class _Change_passwordState extends State<Change_password> {
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Confirm new password", (value) {}),
+                child: GlassyTextField("Confirm new password", (value) {}, 60),
               ),
 
               SizedBox(height: 50),

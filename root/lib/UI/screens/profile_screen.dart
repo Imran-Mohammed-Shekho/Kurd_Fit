@@ -108,7 +108,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                       setState(() {
                         name = value;
                       });
-                    }),
+                    }, 60),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -117,7 +117,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                       setState(() {
                         email = value;
                       });
-                    }),
+                    }, 60),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -126,7 +126,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                       setState(() {
                         phone = value;
                       });
-                    }),
+                    }, 60),
                   ),
                   SizedBox(height: 60),
                   Padding(

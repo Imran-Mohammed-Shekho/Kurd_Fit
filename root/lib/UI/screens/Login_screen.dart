@@ -81,13 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {
                         email = value;
                       });
-                    }),
+                    }, 60),
                     SizedBox(height: 15),
                     GlassyTextField("Password", (value) {
                       setState(() {
                         password = value;
                       });
-                    }),
+                    }, 60),
                   ],
                 ),
               ),
@@ -199,7 +199,13 @@ class _LoginScreenState extends State<LoginScreen> {
 class GlassyTextField extends StatelessWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
-  const GlassyTextField(this.hintText, this.onChanged, {super.key});
+  final double height;
+  const GlassyTextField(
+    this.hintText,
+    this.onChanged,
+    this.height, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +215,7 @@ class GlassyTextField extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
         child: Container(
           width: double.infinity,
-          height: 60,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white.withOpacity(0.1),
@@ -230,7 +236,10 @@ class GlassyTextField extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: hintText,
-                hintStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.7),
+                  fontSize: 14,
+                ),
               ),
             ),
           ),
