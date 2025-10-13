@@ -91,7 +91,9 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.surface,
-                          border: Border.all(color: Colors.white),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.4),
+                          ),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
@@ -306,7 +308,9 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                               color: Theme.of(
                                 context,
                               ).colorScheme.primary.withOpacity(0.1),
-                              border: Border.all(color: Colors.white),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.4),
+                              ),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Column(
@@ -324,7 +328,8 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Text(
-                                    """Click me & Get your personalized nutrition \n           plan by filling out the details.""",
+                                    textAlign: TextAlign.center,
+                                    """Click me & Get your personalized nutrition\nplan by filling out the details.""",
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w900,
@@ -400,36 +405,41 @@ class dashboradBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
-      child: GlowContainer(
+      child: SizedBox(
         width: 350,
         height: 60,
-        borderRadius: BorderRadius.circular(10),
-        glowColor: Colors.white,
-        color: Color(0xff727bff),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(width: 0),
-            Padding(
-              padding: const EdgeInsets.only(),
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: color,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
+
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Color(0xff727bff),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.white.withOpacity(0.4)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(width: 0),
+              Padding(
+                padding: const EdgeInsets.only(),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: text == "Start Wokrout"
-                  ? const EdgeInsets.only(right: 10)
-                  : EdgeInsets.all(0),
-              child: text == "Start Workout"
-                  ? Icon(Icons.arrow_forward_ios, color: Colors.black)
-                  : SizedBox(width: 0),
-            ),
-          ],
+              Padding(
+                padding: text == "Start Wokrout"
+                    ? const EdgeInsets.only(right: 10)
+                    : EdgeInsets.all(0),
+                child: text == "Start Workout"
+                    ? Icon(Icons.arrow_forward_ios, color: Colors.black)
+                    : SizedBox(width: 0),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -477,7 +487,7 @@ class glassycontainer extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
-              border: Border.all(color: Colors.white),
+              border: Border.all(color: Colors.white.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(

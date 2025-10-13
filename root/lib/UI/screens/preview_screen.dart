@@ -73,28 +73,36 @@ class PreviewScreen extends StatelessWidget {
                       productinfotext("Description : $descrption"),
                       Spacer(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
 
                         child: Align(
                           alignment: Alignment.bottomCenter,
-                          child: GlowButton(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color(0xff727bff),
-                            glowColor: Colors.white,
-                            height: 60,
-                            width: 200,
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: SizedBox(
+                              height: 60,
+                              width: 330,
 
-                            child: Center(
-                              child: Text(
-                                "Add To Cart?",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Color(0xff727bff),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.4),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Add To Cart",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                            onPressed: () {},
                           ),
                         ),
                       ),
