@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/Nutitrion_Screen.dart';
 import 'package:gym/UI/screens/drawer_section.dart';

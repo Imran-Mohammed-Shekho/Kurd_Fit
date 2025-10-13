@@ -11,6 +11,7 @@ import 'package:gym/state/providers/general_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class drawer_section extends StatelessWidget {
   const drawer_section({super.key});
@@ -176,7 +177,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.notification_add_rounded,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFFFD54F)
+                        : Color(0xFF4DD0E1),
                   ),
                   () {},
                 ),
@@ -192,7 +195,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.lock,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFFF8A65)
+                        : Color(0xFFFFAB91),
                   ),
                   () {
                     Navigator.pushReplacement(
@@ -219,7 +224,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.language,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFAB47BC)
+                        : Color(0xFFCE93D8),
                   ),
                   () => showmodelbottomsheet(context),
                 ),
@@ -234,7 +241,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFF9CCC65)
+                        : Color(0xFFC5E1A5),
                   ),
                   () {
                     Themeprovider.chnagetheme();
@@ -252,7 +261,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.payment_outlined,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFFFB300)
+                        : Color(0xFFFFCA28),
                   ),
                   () {
                     Navigator.push(
@@ -274,9 +285,17 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.share,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFF64B5F6)
+                        : Color(0xFF42A5F5),
                   ),
-                  () {},
+                  () async => await SharePlus.instance.share(
+                    ShareParams(
+                      title: "Gym App By Imran Mohammed ",
+                      text:
+                          'Check out my Gym App! Download it here: https://play.google.com/store/apps/details?id=com.example.gym_app',
+                    ),
+                  ),
                 ),
 
                 dividers(),
@@ -291,7 +310,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.support_agent,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFA5D6A7)
+                        : Color(0xFF66BB6A),
                   ),
                   () {},
                 ),
@@ -307,7 +328,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.info,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFB39DDB)
+                        : Color(0xFFB39DDB),
                   ),
                   () {},
                 ),
@@ -324,7 +347,9 @@ class drawer_section extends StatelessWidget {
                   ),
                   Icon(
                     Icons.logout_rounded,
-                    color: Themeprovider.isDark ? Colors.white : Colors.black,
+                    color: Themeprovider.isDark
+                        ? Color(0xFFEF9A9A)
+                        : Color(0xFFEF5350),
                   ),
                   () async {
                     islogout = await GeneralProvider().logoutuser();
