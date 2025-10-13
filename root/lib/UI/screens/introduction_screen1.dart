@@ -14,6 +14,7 @@ class _IntroductionState extends State<Introduction1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned(
@@ -23,12 +24,15 @@ class _IntroductionState extends State<Introduction1> {
             ),
           ),
 
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              "lib/assets/images/imageR_I.png",
-              fit: BoxFit.cover,
-              width: double.infinity,
+          Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                "lib/assets/images/1i.png",
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
 
@@ -85,7 +89,7 @@ class _IntroductionState extends State<Introduction1> {
                     );
                   },
                   "Sign Up ",
-                  Colors.blue,
+                  Colors.white.withOpacity(0.3),
                 ),
                 SizedBox(height: 30),
               ],

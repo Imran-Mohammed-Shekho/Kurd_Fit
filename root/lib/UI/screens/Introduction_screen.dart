@@ -13,21 +13,25 @@ class _IntroductionState extends State<Introduction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned(
             child: Image.asset(
-              "lib/assets/images/introduction_image.png",
+              "lib/assets/images/introduction.png",
               fit: BoxFit.cover,
             ),
           ),
 
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              "lib/assets/images/imageR_I.png",
-              fit: BoxFit.cover,
-              width: double.infinity,
+          Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                "lib/assets/images/1i.png",
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
 
