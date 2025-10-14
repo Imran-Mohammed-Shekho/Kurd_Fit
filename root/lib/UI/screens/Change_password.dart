@@ -158,7 +158,12 @@ class _Change_passwordState extends State<Change_password> {
               SizedBox(height: 50),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: dashboradBottom(() {}, "Change passowrd", Colors.white),
+                child: dashboradBottom(
+                  () {},
+                  "Change passowrd",
+                  Colors.white,
+                  false,
+                ),
               ),
             ],
           ),

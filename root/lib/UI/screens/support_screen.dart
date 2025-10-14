@@ -1,10 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/UI/screens/introduction_screen1.dart';
 
-class SupportScreen extends StatelessWidget {
+class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
+
+  @override
+  State<SupportScreen> createState() => _SupportScreenState();
+}
+
+class _SupportScreenState extends State<SupportScreen> {
+  String name = '';
+  String email = '';
+  String usermessage = '';
+  bool isload = false;
+
+  void _validate() {
+    if (name.isEmpty || email.isEmpty || usermessage.isEmpty) {
+      _showerror("fill all text boxes please! ");
+      return;
+    } else {
+      setState(() {
+        isload = true;
+      });
+    }
+  }
+
+  void _showerror(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +50,7 @@ class SupportScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Column(
+            child: ListView(
               children: [
                 SizedBox(height: 10),
 
@@ -43,24 +75,44 @@ class SupportScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GlassyTextField("Name ", (value) => 0, 60),
+                  child: GlassyTextField(
+                    "Name ",
+                    (value) => setState(() {
+                      name = value;
+                    }),
+                    60,
+                  ),
                 ),
                 SizedBox(height: 10),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GlassyTextField("Email ", (value) => 0, 60),
+                  child: GlassyTextField(
+                    "Email ",
+                    (value) => setState(() {
+                      email = value;
+                    }),
+                    60,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: GlassyTextField(
                     "write your problem here...",
-                    (value) => 0,
+                    (value) => setState(() {
+                      usermessage = value;
+                    }),
                     120,
                   ),
                 ),
                 SizedBox(height: 30),
-                dashboradBottom(() => print("submit"), "Submit", Colors.white),
+
+                dashboradBottom(
+                  () => _validate(),
+                  "submit",
+                  Colors.white,
+                  isload,
+                ),
                 SizedBox(height: 50),
                 Center(
                   child: Row(

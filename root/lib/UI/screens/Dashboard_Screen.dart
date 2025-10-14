@@ -398,7 +398,14 @@ class dashboradBottom extends StatelessWidget {
   final VoidCallback ontap;
   final String text;
   final Color color;
-  const dashboradBottom(this.ontap, this.text, this.color, {super.key});
+  final bool isload;
+  const dashboradBottom(
+    this.ontap,
+    this.text,
+    this.color,
+    this.isload, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -420,14 +427,19 @@ class dashboradBottom extends StatelessWidget {
               SizedBox(width: 0),
               Padding(
                 padding: const EdgeInsets.only(),
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
+                child: isload
+                    ? CircularProgressIndicator(
+                        color: Colors.blue,
+                        strokeWidth: 3,
+                      )
+                    : Text(
+                        text,
+                        style: TextStyle(
+                          color: color,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
               ),
               Padding(
                 padding: text == "Start Wokrout"

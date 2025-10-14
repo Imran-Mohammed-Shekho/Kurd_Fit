@@ -131,7 +131,12 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                   SizedBox(height: 60),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: dashboradBottom(() {}, "Save changes", Colors.white),
+                    child: dashboradBottom(
+                      () {},
+                      "Save changes",
+                      Colors.white,
+                      false,
+                    ),
                   ),
                 ],
               ),
