@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Change_password.dart';
 import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
+import 'package:gym/UI/screens/aboutus_screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/UI/screens/payment&subscreption_screen.dart';
@@ -338,7 +339,12 @@ class drawer_section extends StatelessWidget {
                         ? Color(0xFFB39DDB)
                         : Color(0xFFB39DDB),
                   ),
-                  () {},
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutusScreen()),
+                    );
+                  },
                 ),
 
                 dividers(),
