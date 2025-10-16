@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/workout_detail.dart';
 import 'package:gym/workoutsType.dart';
 
 class WorkoutsShow extends StatefulWidget {
@@ -75,6 +76,12 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: ListTile(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WorkoutDetail(),
+                                  ),
+                                ),
                                 title: Text(
                                   WTYPES[index].titile,
                                   style: TextStyle(
