@@ -30,7 +30,7 @@ class WorkoutDetail extends StatelessWidget {
                   ),
                   SizedBox(width: 50),
                   Text(
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.right,
                     "INFO",
                     style: TextStyle(
                       fontSize: 22,
