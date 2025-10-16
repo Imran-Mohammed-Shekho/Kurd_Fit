@@ -1,69 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:gym/workouts_show.dart';
+import 'package:gym/workoutsType.dart';
 
-List<Map<String, String>> workouts = [
-  {
-    "title": "ARM",
-    "number": "20x  workouts",
-    "image": "lib/assets/images/arms.png",
-  },
-  {
-    "title": "OBLIQUES",
-    "number": "30x  workouts",
-    "image": "lib/assets/images/OBLIQUES.png",
-  },
-  {
-    "title": "FOREARMS",
-    "number": "22x  workouts",
-    "image": "lib/assets/images/FOREARMS.png",
-  },
-  {
-    "title": "CALVES",
-    "number": "10x  workouts",
-    "image": "lib/assets/images/calves.png",
-  },
-  {
-    "title": "QUADS",
-    "number": "40x  workouts",
-    "image": "lib/assets/images/quads.png",
-  },
-  {
-    "title": "TRICEPS",
-    "number": "34x  workouts",
-    "image": "lib/assets/images/TRICEPS.png",
-  },
-  {
-    "title": "SHOULDERS",
-    "number": "10x workouts",
-    "image": "lib/assets/images/SHOULDERS.png",
-  },
-  {
-    "title": "BACK",
-    "number": "20x  workouts",
-    "image": "lib/assets/images/back.png",
-  },
-  {
-    "title": "ABS",
-    "number": "18x  workouts",
-    "image": "lib/assets/images/abs.png",
-  },
-  {
-    "title": "LEGS",
-    "number": "22x  workouts",
-    "image": "lib/assets/images/legs.png",
-  },
-];
-
-class Workouts_Screen extends StatefulWidget {
-  const Workouts_Screen({super.key});
+class WorkoutsShow extends StatefulWidget {
+  final String titile;
+  const WorkoutsShow(this.titile, {super.key});
 
   @override
-  State<Workouts_Screen> createState() => _Workouts_ScreenState();
+  State<WorkoutsShow> createState() => _WorkoutsShow();
 }
 
-class _Workouts_ScreenState extends State<Workouts_Screen> {
+class _WorkoutsShow extends State<WorkoutsShow> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,22 +32,19 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20),
-                    child: Image.asset(
-                      "lib/assets/images/man.png",
-                      height: 40,
-                      width: 40,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(Icons.arrow_back_ios),
                     ),
                   ),
-                  SizedBox(width: 100),
-                  Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Text(
-                      "Workouts",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
+                  SizedBox(width: 50),
+                  Text(
+                    textAlign: TextAlign.center,
+                    "${widget.titile} workouts",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -107,7 +52,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
               SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
-                  itemCount: workouts.length,
+                  itemCount: WTYPES.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.symmetric(
@@ -130,34 +75,21 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => WorkoutsShow(
-                                        workouts[index]["title"] ?? "unkonwn",
-                                      ),
-                                    ),
-                                  );
-                                },
                                 title: Text(
-                                  workouts[index]["title"] ?? "unkown",
+                                  WTYPES[index].titile,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white,
                                   ),
                                 ),
                                 subtitle: Text(
-                                  workouts[index]["number"] ?? "0x",
+                                  WTYPES[index].number,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white54,
                                   ),
                                 ),
-                                leading: Image.asset(
-                                  workouts[index]["image"] ??
-                                      "the image dos not load",
-                                ),
+                                leading: Image.asset(WTYPES[index].path),
                                 trailing: Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.white,
