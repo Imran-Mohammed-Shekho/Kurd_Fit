@@ -3,6 +3,7 @@ import 'package:gym/UI/screens/Introduction_screen.dart';
 import 'package:gym/UI/screens/change_theme.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
+import 'package:gym/state/providers/workout_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => LanguageProvider()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => MangeWorkoutsPorovider()),
       ],
       child: Gym(),
     ),
