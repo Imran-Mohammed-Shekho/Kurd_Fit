@@ -7,56 +7,16 @@ import 'package:gym/workouts_show.dart';
 import 'package:provider/provider.dart';
 
 List<Map<String, String>> workouts = [
-  {
-    "title": "ARM",
-    "number": "20x  workouts",
-    "image": "lib/assets/images/arms.png",
-  },
-  {
-    "title": "OBLIQUES",
-    "number": "30x  workouts",
-    "image": "lib/assets/images/OBLIQUES.png",
-  },
-  {
-    "title": "FOREARMS",
-    "number": "22x  workouts",
-    "image": "lib/assets/images/FOREARMS.png",
-  },
-  {
-    "title": "CALVES",
-    "number": "10x  workouts",
-    "image": "lib/assets/images/calves.png",
-  },
-  {
-    "title": "QUADS",
-    "number": "40x  workouts",
-    "image": "lib/assets/images/quads.png",
-  },
-  {
-    "title": "TRICEPS",
-    "number": "34x  workouts",
-    "image": "lib/assets/images/TRICEPS.png",
-  },
-  {
-    "title": "SHOULDERS",
-    "number": "10x workouts",
-    "image": "lib/assets/images/SHOULDERS.png",
-  },
-  {
-    "title": "Middle-back",
-    "number": "20x  workouts",
-    "image": "lib/assets/images/back.png",
-  },
-  {
-    "title": "ABS",
-    "number": "18x  workouts",
-    "image": "lib/assets/images/abs.png",
-  },
-  {
-    "title": "LEGS",
-    "number": "22x  workouts",
-    "image": "lib/assets/images/legs.png",
-  },
+  {"title": "NECK", "image": "lib/assets/images/neck.png"},
+  {"title": "FOREARMS", "image": "lib/assets/images/FOREARMS.png"},
+  {"title": "SHOULDERS", "image": "lib/assets/images/SHOULDERS.png"},
+  {"title": "CARDIO", "image": "lib/assets/images/cardio.png"},
+  {"title": "UPPER ARMS", "image": "lib/assets/images/arms.png"},
+  {"title": "CHEST", "image": "lib/assets/images/chest.png"},
+  {"title": "Calves", "image": "lib/assets/images/calves.png"},
+  {"title": "BACK", "image": "lib/assets/images/back.png"},
+  {"title": "UPPER LEGS", "image": "lib/assets/images/legs.png"},
+  {"title": "WAIST", "image": "lib/assets/images/abs.png"},
 ];
 
 class Workouts_Screen extends StatefulWidget {
@@ -156,32 +116,42 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                                     ),
                                     child: ListTile(
                                       onTap: () {
+                                        final workout =
+                                            Provider.of<MangeWorkoutsPorovider>(
+                                              context,
+                                              listen: false,
+                                            );
+                                        workout.ChangeSelecetedWorkout(
+                                          value.BodyParts[index]["name"],
+                                        );
+                                        workout.TargetExercises.clear();
+                                        workout.FetchTargetExercises(
+                                          workout.SelectedWorkOut,
+                                        );
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => WorkoutsShow(
-                                              value.BodyParts[index],
-                                            ),
+                                            builder: (context) =>
+                                                WorkoutsShow(),
                                           ),
                                         );
                                       },
                                       title: Text(
-                                        value.BodyParts[index],
+                                        "${workouts[index]["title"]}",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           color: Colors.white,
                                         ),
                                       ),
                                       subtitle: Text(
-                                        workouts[index]["number"] ?? "0x",
+                                        "",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           color: Colors.white54,
                                         ),
                                       ),
                                       leading: Image.asset(
-                                        workouts[index]["image"] ??
-                                            "the image dos not load",
+                                        "${workouts[index]["image"]}",
                                       ),
                                       trailing: Icon(
                                         Icons.arrow_forward_ios,

@@ -7,8 +7,7 @@ import 'package:gym/workoutsType.dart';
 import 'package:provider/provider.dart';
 
 class WorkoutsShow extends StatefulWidget {
-  final String targetWorkout;
-  const WorkoutsShow(this.targetWorkout, {super.key});
+  const WorkoutsShow({super.key});
 
   @override
   State<WorkoutsShow> createState() => _WorkoutsShow();
@@ -19,14 +18,14 @@ class _WorkoutsShow extends State<WorkoutsShow> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final targetexercise = Provider.of<MangeWorkoutsPorovider>(
         context,
         listen: false,
       );
       if (targetexercise.TargetExercises.isEmpty &&
           !targetexercise.isLoadTargetExercises) {
-        targetexercise.FetchTargetExercises(widget.targetWorkout);
+        targetexercise.FetchTargetExercises(targetexercise.SelectedWorkOut);
       }
     });
   }
@@ -69,7 +68,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                           SizedBox(width: 50),
                           Text(
                             textAlign: TextAlign.center,
-                            "${widget.targetWorkout} workouts",
+                            "${value.SelectedWorkOut} workouts",
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w900,
@@ -110,8 +109,10 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                         onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                WorkoutDetail(),
+                                            builder: (context) => WorkoutDetail(
+                                              value
+                                                  .TargetExercises[index]["gifUrl"],
+                                            ),
                                           ),
                                         ),
                                         title: Text(

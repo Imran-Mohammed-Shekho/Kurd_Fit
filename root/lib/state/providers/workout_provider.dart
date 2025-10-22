@@ -5,23 +5,20 @@ import 'package:http/http.dart' as http;
 
 class MangeWorkoutsPorovider extends ChangeNotifier {
   bool isloadBodyParts = false;
-  List<String> BodyParts = [];
+  List<Map<String, dynamic>> BodyParts = [];
 
   Future<void> fetchBodyparts() async {
     isloadBodyParts = true;
     notifyListeners();
 
     try {
-      final headers = {
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        "x-rapidapi-key": "0324fb1332mshd4b8760b3413171p1fd707jsn6b31b03f0932",
-      };
-
-      final url = "https://exercisedb.p.rapidapi.com/exercises/targetList";
-      final response = await http.get(Uri.parse(url), headers: headers);
+      final url = "https://db-sigma-eight.vercel.app/api/v1/bodyparts";
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        BodyParts = List<String>.from(json.decode(response.body));
+        final dataBody = json.decode(response.body);
+        BodyParts = List<Map<String, dynamic>>.from(dataBody["data"]);
+
         notifyListeners();
       } else if (response.statusCode.isNaN) {
         print("the responseis not number");
@@ -36,33 +33,42 @@ class MangeWorkoutsPorovider extends ChangeNotifier {
     }
   }
 
-  List TargetExercises = [];
   bool isLoadTargetExercises = false;
+  List<Map<String, dynamic>> TargetExercises = [];
+
   Future<void> FetchTargetExercises(String target) async {
     isLoadTargetExercises = true;
     notifyListeners();
     try {
       final url =
-          "https://exercisedb.p.rapidapi.com/exercises/target/$target?limit=50";
-      final headers = {
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com ",
-        "x-rapidapi-key": "0324fb1332mshd4b8760b3413171p1fd707jsn6b31b03f0932",
-      };
+          "https://db-sigma-eight.vercel.app/api/v1/bodyparts/$target/exercises?offset=0&limit=10";
 
-      final response = await http.get(Uri.parse(url), headers: headers);
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        TargetExercises = List<Map<String, dynamic>>.from(
-          json.decode(response.body),
-        );
+        final decoded = json.decode(response.body);
+        if (decoded["success"] == true) {
+          TargetExercises = List<Map<String, dynamic>>.from((decoded["data"]));
+        } else {
+          throw Exception("API request is unsuccsesful >$decoded");
+        }
       } else {
-        print(response.statusCode);
+        throw Exception("failed to load exercises ${response.statusCode}");
       }
     } catch (e) {
-      print("this is the error that happen lookn it ");
+      print("Error ouccured whille fetching the exercises list $e");
     } finally {
       isLoadTargetExercises = false;
       notifyListeners();
     }
+  }
+
+  String _SelectedWorkOut = "";
+
+  String get SelectedWorkOut => _SelectedWorkOut;
+
+  void ChangeSelecetedWorkout(workout) {
+    _SelectedWorkOut = workout;
+    notifyListeners();
   }
 }

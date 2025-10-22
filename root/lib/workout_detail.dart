@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class WorkoutDetail extends StatefulWidget {
-  const WorkoutDetail({super.key});
+  final dynamic imageurl;
+  const WorkoutDetail(this.imageurl, {super.key});
 
   @override
   State<WorkoutDetail> createState() => _WorkoutDetailState();
@@ -125,6 +125,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                   ),
                 ),
               ),
+              Image.network("${widget.imageurl}"),
             ],
           ),
         ),
