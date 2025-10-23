@@ -88,7 +88,7 @@ class aboutuscontiners extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
-                border: Border.all(color: Colors.white.withOpacity(0.4)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(

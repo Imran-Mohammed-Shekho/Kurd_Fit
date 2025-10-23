@@ -91,7 +91,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.surface,
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.4),
+                            color: Colors.white.withValues(alpha: 0.4),
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -205,7 +205,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               blurRadius: 8,
                               offset: Offset(0, 4),
                             ),
@@ -240,7 +240,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                               child: Text(
                                 "11 Min  72Kcal   Beginner",
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.6),
+                                  color: Colors.white.withValues(alpha: 0.6),
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -314,16 +314,16 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withValues(alpha: 0.2),
                                   blurRadius: 8,
                                   offset: Offset(0, 4),
                                 ),
                               ],
                               color: Theme.of(
                                 context,
-                              ).colorScheme.primary.withOpacity(0.1),
+                              ).colorScheme.primary.withValues(alpha: 0.1),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.4),
+                                color: Colors.white.withValues(alpha: 0.4),
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -436,7 +436,7 @@ class dashboradBottom extends StatelessWidget {
           decoration: BoxDecoration(
             color: Color(0xff727bff),
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.white.withOpacity(0.4)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -506,7 +506,7 @@ class glassycontainer extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
-              border: Border.all(color: Colors.white.withOpacity(0.4)),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(

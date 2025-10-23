@@ -62,9 +62,9 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
                       width: 350,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha: 0.1),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
@@ -141,7 +141,7 @@ class ADDPMB extends StatelessWidget {
             color: const Color(0xff5B58FB),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xffffffff).withOpacity(0.5),
+              color: const Color(0xffffffff).withValues(alpha: 0.5),
               style: BorderStyle.solid,
               strokeAlign: BorderSide.strokeAlignCenter,
             ),
@@ -177,8 +177,8 @@ class paymentmethodsListtiles extends StatelessWidget {
             height: 70,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                border: Border.all(color: Colors.white.withOpacity(0.2)),
+                color: Colors.white.withValues(alpha: 0.1),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: ListTile(

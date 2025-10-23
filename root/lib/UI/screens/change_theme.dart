@@ -3,19 +3,17 @@ import 'package:gym/UI/screens/custom_colors.dart';
 
 ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.black12.withOpacity(0.1),
+  scaffoldBackgroundColor: Colors.black12.withValues(alpha: 0.1),
   extensions: [
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
-      drawerbg: Color(0xff181a65).withOpacity(0.1),
-      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.1),
+      drawerbg: Color(0xff181a65).withValues(alpha: 0.1),
+      bottomNavigationBarBg: Color(0xff0011FF).withValues(alpha: 0.1),
       TextFrombottomNavigationbar: Colors.black,
     ),
   ],
   colorScheme: ColorScheme.dark(
-    background: Colors.black,
-
-    surface: Colors.black.withOpacity(0.1),
+    surface: Colors.black.withValues(alpha: 0.1),
     onSurface: Colors.white,
     primary: Color.fromARGB(255, 63, 68, 147),
   ),
@@ -27,15 +25,15 @@ ThemeData lightmode = ThemeData(
   extensions: [
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
-      drawerbg: Colors.white.withOpacity(0.1),
-      bottomNavigationBarBg: Color(0xff0011FF).withOpacity(0.3),
+      drawerbg: Colors.white.withValues(alpha: 0.1),
+      bottomNavigationBarBg: Color(0xff0011FF).withValues(alpha: 0.3),
       TextFrombottomNavigationbar: Colors.black,
     ),
   ],
   colorScheme: ColorScheme.light(
     background: Colors.white,
 
-    surface: Colors.white.withOpacity(0.1),
+    surface: Colors.white.withValues(alpha: 0.1),
     onSurface: Colors.black,
     onBackground: Colors.black,
     primary: Color(0xff727bff),

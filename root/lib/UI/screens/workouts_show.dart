@@ -99,9 +99,13 @@ class _WorkoutsShow extends State<WorkoutsShow> {
 
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.1),
+                                        color: Colors.white.withValues(
+                                          alpha: 0.1,
+                                        ),
                                         border: Border.all(
-                                          color: Colors.white.withOpacity(0.4),
+                                          color: Colors.white.withValues(
+                                            alpha: 0.4,
+                                          ),
                                         ),
                                         borderRadius: BorderRadius.circular(10),
                                       ),

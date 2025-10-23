@@ -54,7 +54,7 @@ class _IntroductionState extends State<Introduction1> {
                   textAlign: TextAlign.center,
                   """ Get personalized workout plans, track your\nprogress, and join our community.""",
                   style: TextStyle(
-                    color: const Color(0xffB5B5B5).withOpacity(0.8),
+                    color: const Color(0xffB5B5B5).withValues(alpha: 0.8),
                     fontSize: 14,
                   ),
                 ),
@@ -89,7 +89,7 @@ class _IntroductionState extends State<Introduction1> {
                     );
                   },
                   "Sign Up ",
-                  Colors.white.withOpacity(0.1),
+                  Colors.white.withValues(alpha: 0.1),
                 ),
                 SizedBox(height: 30),
               ],
@@ -118,7 +118,7 @@ class IntorductionButtons extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xffffffff).withOpacity(0.5),
+              color: const Color(0xffffffff).withValues(alpha: 0.5),
               style: BorderStyle.solid,
               strokeAlign: BorderSide.strokeAlignCenter,
             ),

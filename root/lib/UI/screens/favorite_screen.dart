@@ -68,8 +68,8 @@ class _Favorite_screenState extends State<Favorite_screen> {
                         width: double.infinity,
                         blurRadius: 15,
                         spreadRadius: 5,
-                        glowColor: Colors.white.withOpacity(0.2),
-                        color: Colors.white.withOpacity(0.1),
+                        glowColor: Colors.white.withValues(alpha: 0.2),
+                        color: Colors.white.withValues(alpha: 0.1),
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(

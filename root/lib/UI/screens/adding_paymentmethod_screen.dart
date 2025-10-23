@@ -129,7 +129,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                 ),
                 SizedBox(height: 40),
                 Divider(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   thickness: 1,
                   endIndent: 10,
                   indent: 10,
@@ -197,8 +197,8 @@ class addingpaymentmethods_container extends StatelessWidget {
       width: 350,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          border: Border.all(color: Colors.white.withOpacity(0.2)),
+          color: Colors.white.withValues(alpha: 0.1),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
         child: TextField(

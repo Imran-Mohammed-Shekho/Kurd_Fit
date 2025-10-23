@@ -50,7 +50,7 @@ class _IntroductionState extends State<Introduction> {
                   textAlign: TextAlign.center,
                   """ Achieve your fitness goals with\npersonalized workouts and expert\nguidance.""",
                   style: TextStyle(
-                    color: const Color(0xffB5B5B5).withOpacity(0.8),
+                    color: const Color(0xffB5B5B5).withValues(alpha: 0.8),
                     fontSize: 14,
                   ),
                 ),

@@ -119,7 +119,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     children: [
                       Expanded(
                         child: Divider(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withValues(alpha: 0.3),
                           endIndent: 10,
                           indent: 10,
                           thickness: 2,
@@ -137,7 +137,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       ),
                       Expanded(
                         child: Divider(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withValues(alpha: 0.3),
                           endIndent: 10,
                           indent: 10,
                           thickness: 2,
@@ -150,7 +150,9 @@ class _SupportScreenState extends State<SupportScreen> {
                 Center(
                   child: Text(
                     "Also You can Find Us here",
-                    style: TextStyle(color: Colors.white.withOpacity(0.5)),
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.5),
+                    ),
                   ),
                 ),
                 SizedBox(height: 40),
@@ -185,7 +187,7 @@ class social extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white.withOpacity(0.3),
+          color: Colors.white.withValues(alpha: 0.3),
         ),
         child: Padding(
           padding: EdgeInsets.all(10),

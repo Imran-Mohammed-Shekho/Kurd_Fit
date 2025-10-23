@@ -43,9 +43,9 @@ class PreviewScreen extends StatelessWidget {
                 child: GlowContainer(
                   width: double.infinity,
                   height: 400,
-                  glowColor: Colors.white.withOpacity(0.2),
+                  glowColor: Colors.white.withValues(alpha: 0.2),
 
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha: 0.1),
                   blurRadius: 15,
                   spreadRadius: 2,
                   margin: EdgeInsets.all(10),
@@ -88,7 +88,7 @@ class PreviewScreen extends StatelessWidget {
                                   color: Color(0xff727bff),
                                   borderRadius: BorderRadius.circular(15),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.4),
+                                    color: Colors.white.withValues(alpha: 0.4),
                                   ),
                                 ),
                                 child: Center(

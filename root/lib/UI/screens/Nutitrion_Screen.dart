@@ -136,9 +136,12 @@ Widget ResultCard() {
         height: 230,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: Colors.white.withOpacity(0.8), width: 1.5),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.8),
+            width: 1.5,
+          ),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),

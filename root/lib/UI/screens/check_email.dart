@@ -49,7 +49,7 @@ class _CheckEmailState extends State<CheckEmail> {
                   """             We’ve Sent  a Password rest link
  to your Email Address . Please Check your Inbox.""",
                   style: TextStyle(
-                    color: const Color(0xffB5B5B5).withOpacity(0.8),
+                    color: const Color(0xffB5B5B5).withValues(alpha: 0.8),
                     fontSize: 14,
                   ),
                 ),

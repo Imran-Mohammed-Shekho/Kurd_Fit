@@ -65,7 +65,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                   Center(
                     child: IconButton(
                       iconSize: 60,
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       onPressed: () {
                         setState(() {
                           _controller.value.isPlaying
@@ -94,9 +94,9 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                         width: double.infinity,
 
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha: 0.1),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                           ),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(50),

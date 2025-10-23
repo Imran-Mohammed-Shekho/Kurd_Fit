@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 void showmodelbottomsheet(BuildContext context) {
   showModalBottomSheet(
     barrierLabel: "Select Language",
-    backgroundColor: Colors.white.withOpacity(0.1),
+    backgroundColor: Colors.white.withValues(alpha: 0.1),
     context: context,
     builder: (context) => ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -19,7 +19,7 @@ void showmodelbottomsheet(BuildContext context) {
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
-            border: Border.all(color: Colors.white.withOpacity(0.4)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
           ),
           child: Consumer<LanguageProvider>(
             builder:
