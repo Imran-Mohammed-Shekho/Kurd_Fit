@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/workout_provider.dart';
-import 'package:gym/workouts_show.dart';
+import 'package:gym/UI/screens/workouts_show.dart';
 
 import 'package:provider/provider.dart';
 
