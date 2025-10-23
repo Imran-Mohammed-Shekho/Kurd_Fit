@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:gym/UI/screens/Forget_screen.dart';
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(),
-                  child: GlowText(
+                  child: Text(
                     "Forget Password?",
                     style: TextStyle(
                       color: Colors.white,

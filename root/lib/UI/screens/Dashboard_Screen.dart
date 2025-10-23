@@ -77,98 +77,84 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 280, horizontal: 30),
-              child: ClipRect(
+              padding: EdgeInsets.symmetric(vertical: 280, horizontal: 34),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
 
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: SizedBox(
-                      height: 120,
-                      width: double.infinity,
+                  child: SizedBox(
+                    height: 120,
+                    width: double.infinity,
 
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(10),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.4),
                         ),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 5),
-                            Center(
-                              child: Text(
-                                "Macro Breakdown",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 5),
+                          Center(
+                            child: Text(
+                              "Macro Breakdown",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
-                            SizedBox(height: 5),
+                          ),
+                          SizedBox(height: 5),
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                pfctext(
-                                  "P",
-                                  22.0,
-                                  Alignment.centerLeft,
-                                  context,
-                                ),
-                                SizedBox(width: 10),
-                                pfctext("C", 22.0, Alignment.center, context),
-                                SizedBox(width: 10),
-                                pfctext(
-                                  "F",
-                                  22.0,
-                                  Alignment.centerRight,
-                                  context,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                pfctext(
-                                  "200g",
-                                  14.0,
-                                  Alignment.centerLeft,
-                                  context,
-                                ),
-                                SizedBox(width: 10),
-                                pfctext(
-                                  "100g",
-                                  14.0,
-                                  Alignment.center,
-                                  context,
-                                ),
-                                SizedBox(width: 10),
-                                pfctext(
-                                  "700g",
-                                  14.0,
-                                  Alignment.centerRight,
-                                  context,
-                                ),
-                              ],
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              pfctext("P", 22.0, Alignment.centerLeft, context),
+                              SizedBox(width: 10),
+                              pfctext("C", 22.0, Alignment.center, context),
+                              SizedBox(width: 10),
+                              pfctext(
+                                "F",
+                                22.0,
+                                Alignment.centerRight,
+                                context,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              pfctext(
+                                "200g",
+                                14.0,
+                                Alignment.centerLeft,
+                                context,
+                              ),
+                              SizedBox(width: 10),
+                              pfctext("100g", 14.0, Alignment.center, context),
+                              SizedBox(width: 10),
+                              pfctext(
+                                "700g",
+                                14.0,
+                                Alignment.centerRight,
+                                context,
+                              ),
+                            ],
+                          ),
 
-                            // Center(
-                            //   child: Text(
-                            //     "+10%",
-                            //     style: TextStyle(
-                            //       color: const Color.fromARGB(255, 0, 255, 8),
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
-                        ),
+                          // Center(
+                          //   child: Text(
+                          //     "+10%",
+                          //     style: TextStyle(
+                          //       color: const Color.fromARGB(255, 0, 255, 8),
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
                     ),
                   ),
@@ -199,7 +185,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                   SizedBox(height: 10),
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Container(
                         height: 150,
                         width: double.infinity,
@@ -315,55 +301,52 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
 
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: SizedBox(
-                          height: 40,
-                          width: double.infinity,
+                      child: SizedBox(
+                        height: 40,
+                        width: double.infinity,
 
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.2),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.primary.withValues(alpha: 0.1),
-                              border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.4),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.2),
+                                blurRadius: 8,
+                                offset: Offset(0, 4),
                               ),
-                              borderRadius: BorderRadius.circular(10),
+                            ],
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primary.withValues(alpha: 0.1),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.4),
                             ),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 10),
-                                Text(
-                                  "Nutrition Calculator",
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Text(
+                                "Nutrition Calculator",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  """Click me & Get your personalized nutrition\nplan by filling out the details.""",
                                   style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.white,
+                                    color: Colors.white60,
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                    textAlign: TextAlign.center,
-                                    """Click me & Get your personalized nutrition\nplan by filling out the details.""",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.white60,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

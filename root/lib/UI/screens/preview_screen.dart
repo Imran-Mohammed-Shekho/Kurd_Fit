@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 
 class PreviewScreen extends StatelessWidget {
   final String path;
@@ -40,17 +39,15 @@ class PreviewScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: GlowContainer(
+                child: Container(
                   width: double.infinity,
                   height: 400,
-                  glowColor: Colors.white.withValues(alpha: 0.2),
 
-                  color: Colors.white.withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                  margin: EdgeInsets.all(10),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.1),
 
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
                   child: Column(
                     children: [
                       SizedBox(height: 10),

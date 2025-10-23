@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/workout_provider.dart';
 import 'package:gym/UI/screens/workout_detail.dart';
-import 'package:gym/UI/screens/workoutsType.dart';
+
 import 'package:provider/provider.dart';
 
 class WorkoutsShow extends StatefulWidget {
@@ -70,7 +70,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                             textAlign: TextAlign.center,
                             "${value.SelectedWorkOut} workouts",
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 18,
                               fontWeight: FontWeight.w900,
                               color: Colors.white,
                             ),
@@ -122,20 +122,33 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                         title: Text(
                                           value.TargetExercises[index]["name"],
                                           style: TextStyle(
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w900,
                                             color: Colors.white,
                                           ),
                                         ),
                                         subtitle: Text(
-                                          WTYPES[index].number,
+                                          "10",
                                           style: TextStyle(
                                             fontWeight: FontWeight.w900,
                                             color: Colors.white54,
                                           ),
                                         ),
-                                        leading: Image.asset(
-                                          WTYPES[index].path,
+                                        leading: SizedBox(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            child: Image.network(
+                                              "${value.TargetExercises[index]["gifUrl"]}",
+                                            ),
+                                          ),
                                         ),
+
                                         trailing: Icon(
                                           Icons.arrow_forward_ios,
                                           color: Colors.white,

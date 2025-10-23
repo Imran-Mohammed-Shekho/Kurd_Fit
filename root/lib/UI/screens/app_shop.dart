@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/screens/Dashboard_Screen.dart';
+
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/favorite_screen.dart';
 import 'package:gym/UI/screens/preview_screen.dart';
@@ -135,12 +135,14 @@ class _App_ShopState extends State<App_Shop> {
                         bottom: 15,
                         child: GestureDetector(
                           onTap: () {},
-                          child: GlowContainer(
+                          child: Container(
                             height: 40,
                             width: 120,
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.lightBlue.shade600,
-                            glowColor: Colors.black,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.lightBlue.shade600,
+                            ),
+
                             child: Center(
                               child: Text(
                                 "Buy Now",

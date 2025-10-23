@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Introduction_screen.dart';
 import 'package:gym/UI/screens/change_theme.dart';
@@ -29,8 +30,7 @@ class Gym extends StatelessWidget {
       builder: (BuildContext context, providertheme, Widget? child) {
         final platform = const LocalPlatform();
 
-        final allowedP =
-            platform.isAndroid || platform.isIOS || platform.isLinux;
+        final allowedP = kIsWeb || platform.isAndroid;
 
         if (!allowedP) {
           return Scaffold(
