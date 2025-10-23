@@ -41,7 +41,7 @@ class MangeWorkoutsPorovider extends ChangeNotifier {
     notifyListeners();
     try {
       final url =
-          "https://db-sigma-eight.vercel.app/api/v1/bodyparts/$target/exercises?offset=0&limit=10";
+          "https://db-sigma-eight.vercel.app/api/v1/bodyparts/$target/exercises?offset=0&limit=25";
 
       final response = await http.get(Uri.parse(url));
 

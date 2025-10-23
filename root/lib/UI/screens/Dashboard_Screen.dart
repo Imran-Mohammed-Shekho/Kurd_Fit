@@ -114,22 +114,37 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Pfctext("P", 22, Alignment.centerLeft),
+                                Pfctext("P", 22, Alignment.centerLeft, context),
                                 SizedBox(width: 10),
-                                Pfctext("C", 22, Alignment.center),
+                                Pfctext("C", 22, Alignment.center, context),
                                 SizedBox(width: 10),
-                                Pfctext("F", 22, Alignment.centerRight),
+                                Pfctext(
+                                  "F",
+                                  22,
+                                  Alignment.centerRight,
+                                  context,
+                                ),
                               ],
                             ),
                             SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Pfctext("200g", 14, Alignment.centerLeft),
+                                Pfctext(
+                                  "200g",
+                                  14,
+                                  Alignment.centerLeft,
+                                  context,
+                                ),
                                 SizedBox(width: 10),
-                                Pfctext("100g", 14, Alignment.center),
+                                Pfctext("100g", 14, Alignment.center, context),
                                 SizedBox(width: 10),
-                                Pfctext("700g", 14, Alignment.centerRight),
+                                Pfctext(
+                                  "700g",
+                                  14,
+                                  Alignment.centerRight,
+                                  context,
+                                ),
                               ],
                             ),
 
@@ -354,6 +369,8 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 }
 
 class dividers extends StatelessWidget {
+  const dividers({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Divider(color: Colors.white54, endIndent: 5, indent: 5);
@@ -365,7 +382,7 @@ class listTiles extends StatelessWidget {
   final Widget icon;
   final VoidCallback ontap;
 
-  const listTiles(this.title, this.icon, this.ontap);
+  const listTiles(this.title, this.icon, this.ontap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -457,27 +474,18 @@ class dashboradBottom extends StatelessWidget {
   }
 }
 
-class Pfctext extends StatelessWidget {
-  final String text;
-  final Alignment alignment;
-
-  final double fontsize;
-  const Pfctext(this.text, this.fontsize, this.alignment, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontsize,
-          color: Theme.of(context).colorScheme.onSurface,
-          fontWeight: FontWeight.w900,
-        ),
+Widget Pfctext(text, alignment, fontsize, BuildContext context) {
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: Text(
+      text,
+      style: TextStyle(
+        fontSize: fontsize,
+        color: Theme.of(context).colorScheme.onSurface,
+        fontWeight: FontWeight.w900,
       ),
-    );
-  }
+    ),
+  );
 }
 
 class glassycontainer extends StatelessWidget {

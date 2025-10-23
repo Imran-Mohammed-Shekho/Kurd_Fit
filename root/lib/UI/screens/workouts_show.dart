@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/workout_provider.dart';
-import 'package:gym/workout_detail.dart';
-import 'package:gym/workoutsType.dart';
+import 'package:gym/UI/screens/workout_detail.dart';
+import 'package:gym/UI/screens/workoutsType.dart';
 import 'package:provider/provider.dart';
 
 class WorkoutsShow extends StatefulWidget {
