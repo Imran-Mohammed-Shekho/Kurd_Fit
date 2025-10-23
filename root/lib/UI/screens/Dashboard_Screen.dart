@@ -19,7 +19,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
     return SafeArea(
       child: Scaffold(
         endDrawerEnableOpenDragGesture: false,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         key: scaffoldKey,
         endDrawer: AnimatedContainer(
           duration: Duration(milliseconds: 800),
@@ -36,7 +36,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               ),
             ),
 
-            Positioned(top: 10, left: 25, right: 10, child: kurdfittext()),
+            Positioned(top: 10, left: 25, right: 10, child: KurdFitText()),
             Positioned(
               right: 10,
               top: 10,
@@ -68,9 +68,9 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               left: 35,
               child: Row(
                 children: [
-                  glassycontainer("Calories", "200g"),
+                  GlassyContainer("Calories", "200g"),
                   SizedBox(width: 20),
-                  glassycontainer("Workout Streak", "7"),
+                  GlassyContainer("Workout Streak", "7"),
                 ],
               ),
             ),
@@ -114,11 +114,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Pfctext("P", 22, Alignment.centerLeft, context),
+                                pfctext("P", 22, Alignment.centerLeft, context),
                                 SizedBox(width: 10),
-                                Pfctext("C", 22, Alignment.center, context),
+                                pfctext("C", 22, Alignment.center, context),
                                 SizedBox(width: 10),
-                                Pfctext(
+                                pfctext(
                                   "F",
                                   22,
                                   Alignment.centerRight,
@@ -130,16 +130,16 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Pfctext(
+                                pfctext(
                                   "200g",
                                   14,
                                   Alignment.centerLeft,
                                   context,
                                 ),
                                 SizedBox(width: 10),
-                                Pfctext("100g", 14, Alignment.center, context),
+                                pfctext("100g", 14, Alignment.center, context),
                                 SizedBox(width: 10),
-                                Pfctext(
+                                pfctext(
                                   "700g",
                                   14,
                                   Alignment.centerRight,
@@ -368,8 +368,8 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   }
 }
 
-class dividers extends StatelessWidget {
-  const dividers({super.key});
+class Dividers extends StatelessWidget {
+  const Dividers({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -377,12 +377,12 @@ class dividers extends StatelessWidget {
   }
 }
 
-class listTiles extends StatelessWidget {
+class ListTiles extends StatelessWidget {
   final Widget title;
   final Widget icon;
   final VoidCallback ontap;
 
-  const listTiles(this.title, this.icon, this.ontap, {super.key});
+  const ListTiles(this.title, this.icon, this.ontap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -395,8 +395,8 @@ class listTiles extends StatelessWidget {
   }
 }
 
-class kurdfittext extends StatelessWidget {
-  const kurdfittext({super.key});
+class KurdFitText extends StatelessWidget {
+  const KurdFitText({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -411,12 +411,12 @@ class kurdfittext extends StatelessWidget {
   }
 }
 
-class dashboradBottom extends StatelessWidget {
+class DashboradBottom extends StatelessWidget {
   final VoidCallback ontap;
   final String text;
   final Color color;
   final bool isload;
-  const dashboradBottom(
+  const DashboradBottom(
     this.ontap,
     this.text,
     this.color,
@@ -474,7 +474,7 @@ class dashboradBottom extends StatelessWidget {
   }
 }
 
-Widget Pfctext(text, alignment, fontsize, BuildContext context) {
+Widget pfctext(text, fontsize, alignment, BuildContext context) {
   return Align(
     alignment: Alignment.centerLeft,
     child: Text(
@@ -488,11 +488,11 @@ Widget Pfctext(text, alignment, fontsize, BuildContext context) {
   );
 }
 
-class glassycontainer extends StatelessWidget {
-  late final String title;
-  late final String subtitle;
+class GlassyContainer extends StatelessWidget {
+  final String title;
+  final String subtitle;
 
-  glassycontainer(this.title, this.subtitle, {super.key});
+  const GlassyContainer(this.title, this.subtitle, {super.key});
 
   @override
   Widget build(BuildContext context) {

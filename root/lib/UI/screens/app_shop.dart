@@ -39,7 +39,7 @@ class _App_ShopState extends State<App_Shop> {
                 ),
                 child: Row(
                   children: [
-                    kurdfittext(),
+                    KurdFitText(),
                     Spacer(),
                     IconButton(
                       onPressed: () {

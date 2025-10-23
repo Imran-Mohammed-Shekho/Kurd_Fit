@@ -4,7 +4,7 @@ class LanguageProvider extends ChangeNotifier {
   List<String> languages = ["English", "Kurdish", "Arabic"];
   String selectedLnaguage = "English";
 
-  void change_language(language) {
+  void changeLanguage(language) {
     selectedLnaguage = language;
     notifyListeners();
   }

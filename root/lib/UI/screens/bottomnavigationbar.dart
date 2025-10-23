@@ -17,7 +17,7 @@ class Bottomnavigationbar extends StatefulWidget {
 }
 
 class _BottomnavigationbarState extends State<Bottomnavigationbar> {
-  GlobalKey _key = GlobalKey();
+  final GlobalKey _key = GlobalKey();
   List<Widget> pages = [
     Dashboard_Screen(),
     Workouts_Screen(),

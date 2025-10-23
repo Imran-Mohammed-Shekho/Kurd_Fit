@@ -107,7 +107,7 @@ class _SupportScreenState extends State<SupportScreen> {
                 ),
                 SizedBox(height: 30),
 
-                dashboradBottom(
+                DashboradBottom(
                   () => _validate(),
                   "submit",
                   Colors.white,

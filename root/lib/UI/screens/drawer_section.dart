@@ -24,7 +24,7 @@ class drawer_section extends StatelessWidget {
     final colors = Theme.of(context).extension<CustomColors>();
     bool islogout = false;
 
-    Future _showdialog() {
+    Future showdialog() {
       return showDialog(
         barrierDismissible: true,
 
@@ -170,7 +170,7 @@ class drawer_section extends StatelessWidget {
                   ),
                 ),
 
-                listTiles(
+                ListTiles(
                   Text(
                     "Enabble Notifications ",
                     style: TextStyle(
@@ -188,7 +188,7 @@ class drawer_section extends StatelessWidget {
                   () {},
                 ),
 
-                listTiles(
+                ListTiles(
                   Text(
                     "Change password ",
                     style: TextStyle(
@@ -215,9 +215,9 @@ class drawer_section extends StatelessWidget {
                     );
                   },
                 ),
-                dividers(),
+                Dividers(),
 
-                listTiles(
+                ListTiles(
                   Text(
                     "Change language",
                     style: TextStyle(
@@ -234,7 +234,7 @@ class drawer_section extends StatelessWidget {
                   ),
                   () => showmodelbottomsheet(context),
                 ),
-                listTiles(
+                ListTiles(
                   Text(
                     "Change Theme",
                     style: TextStyle(
@@ -253,8 +253,8 @@ class drawer_section extends StatelessWidget {
                     Themeprovider.chnagetheme();
                   },
                 ),
-                dividers(),
-                listTiles(
+                Dividers(),
+                ListTiles(
                   Text(
                     "Payment & Subscription",
                     style: TextStyle(
@@ -278,7 +278,7 @@ class drawer_section extends StatelessWidget {
                     );
                   },
                 ),
-                listTiles(
+                ListTiles(
                   Text(
                     "Share App",
                     style: TextStyle(
@@ -302,8 +302,8 @@ class drawer_section extends StatelessWidget {
                   ),
                 ),
 
-                dividers(),
-                listTiles(
+                Dividers(),
+                ListTiles(
                   Text(
                     "Help & Support",
                     style: TextStyle(
@@ -326,7 +326,7 @@ class drawer_section extends StatelessWidget {
                   },
                 ),
 
-                listTiles(
+                ListTiles(
                   Text(
                     "About Us",
                     style: TextStyle(
@@ -349,8 +349,8 @@ class drawer_section extends StatelessWidget {
                   },
                 ),
 
-                dividers(),
-                listTiles(
+                Dividers(),
+                ListTiles(
                   Text(
                     "Log Out",
                     style: TextStyle(
@@ -366,9 +366,9 @@ class drawer_section extends StatelessWidget {
                         : Color(0xFFEF5350),
                   ),
                   () async {
-                    islogout = await GeneralProvider().logoutuser();
+                    islogout = GeneralProvider().logoutuser();
                     if (islogout) {
-                      _showdialog();
+                      showdialog();
                     }
                   },
                 ),

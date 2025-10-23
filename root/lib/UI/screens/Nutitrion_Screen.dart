@@ -106,7 +106,7 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
 
                   SizedBox(height: 100),
 
-                  dashboradBottom(
+                  DashboradBottom(
                     () {
                       calculateresult();
                     },

@@ -31,11 +31,8 @@ ThemeData lightmode = ThemeData(
     ),
   ],
   colorScheme: ColorScheme.light(
-    background: Colors.white,
-
     surface: Colors.white.withValues(alpha: 0.1),
     onSurface: Colors.black,
-    onBackground: Colors.black,
     primary: Color(0xff727bff),
   ),
 );

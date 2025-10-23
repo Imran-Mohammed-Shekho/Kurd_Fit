@@ -46,11 +46,11 @@ void showmodelbottomsheet(BuildContext context) {
                               : null,
 
                           onTap: () {
-                            language.change_language(lang);
+                            language.changeLanguage(lang);
                             Navigator.pop(context);
                           },
                         );
-                      }).toList(),
+                      }),
                     ],
                   );
                 },
