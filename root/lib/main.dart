@@ -4,6 +4,7 @@ import 'package:gym/UI/screens/change_theme.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:gym/state/providers/workout_provider.dart';
+import 'package:platform/platform.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -26,15 +27,30 @@ class Gym extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (BuildContext context, providertheme, Widget? child) {
-        return MaterialApp(
-          home: Introduction(),
-          debugShowCheckedModeBanner: false,
-          themeMode: providertheme.themeMode,
-          theme: lightmode,
-          darkTheme: darkmode,
+        final platform = const LocalPlatform();
 
-          title: "Gym app",
-        );
+        final allowedP =
+            platform.isAndroid || platform.isIOS || platform.isLinux;
+
+        if (!allowedP) {
+          return Scaffold(
+            body: Center(
+              child: Text(
+                "This app is only supprot iso and android we add it soon !!",
+              ),
+            ),
+          );
+        } else {
+          return MaterialApp(
+            home: Introduction(),
+            debugShowCheckedModeBanner: false,
+            themeMode: providertheme.themeMode,
+            theme: lightmode,
+            darkTheme: darkmode,
+
+            title: "Gym app",
+          );
+        }
       },
     );
   }
