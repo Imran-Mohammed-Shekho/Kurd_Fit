@@ -116,6 +116,18 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                             builder: (context) => WorkoutDetail(
                                               value
                                                   .TargetExercises[index]["gifUrl"],
+                                              value
+                                                  .TargetExercises[index]["name"],
+                                              value
+                                                  .TargetExercises[index]["targetMuscles"][0],
+                                              value
+                                                  .TargetExercises[index]["equipments"][0],
+                                              value
+                                                  .TargetExercises[index]["bodyParts"][0],
+                                              value
+                                                  .TargetExercises[index]["secondaryMuscles"][0],
+                                              value
+                                                  .TargetExercises[index]["instructions"][0],
                                             ),
                                           ),
                                         ),

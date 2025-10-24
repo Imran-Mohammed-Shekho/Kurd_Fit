@@ -1,9 +1,28 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/state/providers/workout_provider.dart';
+import 'package:provider/provider.dart';
 
 class WorkoutDetail extends StatefulWidget {
-  final dynamic imageurl;
-  const WorkoutDetail(this.imageurl, {super.key});
+  final String imageurl;
+  final String name;
+  final String targetMuscles;
+  final String bodyParts;
+  final String equipments;
+  final String secondaryMuscles;
+  final String instructions;
+
+  const WorkoutDetail(
+    this.imageurl,
+    this.name,
+    this.targetMuscles,
+    this.equipments,
+
+    this.bodyParts,
+    this.secondaryMuscles,
+    this.instructions, {
+    super.key,
+  });
 
   @override
   State<WorkoutDetail> createState() => _WorkoutDetailState();
@@ -12,6 +31,7 @@ class WorkoutDetail extends StatefulWidget {
 class _WorkoutDetailState extends State<WorkoutDetail> {
   @override
   Widget build(BuildContext context) {
+    final info = Provider.of<MangeWorkoutsPorovider>(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -79,10 +99,17 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                                     "Workout info",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
+
+                                  Text("${widget.name}"),
+                                  Text("${widget.bodyParts}"),
+                                  Text("${widget.equipments}"),
+                                  Text("${widget.targetMuscles}"),
+                                  Text("${widget.secondaryMuscles}"),
+                                  Text("${widget.instructions}"),
                                 ],
                               ),
                             ],
