@@ -127,7 +127,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                               value
                                                   .TargetExercises[index]["secondaryMuscles"][0],
                                               value
-                                                  .TargetExercises[index]["instructions"][0],
+                                                  .TargetExercises[index]["instructions"],
                                             ),
                                           ),
                                         ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gym/state/providers/workout_provider.dart';
 import 'package:provider/provider.dart';
 
+const style = TextStyle(color: Colors.white);
+
 class WorkoutDetail extends StatefulWidget {
   final String imageurl;
   final String name;
@@ -10,7 +12,7 @@ class WorkoutDetail extends StatefulWidget {
   final String bodyParts;
   final String equipments;
   final String secondaryMuscles;
-  final String instructions;
+  final List<dynamic> instructions;
 
   const WorkoutDetail(
     this.imageurl,
@@ -31,7 +33,6 @@ class WorkoutDetail extends StatefulWidget {
 class _WorkoutDetailState extends State<WorkoutDetail> {
   @override
   Widget build(BuildContext context) {
-    final info = Provider.of<MangeWorkoutsPorovider>(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -92,25 +93,71 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: ListView(
                             children: [
-                              Column(
-                                children: [
-                                  SizedBox(height: 10),
-                                  Text(
-                                    "Workout info",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w900,
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    SizedBox(height: 15),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Workout Details",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(height: 20),
 
-                                  Text("${widget.name}"),
-                                  Text("${widget.bodyParts}"),
-                                  Text("${widget.equipments}"),
-                                  Text("${widget.targetMuscles}"),
-                                  Text("${widget.secondaryMuscles}"),
-                                  Text("${widget.instructions}"),
-                                ],
+                                    Text("Name : ${widget.name}", style: style),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "Body Part : ${widget.bodyParts}",
+                                      style: style,
+                                    ),
+                                    SizedBox(height: 10),
+
+                                    Text(
+                                      "Equipments: ${widget.equipments}",
+                                      style: style,
+                                    ),
+                                    SizedBox(height: 10),
+
+                                    Text(
+                                      "TargetMuscles: ${widget.targetMuscles}",
+                                      style: style,
+                                    ),
+                                    SizedBox(height: 10),
+
+                                    Text(
+                                      "SecondaryMuscles: ${widget.secondaryMuscles}",
+                                      style: style,
+                                    ),
+                                    SizedBox(height: 10),
+
+                                    Text(
+                                      "Instructions:\n${widget.instructions[0]}",
+                                      style: style,
+                                    ),
+                                    Text(
+                                      "\n${widget.instructions[1]}",
+                                      style: style,
+                                    ),
+
+                                    Text(
+                                      "\n${widget.instructions[2] ?? "null"}",
+                                      style: style,
+                                    ),
+                                    Text(
+                                      "\n${widget.instructions[3] ?? "null"}",
+                                      style: style,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
