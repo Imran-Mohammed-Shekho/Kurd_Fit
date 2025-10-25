@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:animations/animations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -20,175 +21,174 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
+  final auth = FirebaseAuth.instance;
+  bool isLoading = false;
+
+  Future<void> LoginMethod() async {
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please fill in both email and password")),
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green.shade700,
+          duration: Duration(seconds: 3),
+          content: Text(
+            "You login in successfully ",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+    } catch (e) {
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'lib/assets/images/Nutback.png',
-                fit: BoxFit.cover,
-              ),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('lib/assets/images/Nutback.png'),
+              fit: BoxFit.cover,
             ),
+          ),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 30),
 
-            Positioned(
-              top: 100,
-              left: 25,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(),
-                    child: Text(
-                      "Kurd  Fit",
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Kurd Fit",
                       style: GoogleFonts.pacifico(
                         color: Colors.black,
                         fontSize: 34,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, left: 30),
-                    child: Text(
-                      "Training, Gym , Strength",
+                    const SizedBox(height: 10),
+                    Text(
+                      "Training, Gym, Strength",
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 250,
-              left: 155,
-              child: Image.asset("lib/assets/images/man.png", width: 100),
-            ),
-
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 35, right: 35, top: 100),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GlassyTextField("Email", (value) {
-                      setState(() {
-                        email = value;
-                      });
-                    }, 60),
-                    SizedBox(height: 15),
-                    GlassyTextField("Password", (value) {
-                      setState(() {
-                        password = value;
-                      });
-                    }, 60),
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              right: 30,
-              bottom: 260,
 
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ForgetScreen()),
-                  );
-                },
+              SizedBox(height: 60),
+              Center(
+                child: Image.asset(
+                  "lib/assets/images/man.png",
+                  width: size.width * 0.25,
+                ),
+              ),
+              SizedBox(height: 40),
+              Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(),
-                  child: Text(
-                    "Forget Password?",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.white,
-                      decorationThickness: 2,
-                    ),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GlassyTextField("Email", (value) {
+                        email = value;
+                      }, 60),
+                      const SizedBox(height: 15),
+                      GlassyTextField("Password", (value) {
+                        password = value;
+                      }, 60),
+                    ],
                   ),
                 ),
               ),
-            ),
+              SizedBox(height: size.height * 0.059),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.083),
+                child: Column(
+                  children: [
+                    Center(
+                      child: isLoading
+                          ? const CircularProgressIndicator(
+                              color: Color(0xff5B58FB),
+                            )
+                          : IntorductionButtons(
+                              LoginMethod,
+                              "Login",
+                              const Color(0xff5B58FB),
+                            ),
+                    ),
+                    SizedBox(height: size.height * 0.059),
 
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 190),
-                child: IntorductionButtons(
-                  () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 600),
-                        pageBuilder:
-                            (
-                              BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                            ) {
-                              return FadeThroughTransition(
-                                animation: animation,
-                                secondaryAnimation: secondaryAnimation,
-                                child: Bottomnavigationbar(),
-                              );
-                            },
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignupScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "Don't have an account? Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.white,
+                            decorationThickness: 1.9,
+                          ),
+                        ),
                       ),
-                    );
-                  },
-                  "Login",
-                  const Color(0xff5B58FB),
-                ),
-              ),
-            ),
-
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 140),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()),
-                    );
-                  },
-                  child: Text(
-                    "Don't have an account? Sign Up",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.white,
-                      decorationThickness: 1.9,
                     ),
-                  ),
+                    SizedBox(height: 20),
+                    // Terms text
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.1,
+                      ),
+                      child: const Text(
+                        "By Login , you agree to our Terms Of Service & Privacy Policy.",
+                        style: TextStyle(color: Colors.white70),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsetsGeometry.only(bottom: 70),
-                child: Text(
-                  """By Login, you agree to our Terms Of 
-            Service & Privacy Policy .""",
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
