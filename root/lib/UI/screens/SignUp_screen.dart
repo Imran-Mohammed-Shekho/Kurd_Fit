@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,13 +16,19 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   String email = '';
   String password = '';
+  String name = '';
   final auth = FirebaseAuth.instance;
   bool isLoading = false;
+  final CollectionReference userscolletions = FirebaseFirestore.instance
+      .collection("users");
 
   Future<void> SignupMethod() async {
-    if (email.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please fill in both email and password")),
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text("Please fill in ALl email &&& Name & password"),
+        ),
       );
       return;
     }
@@ -35,26 +42,43 @@ class _SignupScreenState extends State<SignupScreen> {
         email: email.trim(),
         password: password.trim(),
       );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
-      );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green.shade700,
-          duration: Duration(seconds: 3),
-          content: Text(
-            "You login in successfully ",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      );
-    } catch (e) {
-    } finally {
-      setState(() {
-        isLoading = false;
+      final user = auth.currentUser;
+      await userscolletions.doc(user!.uid).set({
+        "user_name": user.uid,
+        "name": name,
+        "password": password,
+        "email": email,
+        "createdAT": FieldValue.serverTimestamp(),
       });
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green.shade700,
+            duration: Duration(seconds: 3),
+            content: Text(
+              "You login in successfully ",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("login failed : this error happen $e")),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -115,6 +139,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      GlassyTextField("User name ", (value) {
+                        name = value;
+                      }, 60),
+                      const SizedBox(height: 15),
+
                       GlassyTextField("Email", (value) {
                         email = value;
                       }, 60),

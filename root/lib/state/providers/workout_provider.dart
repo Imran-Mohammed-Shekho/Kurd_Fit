@@ -63,8 +63,10 @@ class MangeWorkoutsPorovider extends ChangeNotifier {
     }
   }
 
+  // ignore: non_constant_identifier_names
   String _SelectedWorkOut = "";
 
+  // ignore: non_constant_identifier_names
   String get SelectedWorkOut => _SelectedWorkOut;
 
   void ChangeSelecetedWorkout(workout) {

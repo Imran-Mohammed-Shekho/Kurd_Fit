@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/Change_password.dart';
@@ -16,14 +17,20 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-class drawer_section extends StatelessWidget {
+class drawer_section extends StatefulWidget {
   const drawer_section({super.key});
 
+  @override
+  State<drawer_section> createState() => _drawer_sectionState();
+}
+
+class _drawer_sectionState extends State<drawer_section> {
   @override
   Widget build(BuildContext context) {
     final Themeprovider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).extension<CustomColors>();
     bool islogout = false;
+    bool isLoad = false;
 
     Future showdialog() {
       return showDialog(
@@ -84,28 +91,42 @@ class drawer_section extends StatelessWidget {
                               SizedBox(
                                 height: 40,
                                 width: 100,
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                      Colors.redAccent,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginScreen(),
+                                child: isLoad
+                                    ? CircularProgressIndicator()
+                                    : TextButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              WidgetStatePropertyAll(
+                                                Colors.redAccent,
+                                              ),
+                                        ),
+                                        onPressed: () async {
+                                          setState(() {
+                                            isLoad = true;
+                                          });
+                                          final auth = FirebaseAuth.instance;
+                                          auth.signOut();
+                                          await Future.delayed(
+                                            Duration(seconds: 2),
+                                          );
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginScreen(),
+                                            ),
+                                            (route) => false,
+                                          );
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            "Logout",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      (route) => false,
-                                    );
-                                  },
-                                  child: Center(
-                                    child: Text(
-                                      "Logout",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
                               ),
                               SizedBox(
                                 height: 40,
