@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/screens/Dashboard_Screen.dart';
+
 import 'package:gym/UI/screens/Login_screen.dart';
+import 'package:gym/data/models/userData.dart';
 
 class Profile_Screen extends StatefulWidget {
   const Profile_Screen({super.key});
@@ -14,6 +16,19 @@ class _Profile_ScreenState extends State<Profile_Screen> {
   String name = '';
   String phone = '';
   String email = '';
+  final CollectionReference _collectionReference = FirebaseFirestore.instance
+      .collection("users");
+
+  Future<UserModel?> getUserDataFromFirestore(String id) async {
+    DocumentSnapshot snap = await _collectionReference.doc(id).get();
+
+    if (snap.exists) {
+      return UserModel.fromSnap(snap);
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
