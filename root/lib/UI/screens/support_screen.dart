@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/screens/Dashboard_Screen.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 
 class SupportScreen extends StatefulWidget {
@@ -15,26 +16,47 @@ class _SupportScreenState extends State<SupportScreen> {
   String email = '';
   String usermessage = '';
   bool isload = false;
+  final auth = FirebaseAuth.instance;
+  final CollectionReference help = FirebaseFirestore.instance.collection(
+    "help",
+  );
 
-  void _validate() {
+  Future<void> _validate() async {
     if (name.isEmpty || email.isEmpty || usermessage.isEmpty) {
-      _showerror("fill all text boxes please! ");
+      _showesnackbar("fill all text boxes please! ");
       return;
     } else {
       setState(() {
         isload = true;
       });
     }
+
+    try {
+      await help.doc(auth.currentUser!.uid).set({
+        "name": name,
+        "Email": email,
+        "userMessage": usermessage,
+        "CreatedAt": FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      _showesnackbar("$e");
+    } finally {
+      setState(() {
+        isload = false;
+
+        _showesnackbar("Your message has been sent !");
+      });
+    }
   }
 
-  void _showerror(String message) {
+  void _showesnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           message,
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: message.startsWith("Your") ? Colors.teal : Colors.red,
       ),
     );
   }
@@ -53,6 +75,13 @@ class _SupportScreenState extends State<SupportScreen> {
             ),
             child: ListView(
               children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
                 SizedBox(height: 10),
 
                 Center(
@@ -108,11 +137,14 @@ class _SupportScreenState extends State<SupportScreen> {
                 ),
                 SizedBox(height: 30),
 
-                DashboradBottom(
-                  () => _validate(),
-                  "submit",
-                  Colors.white,
-                  isload,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: DashboradBottom(
+                    () => _validate(),
+                    "submit",
+                    Colors.white,
+                    isload,
+                  ),
                 ),
                 SizedBox(height: 50),
                 Center(

@@ -110,7 +110,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                             Align(
                               alignment: Alignment.topCenter,
                               child: Text(
-                                "${value.userModel?.name}",
+                                "${value.userModel?.name}".toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 26,
                                   fontWeight: FontWeight.w900,
