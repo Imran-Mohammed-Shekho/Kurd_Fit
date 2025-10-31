@@ -9,7 +9,14 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCyZCwNUY4OcsJsRgOf6aUoVNo1DNwCx2I",
+      appId: "gym-app-0",
+      messagingSenderId: "880477009342",
+      projectId: "1:880477009342:web:d8dcb0e55dfa3931c035ef",
+    ),
+  );
 
   runApp(
     MultiProvider(

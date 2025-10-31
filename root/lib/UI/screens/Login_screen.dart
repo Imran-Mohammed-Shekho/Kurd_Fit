@@ -1,11 +1,7 @@
-import 'dart:ffi';
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
@@ -326,7 +322,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 prefixIcon: Icon(Icons.lock, color: Colors.white),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    _obscureText = !_obscureText;
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
                   },
                   icon: _obscureText
                       ? Icon(Icons.visibility_off, color: Colors.white)
