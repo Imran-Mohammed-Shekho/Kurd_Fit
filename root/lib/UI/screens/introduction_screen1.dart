@@ -64,12 +64,7 @@ class _IntroductionState extends State<Introduction1> {
                   () {
                     Navigator.push(
                       context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 600),
-                        reverseDuration: Duration(milliseconds: 500),
-                        child: LoginScreen(),
-                      ),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                   "Login",
@@ -80,12 +75,7 @@ class _IntroductionState extends State<Introduction1> {
                   () {
                     Navigator.push(
                       context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 600),
-                        reverseDuration: Duration(milliseconds: 500),
-                        child: SignupScreen(),
-                      ),
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
                     );
                   },
                   "Sign Up ",

@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text(
                       "Kurd Fit",
                       style: GoogleFonts.pacifico(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 34,
                         fontWeight: FontWeight.bold,
                       ),
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text(
                       "Training, Gym, Strength",
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         },
                         child: const Text(
-                          "Don't have an account? Login",
+                          "Don't have an account? Sign Up ",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,

@@ -104,19 +104,33 @@ class _drawer_sectionState extends State<drawer_section> {
                                           setState(() {
                                             isLoad = true;
                                           });
-                                          final auth = FirebaseAuth.instance;
-                                          auth.signOut();
-                                          await Future.delayed(
-                                            Duration(seconds: 2),
-                                          );
-                                          Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  LoginScreen(),
-                                            ),
-                                            (route) => false,
-                                          );
+                                          try {
+                                            final auth = FirebaseAuth.instance;
+                                            auth.signOut();
+
+                                            Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginScreen(),
+                                              ),
+                                              (route) => false,
+                                            );
+                                          } catch (e) {
+                                            ScaffoldMessenger.of(
+                                              context,
+                                            ).showSnackBar(
+                                              SnackBar(
+                                                backgroundColor:
+                                                    Colors.redAccent,
+                                                content: Text("this happen $e"),
+                                              ),
+                                            );
+                                          } finally {
+                                            setState(() {
+                                              isLoad = false;
+                                            });
+                                          }
                                         },
                                         child: Center(
                                           child: Text(
@@ -387,7 +401,7 @@ class _drawer_sectionState extends State<drawer_section> {
                         ? Color(0xFFEF9A9A)
                         : Color(0xFFEF5350),
                   ),
-                  () async {
+                  () {
                     islogout = GeneralProvider().logoutuser();
                     if (islogout) {
                       showdialog();

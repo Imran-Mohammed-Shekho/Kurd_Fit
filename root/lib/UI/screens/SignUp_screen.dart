@@ -107,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     Text(
                       "Kurd Fit",
                       style: GoogleFonts.pacifico(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 34,
                         fontWeight: FontWeight.bold,
                       ),
@@ -116,7 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     Text(
                       "Training, Gym, Strength",
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
