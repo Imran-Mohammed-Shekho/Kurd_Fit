@@ -131,7 +131,9 @@ class IntorductionButtons extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: Icon(
-                  text == "Login" ? null : Icons.arrow_forward_ios,
+                  (text == "Login" || text == "Sign Up")
+                      ? null
+                      : Icons.arrow_forward_ios,
                   color: Colors.white,
                 ),
               ),

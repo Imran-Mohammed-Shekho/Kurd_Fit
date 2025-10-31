@@ -60,21 +60,7 @@ class _IntroductionState extends State<Introduction> {
                   onTap: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 600),
-                        pageBuilder:
-                            (
-                              BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                            ) {
-                              return FadeThroughTransition(
-                                animation: animation,
-                                secondaryAnimation: secondaryAnimation,
-                                child: Introduction1(),
-                              );
-                            },
-                      ),
+                      MaterialPageRoute(builder: (context) => Introduction1()),
                       (route) => false,
                     );
                   },
