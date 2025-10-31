@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
-import 'package:page_transition/page_transition.dart';
 
 class Introduction1 extends StatefulWidget {
   const Introduction1({super.key});

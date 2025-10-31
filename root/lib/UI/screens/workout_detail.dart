@@ -1,7 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:gym/state/providers/workout_provider.dart';
-import 'package:provider/provider.dart';
 
 const style = TextStyle(color: Colors.white);
 

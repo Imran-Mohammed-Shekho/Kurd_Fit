@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,6 @@ class _SignupScreenState extends State<SignupScreen> {
     });
 
     try {
-      // Create user with email and password
       final userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
@@ -65,13 +63,11 @@ class _SignupScreenState extends State<SignupScreen> {
         );
       }
 
-      // Store user data in Firestore
       await _usersCollection.doc(user.uid).set({
         "user_id": user.uid,
         "name": _nameController.text.trim(),
         "email": _emailController.text.trim(),
         "createdAT": FieldValue.serverTimestamp(),
-        // Removed password storage for security
       });
 
       if (!mounted) return;
