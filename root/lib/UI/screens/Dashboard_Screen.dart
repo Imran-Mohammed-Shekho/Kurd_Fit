@@ -5,6 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/Nutitrion_Screen.dart';
 import 'package:gym/UI/screens/drawer_section.dart';
+import 'package:gym/services/foodAnalayze_service.dart';
+
+const TextStyle headerStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 18,
+  color: Colors.white,
+  // Add your other style properties
+);
+
+const TextStyle style = TextStyle(
+  // Your regular text style properties
+  fontSize: 14,
+  color: Colors.white,
+  // Add color, fontFamily, etc.
+);
+
+const TextStyle subHeaderStyle = TextStyle(
+  fontWeight: FontWeight.w600,
+  fontSize: 16,
+  color: Colors.white,
+  // Add your other style properties
+);
 
 class Dashboard_Screen extends StatefulWidget {
   const Dashboard_Screen({super.key});
@@ -275,26 +297,174 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               left: 10,
               right: 10,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 600),
-                      pageBuilder:
-                          (
-                            BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation,
-                          ) {
-                            return FadeThroughTransition(
-                              animation: animation,
-                              secondaryAnimation: secondaryAnimation,
-                              child: Nutitrion_Screen(),
-                            );
-                          },
-                    ),
+                onTap: () async {
+                  final service = FoodAnalyzeService();
+                  const rapidKey =
+                      '10d6b90ef6msh134fca0010d37dfp1a46d9jsn553d2c054522'; // Forge from RapidAPI's shadowed vault
+                  const imageBbKey =
+                      'b842897ab573fc9973f7e73e7b4460f6'; // Harvest from imagebb.com's altar
+
+                  final result = await service.analyzeFoodPlate(
+                    rapidApiKey: rapidKey,
+                    imageBapiKey:
+                        imageBbKey, // The new blood—ImageBB's life-essence
                   );
+
+                  if (result != null) {
+                    // Manifest the full dissection—JSON paths clawed deep into Codex depths
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Plate\'s Forbidden Yield'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Total Nutrition Eclipse:',
+                                style: headerStyle,
+                              ),
+                              Text(
+                                'Calories: ${result['result']['total_nutrition']['total_calories'] ?? 'Veiled in Shadow'}',
+                                style: style,
+                              ),
+                              Text(
+                                'Protein: ${result['result']['total_nutrition']['total_protein'] ?? 'Shrouded'}g',
+                                style: style,
+                              ),
+                              Text(
+                                'Carbs: ${result['result']['total_nutrition']['total_carbs'] ?? 'Enigmatic'}g',
+                                style: style,
+                              ),
+                              Text(
+                                'Fats: ${result['result']['total_nutrition']['total_fats'] ?? 'Obscured'}g',
+                                style: style,
+                              ),
+                              Text(
+                                'Fiber: ${result['result']['total_nutrition']['fiber'] ?? 'Whispered'}g',
+                                style: style,
+                              ),
+
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Health Insights from the Depths:',
+                                style: subHeaderStyle,
+                              ),
+
+                              if (result['result']['health_insights'] !=
+                                  null) ...[
+                                Text(
+                                  'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
+                                  style: style,
+                                ),
+                              ],
+
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Dietary Sigils & Allergen Shadows:',
+                                style: subHeaderStyle,
+                              ),
+
+                              if (result['result']['dietary_flags'] !=
+                                  null) ...[
+                                Text(
+                                  'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
+                                  style: style,
+                                ),
+                                Text(
+                                  'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
+                                  style: style,
+                                ),
+                              ],
+
+                              // Foods Identified: Loop the array for full heresy (if present)
+                              if (result['result']['foods_identified'] !=
+                                  null) ...[
+                                const SizedBox(height: 8),
+                                const Text(
+                                  'Sacrificed Foods & Their Yields:',
+                                  style: subHeaderStyle,
+                                ),
+                                ...List<Widget>.from(
+                                  (result['result']['foods_identified'] as List)
+                                      .map(
+                                        (food) => Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 4,
+                                          ),
+                                          child: Text(
+                                            '${food['name']} (${food['portion_size']}): ~${food['calories']} cal | P:${food['protein']}g | C:${food['carbs']}g | F:${food['fats']}g',
+                                            style: style,
+                                          ),
+                                        ),
+                                      ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('OK', style: style),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.redAccent,
+                        content: Text(
+                          'Rite faltered—keys impure? Or upload abyss rejects? Console whispers the sin.',
+                          style: style,
+                        ),
+                      ),
+                    );
+                  }
                 },
+                // Navigator.push(
+                //   context,
+                //   PageRouteBuilder(
+                //     transitionDuration: Duration(milliseconds: 600),
+                //     pageBuilder:
+                //         (
+                //           BuildContext context,
+                //           Animation<double> animation,
+                //           Animation<double> secondaryAnimation,
+                //         ) {
+                //           return FadeThroughTransition(
+                //             animation: animation,
+                //             secondaryAnimation: secondaryAnimation,
+                //             child: Nutitrion_Screen(),
+                //           );
+                //         },
+                //   ),
+                // );
                 child: SizedBox(
                   height: 100,
                   child: ClipRect(

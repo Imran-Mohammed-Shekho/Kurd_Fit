@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 import 'package:gym/GymM.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/profile_provider.dart';
@@ -9,14 +10,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-      apiKey: "AIzaSyCyZCwNUY4OcsJsRgOf6aUoVNo1DNwCx2I",
-      appId: "gym-app-0",
-      messagingSenderId: "880477009342",
-      projectId: "1:880477009342:web:d8dcb0e55dfa3931c035ef",
-    ),
-  );
+  await initializeFirebase();
 
   runApp(
     MultiProvider(
@@ -29,4 +23,18 @@ void main() async {
       child: const Gym(),
     ),
   );
+}
+
+Future<void> initializeFirebase() async {
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+
+      print('Firebase Initialized');
+    }
+  } catch (e) {
+    print('Firebase init error: $e');
+  }
 }
