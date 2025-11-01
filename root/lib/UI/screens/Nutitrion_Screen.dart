@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 
-import 'package:gym/UI/screens/Login_screen.dart';
-
 class Nutitrion_Screen extends StatefulWidget {
   const Nutitrion_Screen({super.key});
 

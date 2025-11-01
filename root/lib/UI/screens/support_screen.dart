@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/screens/Login_screen.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
