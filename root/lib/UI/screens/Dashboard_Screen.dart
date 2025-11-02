@@ -9,21 +9,14 @@ const TextStyle headerStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 18,
   color: Colors.white,
-  // Add your other style properties
 );
 
-const TextStyle style = TextStyle(
-  // Your regular text style properties
-  fontSize: 14,
-  color: Colors.white,
-  // Add color, fontFamily, etc.
-);
+const TextStyle style = TextStyle(fontSize: 14, color: Colors.white);
 
 const TextStyle subHeaderStyle = TextStyle(
   fontWeight: FontWeight.w600,
   fontSize: 16,
   color: Colors.white,
-  // Add your other style properties
 );
 
 class Dashboard_Screen extends StatefulWidget {
@@ -83,16 +76,26 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               ),
             ),
 
-            Positioned(
-              top: 150,
-              right: 10,
-              left: 35,
-              child: Row(
-                children: [
-                  GlassyContainer("Calories", "200g"),
-                  SizedBox(width: 20),
-                  GlassyContainer("Workout Streak", "7"),
-                ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 130),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: GlassyContainer("Calories", "200g"),
+                      ),
+                      SizedBox(width: 20),
+                      Flexible(
+                        flex: 1,
+                        child: GlassyContainer("Workout Streak", "7"),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
 
