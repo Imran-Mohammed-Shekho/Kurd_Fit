@@ -15,13 +15,17 @@ class Gym extends StatelessWidget {
     final platform = const LocalPlatform();
     final allowedP = kIsWeb || platform.isAndroid || platform.isIOS;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: Provider.of<ThemeProvider>(context, listen: false).themeMode,
-      theme: lightmode,
-      darkTheme: darkmode,
-      title: "Gym App",
-      home: allowedP ? const AuthGate() : const UnsupportedPlatform(),
+    return Consumer<ThemeProvider>(
+      builder: (BuildContext context, value, Widget? child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: value.themeMode,
+          theme: lightmode,
+          darkTheme: darkmode,
+          title: "Gym App",
+          home: allowedP ? const AuthGate() : const UnsupportedPlatform(),
+        );
+      },
     );
   }
 }

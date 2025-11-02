@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Center(
             child: _isLoading
-                ? const CircularProgressIndicator(color: Color(0xff5B58FB))
+                ? const CircularProgressIndicator(color: Colors.white)
                 : IntorductionButtons(
                     _loginMethod,
                     "Login",

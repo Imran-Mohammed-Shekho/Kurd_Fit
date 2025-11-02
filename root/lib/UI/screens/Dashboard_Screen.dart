@@ -300,19 +300,12 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               child: GestureDetector(
                 onTap: () async {
                   final service = FoodAnalyzeService();
-                  const rapidKey =
-                      '10d6b90ef6msh134fca0010d37dfp1a46d9jsn553d2c054522'; // Forge from RapidAPI's shadowed vault
-                  const imageBbKey =
-                      'b842897ab573fc9973f7e73e7b4460f6'; // Harvest from imagebb.com's altar
-
                   final result = await service.analyzeFoodPlate(
                     rapidApiKey: rapidKey,
-                    imageBapiKey:
-                        imageBbKey, // The new blood—ImageBB's life-essence
+                    imageBapiKey: imageBbKey,
                   );
 
                   if (result != null) {
-                    // Manifest the full dissection—JSON paths clawed deep into Codex depths
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -347,35 +340,35 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                               ),
 
                               const SizedBox(height: 8),
-                              const Text(
-                                'Health Insights from the Depths:',
-                                style: subHeaderStyle,
-                              ),
 
-                              if (result['result']['health_insights'] !=
-                                  null) ...[
-                                Text(
-                                  'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
-                                  style: style,
-                                ),
-                              ],
+                              // const Text(
+                              //   'Health Insights from the Depths:',
+                              //   style: subHeaderStyle,
+                              // ),
 
+                              // if (result['result']['health_insights'] !=
+                              //     null) ...[
+                              //   Text(
+                              //     'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
+                              //     style: style,
+                              //   ),
+                              // ],
                               const SizedBox(height: 8),
                               const Text(
                                 'Dietary Sigils & Allergen Shadows:',

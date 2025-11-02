@@ -286,7 +286,7 @@ class _drawer_sectionState extends State<drawer_section> {
                         : Color(0xFFC5E1A5),
                   ),
                   () {
-                    Themeprovider.chnagetheme();
+                    Themeprovider.changeTheme();
                   },
                 ),
                 Dividers(),
