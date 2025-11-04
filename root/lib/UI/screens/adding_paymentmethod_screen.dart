@@ -173,7 +173,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                 ),
                 Spacer(),
 
-                ADDPMB("Pay Now"),
+                ADDPMB("Pay Now", context, () => print("pay")),
                 SizedBox(height: 20),
               ],
             ),
@@ -184,39 +184,28 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
   }
 }
 
-class addingpaymentmethods_container extends StatelessWidget {
-  final String hint;
-  final Icon icon;
+Widget addingpaymentmethods_container(hint, icon) {
+  return SizedBox(
+    height: 50,
+    width: 350,
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.1),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: TextField(
+        style: TextStyle(color: Colors.white),
+        cursorColor: Colors.white,
+        showCursor: true,
 
-  const addingpaymentmethods_container(this.hint, this.icon, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      width: 350,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.1),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
-        child: TextField(
-          style: TextStyle(color: Colors.white),
-          cursorColor: Colors.white,
-          showCursor: true,
-
-          onChanged: (value) {},
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: icon,
-            hint: Text(
-              hint,
-              style: TextStyle(fontSize: 14, color: Colors.white),
-            ),
-          ),
+        onChanged: (value) {},
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          prefixIcon: icon,
+          hint: Text(hint, style: TextStyle(fontSize: 14, color: Colors.white)),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

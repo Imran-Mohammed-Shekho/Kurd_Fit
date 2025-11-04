@@ -86,7 +86,7 @@ class FoodAnalyzeService {
     final imagefile = await pickImage();
     if (imagefile == null) {
       debugPrint("No image selected");
-      return null; // Fixed: added return
+      return null;
     }
 
     final imageUrl = await uploadImagetoImageBB(
