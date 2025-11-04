@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
@@ -28,6 +27,14 @@ class Dashboard_Screen extends StatefulWidget {
 
 class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLoad = false;
+
+  void changeToTure() {
+    setState(() {
+      isLoad = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -292,6 +299,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
             //     Colors.white,
             //   ),
             // ),
+            Center(
+              child: isLoad
+                  ? CircularProgressIndicator(backgroundColor: Colors.white)
+                  : null,
+            ),
             Positioned(
               bottom: 30,
 
@@ -299,11 +311,20 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
               right: 10,
               child: GestureDetector(
                 onTap: () async {
-                  final service = FoodAnalyzeService();
+                  final service = FoodAnalyzeService(
+                    changeloding: (value) => setState(() {
+                      isLoad = value;
+                    }),
+                  );
+
                   final result = await service.analyzeFoodPlate(
                     rapidApiKey: rapidKey,
                     imageBapiKey: imageBbKey,
                   );
+
+                  if (!mounted) {
+                    return;
+                  }
 
                   if (result != null) {
                     showDialog(
@@ -370,30 +391,30 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                               //   ),
                               // ],
                               const SizedBox(height: 8),
-                              const Text(
-                                'Dietary Sigils & Allergen Shadows:',
-                                style: subHeaderStyle,
-                              ),
+                              // const Text(
+                              //   'Dietary Sigils & Allergen Shadows:',
+                              //   style: subHeaderStyle,
+                              // ),
 
-                              if (result['result']['dietary_flags'] !=
-                                  null) ...[
-                                Text(
-                                  'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
-                                  style: style,
-                                ),
-                              ],
+                              // if (result['result']['dietary_flags'] !=
+                              //     null) ...[
+                              //   Text(
+                              //     'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
+                              //     style: style,
+                              //   ),
+                              //   Text(
+                              //     'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
+                              //     style: style,
+                              //   ),
+                              // ],
 
                               // Foods Identified: Loop the array for full heresy (if present)
                               if (result['result']['foods_identified'] !=

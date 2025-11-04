@@ -1,10 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 class FoodAnalyzeService {
+  final Function(bool) changeloding;
+
+  FoodAnalyzeService({required this.changeloding});
+
   Future<XFile?> pickImage() async {
     final picker = ImagePicker(); // Fixed: added missing variable
     final picked = await picker.pickImage(
@@ -17,6 +22,7 @@ class FoodAnalyzeService {
     required String imageBbkey,
     required XFile? imagefile,
   }) async {
+    changeloding(true);
     // Null check for imagefile
     if (imagefile == null) {
       debugPrint("No image file provided");
@@ -129,6 +135,8 @@ class FoodAnalyzeService {
     } catch (e) {
       debugPrint("Analysis failed: $e");
       return null; // Fixed: added return
+    } finally {
+      changeloding(false);
     }
   }
 }
