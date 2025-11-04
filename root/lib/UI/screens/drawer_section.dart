@@ -1,15 +1,14 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/Change_password.dart';
-
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/aboutus_screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/UI/screens/payment&subscreption_screen.dart';
+import 'package:gym/UI/screens/profile_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
 import 'package:gym/state/providers/general_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
@@ -202,7 +201,15 @@ class _drawer_sectionState extends State<drawer_section> {
               children: [
                 DrawerHeader(
                   child: Center(
-                    child: Icon(Icons.person, color: Colors.white, size: 100),
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Profile_Screen(),
+                        ),
+                      ),
+                      child: Icon(Icons.person, color: Colors.white, size: 100),
+                    ),
                   ),
                 ),
 

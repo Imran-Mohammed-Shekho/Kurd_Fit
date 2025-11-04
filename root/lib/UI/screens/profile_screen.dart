@@ -59,12 +59,9 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                 horizontal: 10,
                                 vertical: 10,
                               ),
-                              child: Text(
-                                "Profile",
-                                style: TextStyle(
-                                  color: Colors.white60,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                              child: IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: Icon(Icons.arrow_back_ios),
                               ),
                             ),
                             Align(
