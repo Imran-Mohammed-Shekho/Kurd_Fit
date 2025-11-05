@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/addToCard_screen.dart';
 
 class PreviewScreen extends StatelessWidget {
   final String path;
@@ -75,7 +76,24 @@ class PreviewScreen extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () async {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.teal,
+                                  content: Text(
+                                    "Porduct Added To Cart",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              );
+                              await Future.delayed(Duration(seconds: 2));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddtocardScreen(),
+                                ),
+                              );
+                            },
                             child: SizedBox(
                               height: 60,
                               width: 330,

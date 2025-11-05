@@ -511,7 +511,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             children: [
                               SizedBox(height: 10),
                               Text(
-                                "Nutrition Calculator",
+                                "Food Kcal Analyzer With AI",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w900,
@@ -523,7 +523,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
                                   textAlign: TextAlign.center,
-                                  """Click me & Get your personalized nutrition\nplan by filling out the details.""",
+                                  """Click me & Get info about food on plate in for free .""",
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w900,
