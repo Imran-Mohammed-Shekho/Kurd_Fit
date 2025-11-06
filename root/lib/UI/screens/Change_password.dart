@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/screens/bottomnavigationbar.dart';
 
 class Change_password extends StatefulWidget {
   const Change_password({super.key});
@@ -46,7 +47,12 @@ class _Change_passwordState extends State<Change_password> {
                     alignment: Alignment.centerLeft,
                     child: IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bottomnavigationbar(),
+                          ),
+                        );
                       },
                       icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                     ),
@@ -58,6 +64,13 @@ class _Change_passwordState extends State<Change_password> {
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w900,
+                      shadows: [
+                        BoxShadow(
+                          blurRadius: 8,
+                          spreadRadius: 1,
+                          color: Colors.black.withOpacity(0.6),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -198,8 +211,6 @@ class _Change_passwordState extends State<Change_password> {
                     ),
                     SizedBox(width: 20),
                     AnimatedSwitcher(
-                      key: ValueKey(strengthVaule),
-
                       duration: Duration(milliseconds: 400),
                       child: Text(
                         strengthVaule == 0
@@ -212,6 +223,12 @@ class _Change_passwordState extends State<Change_password> {
                             ? "🔥 Strong"
                             : "",
                         style: TextStyle(
+                          shadows: [
+                            Shadow(
+                              blurRadius: 8,
+                              color: Colors.black.withOpacity(0.6),
+                            ),
+                          ],
                           color: strengthVaule == 0
                               ? Colors.red
                               : strengthVaule == 1
