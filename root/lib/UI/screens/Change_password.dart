@@ -9,6 +9,21 @@ class Change_password extends StatefulWidget {
 }
 
 class _Change_passwordState extends State<Change_password> {
+  String newpassword = '';
+  int strengthVaule = 0;
+
+  int passwordStrength(String password) {
+    int strength = 0;
+    if (password.isEmpty) return strength;
+    if (password.length < 6) return strength;
+    if (password.length >= 6) strength++;
+    if (RegExp(r'[A-Z]').hasMatch(password)) strength++;
+    if (RegExp(r'[0-9]').hasMatch(password)) strength++;
+    if (RegExp(r'[@#$%^&*()<>?<>!]').hasMatch(password)) strength++;
+
+    return strength;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,17 +39,21 @@ class _Change_passwordState extends State<Change_password> {
           ),
           child: ListView(
             children: [
-              Row(
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                    ),
                   ),
-                  SizedBox(width: 70),
+
                   Text(
-                    "Change password",
+                    "🔐 Change password",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -87,47 +106,127 @@ class _Change_passwordState extends State<Change_password> {
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Enter new passowrd", (value) {}, 60),
+                child: GlassyTextField("Enter new passowrd", (password) {
+                  setState(() {
+                    strengthVaule = passwordStrength(password);
+                  });
+                }, 60),
               ),
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-                    Container(
+                    AnimatedContainer(
                       width: 100,
                       height: 10,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.yellow,
+                        color: strengthVaule == 0
+                            ? Colors.red
+                            : strengthVaule == 1
+                            ? Colors.orange
+                            : strengthVaule == 2
+                            ? Colors.yellow
+                            : strengthVaule >= 3
+                            ? Colors.green
+                            : Colors.red,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 8,
+                            spreadRadius: 1,
+                            color: strengthVaule == 0
+                                ? Colors.red.withOpacity(0.6)
+                                : strengthVaule == 1
+                                ? Colors.orange.withOpacity(0.6)
+                                : strengthVaule == 2
+                                ? Colors.yellow.withOpacity(0.6)
+                                : strengthVaule >= 3
+                                ? Colors.green.withOpacity(0.6)
+                                : Colors.transparent,
+                          ),
+                        ],
                       ),
+                      duration: Duration(milliseconds: 300),
                     ),
                     SizedBox(width: 10),
-                    Container(
+                    AnimatedContainer(
                       width: 100,
                       height: 10,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.yellow,
+                        color: strengthVaule == 2
+                            ? Colors.yellow
+                            : strengthVaule >= 3
+                            ? Colors.green
+                            : Colors.white.withOpacity(0.3),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 8,
+                            spreadRadius: 1,
+                            color: strengthVaule == 2
+                                ? Colors.yellow.withOpacity(0.6)
+                                : strengthVaule >= 3
+                                ? Colors.green.withOpacity(0.6)
+                                : Colors.transparent,
+                          ),
+                        ],
                       ),
+                      duration: Duration(milliseconds: 300),
                     ),
                     SizedBox(width: 10),
-                    Container(
+                    AnimatedContainer(
+                      curve: Curves.easeInOut,
                       width: 100,
                       height: 10,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                        color: strengthVaule >= 3
+                            ? Colors.green
+                            : Colors.white.withOpacity(0.3),
+                        boxShadow: [
+                          BoxShadow(
+                            color: strengthVaule >= 3
+                                ? Colors.green.withOpacity(0.6)
+                                : Colors.transparent,
+                            blurRadius: 8,
+                            spreadRadius: 1,
+                          ),
+                        ],
                       ),
+                      duration: Duration(milliseconds: 300),
                     ),
                     SizedBox(width: 20),
-                    Text(
-                      "Good !",
-                      style: TextStyle(
-                        color: Colors.yellow,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                    AnimatedSwitcher(
+                      key: ValueKey(strengthVaule),
+
+                      duration: Duration(milliseconds: 400),
+                      child: Text(
+                        strengthVaule == 0
+                            ? "😢 Weak"
+                            : strengthVaule == 1
+                            ? "🙂 Normal"
+                            : strengthVaule == 2
+                            ? "😎 Good !"
+                            : strengthVaule >= 3
+                            ? "🔥 Strong"
+                            : "",
+                        style: TextStyle(
+                          color: strengthVaule == 0
+                              ? Colors.red
+                              : strengthVaule == 1
+                              ? Colors.orange
+                              : strengthVaule == 2
+                              ? Colors.yellow
+                              : strengthVaule >= 3
+                              ? Colors.green
+                              : Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      transitionBuilder: (child, animation) =>
+                          FadeTransition(opacity: animation, child: child),
                     ),
                   ],
                 ),
