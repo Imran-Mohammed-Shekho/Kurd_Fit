@@ -25,6 +25,7 @@ class drawer_section extends StatefulWidget {
 }
 
 class _drawer_sectionState extends State<drawer_section> {
+  bool isLoad = false;
   @override
   Widget build(BuildContext context) {
     final Themeprovider = context.watch<ThemeProvider>();
@@ -271,17 +272,27 @@ class _drawer_sectionState extends State<drawer_section> {
                       title: "log out",
                       message: "Are sure you want to logout ?",
 
-                      onLogoutPressed: () {
-                        setState(() {
-                          FirebaseAuth.instance.signOut().then((value) {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          });
+                      onLogoutPressed: () async {
+                        Navigator.pop(context);
+                        showDialog(
+                          context: context,
+                          builder: (context) => Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                        await FirebaseAuth.instance.signOut();
+                        await Future.delayed(Duration(seconds: 3));
+
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                            (route) => false,
+                          );
                         });
                       },
                     );

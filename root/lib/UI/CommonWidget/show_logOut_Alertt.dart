@@ -6,6 +6,7 @@ Future showdLogOutAlert({
   required String title,
   required String message,
   required VoidCallback? onLogoutPressed,
+
   String logoutText = "Logout",
   String cancelText = "Cancel",
 }) {
