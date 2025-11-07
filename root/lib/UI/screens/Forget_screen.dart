@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 
 import 'package:gym/UI/screens/check_email.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';

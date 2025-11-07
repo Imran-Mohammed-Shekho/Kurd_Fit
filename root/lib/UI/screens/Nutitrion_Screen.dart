@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 
 class Nutitrion_Screen extends StatefulWidget {
   const Nutitrion_Screen({super.key});

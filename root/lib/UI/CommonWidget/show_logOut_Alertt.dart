@@ -42,7 +42,7 @@ Future showdLogOutAlert({
                     SizedBox(height: 10),
                     Center(
                       child: Text(
-                        "are u sure you to logout ?",
+                        title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -54,7 +54,7 @@ Future showdLogOutAlert({
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        "if you tap on red button you will be \nsign out all pages & you need\nto login agin! ",
+                        message,
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -63,7 +63,9 @@ Future showdLogOutAlert({
                     Padding(
                       padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: title == "Password Changed"
+                            ? MainAxisAlignment.center
+                            : MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             height: 40,
@@ -83,26 +85,28 @@ Future showdLogOutAlert({
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 40,
-                            width: 100,
-                            child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  Colors.green,
+                          title == "Password Changed"
+                              ? SizedBox()
+                              : SizedBox(
+                                  height: 40,
+                                  width: 100,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                        Colors.green,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Center(
+                                      child: Text(
+                                        "cancel",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Center(
-                                child: Text(
-                                  "cancel",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

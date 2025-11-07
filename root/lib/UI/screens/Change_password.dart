@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
+import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
+import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/drawer_section.dart';
 
@@ -96,15 +99,32 @@ class _Change_passwordState extends State<Change_password> {
         "Your Password has been updated Please Login again",
         Colors.green,
       );
+      showdLogOutAlert(
+        context: context,
+        title: "Password Changed",
+        message: "please try again",
+        onLogoutPressed: () async {
+          Navigator.pop(context);
+
+          showDialog(
+            context: context,
+            builder: (context) =>
+                Center(child: CircularProgressIndicator(color: Colors.white)),
+          );
+          await Future.delayed(Duration(seconds: 2));
+          Navigator.pop(context);
+          if (mounted)
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
+        },
+      );
     } on FirebaseAuthException catch (e) {
       showMessage(e.code, Colors.red);
     } catch (e) {
       showMessage("somthinge went wrong ", Colors.red);
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
+    } finally {}
   }
 
   void showMessage(String message, Color color) {

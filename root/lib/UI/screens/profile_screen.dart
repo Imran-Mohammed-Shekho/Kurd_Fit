@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';

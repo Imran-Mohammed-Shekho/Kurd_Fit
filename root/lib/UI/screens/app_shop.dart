@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/screens/favorite_screen.dart';
 import 'package:gym/UI/screens/preview_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
