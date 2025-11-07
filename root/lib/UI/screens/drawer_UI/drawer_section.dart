@@ -7,11 +7,12 @@ import 'package:gym/UI/screens/Change_password.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/aboutus_screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
+import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
+import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/UI/screens/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/profile_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
-import 'package:gym/state/providers/general_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,6 @@ class _drawer_sectionState extends State<drawer_section> {
   Widget build(BuildContext context) {
     final Themeprovider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).extension<CustomColors>();
-    bool islogout = false;
 
     return ClipRRect(
       borderRadius: BorderRadius.only(
@@ -56,19 +56,7 @@ class _drawer_sectionState extends State<drawer_section> {
             ),
             child: ListView(
               children: [
-                DrawerHeader(
-                  child: Center(
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Profile_Screen(),
-                        ),
-                      ),
-                      child: Icon(Icons.person, color: Colors.white, size: 100),
-                    ),
-                  ),
-                ),
+                DrawerHeaderr(),
 
                 ListTiles(
                   Text(
@@ -266,7 +254,6 @@ class _drawer_sectionState extends State<drawer_section> {
                         : Color(0xFFEF5350),
                   ),
                   () {
-                    islogout = GeneralProvider().logoutuser();
                     showdLogOutAlert(
                       context: context,
                       title: "log out",
@@ -284,16 +271,18 @@ class _drawer_sectionState extends State<drawer_section> {
                         );
                         await FirebaseAuth.instance.signOut();
                         await Future.delayed(Duration(seconds: 3));
-
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
-                            (route) => false,
-                          );
-                        });
+                        Navigator.pop(context);
+                        if (mounted) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          });
+                        }
                       },
                     );
                   },

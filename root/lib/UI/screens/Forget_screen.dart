@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 
 import 'package:gym/UI/screens/check_email.dart';
@@ -13,6 +13,61 @@ class ForgetScreen extends StatefulWidget {
 }
 
 class _ForgetScreenState extends State<ForgetScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  bool isLoading = false;
+  static final _emailRegex = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+
+  Future restPassword() async {
+    if (_emailController.text.isEmpty) {
+      _showMessag("Please enter your email address", Colors.red);
+      return;
+    } else if (!_emailRegex.hasMatch(_emailController.text)) {
+      _showMessag("Please enter vailde email", Colors.red);
+      return;
+    }
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (context) =>
+            Center(child: CircularProgressIndicator(color: Colors.white)),
+      );
+    }
+    try {
+      final auth = FirebaseAuth.instance;
+
+      await auth.sendPasswordResetEmail(email: _emailController.text);
+      if (!mounted) return;
+      Navigator.pop(context);
+      await Future.delayed(Duration(seconds: 1));
+      _showMessag(
+        "rest link sccessefully sent to ${_emailController.text}",
+        Colors.green,
+      );
+      await Future.delayed(Duration(seconds: 2));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CheckEmail()),
+      );
+    } on FirebaseAuthException catch (e) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      _showMessag(e.code, Colors.red);
+    } catch (e) {
+      _showMessag(e, Colors.red);
+    } finally {}
+  }
+
+  void _showMessag(message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.fixed,
+        backgroundColor: color,
+        duration: Duration(seconds: 2),
+        content: Text(message, style: TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,11 +77,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
           children: [
             IconButton(
               onPressed: () {
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                } else {
-                  print("can not rout");
-                }
+                Navigator.pop(context);
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,
@@ -58,8 +109,8 @@ class _ForgetScreenState extends State<ForgetScreen> {
                     SizedBox(height: 10),
 
                     Text(
-                      """Enter your email below to receive a 
-                password reset link.""",
+                      textAlign: TextAlign.center,
+                      """Enter your email below to receive a\npassword reset link.""",
 
                       style: TextStyle(
                         fontSize: 14,
@@ -74,16 +125,18 @@ class _ForgetScreenState extends State<ForgetScreen> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
-                    child: GlassyTextField("Email", (value) {}, 60, null),
+                    child: GlassyTextField(
+                      "Email",
+                      (value) {},
+                      60,
+                      _emailController,
+                    ),
                   ),
                 ),
                 SizedBox(height: 90),
                 IntorductionButtons(
                   () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CheckEmail()),
-                    );
+                    restPassword();
                   },
                   "Send",
                   Color(0xff5B58FB),

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/screens/Forget_screen.dart';
 import 'package:gym/UI/screens/SignUp_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/introduction_screen1.dart';
@@ -194,6 +195,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 15),
                         _buildPasswordTextFormField(),
                       ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ForgetScreen()),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Forgot Password ?",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/screens/drawer_section.dart';
+import 'package:gym/UI/CommonWidget/glassy_container.dart';
+import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 
 const TextStyle headerStyle = TextStyle(

@@ -46,8 +46,8 @@ class _CheckEmailState extends State<CheckEmail> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  """             We’ve Sent  a Password rest link
- to your Email Address . Please Check your Inbox.""",
+                  textAlign: TextAlign.center,
+                  """We’ve Sent  a Password rest link\nto your Email Address . Please Check your Inbox.""",
                   style: TextStyle(
                     color: const Color(0xffB5B5B5).withValues(alpha: 0.8),
                     fontSize: 14,
@@ -62,10 +62,9 @@ class _CheckEmailState extends State<CheckEmail> {
             left: 30,
             child: GestureDetector(
               onTap: () {
-                Navigator.pushAndRemoveUntil(
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (Route<dynamic> route) => false,
                 );
               },
               child: Container(

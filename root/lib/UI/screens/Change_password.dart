@@ -5,7 +5,7 @@ import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
-import 'package:gym/UI/screens/drawer_section.dart';
+import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 
 class Change_password extends StatefulWidget {
   const Change_password({super.key});
@@ -112,12 +112,14 @@ class _Change_passwordState extends State<Change_password> {
                 Center(child: CircularProgressIndicator(color: Colors.white)),
           );
           await Future.delayed(Duration(seconds: 2));
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
-          if (mounted)
+          if (mounted) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LoginScreen()),
             );
+          }
         },
       );
     } on FirebaseAuthException catch (e) {
