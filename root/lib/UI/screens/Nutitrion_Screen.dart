@@ -76,29 +76,49 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        GlassyTextField("age", (value) {
-                          setState(() {
-                            age = int.tryParse(value);
-                          });
-                        }, 60),
+                        GlassyTextField(
+                          "age",
+                          (value) {
+                            setState(() {
+                              age = int.tryParse(value);
+                            });
+                          },
+                          60,
+                          null,
+                        ),
                         SizedBox(height: 15),
-                        GlassyTextField("Gender", (value) {
-                          setState(() {
-                            gender = value;
-                          });
-                        }, 60),
+                        GlassyTextField(
+                          "Gender",
+                          (value) {
+                            setState(() {
+                              gender = value;
+                            });
+                          },
+                          60,
+                          null,
+                        ),
                         SizedBox(height: 15),
-                        GlassyTextField("Weight", (value) {
-                          setState(() {
-                            weight = double.tryParse(value);
-                          });
-                        }, 60),
+                        GlassyTextField(
+                          "Weight",
+                          (value) {
+                            setState(() {
+                              weight = double.tryParse(value);
+                            });
+                          },
+                          60,
+                          null,
+                        ),
                         SizedBox(height: 15),
-                        GlassyTextField("Height", (value) {
-                          setState(() {
-                            tall = double.tryParse(value);
-                          });
-                        }, 60),
+                        GlassyTextField(
+                          "Height",
+                          (value) {
+                            setState(() {
+                              tall = double.tryParse(value);
+                            });
+                          },
+                          60,
+                          null,
+                        ),
                       ],
                     ),
                   ),

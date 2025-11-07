@@ -73,7 +73,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
-                    child: GlassyTextField("Email", (value) {}, 60),
+                    child: GlassyTextField("Email", (value) {}, 60, null),
                   ),
                 ),
                 SizedBox(height: 90),

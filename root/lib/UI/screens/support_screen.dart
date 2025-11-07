@@ -110,6 +110,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       name = value;
                     }),
                     60,
+                    null,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -121,6 +122,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       email = value;
                     }),
                     60,
+                    null,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -132,6 +134,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       usermessage = value;
                     }),
                     120,
+                    null,
                   ),
                 ),
                 SizedBox(height: 30),

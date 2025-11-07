@@ -193,12 +193,14 @@ class GlassyContainer extends StatelessWidget {
 
 class GlassyTextField extends StatelessWidget {
   final String hintText;
+  final TextEditingController? _controller;
   final ValueChanged<String> onChanged;
   final double height;
   const GlassyTextField(
     this.hintText,
     this.onChanged,
-    this.height, {
+    this.height,
+    this._controller, {
     super.key,
   });
 
@@ -223,6 +225,7 @@ class GlassyTextField extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 15, top: 5),
             child: TextField(
+              controller: _controller,
               onChanged: onChanged,
               obscureText: hintText == "Password" ? true : false,
 

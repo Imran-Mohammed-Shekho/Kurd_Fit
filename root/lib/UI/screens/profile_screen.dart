@@ -130,27 +130,42 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                             SizedBox(height: 30),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: GlassyTextField("Name", (value) {
-                                name = value;
-                              }, 60),
+                              child: GlassyTextField(
+                                "Name",
+                                (value) {
+                                  name = value;
+                                },
+                                60,
+                                null,
+                              ),
                             ),
                             SizedBox(height: 20),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: GlassyTextField("Email", (value) {
-                                setState(() {
-                                  email = value;
-                                });
-                              }, 60),
+                              child: GlassyTextField(
+                                "Email",
+                                (value) {
+                                  setState(() {
+                                    email = value;
+                                  });
+                                },
+                                60,
+                                null,
+                              ),
                             ),
                             SizedBox(height: 20),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: GlassyTextField("Phone +964 07", (value) {
-                                setState(() {
-                                  phone = value;
-                                });
-                              }, 60),
+                              child: GlassyTextField(
+                                "Phone +964 07",
+                                (value) {
+                                  setState(() {
+                                    phone = value;
+                                  });
+                                },
+                                60,
+                                null,
+                              ),
                             ),
                             SizedBox(height: 60),
                             Padding(

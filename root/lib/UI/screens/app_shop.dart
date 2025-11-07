@@ -56,7 +56,7 @@ class _App_ShopState extends State<App_Shop> {
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: GlassyTextField("Search", (value) {}, 60),
+                child: GlassyTextField("Search", (value) {}, 60, null),
               ),
 
               Padding(

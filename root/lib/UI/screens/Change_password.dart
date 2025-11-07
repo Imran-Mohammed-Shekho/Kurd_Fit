@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/drawer_section.dart';
 
 class Change_password extends StatefulWidget {
   const Change_password({super.key});
@@ -10,8 +12,14 @@ class Change_password extends StatefulWidget {
 }
 
 class _Change_passwordState extends State<Change_password> {
+  final dialog = drawer_section();
   String newpassword = '';
   int strengthVaule = 0;
+  bool isLoading = false;
+  final auth = FirebaseAuth.instance;
+  final _currentPassordController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _confirmPassowrdController = TextEditingController();
 
   int passwordStrength(String password) {
     int strength = 0;
@@ -25,8 +33,139 @@ class _Change_passwordState extends State<Change_password> {
     return strength;
   }
 
+  Color getColor(int value) {
+    switch (value) {
+      case 0:
+        return Colors.red;
+      case 1:
+        return Colors.orange;
+      case 2:
+        return Colors.yellow;
+      default:
+        return Colors.green;
+    }
+  }
+
+  String getlabel(int strength) {
+    switch (strength) {
+      case 0:
+        return "😢 Weak";
+      case 1:
+        return "🙂 Normal";
+      case 2:
+        return "😎 Good !";
+      default:
+        return "🔥 Strong";
+    }
+  }
+
+  Future changePassord() async {
+    if (_confirmPassowrdController.text.isEmpty ||
+        _newPasswordController.text.isEmpty ||
+        _currentPassordController.text.isEmpty) {
+      showMessage("Please Fill all faileds ", Colors.red);
+      return;
+    }
+    if (_newPasswordController.text != _confirmPassowrdController.text) {
+      showMessage("Passords dose not match ❌", Colors.red);
+      return;
+    }
+
+    if (_newPasswordController.text.length < 6) {
+      showMessage("Choose Stronger Password", Colors.red);
+      return;
+    }
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      final user = auth.currentUser;
+      final cred = EmailAuthProvider.credential(
+        email: user!.email!,
+        password: _currentPassordController.text.trim(),
+      );
+
+      await user.reauthenticateWithCredential(cred);
+
+      if (!mounted) return;
+
+      await user.updatePassword(_newPasswordController.text.trim());
+      if (!mounted) return;
+
+      showMessage(
+        "Your Password has been updated Please Login again",
+        Colors.green,
+      );
+    } on FirebaseAuthException catch (e) {
+      showMessage(e.code, Colors.red);
+    } catch (e) {
+      showMessage("somthinge went wrong ", Colors.red);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void showMessage(String message, Color color) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.fixed,
+        backgroundColor: Colors.transparent,
+        content: ClipRRect(
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [color.withOpacity(0.85), color.withOpacity(0.65)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  color == Colors.red
+                      ? Icons.error_rounded
+                      : color == Colors.orange
+                      ? Icons.warning_amber_rounded
+                      : Icons.check_circle_rounded,
+                  color: Colors.white,
+                  size: 24,
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    late Color color = getColor(strengthVaule);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -81,14 +220,7 @@ class _Change_passwordState extends State<Change_password> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Current Password",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+                  child: _buildlabel("Current Password"),
                 ),
               ),
               SizedBox(height: 10),
@@ -99,6 +231,7 @@ class _Change_passwordState extends State<Change_password> {
                   "Enter current password",
                   (value) {},
                   60,
+                  _currentPassordController,
                 ),
               ),
               SizedBox(height: 10),
@@ -106,122 +239,57 @@ class _Change_passwordState extends State<Change_password> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "New Password",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+                  child: _buildlabel("New Password"),
                 ),
               ),
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Enter new passowrd", (password) {
-                  setState(() {
-                    strengthVaule = passwordStrength(password);
-                  });
-                }, 60),
+                child: GlassyTextField(
+                  "Enter new passowrd",
+                  (password) {
+                    setState(() {
+                      strengthVaule = passwordStrength(password);
+                    });
+                  },
+                  60,
+                  _newPasswordController,
+                ),
               ),
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-                    AnimatedContainer(
-                      width: 100,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: strengthVaule == 0
-                            ? Colors.red
-                            : strengthVaule == 1
-                            ? Colors.orange
-                            : strengthVaule == 2
-                            ? Colors.yellow
-                            : strengthVaule >= 3
-                            ? Colors.green
-                            : Colors.red,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8,
-                            spreadRadius: 1,
-                            color: strengthVaule == 0
-                                ? Colors.red.withOpacity(0.6)
-                                : strengthVaule == 1
-                                ? Colors.orange.withOpacity(0.6)
-                                : strengthVaule == 2
-                                ? Colors.yellow.withOpacity(0.6)
-                                : strengthVaule >= 3
-                                ? Colors.green.withOpacity(0.6)
-                                : Colors.transparent,
+                    for (int i = 0; i < 3; i++)
+                      Expanded(
+                        child: AnimatedContainer(
+                          margin: EdgeInsets.only(right: i < 2 ? 5 : 0),
+                          width: 100,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: strengthVaule > i
+                                ? color
+                                : Colors.white.withOpacity(0.6),
+                            boxShadow: [
+                              if (strengthVaule > i)
+                                BoxShadow(
+                                  blurRadius: 8,
+                                  spreadRadius: 1,
+                                  color: color.withOpacity(0.6),
+                                ),
+                            ],
                           ),
-                        ],
+                          duration: Duration(milliseconds: 300),
+                        ),
                       ),
-                      duration: Duration(milliseconds: 300),
-                    ),
-                    SizedBox(width: 10),
-                    AnimatedContainer(
-                      width: 100,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: strengthVaule == 2
-                            ? Colors.yellow
-                            : strengthVaule >= 3
-                            ? Colors.green
-                            : Colors.white.withOpacity(0.3),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8,
-                            spreadRadius: 1,
-                            color: strengthVaule == 2
-                                ? Colors.yellow.withOpacity(0.6)
-                                : strengthVaule >= 3
-                                ? Colors.green.withOpacity(0.6)
-                                : Colors.transparent,
-                          ),
-                        ],
-                      ),
-                      duration: Duration(milliseconds: 300),
-                    ),
-                    SizedBox(width: 10),
-                    AnimatedContainer(
-                      curve: Curves.easeInOut,
-                      width: 100,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: strengthVaule >= 3
-                            ? Colors.green
-                            : Colors.white.withOpacity(0.3),
-                        boxShadow: [
-                          BoxShadow(
-                            color: strengthVaule >= 3
-                                ? Colors.green.withOpacity(0.6)
-                                : Colors.transparent,
-                            blurRadius: 8,
-                            spreadRadius: 1,
-                          ),
-                        ],
-                      ),
-                      duration: Duration(milliseconds: 300),
-                    ),
+
                     SizedBox(width: 20),
                     AnimatedSwitcher(
                       duration: Duration(milliseconds: 400),
                       child: Text(
-                        strengthVaule == 0
-                            ? "😢 Weak"
-                            : strengthVaule == 1
-                            ? "🙂 Normal"
-                            : strengthVaule == 2
-                            ? "😎 Good !"
-                            : strengthVaule >= 3
-                            ? "🔥 Strong"
-                            : "",
+                        getlabel(strengthVaule),
                         style: TextStyle(
                           shadows: [
                             Shadow(
@@ -229,15 +297,7 @@ class _Change_passwordState extends State<Change_password> {
                               color: Colors.black.withOpacity(0.6),
                             ),
                           ],
-                          color: strengthVaule == 0
-                              ? Colors.red
-                              : strengthVaule == 1
-                              ? Colors.orange
-                              : strengthVaule == 2
-                              ? Colors.yellow
-                              : strengthVaule >= 3
-                              ? Colors.green
-                              : Colors.white,
+                          color: color,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -254,31 +314,33 @@ class _Change_passwordState extends State<Change_password> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Confirm passowrd",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+                  child: _buildlabel("Confirm new Password "),
                 ),
               ),
               SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField("Confirm new password", (value) {}, 60),
+                child: GlassyTextField(
+                  "Confirm new password",
+                  (value) {},
+                  60,
+                  _confirmPassowrdController,
+                ),
               ),
 
               SizedBox(height: 50),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: DashboradBottom(
-                  () {},
-                  "Change passowrd",
-                  Colors.white,
-                  false,
-                ),
+                child: isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : DashboradBottom(
+                        () {
+                          changePassord();
+                        },
+                        "Change passowrd",
+                        Colors.white,
+                        false,
+                      ),
               ),
             ],
           ),
@@ -286,4 +348,15 @@ class _Change_passwordState extends State<Change_password> {
       ),
     );
   }
+}
+
+Widget _buildlabel(String label) {
+  return Text(
+    label,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+      fontWeight: FontWeight.w900,
+    ),
+  );
 }
