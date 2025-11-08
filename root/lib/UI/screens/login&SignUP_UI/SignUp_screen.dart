@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
-import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/check_emailVerfication.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -16,7 +16,6 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _auth = FirebaseAuth.instance;
-  final _usersCollection = FirebaseFirestore.instance.collection("users");
 
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -54,33 +53,17 @@ class _SignupScreenState extends State<SignupScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      _auth.currentUser!.sendEmailVerification();
 
-      final user = userCredential.user;
-      if (user == null) {
-        throw FirebaseAuthException(
-          code: 'user-not-created',
-          message: 'User account could not be created',
-        );
-      }
-
-      await _usersCollection.doc(user.uid).set({
-        "user_id": user.uid,
-        "name": _nameController.text.trim(),
-        "email": _emailController.text.trim(),
-        "createdAT": FieldValue.serverTimestamp(),
-      });
-
-      if (!mounted) return;
-
-      _showSuccessSnackBar("Account created successfully!");
-
-      await Future.delayed(const Duration(milliseconds: 500));
-
-      if (!mounted) return;
-
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Bottomnavigationbar()),
+        MaterialPageRoute(
+          builder: (context) => CheckEmailVerification(
+            userCreditional: userCredential,
+            emailController: _emailController,
+            nameController: _nameController,
+          ),
+        ),
       );
     } on FirebaseAuthException catch (e) {
       _handleAuthError(e);
@@ -132,17 +115,6 @@ class _SignupScreenState extends State<SignupScreen> {
         content: Text(message, style: const TextStyle(color: Colors.white)),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 4),
-      ),
-    );
-  }
-
-  void _showSuccessSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green.shade700,
-        content: Text(message, style: const TextStyle(color: Colors.white)),
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 3),
       ),
     );
   }

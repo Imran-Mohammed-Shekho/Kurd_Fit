@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/landingScreen_UI/Introduction_screen.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -15,10 +15,11 @@ class AuthGate extends StatelessWidget {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
-        } else if (snapshot.hasData) {
+        } else if (snapshot.hasData &&
+            FirebaseAuth.instance.currentUser!.emailVerified) {
           return const Bottomnavigationbar();
         } else {
-          return const Introduction();
+          return const LoginScreen();
         }
       },
     );
