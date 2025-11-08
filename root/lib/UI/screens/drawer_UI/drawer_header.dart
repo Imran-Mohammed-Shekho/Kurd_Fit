@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/profile_screen.dart';
+import 'package:gym/state/providers/appState_Provider.dart';
+import 'package:provider/provider.dart';
 
 class DrawerHeaderr extends StatelessWidget {
   const DrawerHeaderr({super.key});
@@ -9,10 +10,10 @@ class DrawerHeaderr extends StatelessWidget {
     return DrawerHeader(
       child: Center(
         child: GestureDetector(
-          onTap: () => Navigator.push(
+          onTap: () => Provider.of<AppstateProvider>(
             context,
-            MaterialPageRoute(builder: (context) => Profile_Screen()),
-          ),
+            listen: false,
+          ).updatePageState(3),
           child: Icon(Icons.person, color: Colors.white, size: 100),
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/Change_password.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/UI/screens/aboutus_screen.dart';
+import 'package:gym/UI/screens/about_UI/aboutus_screen.dart';
 import 'package:gym/UI/screens/custom_colors.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';

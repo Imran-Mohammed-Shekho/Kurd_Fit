@@ -6,8 +6,8 @@ import 'package:gym/UI/screens/custom_colors.dart';
 
 import 'package:gym/UI/screens/profile_screen.dart';
 import 'package:gym/UI/screens/workouts_screen.dart';
-
-int currentindex = 0;
+import 'package:gym/state/providers/appState_Provider.dart';
+import 'package:provider/provider.dart';
 
 class Bottomnavigationbar extends StatefulWidget {
   const Bottomnavigationbar({super.key});
@@ -22,12 +22,13 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     Dashboard_Screen(),
     Workouts_Screen(),
     App_Shop(),
-    Profile_Screen(),
+    ProfileScreen(),
   ];
   List<String> lables = ["Dashboard", "Workouts", "Gym Shop", "Profile"];
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppstateProvider>(context);
     final color = Theme.of(context).extension<CustomColors>();
     TextStyle textstyleforBNT() {
       return TextStyle(
@@ -38,13 +39,13 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     }
 
     return Scaffold(
-      body: pages[currentindex],
+      body: pages[appState.currentindex],
 
       bottomNavigationBar: Stack(
         children: [
           CurvedNavigationBar(
             backgroundColor: color?.bottomNavigationBarBg ?? Colors.deepPurple,
-            index: currentindex,
+            index: appState.currentindex,
             height: 70,
             key: _key,
 
@@ -61,10 +62,8 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
               Image.asset("lib/assets/icons/shopping-cart.png", height: 40),
               Icon(Icons.person, size: 40, color: Colors.black),
             ],
-            onTap: (value) {
-              setState(() {
-                currentindex = value;
-              });
+            onTap: (index) {
+              appState.updatePageState(index);
             },
             animationCurve: Curves.easeInOut,
             maxWidth: double.infinity,

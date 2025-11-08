@@ -1,23 +1,22 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/Login_screen.dart';
-
+import 'package:gym/state/providers/appState_Provider.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
-class Profile_Screen extends StatefulWidget {
-  const Profile_Screen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<Profile_Screen> createState() => _Profile_ScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _Profile_ScreenState extends State<Profile_Screen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   String name = '';
   String phone = '';
   String email = '';
@@ -169,7 +168,9 @@ class _Profile_ScreenState extends State<Profile_Screen> {
       }
     } catch (e) {
       _showMessage("$e", const Color.fromARGB(255, 218, 3, 3));
-      Navigator.pop(context);
+      if (mounted) {
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -205,16 +206,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 10,
-                              ),
-                              child: IconButton(
-                                onPressed: () => Navigator.pop(context),
-                                icon: Icon(Icons.arrow_back_ios),
-                              ),
-                            ),
+                            SizedBox(height: 30),
                             Align(
                               alignment: Alignment.topCenter,
                               child: ClipOval(
