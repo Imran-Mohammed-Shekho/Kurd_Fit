@@ -50,7 +50,7 @@ class _drawer_sectionState extends State<drawer_section> {
         Navigator.pop(context);
       }
       if (mounted) {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
@@ -58,11 +58,10 @@ class _drawer_sectionState extends State<drawer_section> {
     } on FirebaseAuthException catch (e) {
       _showMessage(e.code, const Color.fromRGBO(244, 67, 54, 1));
     } catch (e) {
-      _showMessage("$e", const Color.fromRGBO(244, 67, 54, 1));
-    } finally {
       if (mounted) {
         Navigator.pop(context);
       }
+      _showMessage("$e", const Color.fromRGBO(244, 67, 54, 1));
     }
   }
 
