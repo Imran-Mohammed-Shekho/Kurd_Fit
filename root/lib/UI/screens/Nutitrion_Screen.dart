@@ -126,13 +126,14 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
 
                   SizedBox(height: 100),
 
-                  DashboradBottom(
+                  CommonButton(
                     () {
                       calculateresult();
                     },
                     "Calculate",
                     Colors.white,
                     false,
+                    Color(0xff727bff),
                   ),
                   SizedBox(height: 10),
 

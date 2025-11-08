@@ -31,16 +31,18 @@ class KurdFitText extends StatelessWidget {
   }
 }
 
-class DashboradBottom extends StatelessWidget {
+class CommonButton extends StatelessWidget {
   final VoidCallback ontap;
   final String text;
   final Color color;
   final bool isload;
-  const DashboradBottom(
+  final Color buttonColor;
+  const CommonButton(
     this.ontap,
     this.text,
     this.color,
-    this.isload, {
+    this.isload,
+    this.buttonColor, {
     super.key,
   });
 
@@ -54,7 +56,7 @@ class DashboradBottom extends StatelessWidget {
 
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: Color(0xff727bff),
+            color: buttonColor,
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
           ),

@@ -355,13 +355,14 @@ class _Change_passwordState extends State<Change_password> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: isLoading
                     ? Center(child: CircularProgressIndicator())
-                    : DashboradBottom(
+                    : CommonButton(
                         () {
                           changePassord();
                         },
                         "Change passowrd",
                         Colors.white,
                         false,
+                        Color(0xff727bff),
                       ),
               ),
             ],

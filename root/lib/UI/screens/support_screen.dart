@@ -142,11 +142,12 @@ class _SupportScreenState extends State<SupportScreen> {
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: DashboradBottom(
+                  child: CommonButton(
                     () => _validate(),
                     "submit",
                     Colors.white,
                     isload,
+                    Color(0xff727bff),
                   ),
                 ),
                 SizedBox(height: 50),

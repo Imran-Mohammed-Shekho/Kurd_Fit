@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
+import 'package:gym/UI/screens/Login_screen.dart';
 
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,46 @@ class _Profile_ScreenState extends State<Profile_Screen> {
         getuserdata.getUserDataFromFirestore(auth.currentUser!.uid);
       }
     });
+  }
+
+  Future<void> _deleteUser() async {
+    showDialog(
+      context: context,
+      builder: (context) => Center(
+        child: CircularProgressIndicator(
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+    );
+    final auth = FirebaseAuth.instance;
+    try {
+      await Future.delayed(Duration(seconds: 2));
+      if (mounted) {
+        Navigator.pop(context);
+      }
+      if (mounted) {
+        await auth.currentUser!.delete();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      _showMessage(e.code, const Color.fromRGBO(244, 67, 54, 1));
+    } catch (e) {
+      _showMessage("$e", const Color.fromARGB(255, 218, 3, 3));
+      Navigator.pop(context);
+    }
+  }
+
+  void _showMessage(String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        behavior: SnackBarBehavior.fixed,
+        content: Text(message, style: TextStyle(color: Colors.white)),
+      ),
+    );
   }
 
   @override
@@ -174,11 +215,31 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: DashboradBottom(
+                                    child: CommonButton(
                                       () {},
                                       "Save changes",
                                       Colors.white,
                                       false,
+                                      Color(0xff727bff),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: CommonButton(
+                                      () async {
+                                        _deleteUser();
+                                      },
+                                      "Delete Account",
+                                      Colors.white,
+                                      false,
+                                      const Color.fromARGB(255, 192, 32, 32),
                                     ),
                                   ),
                                 ],

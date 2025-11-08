@@ -11,7 +11,6 @@ import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/language_screen.dart';
 import 'package:gym/UI/screens/payment&subscreption_screen.dart';
-import 'package:gym/UI/screens/profile_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:page_transition/page_transition.dart';
@@ -27,6 +26,46 @@ class drawer_section extends StatefulWidget {
 
 class _drawer_sectionState extends State<drawer_section> {
   bool isLoad = false;
+
+  void _showMessage(String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        behavior: SnackBarBehavior.fixed,
+        content: Text(message, style: TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+
+  Future<void> _logoutUser() async {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          Center(child: CircularProgressIndicator(color: Colors.white)),
+    );
+    try {
+      await FirebaseAuth.instance.signOut();
+      await Future.delayed(Duration(seconds: 3));
+      if (mounted) {
+        Navigator.pop(context);
+      }
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      _showMessage(e.code, const Color.fromRGBO(244, 67, 54, 1));
+    } catch (e) {
+      _showMessage("$e", const Color.fromRGBO(244, 67, 54, 1));
+    } finally {
+      if (mounted) {
+        Navigator.pop(context);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Themeprovider = context.watch<ThemeProvider>();
@@ -261,28 +300,7 @@ class _drawer_sectionState extends State<drawer_section> {
 
                       onLogoutPressed: () async {
                         Navigator.pop(context);
-                        showDialog(
-                          context: context,
-                          builder: (context) => Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                          ),
-                        );
-                        await FirebaseAuth.instance.signOut();
-                        await Future.delayed(Duration(seconds: 3));
-                        Navigator.pop(context);
-                        if (mounted) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          });
-                        }
+                        _logoutUser();
                       },
                     );
                   },
