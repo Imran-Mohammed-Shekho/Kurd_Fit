@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/UI/screens/SignUp_screen.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 
 class Introduction1 extends StatefulWidget {
   const Introduction1({super.key});

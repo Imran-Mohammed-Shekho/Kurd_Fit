@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
-import 'firebase_options.dart';
-import 'package:gym/GymM.dart';
+import 'UI/screens/appConfigration/firebase_options.dart';
+import 'package:gym/UI/screens/appConfigration/GymM.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';

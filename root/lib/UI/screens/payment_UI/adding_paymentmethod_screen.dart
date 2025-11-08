@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/payment&subscreption_screen.dart';
+import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 
 class AddingPaymentmethodScreen extends StatefulWidget {
   const AddingPaymentmethodScreen({super.key});

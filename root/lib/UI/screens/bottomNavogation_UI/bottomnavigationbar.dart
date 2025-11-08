@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/Dashboard_Screen.dart';
-import 'package:gym/UI/screens/app_shop.dart';
-import 'package:gym/UI/screens/custom_colors.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/Dashboard_Screen.dart';
+import 'package:gym/UI/screens/shop_UI/app_shop.dart';
+import 'package:gym/UI/screens/about_UI/custom_colors.dart';
 
-import 'package:gym/UI/screens/profile_screen.dart';
-import 'package:gym/UI/screens/workouts_screen.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
+import 'package:gym/UI/screens/workout_UI/workouts_screen.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
 import 'package:provider/provider.dart';
 

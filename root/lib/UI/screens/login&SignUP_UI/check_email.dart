@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/Login_screen.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({super.key});

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
-import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/state/providers/appState_Provider.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 

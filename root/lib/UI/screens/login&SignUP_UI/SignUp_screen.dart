@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gym/UI/screens/Login_screen.dart';
-import 'package:gym/UI/screens/bottomnavigationbar.dart';
-import 'package:gym/UI/screens/introduction_screen1.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

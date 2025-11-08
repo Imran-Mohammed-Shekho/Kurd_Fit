@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/custom_colors.dart';
+import 'package:gym/UI/screens/about_UI/custom_colors.dart';
 
 ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,

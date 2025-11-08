@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/AuthGate.dart';
-import 'package:gym/UI/screens/change_theme.dart';
-import 'package:gym/UnsupportedPlatform.dart';
+import 'package:gym/UI/screens/appConfigration/AuthGate.dart';
+import 'package:gym/UI/screens/appTheme/change_theme.dart';
+import 'package:gym/UI/screens/appConfigration/UnsupportedPlatform.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:platform/platform.dart';
 import 'package:provider/provider.dart';

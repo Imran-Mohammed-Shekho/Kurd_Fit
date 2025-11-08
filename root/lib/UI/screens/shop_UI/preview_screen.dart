@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/addToCard_screen.dart';
+import 'package:gym/UI/screens/shop_UI/addToCard_screen.dart';
 
 class PreviewScreen extends StatelessWidget {
   final String path;

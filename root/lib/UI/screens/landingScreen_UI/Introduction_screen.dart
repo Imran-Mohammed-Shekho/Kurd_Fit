@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/introduction_screen1.dart';
+import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({super.key});
