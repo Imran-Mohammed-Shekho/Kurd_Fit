@@ -41,51 +41,25 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     return Scaffold(
       body: pages[appState.currentindex],
 
-      bottomNavigationBar: Stack(
-        children: [
-          CurvedNavigationBar(
-            backgroundColor: color?.bottomNavigationBarBg ?? Colors.deepPurple,
-            index: appState.currentindex,
-            height: 70,
-            key: _key,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: color?.bottomNavigationBarBg ?? Colors.deepPurple,
+        index: appState.currentindex,
+        height: 60,
+        key: _key,
 
-            animationDuration: Duration(milliseconds: 600),
-            items: [
-              Icon(
-                Icons.space_dashboard_rounded,
-                size: 40,
-                color: Colors.black,
-              ),
+        animationDuration: Duration(milliseconds: 600),
+        items: [
+          Icon(Icons.space_dashboard_rounded, size: 40, color: Colors.black),
 
-              Image.asset("lib/assets/icons/workout.png", height: 35),
+          Image.asset("lib/assets/icons/workout.png", height: 35),
 
-              Image.asset("lib/assets/icons/shopping-cart.png", height: 40),
-              Icon(Icons.person, size: 40, color: Colors.black),
-            ],
-            onTap: (index) {
-              appState.updatePageState(index);
-            },
-            animationCurve: Curves.easeInOut,
-            maxWidth: double.infinity,
-          ),
-          Positioned(
-            bottom: 5,
-            child: Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text(lables[0], style: textstyleforBNT()),
-                ),
-                SizedBox(width: 45),
-                Text(lables[1], style: textstyleforBNT()),
-                SizedBox(width: 40),
-                Text(lables[2], style: textstyleforBNT()),
-                SizedBox(width: 47),
-                Text(lables[3], style: textstyleforBNT()),
-              ],
-            ),
-          ),
+          Image.asset("lib/assets/icons/shopping-cart.png", height: 40),
+          Icon(Icons.person, size: 40, color: Colors.black),
         ],
+        onTap: (index) {
+          appState.updatePageState(index);
+        },
+        animationCurve: Curves.easeInOut,
       ),
     );
   }
