@@ -30,13 +30,13 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppstateProvider>(context);
     final color = Theme.of(context).extension<CustomColors>();
-    TextStyle textstyleforBNT() {
-      return TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w900,
-        color: color?.TextFrombottomNavigationbar ?? Colors.red,
-      );
-    }
+    // TextStyle textstyleforBNT() {
+    //   return TextStyle(
+    //     fontSize: 12,
+    //     fontWeight: FontWeight.w900,
+    //     color: color?.TextFrombottomNavigationbar ?? Colors.red,
+    //   );
+    // }
 
     return Scaffold(
       body: pages[appState.currentindex],

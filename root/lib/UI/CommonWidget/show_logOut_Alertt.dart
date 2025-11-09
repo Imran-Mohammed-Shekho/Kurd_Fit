@@ -27,7 +27,7 @@ Future showdLogOutAlert({
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
             child: SizedBox(
-              height: 200,
+              height: (title == "Log out?" ? 145 : 170),
 
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -39,7 +39,7 @@ Future showdLogOutAlert({
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Center(
                       child: Text(
                         title,
@@ -50,7 +50,7 @@ Future showdLogOutAlert({
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: Text(
@@ -59,7 +59,7 @@ Future showdLogOutAlert({
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 4),
                     Padding(
                       padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
                       child: Row(

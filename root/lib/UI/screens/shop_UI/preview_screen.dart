@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/shop_UI/addToCard_screen.dart';
+import 'package:gym/state/providers/appState_Provider.dart';
+import 'package:provider/provider.dart';
 
 class PreviewScreen extends StatelessWidget {
   final String path;
@@ -33,6 +35,22 @@ class PreviewScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Provider.of<AppstateProvider>(
+                        context,
+                        listen: false,
+                      ).updatePageState(2);
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+              ),
               ClipRRect(
                 child: Hero(
                   tag: "tag$index",

@@ -294,8 +294,9 @@ class _drawer_sectionState extends State<drawer_section> {
                   () {
                     showdLogOutAlert(
                       context: context,
-                      title: "log out",
-                      message: "Are sure you want to logout ?",
+                      title: "Log out?",
+                      message:
+                          "You will need to sign in again next time.\n Continue?",
 
                       onLogoutPressed: () async {
                         Navigator.pop(context);
