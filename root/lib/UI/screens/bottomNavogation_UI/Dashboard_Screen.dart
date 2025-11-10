@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
@@ -45,6 +46,152 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
       return "Good Afternoon $name 😎";
     } else {
       return "Good Evening $name 🌙";
+    }
+  }
+
+  Future calculateFoodPlate() async {
+    final service = FoodAnalyzeService(
+      changeloding: (value) => setState(() {
+        isLoad = value;
+      }),
+    );
+
+    final result = await service.analyzeFoodPlate(
+      rapidApiKey: rapidKey,
+      imageBapiKey: imageBbKey,
+    );
+
+    if (!mounted) {
+      return;
+    }
+
+    if (result != null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Plate\'s Forbidden Yield'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Total Nutrition Eclipse:', style: headerStyle),
+                Text(
+                  'Calories: ${result['result']['total_nutrition']['total_calories'] ?? 'Veiled in Shadow'}',
+                  style: style,
+                ),
+                Text(
+                  'Protein: ${result['result']['total_nutrition']['total_protein'] ?? 'Shrouded'}g',
+                  style: style,
+                ),
+                Text(
+                  'Carbs: ${result['result']['total_nutrition']['total_carbs'] ?? 'Enigmatic'}g',
+                  style: style,
+                ),
+                Text(
+                  'Fats: ${result['result']['total_nutrition']['total_fats'] ?? 'Obscured'}g',
+                  style: style,
+                ),
+                Text(
+                  'Fiber: ${result['result']['total_nutrition']['fiber'] ?? 'Whispered'}g',
+                  style: style,
+                ),
+
+                const SizedBox(height: 8),
+
+                // const Text(
+                //   'Health Insights from the Depths:',
+                //   style: subHeaderStyle,
+                // ),
+
+                // if (result['result']['health_insights'] !=
+                //     null) ...[
+                //   Text(
+                //     'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
+                //     style: style,
+                //   ),
+                // ],
+                const SizedBox(height: 8),
+                // const Text(
+                //   'Dietary Sigils & Allergen Shadows:',
+                //   style: subHeaderStyle,
+                // ),
+
+                // if (result['result']['dietary_flags'] !=
+                //     null) ...[
+                //   Text(
+                //     'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
+                //     style: style,
+                //   ),
+                //   Text(
+                //     'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
+                //     style: style,
+                //   ),
+                // ],
+
+                // Foods Identified: Loop the array for full heresy (if present)
+                if (result['result']['foods_identified'] != null) ...[
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Sacrificed Foods & Their Yields:',
+                    style: subHeaderStyle,
+                  ),
+                  ...List<Widget>.from(
+                    (result['result']['foods_identified'] as List).map(
+                      (food) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          '${food['name']} (${food['portion_size']}): ~${food['calories']} cal | P:${food['protein']}g | C:${food['carbs']}g | F:${food['fats']}g',
+                          style: style,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK', style: style),
+            ),
+          ],
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.redAccent,
+          content: Text(
+            'Rite faltered—keys impure? Or upload abyss rejects? Console whispers the sin.',
+            style: style,
+          ),
+        ),
+      );
     }
   }
 
@@ -108,159 +255,51 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 ),
                 SizedBox(height: 10),
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Today's progress",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                _buildlabes("Today's progress"),
                 SizedBox(height: 10),
 
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: CircleRing(
-                            0.9,
-                            Icons.timer_rounded,
-                            "Steps",
-                            "1,200",
-                          ),
+                SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: CircleRing(
+                          0.9,
+                          Icons.timer_rounded,
+                          "Steps",
+                          "1,200",
                         ),
-                        SizedBox(width: 40),
-                        Flexible(
-                          flex: 1,
-                          child: CircleRing(
-                            0.6,
-                            Icons.local_fire_department,
-                            "Min",
-                            "22",
-                          ),
+                      ),
+                      SizedBox(width: 40),
+                      Expanded(
+                        flex: 1,
+                        child: CircleRing(
+                          0.6,
+                          Icons.local_fire_department,
+                          "Min",
+                          "22",
                         ),
+                      ),
 
-                        SizedBox(width: 40),
+                      SizedBox(width: 40),
 
-                        Flexible(
-                          flex: 1,
-                          child: CircleRing(
-                            0.3,
-                            "lib/assets/icons/footPrint.svg",
-                            "Kcal",
-                            "800g",
-                          ),
+                      Expanded(
+                        flex: 1,
+                        child: CircleRing(
+                          0.3,
+                          "lib/assets/icons/footPrint.svg",
+                          "Kcal",
+                          "800g",
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
 
-                // Padding(
-                //   padding: EdgeInsets.symmetric(vertical: 280, horizontal: 34),
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(10),
-                //     child: BackdropFilter(
-                //       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-
-                //       child: SizedBox(
-                //         height: 120,
-                //         width: double.infinity,
-
-                //         child: DecoratedBox(
-                //           decoration: BoxDecoration(
-                //             color: Theme.of(context).colorScheme.surface,
-                //             border: Border.all(
-                //               color: Colors.white.withValues(alpha: 0.4),
-                //             ),
-                //             borderRadius: BorderRadius.circular(10),
-                //           ),
-                //           child: Column(
-                //             children: [
-                //               SizedBox(height: 5),
-                //               Center(
-                //                 child: Text(
-                //                   "Macro Breakdown",
-                //                   style: TextStyle(
-                //                     fontSize: 20,
-                //                     color: Theme.of(context).colorScheme.onSurface,
-                //                   ),
-                //                 ),
-                //               ),
-                //               SizedBox(height: 5),
-
-                //               Row(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //                 children: [
-                //                   pfctext("P", 22.0, Alignment.centerLeft, context),
-                //                   SizedBox(width: 10),
-                //                   pfctext("C", 22.0, Alignment.center, context),
-                //                   SizedBox(width: 10),
-                //                   pfctext(
-                //                     "F",
-                //                     22.0,
-                //                     Alignment.centerRight,
-                //                     context,
-                //                   ),
-                //                 ],
-                //               ),
-                //               SizedBox(height: 8),
-                //               Row(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //                 children: [
-                //                   pfctext(
-                //                     "200g",
-                //                     14.0,
-                //                     Alignment.centerLeft,
-                //                     context,
-                //                   ),
-                //                   SizedBox(width: 10),
-                //                   pfctext("100g", 14.0, Alignment.center, context),
-                //                   SizedBox(width: 10),
-                //                   pfctext(
-                //                     "700g",
-                //                     14.0,
-                //                     Alignment.centerRight,
-                //                     context,
-                //                   ),
-                //                 ],
-                //               ),
-
-                //               // Center(
-                //               //   child: Text(
-                //               //     "+10%",
-                //               //     style: TextStyle(
-                //               //       color: const Color.fromARGB(255, 0, 255, 8),
-                //               //     ),
-                //               //   ),
-                //               // ),
-                //             ],
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // )
                 SizedBox(height: 15),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "AI - Powred Tools",
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                _buildlabes("AI - Powered Tools"),
                 SizedBox(height: 10),
 
                 // Positioned(
@@ -282,232 +321,96 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 // ),
                 Center(
                   child: isLoad
-                      ? CircularProgressIndicator(backgroundColor: Colors.white)
+                      ? CircularProgressIndicator(
+                          strokeCap: StrokeCap.round,
+                          valueColor: AlwaysStoppedAnimation(
+                            const Color(0xFF673AB7),
+                          ),
+                          backgroundColor: Colors.white,
+                          strokeWidth: 5,
+                        )
                       : null,
                 ),
-                GestureDetector(
-                  onTap: () async {
-                    final service = FoodAnalyzeService(
-                      changeloding: (value) => setState(() {
-                        isLoad = value;
-                      }),
-                    );
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildContainers(
+                        context,
+                        () {
+                          calculateFoodPlate();
+                        },
+                        "lib/assets/icons/resturant.svg",
+                        "Food Kcal \nAnalyzer With AI",
+                      ),
+                    ),
+                    SizedBox(width: 30),
+                    Expanded(
+                      child: _buildContainers(
+                        context,
+                        () {},
+                        Icons.fitness_center,
+                        "Workout Plan Generator ",
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildContainers(
+                        context,
+                        () {
+                          calculateFoodPlate();
+                        },
+                        Icons.calculate,
+                        "Calorie Calculator",
+                      ),
+                    ),
+                    SizedBox(width: 30),
+                    Expanded(
+                      child: _buildContainers(
+                        context,
+                        () {},
+                        Icons.food_bank,
+                        "AI Nutrition Plan",
+                      ),
+                    ),
+                  ],
+                ),
 
-                    final result = await service.analyzeFoodPlate(
-                      rapidApiKey: rapidKey,
-                      imageBapiKey: imageBbKey,
-                    );
+                SizedBox(height: 10),
 
-                    if (!mounted) {
-                      return;
-                    }
+                _buildlabes("This Week's Progress"),
 
-                    if (result != null) {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Plate\'s Forbidden Yield'),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Total Nutrition Eclipse:',
-                                  style: headerStyle,
-                                ),
-                                Text(
-                                  'Calories: ${result['result']['total_nutrition']['total_calories'] ?? 'Veiled in Shadow'}',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Protein: ${result['result']['total_nutrition']['total_protein'] ?? 'Shrouded'}g',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Carbs: ${result['result']['total_nutrition']['total_carbs'] ?? 'Enigmatic'}g',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Fats: ${result['result']['total_nutrition']['total_fats'] ?? 'Obscured'}g',
-                                  style: style,
-                                ),
-                                Text(
-                                  'Fiber: ${result['result']['total_nutrition']['fiber'] ?? 'Whispered'}g',
-                                  style: style,
-                                ),
-
-                                const SizedBox(height: 8),
-
-                                // const Text(
-                                //   'Health Insights from the Depths:',
-                                //   style: subHeaderStyle,
-                                // ),
-
-                                // if (result['result']['health_insights'] !=
-                                //     null) ...[
-                                //   Text(
-                                //     'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
-                                //     style: style,
-                                //   ),
-                                // ],
-                                const SizedBox(height: 8),
-                                // const Text(
-                                //   'Dietary Sigils & Allergen Shadows:',
-                                //   style: subHeaderStyle,
-                                // ),
-
-                                // if (result['result']['dietary_flags'] !=
-                                //     null) ...[
-                                //   Text(
-                                //     'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
-                                //     style: style,
-                                //   ),
-                                //   Text(
-                                //     'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
-                                //     style: style,
-                                //   ),
-                                // ],
-
-                                // Foods Identified: Loop the array for full heresy (if present)
-                                if (result['result']['foods_identified'] !=
-                                    null) ...[
-                                  const SizedBox(height: 8),
-                                  const Text(
-                                    'Sacrificed Foods & Their Yields:',
-                                    style: subHeaderStyle,
-                                  ),
-                                  ...List<Widget>.from(
-                                    (result['result']['foods_identified']
-                                            as List)
-                                        .map(
-                                          (food) => Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 4,
-                                            ),
-                                            child: Text(
-                                              '${food['name']} (${food['portion_size']}): ~${food['calories']} cal | P:${food['protein']}g | C:${food['carbs']}g | F:${food['fats']}g',
-                                              style: style,
-                                            ),
-                                          ),
-                                        ),
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('OK', style: style),
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: Colors.redAccent,
-                          content: Text(
-                            'Rite faltered—keys impure? Or upload abyss rejects? Console whispers the sin.',
-                            style: style,
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                  // Navigator.push(
-                  //   context,
-                  //   PageRouteBuilder(
-                  //     transitionDuration: Duration(milliseconds: 600),
-                  //     pageBuilder:
-                  //         (
-                  //           BuildContext context,
-                  //           Animation<double> animation,
-                  //           Animation<double> secondaryAnimation,
-                  //         ) {
-                  //           return FadeThroughTransition(
-                  //             animation: animation,
-                  //             secondaryAnimation: secondaryAnimation,
-                  //             child: Nutitrion_Screen(),
-                  //           );
-                  //         },
-                  //   ),
-                  // );
-                  child: SizedBox(
-                    height: 100,
-                    child: ClipRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-
-                        child: SizedBox(
-                          height: 40,
-                          width: double.infinity,
-
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Expanded(
+                    child: SizedBox(
+                      height: 215,
+                      width: double.infinity,
+                      child: ClipRRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.2),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.primary.withValues(alpha: 0.1),
+                              color: Colors.white.withOpacity(0.2),
                               border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.4),
+                                color: Colors.white.withOpacity(0.5),
                               ),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
-                            child: Column(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(height: 10),
-                                Text(
-                                  "Food Kcal Analyzer With AI",
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.white,
-                                  ),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: _buildWeekTable(true, "Str", 100),
                                 ),
-                                SizedBox(height: 5),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                    textAlign: TextAlign.center,
-                                    """Click me & Get info about food on plate in for free .""",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.white60,
-                                    ),
-                                  ),
-                                ),
+                                _buildWeekTable(false, "Sun", 130),
+                                _buildWeekTable(false, "Monday", 140),
                               ],
                             ),
                           ),
@@ -523,4 +426,121 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
       ),
     );
   }
+}
+
+Widget _buildWeekTable(isToday, label, height) {
+  return Column(
+    children: [
+      SizedBox(
+        height: height,
+        width: 50,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: isToday ? const Color(0xFF673AB7) : const Color(0xFFFFFFFF),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+        ),
+      ),
+      Text(label),
+    ],
+  );
+}
+
+Widget _buildContainers(
+  BuildContext context,
+  VoidCallback ontap,
+  dynamic icon,
+  String text,
+) {
+  return GestureDetector(
+    onTap: ontap,
+
+    child: SizedBox(
+      height: 100,
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+
+          child: SizedBox(
+            height: 40,
+            width: 200,
+
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.2),
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.1),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: _buildIcon(icon),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(horizontal: 10),
+                    //   child: Text(
+                    //     textAlign: TextAlign.center,
+                    //     """Get info about food on plate .""",
+                    //     style: TextStyle(
+                    //       fontSize: 12,
+
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildIcon(icon) {
+  if (icon is IconData) {
+    return Icon(icon, size: 40, color: const Color(0xFFFFFFFF));
+  } else {
+    return SvgPicture.asset(height: 30, width: 30, icon, fit: BoxFit.cover);
+  }
+}
+
+Widget _buildlabes(String label) {
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: Text(
+      label,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
 }
