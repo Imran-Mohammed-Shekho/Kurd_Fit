@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
-import 'package:gym/UI/CommonWidget/glassy_container.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 
@@ -109,33 +109,36 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                       children: [
                         Flexible(
                           flex: 1,
-                          child: GlassyContainer(
-                            Icon(Icons.fingerprint, size: 40),
+                          child: CircleRing(
+                            0.9,
+                            Icons.timer_rounded,
+                            "Steps",
+                            "1,200",
                           ),
                         ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 40),
                         Flexible(
                           flex: 1,
-                          child: GlassyContainer(Icon(Icons.fireplace_sharp)),
+                          child: CircleRing(
+                            0.6,
+                            Icons.local_fire_department,
+                            "Min",
+                            "22",
+                          ),
                         ),
 
-                        SizedBox(width: 20),
+                        SizedBox(width: 40),
+
                         Flexible(
                           flex: 1,
-                          child: GlassyContainer(Icon(Icons.fireplace_sharp)),
+                          child: CircleRing(
+                            0.3,
+                            "lib/assets/icons/footPrint.svg",
+                            "Kcal",
+                            "800g",
+                          ),
                         ),
                       ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [Text("data"), Text("data"), Text("data")],
                     ),
                   ),
                 ),
