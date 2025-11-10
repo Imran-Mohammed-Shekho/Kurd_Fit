@@ -218,7 +218,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
           ),
           child: Padding(
             padding: EdgeInsets.all(10),
-            child: Column(
+            child: ListView(
               children: [
                 Row(
                   children: [
@@ -259,6 +259,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 SizedBox(height: 10),
 
                 SizedBox(
+                  height: 200,
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -385,34 +386,101 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Expanded(
-                    child: SizedBox(
-                      height: 215,
-                      width: double.infinity,
-                      child: ClipRRect(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              border: Border.all(
-                                color: Colors.white.withOpacity(0.5),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
+                  child: SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: ClipRRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.5),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: _buildWeekTable(true, "Str", 100),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Activity",
+                                      style: TextStyle(
+                                        color: const Color(0xFFFFFFFF),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Text(
+                                        "Veiw Activity",
+                                        style: TextStyle(
+                                          color: const Color(0xFFFFFFFF),
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: const Color(
+                                            0xFFFFFFFF,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                _buildWeekTable(false, "Sun", 130),
-                                _buildWeekTable(false, "Monday", 140),
-                              ],
-                            ),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(true, "Saturday", 100),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Sunday", 130),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Monday", 140),
+                                    ],
+                                  ),
+
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Tuesday", 160),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Wednesday", 60),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Thursday", 90),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildWeekTable(false, "Friday", 190),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -433,7 +501,7 @@ Widget _buildWeekTable(isToday, label, height) {
     children: [
       SizedBox(
         height: height,
-        width: 50,
+        width: 40,
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: isToday ? const Color(0xFF673AB7) : const Color(0xFFFFFFFF),
@@ -441,7 +509,9 @@ Widget _buildWeekTable(isToday, label, height) {
           ),
         ),
       ),
-      Text(label),
+      SizedBox(height: 10),
+      Text(label, style: TextStyle(color: const Color(0xFFFFFFFF))),
+      SizedBox(height: 10),
     ],
   );
 }
