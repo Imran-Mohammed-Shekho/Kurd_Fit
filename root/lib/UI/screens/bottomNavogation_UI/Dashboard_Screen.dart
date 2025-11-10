@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
@@ -34,6 +35,17 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
     setState(() {
       isLoad = true;
     });
+  }
+
+  String gretingUser(String name) {
+    final int time = DateTime.now().hour;
+    if (time < 12) {
+      return "Good Morning $name 👋!";
+    } else if (time < 17) {
+      return "Good Afternoon $name 😎";
+    } else {
+      return "Good Evening $name 🌙";
+    }
   }
 
   @override
@@ -74,14 +86,23 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                   ],
                 ),
                 SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Good Morning Imarn !",
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 97, 43, 5),
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 20,
+                  width: double.infinity,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        TyperAnimatedText(
+                          gretingUser("Imran"),
+                          speed: Duration(milliseconds: 100),
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 35, 2, 56),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
