@@ -26,7 +26,9 @@ class WeekActivity extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: Icon(
                       Icons.arrow_back_ios,
                       color: const Color(0xFFFFFFFF),
