@@ -309,6 +309,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 prefixIcon: Icon(Icons.person, color: Colors.white),
               ),
               textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
               validator: _emailValidator,
             ),
           ),
@@ -354,7 +355,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       : Icon(Icons.visibility, color: Colors.white),
                 ),
               ),
-              textInputAction: TextInputAction.done,
+              textInputAction: TextInputAction.next,
+
               validator: _passwordVaildator,
               obscureText: _obscureText,
             ),

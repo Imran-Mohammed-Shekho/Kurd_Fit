@@ -49,6 +49,59 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
     }
   }
 
+  Widget _buildInfoCard(List<Widget> children) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white.withOpacity(0.5)),
+      ),
+      child: Column(children: children),
+    );
+  }
+
+  Widget _buildNutritionRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: TextStyle(color: Colors.white, fontSize: 14)),
+          Text(
+            value,
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFoodItemCard(dynamic food) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white.withOpacity(0.3)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.restaurant, color: Colors.white),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              "${food['name']} (${food['portion_size']})\n"
+              "🔥 ${food['calories']} kcal   💪 ${food['protein']}g   🍞 ${food['carbs']}g   🧈 ${food['fats']}g",
+              style: TextStyle(color: Colors.white, fontSize: 13),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future calculateFoodPlate() async {
     final service = FoodAnalyzeService(
       changeloding: (value) => setState(() {
@@ -66,130 +119,68 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
     }
 
     if (result != null) {
+      final nutrition = result['result']['total_nutrition'];
+      final foods = (result['result']['foods_identified'] as List?) ?? [];
+
       showDialog(
         context: context,
+
         builder: (context) => AlertDialog(
-          title: const Text('Plate\'s Forbidden Yield'),
+          insetPadding: EdgeInsets.all(20),
+          backgroundColor: Colors.white.withOpacity(0.1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Total Nutrition Eclipse:', style: headerStyle),
-                Text(
-                  'Calories: ${result['result']['total_nutrition']['total_calories'] ?? 'Veiled in Shadow'}',
-                  style: style,
-                ),
-                Text(
-                  'Protein: ${result['result']['total_nutrition']['total_protein'] ?? 'Shrouded'}g',
-                  style: style,
-                ),
-                Text(
-                  'Carbs: ${result['result']['total_nutrition']['total_carbs'] ?? 'Enigmatic'}g',
-                  style: style,
-                ),
-                Text(
-                  'Fats: ${result['result']['total_nutrition']['total_fats'] ?? 'Obscured'}g',
-                  style: style,
-                ),
-                Text(
-                  'Fiber: ${result['result']['total_nutrition']['fiber'] ?? 'Whispered'}g',
-                  style: style,
-                ),
-
-                const SizedBox(height: 8),
-
-                // const Text(
-                //   'Health Insights from the Depths:',
-                //   style: subHeaderStyle,
-                // ),
-
-                // if (result['result']['health_insights'] !=
-                //     null) ...[
-                //   Text(
-                //     'Balance Score: ${result['result']['meal_analysis']['balance_score'] ?? 'Untold'}/10',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Meal Type: ${result['result']['meal_analysis']['meal_type'] ?? 'Arcane'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Suggestions: ${result['result']['health_insights']['suggestions'] ?? 'Silent Void'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Positive Aspects: ${result['result']['health_insights']['positive_aspects']?.join(', ') ?? 'None Revealed'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Improvement Fractures: ${result['result']['health_insights']['improvement_areas']?.join(', ') ?? 'None Exposed'}',
-                //     style: style,
-                //   ),
-                // ],
-                const SizedBox(height: 8),
-                // const Text(
-                //   'Dietary Sigils & Allergen Shadows:',
-                //   style: subHeaderStyle,
-                // ),
-
-                // if (result['result']['dietary_flags'] !=
-                //     null) ...[
-                //   Text(
-                //     'Vegetarian: ${result['result']['dietary_flags']['is_vegetarian'] ?? 'Uncertain'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Vegan: ${result['result']['dietary_flags']['is_vegan'] ?? 'Denied'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Gluten-Free: ${result['result']['dietary_flags']['is_gluten_free'] ?? 'Veiled'}',
-                //     style: style,
-                //   ),
-                //   Text(
-                //     'Allergens: ${result['result']['dietary_flags']['allergens']?.join(', ') ?? 'None Lurking'}',
-                //     style: style,
-                //   ),
-                // ],
-
-                // Foods Identified: Loop the array for full heresy (if present)
-                if (result['result']['foods_identified'] != null) ...[
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Sacrificed Foods & Their Yields:',
-                    style: subHeaderStyle,
+                // Total Nutrition Card
+                _buildInfoCard([
+                  _buildNutritionRow(
+                    "🔥 Calories",
+                    "${nutrition['total_calories']} kcal",
                   ),
-                  ...List<Widget>.from(
-                    (result['result']['foods_identified'] as List).map(
-                      (food) => Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: Text(
-                          '${food['name']} (${food['portion_size']}): ~${food['calories']} cal | P:${food['protein']}g | C:${food['carbs']}g | F:${food['fats']}g',
-                          style: style,
-                        ),
-                      ),
-                    ),
+                  _buildNutritionRow(
+                    "💪 Protein",
+                    "${nutrition['total_protein']} g",
                   ),
-                ],
+                  _buildNutritionRow(
+                    "🍞 Carbs",
+                    "${nutrition['total_carbs']} g",
+                  ),
+                  _buildNutritionRow("🧈 Fats", "${nutrition['total_fats']} g"),
+                  _buildNutritionRow("🌿 Fiber", "${nutrition['fiber']} g"),
+                ]),
+
+                SizedBox(height: 15),
+
+                Text(
+                  "🥗 Food Breakdown",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 8),
+
+                if (foods.isEmpty)
+                  Text(
+                    "No foods detected.",
+                    style: TextStyle(color: Colors.white70),
+                  ),
+                ...foods.map((food) => _buildFoodItemCard(food)).toList(),
               ],
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('OK', style: style),
+              child: Text("Close", style: TextStyle(color: Colors.white)),
             ),
           ],
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            'Rite faltered—keys impure? Or upload abyss rejects? Console whispers the sin.',
-            style: style,
-          ),
         ),
       );
     }
