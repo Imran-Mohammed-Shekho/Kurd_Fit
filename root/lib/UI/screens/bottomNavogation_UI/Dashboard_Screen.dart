@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 
@@ -294,23 +295,6 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 _buildlabes("AI - Powered Tools"),
                 SizedBox(height: 10),
 
-                // Positioned(
-                //   bottom: 80,
-                //   left: 25,
-                //   right: 25,
-                //   child: dashboradBottom(
-                //     () {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => Workouts_Screen(),
-                //         ),
-                //       );
-                //     },
-                //     "Start Workouts",
-                //     Colors.white,
-                //   ),
-                // ),
                 Center(
                   child: isLoad
                       ? CircularProgressIndicator(
@@ -406,7 +390,15 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                                       ),
                                     ),
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                WeekActivity(),
+                                          ),
+                                        );
+                                      },
                                       child: Text(
                                         "Veiw Activity",
                                         style: TextStyle(
