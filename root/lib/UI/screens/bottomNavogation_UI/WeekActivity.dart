@@ -34,7 +34,7 @@ class WeekActivity extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5),
-                Center(child: _buildText("Weekly Progress", 24, true)),
+                Center(child: _buildText("Weekly Progress", 24, true, false)),
                 SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,7 +74,8 @@ class WeekActivity extends StatelessWidget {
                         "4",
                         Icon(
                           Icons.fitness_center,
-                          color: const Color(0xFFFFFFFF),
+                          color: Colors.green,
+                          size: 40,
                         ),
                         "Workout",
                       ),
@@ -82,33 +83,31 @@ class WeekActivity extends StatelessWidget {
                         "609",
                         Icon(
                           Icons.local_fire_department,
-                          color: const Color(0xFFFFFFFF),
+                          size: 40,
+                          color: Colors.amber.shade600,
                         ),
                         "Calorie",
                       ),
                       _buildcontainer(
                         "4h 23M",
-                        Icon(
-                          Icons.timer_rounded,
-                          color: const Color(0xFFFFFFFF),
-                        ),
+                        Icon(Icons.timer_rounded, size: 40, color: Colors.red),
                         "Duration",
                       ),
                     ],
                   ),
                 ),
                 SizedBox(height: 20),
-                _buildText("Daily BreakDown", 20, true),
+                _buildText("Daily BreakDown", 20, true, false),
                 SizedBox(height: 10),
                 Column(
                   children: [
-                    _buildListTiles(),
-                    _buildListTiles(),
-                    _buildListTiles(),
-                    _buildListTiles(),
-                    _buildListTiles(),
-                    _buildListTiles(),
-                    _buildListTiles(),
+                    _buildListTiles(true),
+                    _buildListTiles(false),
+                    _buildListTiles(false),
+                    _buildListTiles(false),
+                    _buildListTiles(false),
+                    _buildListTiles(false),
+                    _buildListTiles(false),
                   ],
                 ),
               ],
@@ -120,45 +119,42 @@ class WeekActivity extends StatelessWidget {
   }
 }
 
-Widget _buildListTiles() {
+Widget _buildListTiles(bool isLast) {
   return Padding(
     padding: EdgeInsets.all(10),
-    child: ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            border: Border.all(color: Colors.white.withOpacity(0.3)),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildListTileData("200", "Calorie"),
-                _buildListTileData("45", "min"),
-                _buildListTileData("2,400", "Steps"),
-              ],
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.white.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildListTileData("200", "Calorie"),
+            _buildListTileData("45", "min"),
+            _buildListTileData("2,400", "Steps"),
+          ],
+        ),
+
+        leading: SizedBox(
+          height: 40,
+          width: 40,
+
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: isLast
+                  ? Colors.deepPurple
+                  : Colors.deepPurple.withOpacity(0.2),
+              shape: BoxShape.circle,
             ),
-
-            leading: SizedBox(
-              height: 40,
-              width: 40,
-
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildText("Thu", 12, false),
-                    _buildText("29", 12, false),
-                  ],
-                ),
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildText("Thu", 12, false, true),
+                _buildText("29", 12, false, true),
+              ],
             ),
           ),
         ),
@@ -170,9 +166,9 @@ Widget _buildListTiles() {
 Widget _buildListTileData(String number, String text) {
   return Column(
     children: [
-      Text(number, style: TextStyle(color: const Color(0xFFFFFFFF))),
+      Text(number, style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0))),
       SizedBox(height: 10),
-      Text(text, style: TextStyle(color: const Color(0xFFFFFFFF))),
+      Text(text, style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0))),
     ],
   );
 }
@@ -181,27 +177,24 @@ Widget _buildcontainer(String text, dynamic icon, String type) {
   return SizedBox(
     height: 150,
     width: 110,
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            border: Border.all(color: Colors.white.withOpacity(0.3)),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              _buildIcon(icon),
-              SizedBox(height: 10),
-              _buildText(text, 18, true),
-              SizedBox(height: 10),
-              _buildText(type, 16, false),
-            ],
-          ),
-        ),
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.white.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(blurRadius: 20, spreadRadius: 1, color: Colors.white),
+        ],
+      ),
+      child: Column(
+        children: [
+          SizedBox(height: 20),
+          _buildIcon(icon),
+          SizedBox(height: 10),
+          _buildText(text, 20, true, true),
+          SizedBox(height: 10),
+          _buildText(type, 16, false, true),
+        ],
       ),
     ),
   );
@@ -217,11 +210,13 @@ Widget _buildIcon(dynamic Icon) {
   }
 }
 
-Widget _buildText(String text, double fontSize, bool isBold) {
+Widget _buildText(String text, double fontSize, bool isBold, bool isDark) {
   return Text(
     text,
     style: TextStyle(
-      color: Colors.white,
+      color: isDark
+          ? const Color.fromARGB(255, 0, 0, 0)
+          : const Color(0xFFFFFFFF),
       fontSize: fontSize,
       fontWeight: isBold == true ? FontWeight.bold : FontWeight.normal,
     ),
