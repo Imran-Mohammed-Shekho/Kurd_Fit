@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutGeneratedResult.dart';
+import 'package:gym/data/models/workout_requestModel.dart';
+import 'package:gym/services/AI_workout_generator_service.dart';
 
 class Workoutplangenerator extends StatefulWidget {
   const Workoutplangenerator({super.key});
@@ -17,14 +20,65 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
 
   String Goal = "fat_loss";
   String Gender = "female";
-  int daysPerWeek = 5;
+  String daysPerWeek = "5";
   String experience = "beginner";
   bool isLoad = false;
 
-  Future generatePlan() {
-    setState(() {
-      isLoad = true;
-    });
+  Future generatePlan() async {
+    if (Goal.isEmpty ||
+        Gender.isEmpty ||
+        daysPerWeek.isEmpty ||
+        experience.isEmpty ||
+        _ageController.text.isEmpty ||
+        _heightController.text.isEmpty ||
+        _weightController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "fill all faileds ",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+    }
+    showDialog(
+      context: context,
+      builder: (context) => Center(
+        child: CircularProgressIndicator(
+          color: Colors.deepPurple,
+          strokeWidth: 10,
+          strokeCap: StrokeCap.round,
+        ),
+      ),
+    );
+
+    try {
+      final req = WorkoutRequestmodel(
+        age: int.parse(_ageController.text),
+        height: int.parse(_heightController.text),
+        weight: double.parse(_weightController.text),
+        days: daysPerWeek,
+        experience: experience,
+        goal: Goal,
+        gender: Gender,
+      );
+
+      final plan = await generateWorkoutPlan(req);
+      if (!mounted) return;
+      Future.delayed(Duration(seconds: 2));
+      Navigator.pop(context);
+      Future.delayed(Duration(seconds: 1));
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Workoutgeneratedresult(paln: plan),
+        ),
+      );
+    } catch (e) {
+      print("$e");
+    }
   }
 
   @override
@@ -43,6 +97,18 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
           child: ListView(
             padding: EdgeInsets.all(16),
             children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: const Color(0xFFFFFFFF),
+                  ),
+                ),
+              ),
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -334,7 +400,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
                                     fontSize: 15,
                                   ),
                                   value: daysPerWeek,
-                                  items: [3, 4, 5, 6]
+                                  items: ["3", "4", "5", "6"]
                                       .map(
                                         (e) => DropdownMenuItem(
                                           value: e,
