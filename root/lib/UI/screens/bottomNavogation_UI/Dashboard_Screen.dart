@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 
@@ -323,7 +324,14 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                     Expanded(
                       child: _buildContainers(
                         context,
-                        () {},
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Workoutplangenerator(),
+                            ),
+                          );
+                        },
                         Icons.fitness_center,
                         "Workout Plan Generator ",
                       ),
