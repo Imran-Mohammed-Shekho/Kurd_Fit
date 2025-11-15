@@ -24,8 +24,6 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
   String Gender = "female";
   String daysPerWeek = "5";
 
-  bool isLoad = false;
-
   Future<void> calorieDailyNeededGenerator() async {
     if (Goal.isEmpty ||
         Gender.isEmpty ||
@@ -42,6 +40,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
           ),
         ),
       );
+      return;
     }
     showDialog(
       context: context,
@@ -53,6 +52,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
         ),
       ),
     );
+
     final req = CalorieModel(
       age: int.parse(_ageController.text),
       height: int.parse(_heightController.text),
@@ -65,15 +65,12 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
 
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        result = calorieNeeded;
-      });
+    if (!mounted) return;
+    setState(() {
+      result = calorieNeeded;
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      DailyCaloireResult(calorieNeeded, context);
-    });
+    if (!mounted) return;
+    DailyCaloireResult(calorieNeeded, context);
   }
 
   @override

@@ -6,7 +6,7 @@ import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
-import 'package:gym/UI/screens/bottomNavogation_UI/calorieNeeded_calculator.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 

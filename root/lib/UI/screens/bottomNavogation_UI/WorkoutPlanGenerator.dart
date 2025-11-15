@@ -22,7 +22,6 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
   String Gender = "female";
   String daysPerWeek = "5";
   String experience = "beginner";
-  bool isLoad = false;
 
   Future generatePlan() async {
     if (Goal.isEmpty ||
@@ -41,6 +40,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
           ),
         ),
       );
+      return;
     }
     showDialog(
       context: context,
@@ -52,7 +52,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
         ),
       ),
     );
-
+    if (!mounted) return;
     try {
       final req = WorkoutRequestmodel(
         age: int.parse(_ageController.text),

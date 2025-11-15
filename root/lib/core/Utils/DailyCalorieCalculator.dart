@@ -6,7 +6,7 @@ import 'package:gym/data/models/calorie_result.dart';
 import "package:http/http.dart" as http;
 
 Future generateDailyCalorie(CalorieModel req) async {
-  String basUrl = "http://127.0.0.1:8000";
+  String basUrl = "https://daily-calorie-calculator.onrender.com";
 
   try {
     final url = Uri.parse("$basUrl/calories");
