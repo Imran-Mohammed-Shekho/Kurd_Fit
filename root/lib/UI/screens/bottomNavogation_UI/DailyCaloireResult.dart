@@ -132,10 +132,10 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
 
                   const SizedBox(height: 12),
                   _buildAnimatedRow(
-                    icon: Icons.fitness_center_rounded,
+                    icon: "lib/assets/images/Fireanimation.gif",
                     label:
                         "Total daily calorie burn\n${tdde.toStringAsFixed(0)} ",
-                    color: Colors.white,
+                    color: null,
                   ),
                   const SizedBox(height: 12),
 
@@ -146,8 +146,6 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
                         "Recommended calories adjusted based on goal\n${recommendedCalories.toStringAsFixed(0)} ",
                     color: Colors.amber,
                   ),
-
-                  Image.asset("lib/assets/images/Fireanimation.gif"),
                 ],
               ),
             ),
@@ -158,7 +156,7 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
   }
 
   Widget _buildAnimatedRow({
-    required IconData icon,
+    required dynamic icon,
     required String label,
     Color? color,
   }) {
@@ -173,7 +171,16 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
             color: Colors.white,
           ),
         ),
-        Icon(icon, color: color, size: 32),
+        icon is IconData
+            ? Icon(icon, color: color, size: 32)
+            : SizedBox(
+                height: 40,
+                child: Image.asset(
+                  icon,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
       ],
     );
   }

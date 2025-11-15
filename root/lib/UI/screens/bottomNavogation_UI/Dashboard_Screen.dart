@@ -263,7 +263,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         flex: 1,
                         child: CircleRing(
                           0.9,
-                          Icons.timer_rounded,
+                          "lib/assets/icons/footPrint.svg",
                           "Steps",
                           "1,200",
                         ),
@@ -271,12 +271,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                       SizedBox(width: 40),
                       Expanded(
                         flex: 1,
-                        child: CircleRing(
-                          0.6,
-                          Icons.local_fire_department,
-                          "Min",
-                          "22",
-                        ),
+                        child: CircleRing(0.6, Icons.timer, "Min", "22"),
                       ),
 
                       SizedBox(width: 40),
@@ -285,7 +280,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         flex: 1,
                         child: CircleRing(
                           0.3,
-                          "lib/assets/icons/footPrint.svg",
+                          Icons.local_fire_department,
                           "Kcal",
                           "800g",
                         ),

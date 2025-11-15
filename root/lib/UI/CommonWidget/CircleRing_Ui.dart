@@ -106,14 +106,15 @@ class _CircleRingState extends State<CircleRing> {
         widget.icon,
         height: 40,
         width: 40,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
       );
     }
 
     if (widget.icon is String &&
-        (widget.icon.toString().toLowerCase().endsWith(".png") ||
-            widget.icon.toString().toLowerCase().endsWith(".jpg"))) {
-      return Image.asset(widget.icon, height: 32, width: 32);
+            (widget.icon.toString().toLowerCase().endsWith(".png") ||
+                widget.icon.toString().toLowerCase().endsWith(".jpg")) ||
+        widget.icon.toString().toLowerCase().endsWith(".gif")) {
+      return Image.asset(widget.icon, height: 60, width: 60);
     }
 
     return widget.icon(widget.icon.help);
