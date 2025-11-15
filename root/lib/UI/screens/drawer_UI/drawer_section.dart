@@ -13,7 +13,6 @@ import 'package:gym/UI/screens/drawer_UI/language_screen.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
 import 'package:gym/state/providers/theme_provider.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -132,11 +131,8 @@ class _drawer_sectionState extends State<drawer_section> {
                   () {
                     Navigator.pushReplacement(
                       context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        reverseDuration: Duration(milliseconds: 600),
-                        duration: Duration(milliseconds: 600),
-                        child: Change_password(),
+                      MaterialPageRoute(
+                        builder: (context) => Change_password(),
                       ),
                     );
                   },

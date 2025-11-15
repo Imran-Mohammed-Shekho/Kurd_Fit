@@ -5,7 +5,6 @@ import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/screens/shop_UI/favorite_screen.dart';
 import 'package:gym/UI/screens/shop_UI/preview_screen.dart';
 import 'package:gym/data/models/supplement_class.dart';
-import 'package:page_transition/page_transition.dart';
 
 class App_Shop extends StatefulWidget {
   const App_Shop({super.key});
@@ -191,11 +190,9 @@ class _App_ShopState extends State<App_Shop> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 600),
-                              reverseDuration: Duration(milliseconds: 500),
-                              child: PreviewScreen(
+
+                            MaterialPageRoute(
+                              builder: (context) => PreviewScreen(
                                 supplements[index].imagePath,
 
                                 supplements[index].title,
