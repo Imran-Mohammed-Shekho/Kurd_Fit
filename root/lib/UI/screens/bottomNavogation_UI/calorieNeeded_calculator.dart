@@ -65,9 +65,14 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
 
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        result = calorieNeeded;
+      });
+    });
 
-    setState(() {
-      result = calorieNeeded;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      DailyCaloireResult(calorieNeeded, context);
     });
   }
 
@@ -340,7 +345,6 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                         ),
                       ),
                     ),
-                    if (result != null) DailyCaloireResult(result),
                   ],
                 ),
               ),
@@ -350,8 +354,8 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                 () async {
                   await calorieDailyNeededGenerator();
                 },
-                "Generate Plan",
-                Colors.black,
+                "Calculate Calorie Needed",
+                Colors.white,
                 false,
                 const Color.fromARGB(255, 114, 123, 255),
               ),
