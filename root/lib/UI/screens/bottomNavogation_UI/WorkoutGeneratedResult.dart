@@ -1,4 +1,11 @@
+// ignore: file_names
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/browser_mobile.dart';
+import 'package:gym/core/Utils/browser_stub.dart';
+import 'package:gym/core/Utils/browser_web.dart';
 import 'package:gym/data/models/workout_requestModel.dart';
 
 class Workoutgeneratedresult extends StatelessWidget {
@@ -7,6 +14,16 @@ class Workoutgeneratedresult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void openUrl(String url) {
+      if (kIsWeb) {
+        openUrlWeb(url);
+      } else if (Platform.isIOS || Platform.isAndroid) {
+        openUrlMobile(url);
+      } else {
+        openUrlUnSupported();
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         body: DecoratedBox(
@@ -78,6 +95,27 @@ class Workoutgeneratedresult extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(16),
                       child: Image.network(paln.imageUrl),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
+                    child: Text(
+                      "You can check image on internet follow this link",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      openUrl(paln.imageUrl);
+                    },
+                    child: Text(
+                      " ${paln.imageUrl}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.red,
+                      ),
                     ),
                   ),
                 ],

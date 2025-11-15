@@ -4,7 +4,7 @@ import 'package:gym/data/models/workout_requestModel.dart';
 import 'package:http/http.dart' as http;
 
 Future<WorkoutPlan> generateWorkoutPlan(WorkoutRequestmodel req) async {
-  String basurl = "http://0.0.0.0:8000";
+  String basurl = "https://workout-plan-1-4q8i.onrender.com";
 
   final url = Uri.parse("$basurl/generate");
   final response = await http.post(
