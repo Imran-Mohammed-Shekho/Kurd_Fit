@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
@@ -8,7 +9,10 @@ import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
+import 'package:gym/data/models/userData.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
+import 'package:gym/state/providers/profile_provider.dart';
+import 'package:provider/provider.dart';
 
 const TextStyle headerStyle = TextStyle(
   fontWeight: FontWeight.bold,
@@ -32,25 +36,26 @@ class Dashboard_Screen extends StatefulWidget {
 }
 
 class _Dashboard_ScreenState extends State<Dashboard_Screen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final name = Provider.of<ProfileProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (name.userModel == null)
+        name.getUserDataFromFirestore(FirebaseAuth.instance.currentUser!.uid);
+    });
+  }
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool isLoad = false;
+  bool isLoading = false;
 
   void changeToTure() {
     setState(() {
       isLoad = true;
     });
-  }
-
-  String gretingUser(String name) {
-    final int time = DateTime.now().hour;
-    if (time < 12) {
-      return "Good Morning $name 👋!";
-    } else if (time < 17) {
-      return "Good Afternoon $name 😎";
-    } else {
-      return "Good Evening $name 🌙";
-    }
   }
 
   Widget _buildInfoCard(List<Widget> children) {
@@ -192,6 +197,23 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
   @override
   Widget build(BuildContext context) {
+    String? username = Provider.of<ProfileProvider>(
+      context,
+      listen: false,
+    ).name;
+
+    gretingUser() {
+      final int time = DateTime.now().hour;
+
+      if (time < 12) {
+        return "Good Morning $username 👋!";
+      } else if (time < 17) {
+        return "Good Afternoon $username 😎";
+      } else {
+        return "Good Evening $username 🌙";
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         endDrawerEnableOpenDragGesture: false,
@@ -233,19 +255,23 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                   width: double.infinity,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: AnimatedTextKit(
-                      repeatForever: true,
-                      animatedTexts: [
-                        TyperAnimatedText(
-                          gretingUser("Imran"),
-                          speed: Duration(milliseconds: 100),
-                          textStyle: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 35, 2, 56),
+                    child: isLoading
+                        ? CircularProgressIndicator(
+                            color: Colors.amber.shade600,
+                          )
+                        : AnimatedTextKit(
+                            repeatForever: true,
+                            animatedTexts: [
+                              TyperAnimatedText(
+                                gretingUser(),
+                                speed: Duration(milliseconds: 100),
+                                textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(255, 35, 2, 56),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -590,7 +616,7 @@ Widget _buildIcon(icon) {
   if (icon is IconData) {
     return Icon(icon, size: 40, color: const Color(0xFFFFFFFF));
   } else {
-    return SvgPicture.asset(height: 30, width: 30, icon, fit: BoxFit.cover);
+    return SvgPicture.asset(icon, height: 30, width: 30, fit: BoxFit.cover);
   }
 }
 
