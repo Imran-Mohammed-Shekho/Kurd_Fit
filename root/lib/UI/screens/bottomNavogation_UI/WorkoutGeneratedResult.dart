@@ -94,7 +94,11 @@ class Workoutgeneratedresult extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(16),
-                      child: Image.network(paln.imageUrl),
+                      child: Image.network(
+                        paln.imageUrl,
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.high,
+                      ),
                     ),
                   ),
                   Padding(
