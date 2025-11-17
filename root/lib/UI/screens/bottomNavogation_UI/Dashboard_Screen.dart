@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/BmiScreen.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
@@ -40,10 +41,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final name = Provider.of<ProfileProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (name.userModel == null)
+    Future.microtask(() {
+      final name = Provider.of<ProfileProvider>(context, listen: false);
+      if (name.userModel == null) {
         name.getUserDataFromFirestore(FirebaseAuth.instance.currentUser!.uid);
+      }
     });
   }
 
@@ -197,10 +199,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    String? username = Provider.of<ProfileProvider>(
-      context,
-      listen: false,
-    ).name;
+    String? username = Provider.of<ProfileProvider>(context, listen: true).name;
 
     gretingUser() {
       final int time = DateTime.now().hour;
@@ -383,9 +382,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                     Expanded(
                       child: _buildContainers(
                         context,
-                        () {},
-                        Icons.food_bank,
-                        "AI Nutrition Plan",
+                        () {
+                          bmiResult(context);
+                        },
+                        Icons.calculate,
+                        "BMI Calculator",
                       ),
                     ),
                   ],

@@ -76,7 +76,7 @@ class CommonButton extends StatelessWidget {
                         style: TextStyle(
                           color: color,
                           fontSize: 20,
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
               ),
