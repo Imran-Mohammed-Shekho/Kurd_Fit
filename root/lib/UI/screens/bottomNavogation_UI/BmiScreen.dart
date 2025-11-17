@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/BmiResultScreen.dart';
+import 'package:gym/core/Utils/BMICalculatorBrain.dart';
 
 Future<void> bmiResult(BuildContext context) {
   return showModalBottomSheet(
@@ -180,7 +182,34 @@ class _BmiScreenState extends State<BmiScreen>
                   SizedBox(height: 30),
 
                   CommonButton(
-                    () {},
+                    () async {
+                      Bmicalculatorbrain bmi = Bmicalculatorbrain(
+                        Height: _Height,
+                        Weight: _Weight,
+                      );
+                      showDialog(
+                        context: context,
+                        builder: (context) => Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.deepPurple,
+                            strokeWidth: 5,
+                            strokeCap: StrokeCap.round,
+                          ),
+                        ),
+                      );
+                      await Future.delayed(Duration(seconds: 2));
+                      if (mounted) Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BmiResultScreen(
+                            bmi.BmiResult(),
+                            bmi.getResult(),
+                            bmi.getInter(),
+                          ),
+                        ),
+                      );
+                    },
                     "Calculate",
                     Colors.black,
                     false,
