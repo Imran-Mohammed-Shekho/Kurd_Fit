@@ -1,5 +1,4 @@
-package com.example.yourapp
-
+package com.example.gym
 import android.content.Intent
 import android.net.Uri
 import io.flutter.embedding.android.FlutterActivity

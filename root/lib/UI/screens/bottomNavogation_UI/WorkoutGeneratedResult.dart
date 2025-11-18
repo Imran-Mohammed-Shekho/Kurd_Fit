@@ -1,11 +1,9 @@
 // ignore: file_names
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/core/Utils/browser_mobile.dart';
 import 'package:gym/core/Utils/browser_stub.dart';
-import 'package:gym/core/Utils/browser_web.dart';
 import 'package:gym/data/models/workout_requestModel.dart';
 
 class Workoutgeneratedresult extends StatelessWidget {
@@ -15,9 +13,10 @@ class Workoutgeneratedresult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void openUrl(String url) {
-      if (kIsWeb) {
-        openUrlWeb(url);
-      } else if (Platform.isIOS || Platform.isAndroid) {
+      // if (kIsWeb) {
+      //   openUrlWeb(url);
+      // }
+      if (Platform.isIOS || Platform.isAndroid) {
         openUrlMobile(url);
       } else {
         openUrlUnSupported();

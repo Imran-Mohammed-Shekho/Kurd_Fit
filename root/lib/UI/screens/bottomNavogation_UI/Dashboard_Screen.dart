@@ -10,7 +10,6 @@ import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
-import 'package:gym/data/models/userData.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
