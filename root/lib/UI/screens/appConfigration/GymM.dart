@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/appConfigration/AuthGate.dart';
+import 'package:gym/UI/screens/appConfigration/splash_screen.dart';
 import 'package:gym/UI/screens/appTheme/change_theme.dart';
 import 'package:gym/UI/screens/appConfigration/UnsupportedPlatform.dart';
 import 'package:gym/state/providers/theme_provider.dart';
@@ -23,7 +23,7 @@ class Gym extends StatelessWidget {
           theme: lightmode,
           darkTheme: darkmode,
           title: "Gym App",
-          home: allowedP ? const AuthGate() : const UnsupportedPlatform(),
+          home: allowedP ? const SplashScreen() : const UnsupportedPlatform(),
         );
       },
     );
