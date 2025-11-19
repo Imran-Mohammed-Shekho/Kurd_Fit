@@ -516,10 +516,11 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
 }
 
 Widget _buildWeekTable(isToday, label, height) {
+  final double h = (height is int) ? height.toDouble() : height;
   return Column(
     children: [
       SizedBox(
-        height: height,
+        height: h,
         width: 40,
         child: DecoratedBox(
           decoration: BoxDecoration(

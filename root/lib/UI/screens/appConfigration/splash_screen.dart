@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
     _fade = Tween<double>(
       begin: 0,
       end: 1,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.ease));
 
     _controller.forward();
 
@@ -55,18 +55,16 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("lib/assets/icons/app_launcher.png", height: 120),
+              Expanded(flex: 1, child: SizedBox()),
+              Expanded(
+                flex: 3,
+                child: Image.asset("lib/assets/icons/app.png", height: 500),
+              ),
 
-              const SizedBox(height: 20),
-
-              const Text(
-                "KURD FITNESS",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                ),
+              Spacer(),
+              Expanded(
+                flex: 1,
+                child: Image.asset("lib/assets/icons/brand.png", height: 120),
               ),
             ],
           ),
