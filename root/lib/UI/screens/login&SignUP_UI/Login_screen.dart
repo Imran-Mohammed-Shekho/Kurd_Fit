@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Forget_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
@@ -103,10 +104,13 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _formKey,
           child: ListView(
             padding: EdgeInsets.zero,
+
             children: [
-              const SizedBox(height: 120),
+              const SizedBox(height: 90),
 
               _buildLogo(),
+
+              const SizedBox(height: 120),
 
               SizedBox(height: 50),
 
@@ -158,36 +162,42 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildEmailField() {
-    return _glassField(
-      child: TextFormField(
-        controller: _emailController,
-        validator: _emailValidator,
-        decoration: const InputDecoration(
-          border: InputBorder.none,
-          labelText: "Email",
-          prefixIcon: Icon(Icons.person, color: Colors.white),
-          labelStyle: TextStyle(color: Colors.white),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: _glassField(
+        child: TextFormField(
+          controller: _emailController,
+          validator: _emailValidator,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            labelText: "Email",
+            prefixIcon: Icon(Icons.person, color: Colors.white),
+            labelStyle: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );
   }
 
   Widget _buildPasswordField() {
-    return _glassField(
-      child: TextFormField(
-        controller: _passwordController,
-        validator: _passwordValidator,
-        obscureText: _obscureText,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          labelText: "Password",
-          labelStyle: TextStyle(color: Colors.white),
-          prefixIcon: Icon(Icons.lock, color: Colors.white),
-          suffixIcon: IconButton(
-            onPressed: () => setState(() => _obscureText = !_obscureText),
-            icon: Icon(
-              _obscureText ? Icons.visibility_off : Icons.visibility,
-              color: Colors.white,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: _glassField(
+        child: TextFormField(
+          controller: _passwordController,
+          validator: _passwordValidator,
+          obscureText: _obscureText,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            labelText: "Password",
+            labelStyle: TextStyle(color: Colors.white),
+            prefixIcon: Icon(Icons.lock, color: Colors.white),
+            suffixIcon: IconButton(
+              onPressed: () => setState(() => _obscureText = !_obscureText),
+              icon: Icon(
+                _obscureText ? Icons.visibility_off : Icons.visibility,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -229,6 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
               decoration: TextDecoration.underline,
               color: Colors.white,
+              decorationColor: Colors.white,
             ),
           ),
         ),
@@ -240,16 +251,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return _isLoading
         ? const Center(child: CircularProgressIndicator(color: Colors.white))
         : Center(
-            child: ElevatedButton(
-              onPressed: _loginMethod,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff5B58FB),
-                padding: EdgeInsets.symmetric(horizontal: 90, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
-              child: Text("Login", style: TextStyle(color: Colors.white)),
+            child: CommonButton(
+              _loginMethod,
+              "Login",
+              Colors.white,
+              _isLoading,
+              Color(0xff5B58FB),
             ),
           );
   }
@@ -266,6 +273,8 @@ class _LoginScreenState extends State<LoginScreen> {
           style: TextStyle(
             color: Colors.white,
             decoration: TextDecoration.underline,
+            fontSize: 18,
+            decorationColor: Colors.white,
           ),
         ),
       ),

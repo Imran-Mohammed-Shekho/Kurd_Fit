@@ -1,12 +1,12 @@
 import 'dart:ui';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/BmiScreen.dart';
-import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/DaashboardWidgets/activity_section.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/DaashboardWidgets/greeting_text.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
@@ -200,18 +200,6 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
   Widget build(BuildContext context) {
     String? username = Provider.of<ProfileProvider>(context, listen: true).name;
 
-    gretingUser() {
-      final int time = DateTime.now().hour;
-
-      if (time < 12) {
-        return "Good Morning $username 👋!";
-      } else if (time < 17) {
-        return "Good Afternoon $username 😎";
-      } else {
-        return "Good Evening $username 🌙";
-      }
-    }
-
     return SafeArea(
       child: Scaffold(
         endDrawerEnableOpenDragGesture: false,
@@ -257,19 +245,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         ? CircularProgressIndicator(
                             color: Colors.amber.shade600,
                           )
-                        : AnimatedTextKit(
-                            repeatForever: true,
-                            animatedTexts: [
-                              TyperAnimatedText(
-                                gretingUser(),
-                                speed: Duration(milliseconds: 100),
-                                textStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 35, 2, 56),
-                                ),
-                              ),
-                            ],
-                          ),
+                        : GreetingUser(username: username),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -396,7 +372,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                 _buildlabes("This Week's Progress"),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
                   child: SizedBox(
                     height: 300,
                     width: double.infinity,
@@ -411,96 +387,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Activity",
-                                      style: TextStyle(
-                                        color: const Color(0xFFFFFFFF),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                WeekActivity(),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        "Veiw Activity",
-                                        style: TextStyle(
-                                          color: const Color(0xFFFFFFFF),
-                                          decoration: TextDecoration.underline,
-                                          decorationColor: const Color(
-                                            0xFFFFFFFF,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(true, "Saturday", 100),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Sunday", 130),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Monday", 140),
-                                    ],
-                                  ),
-
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Tuesday", 160),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Wednesday", 60),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Thursday", 90),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      _buildWeekTable(false, "Friday", 190),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: ActivitySection(),
                         ),
                       ),
                     ),
@@ -513,27 +400,6 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
       ),
     );
   }
-}
-
-Widget _buildWeekTable(isToday, label, height) {
-  final double h = (height is int) ? height.toDouble() : height;
-  return Column(
-    children: [
-      SizedBox(
-        height: h,
-        width: 40,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: isToday ? const Color(0xFF673AB7) : const Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-          ),
-        ),
-      ),
-      SizedBox(height: 10),
-      Text(label, style: TextStyle(color: const Color(0xFFFFFFFF))),
-      SizedBox(height: 10),
-    ],
-  );
 }
 
 Widget _buildContainers(

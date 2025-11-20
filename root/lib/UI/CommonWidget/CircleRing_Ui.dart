@@ -59,7 +59,7 @@ class _CircleRingState extends State<CircleRing> {
                         strokeCap: StrokeCap.round,
                         value: widget.progress,
                         valueColor: AlwaysStoppedAnimation(
-                          const Color.fromRGBO(103, 58, 183, 1),
+                          const Color.fromARGB(255, 125, 33, 142),
                         ),
                         strokeWidth: 25,
                       ),
