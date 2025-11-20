@@ -23,7 +23,7 @@ class BmiResultScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/assets/images/Nutback.png"),
+            image: AssetImage("assets/images/Nutback.png"),
             fit: BoxFit.cover,
           ),
         ),

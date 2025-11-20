@@ -14,7 +14,7 @@ class WeekActivity extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               fit: BoxFit.cover,
             ),
           ),

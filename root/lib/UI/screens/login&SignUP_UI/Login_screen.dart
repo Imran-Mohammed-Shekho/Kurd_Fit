@@ -1,11 +1,10 @@
 import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Forget_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
-import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
-import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
+import 'package:gym/services/Login_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,300 +16,178 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
-  bool _isLoading = false;
-  static final _emailRegex = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
-  bool _obscureText = true;
-
   final _formKey = GlobalKey<FormState>();
 
+  final LoginService _loginService = LoginService();
+  bool _isLoading = false;
+  bool _obscureText = true;
+
+  static final _emailRegex = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+
+  /// ------------ LOGIN ------------
   Future<void> _loginMethod() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isLoading = true);
+
+    final errorMessage = await _loginService.login(
+      _emailController.text,
+      _passwordController.text,
+    );
+
     if (!mounted) return;
-    setState(() {
-      _isLoading = true;
-    });
 
-    try {
-      await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+    setState(() => _isLoading = false);
+
+    if (errorMessage == null) {
+      _showSuccessSnack();
+      await Future.delayed(Duration(seconds: 1));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
       );
-
-      if (!mounted) return;
-      _showSuccessSnackbar();
-      await Future.delayed(Duration(seconds: 2));
-
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
-        );
-      }
-    } on FirebaseAuthException catch (e) {
-      _handleAutherror(e);
-    } catch (e) {
-      _showErrorSnackbar(e);
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
+    } else {
+      _showErrorSnack(errorMessage);
     }
   }
 
-  void _handleAutherror(FirebaseAuthException e) {
-    String errorMessage = '';
-
-    switch (e.code) {
-      case 'user-not-found':
-        errorMessage = "No account found with this email.";
-        break;
-      case 'wrong-password':
-        errorMessage = "Incorrect password. Please try again.";
-        break;
-      case 'invalid-email':
-        errorMessage = "Please enter a valid email address.";
-        break;
-      case 'user-disabled':
-        errorMessage = "This account has been disabled.";
-        break;
-      case 'too-many-requests':
-        errorMessage = "Too many attempts. Please try again later.";
-        break;
-      default:
-        errorMessage = "Login failed: ${e.message ?? 'Unknown error'}";
-    }
-    _showErrorSnackbar(errorMessage);
-  }
-
-  void _showErrorSnackbar(message) {
+  /// ------------ SNACKS ------------
+  void _showErrorSnack(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.red,
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 4),
         content: Text(message, style: TextStyle(color: Colors.white)),
       ),
     );
   }
 
-  void _showSuccessSnackbar() {
+  void _showSuccessSnack() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.green.shade700,
-        duration: Duration(seconds: 3),
+        backgroundColor: Colors.green,
         content: Text(
-          "You login in successfully ",
+          "Logged in successfully!",
           style: TextStyle(color: Colors.white),
         ),
       ),
     );
   }
 
+  /// ------------ VALIDATORS ------------
   String? _emailValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Please enter your email ";
-    }
-    if (!_emailRegex.hasMatch(value.trim())) {
-      return "PLease enter vaild email address";
-    }
+    if (value == null || value.isEmpty) return "Enter email";
+    if (!_emailRegex.hasMatch(value)) return "Invalid email";
     return null;
   }
 
-  String? _passwordVaildator(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Please enter your password";
-    }
-    if (value.length < 6) {
-      return "Password must be at least 6 char";
-    }
-
+  String? _passwordValidator(String? value) {
+    if (value == null || value.isEmpty) return "Enter password";
+    if (value.length < 6) return "Password must be at least 6 chars";
     return null;
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('lib/assets/images/Nutback.png'),
-              fit: BoxFit.cover,
-            ),
+
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/Nutback.png'),
+            fit: BoxFit.cover,
           ),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 30),
+        ),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const SizedBox(height: 120),
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Kurd Fit",
-                        style: GoogleFonts.pacifico(
-                          color: Colors.white,
-                          fontSize: 34,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "Training, Gym, Strength",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              _buildLogo(),
 
-                SizedBox(height: 60),
-                Center(
-                  child: Image.asset(
-                    "lib/assets/images/man.png",
-                    width: size.width * 0.25,
-                  ),
-                ),
-                const SizedBox(height: 40),
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _buildEmailTextFormField(),
-                        const SizedBox(height: 15),
-                        _buildPasswordTextFormField(),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ForgetScreen()),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "Forgot Password ?",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: size.height * 0.059),
-                _buildactions(size),
-              ],
-            ),
+              SizedBox(height: 50),
+
+              _buildEmailField(),
+              const SizedBox(height: 15),
+              _buildPasswordField(),
+
+              _buildForgotPassword(),
+
+              SizedBox(height: size.height * 0.04),
+
+              _buildLoginButton(size),
+
+              const SizedBox(height: 20),
+
+              _buildSignUpLink(),
+
+              const SizedBox(height: 20),
+              _buildTermsText(size),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget _buildactions(size) {
+  Widget _buildLogo() {
     return Padding(
-      padding: EdgeInsets.only(bottom: size.height * 0.083),
+      padding: const EdgeInsets.only(left: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: _isLoading
-                ? const CircularProgressIndicator(color: Colors.white)
-                : IntorductionButtons(
-                    _loginMethod,
-                    "Login",
-                    const Color(0xff5B58FB),
-                  ),
-          ),
-          SizedBox(height: size.height * 0.059),
-
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupScreen()),
-                );
-              },
-              child: const Text(
-                "Don't have an account? Sign Up ",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.white,
-                  decorationThickness: 1.9,
-                ),
-              ),
+          Text(
+            "Kurd Fit",
+            style: GoogleFonts.pacifico(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20),
-          // Terms text
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-            child: const Text(
-              "By Login , you agree to our Terms Of Service & Privacy Policy.",
-              style: TextStyle(color: Colors.white70),
-              textAlign: TextAlign.center,
-            ),
+          const SizedBox(height: 10),
+          const Text(
+            "Training, Gym, Strength",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildEmailTextFormField() {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-        child: Container(
-          width: double.infinity,
-          height: 60,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: Colors.white.withValues(alpha: 0.1),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.4),
-              strokeAlign: BorderSide.strokeAlignCenter,
-              style: BorderStyle.solid,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5),
-            child: TextFormField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: "Email",
-                labelStyle: TextStyle(color: Colors.white),
-                prefixIcon: Icon(Icons.person, color: Colors.white),
-              ),
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.emailAddress,
-              validator: _emailValidator,
+  Widget _buildEmailField() {
+    return _glassField(
+      child: TextFormField(
+        controller: _emailController,
+        validator: _emailValidator,
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+          labelText: "Email",
+          prefixIcon: Icon(Icons.person, color: Colors.white),
+          labelStyle: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return _glassField(
+      child: TextFormField(
+        controller: _passwordController,
+        validator: _passwordValidator,
+        obscureText: _obscureText,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          labelText: "Password",
+          labelStyle: TextStyle(color: Colors.white),
+          prefixIcon: Icon(Icons.lock, color: Colors.white),
+          suffixIcon: IconButton(
+            onPressed: () => setState(() => _obscureText = !_obscureText),
+            icon: Icon(
+              _obscureText ? Icons.visibility_off : Icons.visibility,
+              color: Colors.white,
             ),
           ),
         ),
@@ -318,50 +195,90 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildPasswordTextFormField() {
+  Widget _glassField({required Widget child}) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.circular(10),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
-          width: double.infinity,
           height: 60,
+          padding: EdgeInsets.only(left: 15),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: Colors.white.withValues(alpha: 0.1),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.4),
-              strokeAlign: BorderSide.strokeAlignCenter,
-              style: BorderStyle.solid,
-            ),
+            color: Colors.white.withOpacity(0.1),
+            border: Border.all(color: Colors.white.withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5),
-            child: TextFormField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: "password",
-                labelStyle: TextStyle(color: Colors.white),
-                prefixIcon: Icon(Icons.lock, color: Colors.white),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  icon: _obscureText
-                      ? Icon(Icons.visibility_off, color: Colors.white)
-                      : Icon(Icons.visibility, color: Colors.white),
-                ),
-              ),
-              textInputAction: TextInputAction.next,
+          child: child,
+        ),
+      ),
+    );
+  }
 
-              validator: _passwordVaildator,
-              obscureText: _obscureText,
+  Widget _buildForgotPassword() {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => ForgetScreen()),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20, top: 10),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            "Forgot Password?",
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+              color: Colors.white,
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton(Size size) {
+    return _isLoading
+        ? const Center(child: CircularProgressIndicator(color: Colors.white))
+        : Center(
+            child: ElevatedButton(
+              onPressed: _loginMethod,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff5B58FB),
+                padding: EdgeInsets.symmetric(horizontal: 90, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              child: Text("Login", style: TextStyle(color: Colors.white)),
+            ),
+          );
+  }
+
+  Widget _buildSignUpLink() {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => SignupScreen()),
+      ),
+      child: const Center(
+        child: Text(
+          "Don't have an account? Sign Up",
+          style: TextStyle(
+            color: Colors.white,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTermsText(Size size) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+      child: const Text(
+        "By logging in, you agree to our Terms of Service & Privacy Policy.",
+        style: TextStyle(color: Colors.white70),
+        textAlign: TextAlign.center,
       ),
     );
   }

@@ -86,10 +86,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
             ),
 
             Positioned.fill(
-              child: Image.asset(
-                "lib/assets/images/back2.png",
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset("assets/images/back2.png", fit: BoxFit.cover),
             ),
             Column(
               children: [

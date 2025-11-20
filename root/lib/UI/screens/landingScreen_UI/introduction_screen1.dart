@@ -18,7 +18,7 @@ class _IntroductionState extends State<Introduction1> {
         children: [
           Positioned(
             child: Image.asset(
-              "lib/assets/images/introduction2.png",
+              "assets/images/introduction2.png",
               fit: BoxFit.cover,
             ),
           ),
@@ -28,7 +28,7 @@ class _IntroductionState extends State<Introduction1> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Image.asset(
-                "lib/assets/images/11.png",
+                "assets/images/11.png",
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),

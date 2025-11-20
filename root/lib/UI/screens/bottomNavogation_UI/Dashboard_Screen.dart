@@ -226,7 +226,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               filterQuality: FilterQuality.high,
               fit: BoxFit.cover,
             ),
@@ -287,7 +287,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         flex: 1,
                         child: CircleRing(
                           0.9,
-                          "lib/assets/icons/footPrint.svg",
+                          "assets/icons/footPrint.svg",
                           "Steps",
                           "1,200",
                         ),
@@ -337,7 +337,7 @@ class _Dashboard_ScreenState extends State<Dashboard_Screen> {
                         () {
                           calculateFoodPlate();
                         },
-                        "lib/assets/icons/resturant.svg",
+                        "assets/icons/resturant.svg",
                         "Food Kcal \nAnalyzer With AI",
                       ),
                     ),

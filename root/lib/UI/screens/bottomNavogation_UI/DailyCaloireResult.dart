@@ -132,7 +132,7 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
 
                   const SizedBox(height: 12),
                   _buildAnimatedRow(
-                    icon: "lib/assets/images/Fireanimation.gif",
+                    icon: "assets/images/Fireanimation.gif",
                     label:
                         "Total daily calorie burn\n${tdde.toStringAsFixed(0)} ",
                     color: null,

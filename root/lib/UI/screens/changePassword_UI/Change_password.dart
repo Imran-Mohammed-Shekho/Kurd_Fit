@@ -195,7 +195,7 @@ class _Change_passwordState extends State<Change_password> {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               fit: BoxFit.cover,
             ),
           ),

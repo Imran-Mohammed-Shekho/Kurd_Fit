@@ -18,7 +18,7 @@ class _CheckEmailState extends State<CheckEmail> {
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/assets/images/Nutback.png"),
+            image: AssetImage("assets/images/Nutback.png"),
             fit: BoxFit.fill,
           ),
         ),
@@ -33,7 +33,7 @@ class _CheckEmailState extends State<CheckEmail> {
                     height: size.height * 0.5,
                     width: size.width,
                     child: Image.asset(
-                      "lib/assets/images/chekemail.png",
+                      "assets/images/chekemail.png",
                       fit: BoxFit.cover,
                     ),
                   ),

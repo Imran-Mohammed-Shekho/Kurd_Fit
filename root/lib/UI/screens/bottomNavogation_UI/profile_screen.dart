@@ -192,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -222,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        "lib/assets/images/Ellipse.png",
+                                        "assets/images/Ellipse.png",
                                       ),
                                     ),
                                   ),

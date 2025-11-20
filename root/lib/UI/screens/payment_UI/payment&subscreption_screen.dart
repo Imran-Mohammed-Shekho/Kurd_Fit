@@ -22,7 +22,7 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/images/Nutback.png"),
+                image: AssetImage("assets/images/Nutback.png"),
                 fit: BoxFit.cover,
               ),
             ),

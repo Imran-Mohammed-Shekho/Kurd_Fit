@@ -23,7 +23,7 @@ class _App_ShopState extends State<App_Shop> {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -120,7 +120,7 @@ class _App_ShopState extends State<App_Shop> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Image.asset(
-                              "lib/assets/images/creatine.jpg",
+                              "assets/images/creatine.jpg",
                               fit: BoxFit.cover,
                             ),
                           ),

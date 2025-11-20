@@ -58,13 +58,13 @@ class _SplashScreenState extends State<SplashScreen>
               Expanded(flex: 1, child: SizedBox()),
               Expanded(
                 flex: 3,
-                child: Image.asset("lib/assets/icons/app.png", height: 500),
+                child: Image.asset("assets/icons/app.png", height: 500),
               ),
 
               Spacer(),
               Expanded(
                 flex: 1,
-                child: Image.asset("lib/assets/icons/brand.png", height: 120),
+                child: Image.asset("assets/icons/brand.png", height: 120),
               ),
             ],
           ),

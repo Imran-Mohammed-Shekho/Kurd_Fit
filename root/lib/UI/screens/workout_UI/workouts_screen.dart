@@ -7,16 +7,16 @@ import 'package:gym/UI/screens/workout_UI/workouts_show.dart';
 import 'package:provider/provider.dart';
 
 List<Map<String, String>> workouts = [
-  {"title": "NECK", "image": "lib/assets/images/neck.png"},
-  {"title": "FOREARMS", "image": "lib/assets/images/FOREARMS.png"},
-  {"title": "SHOULDERS", "image": "lib/assets/images/SHOULDERS.png"},
-  {"title": "CARDIO", "image": "lib/assets/images/cardio.png"},
-  {"title": "UPPER ARMS", "image": "lib/assets/images/arms.png"},
-  {"title": "CHEST", "image": "lib/assets/images/chest.png"},
-  {"title": "Calves", "image": "lib/assets/images/calves.png"},
-  {"title": "BACK", "image": "lib/assets/images/back.png"},
-  {"title": "UPPER LEGS", "image": "lib/assets/images/legs.png"},
-  {"title": "WAIST", "image": "lib/assets/images/abs.png"},
+  {"title": "NECK", "image": "assets/images/neck.png"},
+  {"title": "FOREARMS", "image": "assets/images/FOREARMS.png"},
+  {"title": "SHOULDERS", "image": "assets/images/SHOULDERS.png"},
+  {"title": "CARDIO", "image": "assets/images/cardio.png"},
+  {"title": "UPPER ARMS", "image": "assets/images/arms.png"},
+  {"title": "CHEST", "image": "assets/images/chest.png"},
+  {"title": "Calves", "image": "assets/images/calves.png"},
+  {"title": "BACK", "image": "assets/images/back.png"},
+  {"title": "UPPER LEGS", "image": "assets/images/legs.png"},
+  {"title": "WAIST", "image": "assets/images/abs.png"},
 ];
 
 class Workouts_Screen extends StatefulWidget {
@@ -58,7 +58,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
 
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("lib/assets/images/Nutback.png"),
+                    image: AssetImage("assets/images/Nutback.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -70,7 +70,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                         Padding(
                           padding: EdgeInsets.only(left: 20),
                           child: Image.asset(
-                            "lib/assets/images/man.png",
+                            "assets/images/man.png",
                             height: 40,
                             width: 40,
                           ),

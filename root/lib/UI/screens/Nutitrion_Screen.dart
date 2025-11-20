@@ -34,7 +34,7 @@ class _Nutitrion_ScreenState extends State<Nutitrion_Screen> {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/assets/images/Nutback.png"),
+              image: AssetImage("assets/images/Nutback.png"),
               fit: BoxFit.fill,
             ),
           ),

@@ -7,15 +7,15 @@ class Workoutstype {
 }
 
 List<Workoutstype> WTYPES = [
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
-  Workoutstype("20", "lib/assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
+  Workoutstype("20", "assets/images/arms.png", "ARM"),
 ];

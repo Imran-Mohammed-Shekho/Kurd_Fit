@@ -1,11 +1,11 @@
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/check_emailVerfication.dart';
+import 'package:gym/services/signup_service.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -15,8 +15,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final _auth = FirebaseAuth.instance;
-
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -48,64 +46,29 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
 
-    try {
-      final userCredential = await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-      _auth.currentUser!.sendEmailVerification();
-
+    final result = await SignupService().signUp(
+      emailController: _emailController,
+      passwordController: _passwordController,
+    );
+    if (!mounted) return;
+    Future.delayed(Duration(seconds: 2));
+    setState(() => _isLoading = false);
+    if (result is UserCredential) {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => CheckEmailVerification(
-            userCreditional: userCredential,
+            userCreditional: result,
             emailController: _emailController,
             nameController: _nameController,
           ),
         ),
       );
-    } on FirebaseAuthException catch (e) {
-      _handleAuthError(e);
-    } on FirebaseException catch (e) {
-      _showErrorSnackBar("Database error: ${e.message ?? 'Unknown error'}");
-    } catch (e) {
-      _showErrorSnackBar("An unexpected error occurred: $e");
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
-  }
-
-  void _handleAuthError(FirebaseAuthException e) {
-    String errorMessage;
-
-    switch (e.code) {
-      case 'email-already-in-use':
-        errorMessage =
-            "This email is already registered. Please login instead.";
-        break;
-      case 'invalid-email':
-        errorMessage = "Please enter a valid email address.";
-        break;
-      case 'operation-not-allowed':
-        errorMessage =
-            "Email/password accounts are not enabled. Please contact support.";
-        break;
-      case 'weak-password':
-        errorMessage = "Password is too weak. Please use a stronger password.";
-        break;
-      case 'network-request-failed':
-        errorMessage = "Network error. Please check your internet connection.";
-        break;
-      default:
-        errorMessage = "Registration failed: ${e.message ?? 'Unknown error'}";
     }
 
-    _showErrorSnackBar(errorMessage);
+    if (result is String) {
+      _showErrorSnackBar(result);
+    }
   }
 
   void _showErrorSnackBar(String message) {
@@ -162,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('lib/assets/images/Nutback.png'),
+              image: AssetImage('assets/images/Nutback.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -223,7 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget _buildLogoImage(Size size) {
     return Center(
       child: Image.asset(
-        "lib/assets/images/man.png",
+        "assets/images/man.png",
         width: size.width * 0.25,
         errorBuilder: (context, error, stackTrace) {
           return Container(

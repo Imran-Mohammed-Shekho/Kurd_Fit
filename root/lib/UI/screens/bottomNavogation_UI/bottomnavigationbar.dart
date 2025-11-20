@@ -51,9 +51,9 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
         items: [
           Icon(Icons.space_dashboard_rounded, size: 40, color: Colors.black),
 
-          Image.asset("lib/assets/icons/workout.png", height: 35),
+          Image.asset("assets/icons/workout.png", height: 35),
 
-          Image.asset("lib/assets/icons/shopping-cart.png", height: 40),
+          Image.asset("assets/icons/shopping-cart.png", height: 40),
           Icon(Icons.person, size: 40, color: Colors.black),
         ],
         onTap: (index) {

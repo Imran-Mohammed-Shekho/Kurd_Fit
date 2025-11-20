@@ -69,7 +69,7 @@ class _SupportScreenState extends State<SupportScreen> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/images/Nutback.png"),
+                image: AssetImage("assets/images/Nutback.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -196,11 +196,11 @@ class _SupportScreenState extends State<SupportScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    social("lib/assets/images/facebook.png"),
+                    social("assets/images/facebook.png"),
                     SizedBox(width: 30),
-                    social("lib/assets/images/twitter.png"),
+                    social("assets/images/twitter.png"),
                     SizedBox(width: 30),
-                    social("lib/assets/images/gmail.png"),
+                    social("assets/images/gmail.png"),
                   ],
                 ),
               ],
