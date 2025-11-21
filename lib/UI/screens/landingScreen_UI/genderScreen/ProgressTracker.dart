@@ -22,7 +22,7 @@ class buildProgressTracker extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: Colors.black26,
+                  color: kwhite.withOpacity(0.2),
                 ),
               ),
             ),

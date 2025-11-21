@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
-import 'package:gym/state/providers/landingScreen_Provider.dart';
-import 'package:provider/provider.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({super.key});
@@ -13,7 +11,6 @@ class Introduction extends StatefulWidget {
 class _IntroductionState extends State<Introduction> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LandingscreenProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(

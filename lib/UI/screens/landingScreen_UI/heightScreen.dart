@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
-import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenederListViewOptions.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/ProgressTracker.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -92,22 +91,27 @@ class _HeightscreenState extends State<Heightscreen> {
             ),
             SizedBox(height: 30),
             Expanded(
+              flex: 2,
               child: CupertinoPicker(
                 itemExtent: 40,
                 scrollController: FixedExtentScrollController(
-                  initialItem: selecteHeight - 100,
+                  initialItem:
+                      selecteHeight -
+                      100, // conveting selected height to index becouse cupertno picker uses index instead real value
                 ),
                 onSelectedItemChanged: (value) {
                   setState(() {
-                    selecteHeight = value + 100;
-                  }); // 100–220 cm
+                    selecteHeight =
+                        value +
+                        100; // if value =10 so sleected height should be 110 cm
+                  });
                 },
                 children: List.generate(
                   121,
                   (index) => Center(
                     child: Text(
-                      "${index + 100} cm",
-                      style: TextStyle(fontSize: 18, color: kwhite),
+                      "${100 + index} cm",
+                      style: TextStyle(color: kwhite),
                     ),
                   ),
                 ),
