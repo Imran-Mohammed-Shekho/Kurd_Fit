@@ -15,6 +15,7 @@ class selectGender extends StatefulWidget {
 
 class _selectGenderState extends State<selectGender> {
   double width = 300;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
