@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/landingScreen_UI/selectGender.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({super.key});
