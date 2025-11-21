@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Kurd Fitness - Gym App">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kurd Fitness</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- iOS -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Kurd Fitness">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCyZCwNUY4OcsJsRgOf6aUoVNo1DNwCx2I",
+      authDomain: "gym-app-0.firebaseapp.com",
+      projectId: "gym-app-0",
+      storageBucket: "gym-app-0.firebasestorage.app",
+      messagingSenderId: "880477009342",
+      appId: "1:880477009342:web:d8dcb0e55dfa3931c035ef"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #FFFFFF; /* No splash — plain background */
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- No splash screen here -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
