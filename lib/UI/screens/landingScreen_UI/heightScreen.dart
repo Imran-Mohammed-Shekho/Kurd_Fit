@@ -68,27 +68,15 @@ class _HeightscreenState extends State<Heightscreen> {
               ),
             ),
             SizedBox(height: 20),
-            buildListViewOptions(
-              options: [
-                {"title": "Fat Loss", "icon": Icons.local_fire_department},
-              ],
-            ),
             Expanded(
-              child: CupertinoPicker(
-                itemExtent: 35,
-                scrollController: FixedExtentScrollController(
-                  initialItem: selecteHeight - 100,
-                ),
-                onSelectedItemChanged: (value) {
-                  selecteHeight = value + 100; // 100–220 cm
-                },
-                children: List.generate(
-                  121,
-                  (index) => Center(
-                    child: Text(
-                      "${index + 100} cm",
-                      style: TextStyle(fontSize: 18),
-                    ),
+              flex: 3,
+              child: Center(
+                child: Text(
+                  "$selecteHeight",
+                  style: TextStyle(
+                    color: kwhite,
+                    fontSize: 38,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -102,8 +90,31 @@ class _HeightscreenState extends State<Heightscreen> {
                 ).changeCurrentIndex();
               },
             ),
+            SizedBox(height: 30),
+            Expanded(
+              child: CupertinoPicker(
+                itemExtent: 40,
+                scrollController: FixedExtentScrollController(
+                  initialItem: selecteHeight - 100,
+                ),
+                onSelectedItemChanged: (value) {
+                  setState(() {
+                    selecteHeight = value + 100;
+                  }); // 100–220 cm
+                },
+                children: List.generate(
+                  121,
+                  (index) => Center(
+                    child: Text(
+                      "${index + 100} cm",
+                      style: TextStyle(fontSize: 18, color: kwhite),
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
-            SizedBox(height: 40),
+            SizedBox(height: 20),
           ],
         ),
       ),
