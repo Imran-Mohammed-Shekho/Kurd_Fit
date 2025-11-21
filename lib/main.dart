@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
+import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'UI/screens/appConfigration/firebase_options.dart';
 import 'package:gym/UI/screens/appConfigration/GymM.dart';
 import 'package:gym/state/providers/language_provider.dart';
@@ -16,6 +17,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => LandingscreenProvider()),
         ChangeNotifierProvider(create: (context) => AppstateProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),

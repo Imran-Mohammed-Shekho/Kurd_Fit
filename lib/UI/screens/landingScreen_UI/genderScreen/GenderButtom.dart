@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
 
+// ignore: camel_case_types
 class buildButtom extends StatelessWidget {
-  const buildButtom({super.key});
+  final VoidCallback ontap;
+  const buildButtom({super.key, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Introduction1()),
-          (route) => false,
-        );
-      },
+      onTap: ontap,
       child: SizedBox(
         width: 350,
         height: 50,

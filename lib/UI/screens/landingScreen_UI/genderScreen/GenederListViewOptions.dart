@@ -2,21 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderListTiles.dart';
 
+// ignore: camel_case_types
 class buildListViewOptions extends StatefulWidget {
-  const buildListViewOptions({super.key});
+  final List<Map<String, dynamic>> options;
+
+  const buildListViewOptions({super.key, required this.options});
 
   @override
   State<buildListViewOptions> createState() => _buildListViewOptionsState();
 }
 
+// ignore: camel_case_types
 class _buildListViewOptionsState extends State<buildListViewOptions> {
+  // ignore: non_constant_identifier_names
   int? Selectedindex;
-
-  List<Map<String, dynamic>> options = [
-    {"title": "Male", "icon": Icons.male},
-    {"title": "Female", "icon": Icons.female},
-    {"title": "Other", "icon": Icons.transgender},
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,8 @@ class _buildListViewOptionsState extends State<buildListViewOptions> {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(options.length, (index) {
-              final item = options[index];
+            children: List.generate(widget.options.length, (index) {
+              final item = widget.options[index];
 
               return buildListOptions(
                 title: item["title"],

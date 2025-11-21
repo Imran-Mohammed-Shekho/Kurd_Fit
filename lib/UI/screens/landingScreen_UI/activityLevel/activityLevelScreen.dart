@@ -8,14 +8,14 @@ import 'package:provider/provider.dart';
 
 const kwhite = Colors.white;
 
-class GenderSecreen extends StatefulWidget {
-  const GenderSecreen({super.key});
+class Activitylevelscreen extends StatefulWidget {
+  const Activitylevelscreen({super.key});
 
   @override
-  State<GenderSecreen> createState() => _GenderSecreenState();
+  State<Activitylevelscreen> createState() => _ActivitylevelscreenState();
 }
 
-class _GenderSecreenState extends State<GenderSecreen> {
+class _ActivitylevelscreenState extends State<Activitylevelscreen> {
   double width = 300;
 
   @override
@@ -31,12 +31,26 @@ class _GenderSecreenState extends State<GenderSecreen> {
             SizedBox(height: 30),
             buildProgressTracker(size: size),
 
-            buildQuestionText(text: "What is your gender?"),
+            buildQuestionText(text: "Choose your Activity level"),
             buildListViewOptions(
               options: [
-                {"title": "Male", "icon": Icons.male},
-                {"title": "Female", "icon": Icons.female},
-                {"title": "Other", "icon": Icons.transgender},
+                {
+                  "title": "Sedentary",
+                  "icon": Icons.chair_alt,
+                }, // little/no exercise
+                {
+                  "title": "Light Activity",
+                  "icon": Icons.directions_walk,
+                }, // 1–3 days/week
+                {
+                  "title": "Moderate Activity",
+                  "icon": Icons.directions_run,
+                }, // 3–5 days/week
+                {
+                  "title": "Very Active",
+                  "icon": Icons.fitness_center,
+                }, // 6–7 days/week
+                {"title": "Athlete", "icon": Icons.sports_gymnastics},
               ],
             ),
             buildButtom(

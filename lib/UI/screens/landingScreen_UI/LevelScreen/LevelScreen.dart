@@ -8,14 +8,14 @@ import 'package:provider/provider.dart';
 
 const kwhite = Colors.white;
 
-class GenderSecreen extends StatefulWidget {
-  const GenderSecreen({super.key});
+class Levelscreen extends StatefulWidget {
+  const Levelscreen({super.key});
 
   @override
-  State<GenderSecreen> createState() => _GenderSecreenState();
+  State<Levelscreen> createState() => _LevelscreenState();
 }
 
-class _GenderSecreenState extends State<GenderSecreen> {
+class _LevelscreenState extends State<Levelscreen> {
   double width = 300;
 
   @override
@@ -31,12 +31,12 @@ class _GenderSecreenState extends State<GenderSecreen> {
             SizedBox(height: 30),
             buildProgressTracker(size: size),
 
-            buildQuestionText(text: "What is your gender?"),
+            buildQuestionText(text: "Choose your fitness level"),
             buildListViewOptions(
               options: [
-                {"title": "Male", "icon": Icons.male},
-                {"title": "Female", "icon": Icons.female},
-                {"title": "Other", "icon": Icons.transgender},
+                {"title": "Beginner", "icon": Icons.self_improvement},
+                {"title": "Intermediate", "icon": Icons.fitness_center},
+                {"title": "Advanced", "icon": Icons.whatshot},
               ],
             ),
             buildButtom(
