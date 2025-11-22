@@ -57,6 +57,8 @@ class _ActivitylevelscreenState extends State<Activitylevelscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

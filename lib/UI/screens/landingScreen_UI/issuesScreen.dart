@@ -46,6 +46,8 @@ class _IssuesscreenState extends State<Issuesscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

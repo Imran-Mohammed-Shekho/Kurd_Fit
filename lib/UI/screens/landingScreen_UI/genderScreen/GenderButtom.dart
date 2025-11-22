@@ -4,7 +4,14 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 // ignore: camel_case_types
 class buildButtom extends StatelessWidget {
   final VoidCallback ontap;
-  const buildButtom({super.key, required this.ontap});
+  final String text;
+  final bool isTrue;
+  const buildButtom({
+    super.key,
+    required this.ontap,
+    required this.text,
+    required this.isTrue,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +36,19 @@ class buildButtom extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Countine",
+                  text,
                   style: TextStyle(color: kwhite, fontSize: 24),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Icon(Icons.arrow_forward_ios, color: kwhite),
-                ),
-              ),
+              isTrue
+                  ? Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(Icons.arrow_forward_ios, color: kwhite),
+                      ),
+                    )
+                  : SizedBox(),
             ],
           ),
         ),

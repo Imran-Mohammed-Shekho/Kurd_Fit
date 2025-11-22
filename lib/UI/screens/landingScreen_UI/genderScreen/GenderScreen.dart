@@ -43,6 +43,8 @@ class _GenderSecreenState extends State<GenderSecreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

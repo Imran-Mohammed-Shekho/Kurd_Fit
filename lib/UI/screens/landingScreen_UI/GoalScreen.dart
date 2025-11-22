@@ -44,6 +44,8 @@ class _GoalscreenState extends State<Goalscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

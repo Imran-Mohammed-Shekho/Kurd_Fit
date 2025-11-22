@@ -16,7 +16,6 @@ class Namescreen extends StatefulWidget {
 }
 
 class _NamescreenState extends State<Namescreen> {
-  double width = 300;
   String _name = '';
   @override
   Widget build(BuildContext context) {
@@ -25,39 +24,56 @@ class _NamescreenState extends State<Namescreen> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 30),
-
-            Expanded(
-              flex: 2,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 49),
               child: buildQuestionText(text: "What is your Name?"),
             ),
 
-            Expanded(
-              flex: 4,
-              child: TextField(
-                onChanged: (value) => setState(() {
-                  _name = value;
-                }),
-                keyboardType: TextInputType.name,
-                cursorColor: kwhite,
-                cursorHeight: 60,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(border: InputBorder.none),
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                height: 100,
+                width: double.infinity,
+                child: TextField(
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: kwhite,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onChanged: (value) => setState(() {
+                    _name = value;
+                  }),
+                  keyboardType: TextInputType.name,
+                  cursorColor: kwhite,
+                  cursorHeight: 34,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: "Please Enter your name right here ..",
+                    border: InputBorder.none,
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: 20),
 
-            buildButtom(
-              ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
-              },
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: buildButtom(
+                ontap: () {
+                  Provider.of<LandingscreenProvider>(
+                    context,
+                    listen: false,
+                  ).changeCurrentIndex();
+                },
+                text: "Contine",
+                isTrue: true,
+              ),
             ),
-            SizedBox(height: 30),
           ],
         ),
       ),

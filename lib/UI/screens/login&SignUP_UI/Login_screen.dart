@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Forget_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 import 'package:gym/services/Login_service.dart';
@@ -93,45 +96,47 @@ class _LoginScreenState extends State<LoginScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/Nutback.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            padding: EdgeInsets.zero,
+      backgroundColor: backgroundColor,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: EdgeInsets.zero,
 
-            children: [
-              const SizedBox(height: 90),
+          children: [
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
+              ),
+            ),
+            SizedBox(height: 10),
+            _buildLogo(),
 
-              _buildLogo(),
+            const SizedBox(height: 120),
 
-              const SizedBox(height: 120),
+            SizedBox(height: 50),
 
-              SizedBox(height: 50),
+            _buildEmailField(),
+            const SizedBox(height: 15),
+            _buildPasswordField(),
 
-              _buildEmailField(),
-              const SizedBox(height: 15),
-              _buildPasswordField(),
+            _buildForgotPassword(),
 
-              _buildForgotPassword(),
+            SizedBox(height: size.height * 0.04),
 
-              SizedBox(height: size.height * 0.04),
+            _buildLoginButton(size),
 
-              _buildLoginButton(size),
+            const SizedBox(height: 20),
 
-              const SizedBox(height: 20),
+            _buildSignUpLink(),
 
-              _buildSignUpLink(),
-
-              const SizedBox(height: 20),
-              _buildTermsText(size),
-            ],
-          ),
+            const SizedBox(height: 20),
+            _buildTermsText(size),
+          ],
         ),
       ),
     );
@@ -251,18 +256,19 @@ class _LoginScreenState extends State<LoginScreen> {
     return _isLoading
         ? const Center(child: CircularProgressIndicator(color: Colors.white))
         : Center(
-            child: CommonButton(
-              _loginMethod,
-              "Login",
-              Colors.white,
-              _isLoading,
-              Color(0xff5B58FB),
+            child: buildButtom(
+              ontap: () {
+                _loginMethod();
+              },
+              text: "Login",
+              isTrue: false,
             ),
           );
   }
 
   Widget _buildSignUpLink() {
-    return GestureDetector(
+    return InkWell(
+      focusColor: kwhite,
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => SignupScreen()),

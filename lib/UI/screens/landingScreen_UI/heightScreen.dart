@@ -86,6 +86,8 @@ class _HeightscreenState extends State<Heightscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
             SizedBox(height: 30),
             Expanded(

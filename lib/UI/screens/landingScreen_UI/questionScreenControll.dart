@@ -4,6 +4,8 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/ProgressTracker.dar
 import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
 
+const backgroundColor = Color(0xff6157C9);
+
 class Questionscreencontroll extends StatefulWidget {
   const Questionscreencontroll({super.key});
 
@@ -19,6 +21,7 @@ class _QuestionscreencontrollState extends State<Questionscreencontroll> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff6157C9),
+
         leading: IconButton(
           onPressed: () {
             provider.decrementIndex();

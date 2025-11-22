@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
 
@@ -114,11 +115,13 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
+                Navigator.push(
                   context,
-                  listen: false,
-                ).changeCurrentIndex();
+                  MaterialPageRoute(builder: (context) => SignupScreen()),
+                );
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

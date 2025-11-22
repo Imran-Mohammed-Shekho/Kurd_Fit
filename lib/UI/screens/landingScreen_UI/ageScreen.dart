@@ -86,6 +86,8 @@ class _AgescreenState extends State<Agescreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
             SizedBox(height: 30),
             Expanded(

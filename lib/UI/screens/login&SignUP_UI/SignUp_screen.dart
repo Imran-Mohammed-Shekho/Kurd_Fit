@@ -2,8 +2,9 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/introduction_screen1.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/check_emailVerfication.dart';
 import 'package:gym/services/signup_service.dart';
 
@@ -121,34 +122,26 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/Nutback.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                _buildHeaderSection(),
+        backgroundColor: Color(0xff6157C9),
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              _buildHeaderSection(),
 
-                const SizedBox(height: 60),
+              const SizedBox(height: 60),
 
-                _buildLogoImage(size),
+              _buildLogoImage(size),
 
-                const SizedBox(height: 40),
+              const SizedBox(height: 40),
 
-                _buildFormFieldsSection(),
+              _buildFormFieldsSection(),
 
-                SizedBox(height: size.height * 0.059),
+              SizedBox(height: size.height * 0.059),
 
-                _buildActionSection(size),
-              ],
-            ),
+              _buildActionSection(size),
+            ],
           ),
         ),
       ),
@@ -157,10 +150,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Widget _buildHeaderSection() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 30),
+      padding: const EdgeInsets.only(left: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
+          ),
           Text(
             "Kurd Fit",
             style: GoogleFonts.pacifico(
@@ -186,17 +185,17 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget _buildLogoImage(Size size) {
     return Center(
       child: Image.asset(
-        "assets/images/man.png",
+        "assets/images/mn.png",
         width: size.width * 0.25,
         errorBuilder: (context, error, stackTrace) {
           return Container(
             width: size.width * 0.25,
             height: size.width * 0.25,
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: kwhite.withValues(alpha: 0.3),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.fitness_center, size: 40),
+            child: const Icon(Icons.fitness_center, size: 100, color: kwhite),
           );
         },
       ),
@@ -350,10 +349,10 @@ class _SignupScreenState extends State<SignupScreen> {
           Center(
             child: _isLoading
                 ? const CircularProgressIndicator(color: Color(0xff5B58FB))
-                : IntorductionButtons(
-                    _signupMethod,
-                    "Sign Up",
-                    const Color(0xff5B58FB),
+                : buildButtom(
+                    ontap: () => _signupMethod(),
+                    text: "Sign Up",
+                    isTrue: false,
                   ),
           ),
 
@@ -361,7 +360,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
           // Login Link
           Center(
-            child: GestureDetector(
+            child: InkWell(
+              focusColor: kwhite,
               onTap: _isLoading
                   ? null
                   : () {

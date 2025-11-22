@@ -7,16 +7,14 @@ class buildQuestionText extends StatelessWidget {
   const buildQuestionText({required this.text});
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            color: kwhite,
-            fontSize: 28,
-            fontWeight: FontWeight.normal,
-            letterSpacing: 1,
-          ),
+    return Center(
+      child: Text(
+        text,
+        style: TextStyle(
+          color: kwhite,
+          fontSize: 28,
+          fontWeight: FontWeight.normal,
+          letterSpacing: 1,
         ),
       ),
     );

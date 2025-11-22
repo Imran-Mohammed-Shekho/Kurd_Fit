@@ -43,6 +43,8 @@ class _LevelscreenState extends State<Levelscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 40),

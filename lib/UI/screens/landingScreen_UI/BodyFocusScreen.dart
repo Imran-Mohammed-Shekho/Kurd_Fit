@@ -49,6 +49,8 @@ class _BodyfocusscreenState extends State<Bodyfocusscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
 
             SizedBox(height: 20),

@@ -86,6 +86,8 @@ class _WeightscreenState extends State<Weightscreen> {
                   listen: false,
                 ).changeCurrentIndex();
               },
+              text: "Contine",
+              isTrue: true,
             ),
             SizedBox(height: 30),
             Expanded(
