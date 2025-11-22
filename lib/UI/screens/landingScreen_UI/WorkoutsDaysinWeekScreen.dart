@@ -18,7 +18,7 @@ class Workoutsdaysinweekscreen extends StatefulWidget {
 
 class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
   double width = 300;
-  late double _currentDays;
+  double _currentDays = 7;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -71,7 +71,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
             SizedBox(height: 20),
             Text(
-              "7x",
+              "$_currentDays",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 50,
@@ -80,35 +80,38 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
 
             Text(
-              " 4workouts",
+              "$_currentDays Workout",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: kwhite,
               ),
             ),
-            SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                activeTickMarkColor: kwhite,
-                inactiveTickMarkColor: kwhite.withOpacity(0.1),
-                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
-                tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 8),
-                overlayShape: RoundSliderOverlayShape(overlayRadius: 40),
-                thumbColor: kwhite,
-                inactiveTrackColor: kwhite.withOpacity(0.3),
-              ),
-              child: Slider(
-                divisions: 6,
-                activeColor: kwhite,
-                max: 7,
-                min: 1,
+            Expanded(
+              child: SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  activeTickMarkColor: Colors.white,
+                  inactiveTickMarkColor: Colors.grey,
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
+                  tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 10),
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
+                  overlayColor: kwhite.withOpacity(0.3),
+                  thumbColor: kwhite,
+                  inactiveTrackColor: kwhite.withOpacity(0.2),
+                  activeTrackColor: kwhite,
+                ),
+                child: Slider(
+                  divisions: 6,
+                  max: 7,
+                  min: 1,
 
-                value: _currentDays,
-                onChanged: (value) {
-                  setState(() {
-                    _currentDays = value;
-                  });
-                },
+                  value: _currentDays,
+                  onChanged: (value) {
+                    setState(() {
+                      _currentDays = value;
+                    });
+                  },
+                ),
               ),
             ),
             buildButtom(

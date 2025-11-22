@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/landingScreen_UI/GoalScreen/GoalScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/LevelScreen/LevelScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/WorkoutsDaysinWeekScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/activityLevel/activityLevelScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/activityLevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/ageScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/bodyFoucsScreen/BodyFocusScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/BodyFocusScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/issuesScreen.dart';

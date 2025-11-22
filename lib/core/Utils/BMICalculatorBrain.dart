@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, file_names
+
 import 'dart:math';
 
 class Bmicalculatorbrain {
@@ -6,12 +8,7 @@ class Bmicalculatorbrain {
   int factor = 10000;
   double _BMI = 0;
 
-  Bmicalculatorbrain({
-    // ignore: non_constant_identifier_names
-    required this.Height,
-    // ignore: non_constant_identifier_names
-    required this.Weight,
-  });
+  Bmicalculatorbrain({required this.Height, required this.Weight});
 
   String BmiResult() {
     _BMI = (Weight * factor) / pow(Height, 2);

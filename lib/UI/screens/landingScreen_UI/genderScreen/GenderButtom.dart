@@ -29,7 +29,7 @@ class buildButtom extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Next",
+                  "Countine",
                   style: TextStyle(color: kwhite, fontSize: 24),
                 ),
               ),

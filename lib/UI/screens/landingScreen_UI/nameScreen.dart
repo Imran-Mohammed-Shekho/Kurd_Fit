@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names, unused_field
+
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/ProgressTracker.dart';
