@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/activityLevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({super.key});
@@ -85,13 +86,19 @@ class _IntroductionState extends State<Introduction> {
                   },
                 ),
                 SizedBox(height: 20),
-                Text(
-                  "Already Have account ? Login",
-                  style: TextStyle(
-                    color: kwhite,
-                    decoration: TextDecoration.underline,
-                    decorationColor: kwhite,
-                    fontSize: 16,
+                InkWell(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  ),
+                  child: Text(
+                    "Already Have account ? Login",
+                    style: TextStyle(
+                      color: kwhite,
+                      decoration: TextDecoration.underline,
+                      decorationColor: kwhite,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
 

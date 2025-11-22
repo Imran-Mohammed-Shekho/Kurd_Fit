@@ -20,7 +20,6 @@ class _GenderSecreenState extends State<GenderSecreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -29,7 +28,6 @@ class _GenderSecreenState extends State<GenderSecreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 30),
-            buildProgressTracker(size: size),
 
             buildQuestionText(text: "What is your gender?"),
             buildListViewOptions(

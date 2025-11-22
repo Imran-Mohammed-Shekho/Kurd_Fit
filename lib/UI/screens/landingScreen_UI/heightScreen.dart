@@ -29,7 +29,6 @@ class _HeightscreenState extends State<Heightscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 30),
-            buildProgressTracker(size: size),
 
             buildQuestionText(text: "How Tall are you?"),
             Padding(

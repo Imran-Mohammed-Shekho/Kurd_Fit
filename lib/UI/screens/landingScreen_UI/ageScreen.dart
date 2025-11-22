@@ -29,7 +29,6 @@ class _AgescreenState extends State<Agescreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 30),
-            buildProgressTracker(size: size),
 
             buildQuestionText(text: "How old are you?"),
             Padding(

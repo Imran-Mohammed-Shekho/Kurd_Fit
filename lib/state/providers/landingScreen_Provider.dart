@@ -37,5 +37,12 @@ class LandingscreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void decrementIndex() {
+    if (index > 0) {
+      index -= 1;
+      notifyListeners();
+    }
+  }
+
   int get currentindex => index;
 }

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
-import 'package:gym/UI/screens/landingScreen_UI/genderScreen/ProgressTracker.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,6 @@ class _NamescreenState extends State<Namescreen> {
   String _name = '';
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -30,7 +28,6 @@ class _NamescreenState extends State<Namescreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 30),
-            buildProgressTracker(size: size),
 
             Expanded(
               flex: 2,
