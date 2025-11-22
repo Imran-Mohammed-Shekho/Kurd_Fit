@@ -15,6 +15,18 @@ import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 class LandingscreenProvider extends ChangeNotifier {
   int index = 0;
 
+  String name = '';
+  String gender = '';
+  int age = 0;
+  int height = 0;
+  int weight = 0;
+  String exLevel = '';
+  String issues = '';
+  String activityLevel = '';
+  String bodyFoucs = '';
+  String goal = '';
+  int workoutDays = 0;
+
   final List pages = [
     GenderSecreen(),
     Goalscreen(),
@@ -30,10 +42,65 @@ class LandingscreenProvider extends ChangeNotifier {
     SignupScreen(),
   ];
 
+  void setName(String value) {
+    name = value;
+    notifyListeners();
+  }
+
+  void setAge(int value) {
+    age = value;
+    notifyListeners();
+  }
+
+  void setHeight(int value) {
+    height = value;
+    notifyListeners();
+  }
+
+  void setWeight(int value) {
+    weight = value;
+    notifyListeners();
+  }
+
+  void setGoal(String value) {
+    goal = value;
+    notifyListeners();
+  }
+
+  void setExlevel(String value) {
+    exLevel = value;
+    notifyListeners();
+  }
+
+  void setGender(String value) {
+    gender = value;
+    notifyListeners();
+  }
+
+  void setActivityLevel(String value) {
+    activityLevel = value;
+    notifyListeners();
+  }
+
+  void setIssues(String value) {
+    issues = value;
+    notifyListeners();
+  }
+
   void changeCurrentIndex() {
     if (index <= 12) {
       index += 1;
     }
+    notifyListeners();
+  }
+
+  void setWorkoutDays(int value) {
+    workoutDays = value;
+    notifyListeners();
+  }
+
+  void setBodyFoucs(String value) {
+    bodyFoucs = value;
     notifyListeners();
   }
 
