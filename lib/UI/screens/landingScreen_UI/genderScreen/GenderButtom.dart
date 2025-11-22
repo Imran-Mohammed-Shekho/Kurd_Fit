@@ -4,6 +4,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 // ignore: camel_case_types
 class buildButtom extends StatelessWidget {
   final VoidCallback ontap;
+
   final String text;
   final bool isTrue;
   const buildButtom({

@@ -25,7 +25,9 @@ class LandingscreenProvider extends ChangeNotifier {
   String activityLevel = '';
   String bodyFoucs = '';
   String goal = '';
-  int workoutDays = 0;
+  int? workoutDays;
+
+  int selectedIndex = -1;
 
   final List pages = [
     GenderSecreen(),
@@ -41,6 +43,11 @@ class LandingscreenProvider extends ChangeNotifier {
     Workoutsdaysinweekscreen(),
     SignupScreen(),
   ];
+
+  void setSelectedIndex(int index) {
+    selectedIndex = index;
+    notifyListeners();
+  }
 
   void setName(String value) {
     name = value;

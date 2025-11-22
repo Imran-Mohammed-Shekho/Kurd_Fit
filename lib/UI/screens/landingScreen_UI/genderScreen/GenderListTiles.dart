@@ -5,13 +5,13 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 class buildListOptions extends StatelessWidget {
   final String title;
   final IconData iconData;
-  final VoidCallback ontap;
+  final VoidCallback? ontap;
   final bool isSelected;
 
   const buildListOptions({
     required this.title,
     required this.iconData,
-    required this.ontap,
+    this.ontap,
     required this.isSelected,
   });
   @override
