@@ -1,12 +1,19 @@
 // ignore: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderListTiles.dart';
+import 'package:gym/state/providers/landingScreen_Provider.dart';
+import 'package:provider/provider.dart';
 
 // ignore: camel_case_types
 class buildListViewOptions extends StatefulWidget {
   final List<Map<String, dynamic>> options;
+  final Function(String)? onselect;
 
-  const buildListViewOptions({super.key, required this.options});
+  const buildListViewOptions({
+    super.key,
+    required this.options,
+    required this.onselect,
+  });
 
   @override
   State<buildListViewOptions> createState() => _buildListViewOptionsState();
@@ -15,10 +22,10 @@ class buildListViewOptions extends StatefulWidget {
 // ignore: camel_case_types
 class _buildListViewOptionsState extends State<buildListViewOptions> {
   // ignore: non_constant_identifier_names
-  int? Selectedindex;
-
   @override
   Widget build(BuildContext context) {
+    final pro = context.watch<LandingscreenProvider>();
+
     return Expanded(
       flex: 4,
       child: ListView(
@@ -31,10 +38,11 @@ class _buildListViewOptionsState extends State<buildListViewOptions> {
               return buildListOptions(
                 title: item["title"],
                 iconData: item["icon"],
-                ontap: () => setState(() {
-                  Selectedindex = index;
-                }),
-                isSelected: Selectedindex == index,
+                onselect: (value) {
+                  pro.setSelectedIndex(index);
+                  widget.onselect!(value);
+                },
+                isSelected: pro.selectedIndex == index,
               );
             }),
           ),

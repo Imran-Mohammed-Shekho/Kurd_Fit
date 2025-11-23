@@ -5,13 +5,13 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 class buildListOptions extends StatelessWidget {
   final String title;
   final IconData iconData;
-  final VoidCallback? ontap;
+  final Function(String)? onselect;
   final bool isSelected;
 
   const buildListOptions({
     required this.title,
     required this.iconData,
-    this.ontap,
+    this.onselect,
     required this.isSelected,
   });
   @override
@@ -36,7 +36,7 @@ class buildListOptions extends StatelessWidget {
             child: ListTile(
               title: Text(title, style: TextStyle(fontSize: 18, color: kwhite)),
               trailing: Icon(iconData, color: kwhite, size: 32),
-              onTap: ontap,
+              onTap: () => onselect!(title),
             ),
           ),
         ),

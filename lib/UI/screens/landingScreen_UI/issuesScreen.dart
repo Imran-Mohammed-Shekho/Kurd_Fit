@@ -38,6 +38,7 @@ class _IssuesscreenState extends State<Issuesscreen> {
                 {"title": "Low Energy / Fatigue", "icon": Icons.battery_1_bar},
                 {"title": "No Issues", "icon": Icons.check_circle},
               ],
+              onselect: (_) {},
             ),
             buildButtom(
               ontap: () {

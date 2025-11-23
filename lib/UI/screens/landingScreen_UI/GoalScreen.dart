@@ -36,6 +36,7 @@ class _GoalscreenState extends State<Goalscreen> {
                 {"title": "Gain Strength", "icon": Icons.sports_gymnastics},
                 {"title": "Other", "icon": Icons.auto_awesome},
               ],
+              onselect: (_) {},
             ),
             buildButtom(
               ontap: () {

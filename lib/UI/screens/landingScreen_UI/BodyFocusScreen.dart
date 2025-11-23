@@ -90,14 +90,13 @@ class __buildListViewOptionsState extends State<_buildListViewOptions> {
               return buildListOptions(
                 title: item["title"],
                 iconData: item["icon"],
-                ontap: () => setState(() {
-                  //this logic returns selected ture only if the itme has been selected other wise it will be deselected and removed from selected list
+                onselect: (_) {
                   if (Selectedindex!.contains(index)) {
                     Selectedindex!.remove(index);
                   } else {
                     Selectedindex!.add(index);
                   }
-                }),
+                },
                 isSelected: Selectedindex!.contains(index),
               );
             }),

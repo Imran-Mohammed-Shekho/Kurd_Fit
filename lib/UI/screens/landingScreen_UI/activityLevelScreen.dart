@@ -49,6 +49,7 @@ class _ActivitylevelscreenState extends State<Activitylevelscreen> {
                 }, // 6–7 days/week
                 {"title": "Athlete", "icon": Icons.sports_gymnastics},
               ],
+              onselect: (_) {},
             ),
             buildButtom(
               ontap: () {

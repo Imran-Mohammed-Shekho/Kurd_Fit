@@ -35,13 +35,20 @@ class _GenderSecreenState extends State<GenderSecreen> {
                 {"title": "Female", "icon": Icons.female},
                 {"title": "Other", "icon": Icons.transgender},
               ],
+              onselect: (value) {
+                context.read<LandingscreenProvider>().setGender(value);
+              },
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
+                final provider = Provider.of<LandingscreenProvider>(
                   context,
                   listen: false,
-                ).changeCurrentIndex();
+                );
+
+                if (provider.gender.isNotEmpty) {
+                  provider.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,
