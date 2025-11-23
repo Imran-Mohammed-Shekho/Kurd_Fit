@@ -1,19 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 
 class Userinfomodel {
-  final String? name;
-  final String? gender;
-  final int? age;
-  final int? height;
+  final String name;
+  final String gender;
+  final int age;
+  final int height;
   final int weight;
-  final String? fitnessLevel;
-  final String? issues;
+  final String fitnessLevel;
+  final String issues;
   final String activityLevel;
-  final List<String>? bodyFoucs;
-  final String? goal;
-  final double workoutsPerWeek;
+  final List<String> bodyFoucs;
+  final String goal;
+  final int workoutsPerWeek;
 
   const Userinfomodel({
     required this.age,
@@ -37,11 +35,11 @@ class Userinfomodel {
       gender: data["gender"],
       name: data["name"],
       goal: data["goal"],
-      fitnessLevel: data["fitness-Level"],
+      fitnessLevel: data["fitnessLevel"], // FIXED
       height: data["height"],
       issues: data["issues"],
       workoutsPerWeek: data["workoutsPerWeek"],
-      bodyFoucs: data["bodyfoucs"],
+      bodyFoucs: List<String>.from(data["bodyFoucs"]), // FIXED
       activityLevel: data["activityLevel"],
       weight: data["weight"],
     );
@@ -54,9 +52,9 @@ class Userinfomodel {
       "gender": gender,
       "goal": goal,
       "issues": issues,
-      "fitness-level": fitnessLevel,
+      "fitnessLevel": fitnessLevel, // FIXED
       "height": height,
-      "bodyfoucs": bodyFoucs,
+      "bodyFoucs": bodyFoucs, // FIXED
       "workoutsPerWeek": workoutsPerWeek,
       "activityLevel": activityLevel,
       "weight": weight,

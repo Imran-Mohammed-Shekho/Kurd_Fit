@@ -1,6 +1,11 @@
+import 'dart:collection';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gym/data/models/userInfoModel.dart';
 
 class SignupService {
+  final _userInfoCollection = FirebaseFirestore.instance.collection("userInfo");
   final _auth = FirebaseAuth.instance;
   Future signUp({required emailController, required passwordController}) async {
     try {
@@ -21,7 +26,7 @@ class SignupService {
   String _handleAuthError(FirebaseAuthException e) {
     switch (e.code) {
       case 'email-already-in-use':
-        return "This email is already registered. Please login instead.";
+        return "email is already registered. Please login instead.";
 
       case 'invalid-email':
         return "Please enter a valid email address.";
@@ -37,6 +42,46 @@ class SignupService {
 
       default:
         return "Registration failed: ${e.message ?? 'Unknown error'}";
+    }
+  }
+
+  Future<bool> saveUserData({
+    required uid,
+    required int age,
+    required String gender,
+    required String name,
+    required String goal,
+    required String fitnessLevel,
+    required int height,
+    required String issues,
+    required int workoutsPerWeek,
+    required List<String> bodyFoucs,
+    required int weight,
+    required String activityLevel,
+  }) async {
+    try {
+      final Userinfomodel data = Userinfomodel(
+        age: age,
+        gender: gender,
+        name: name,
+        goal: goal,
+        fitnessLevel: fitnessLevel,
+        height: height,
+        issues: issues,
+        workoutsPerWeek: workoutsPerWeek,
+        bodyFoucs: bodyFoucs,
+        weight: weight,
+        activityLevel: activityLevel,
+      );
+
+      await _userInfoCollection
+          .doc(uid)
+          .set(data.toJson(), SetOptions(merge: true));
+
+      return true; // success
+    } catch (e) {
+      print("ERROR Saving data: $e");
+      return false; // fail
     }
   }
 }

@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
+import 'package:gym/data/models/userData.dart';
+import 'package:gym/services/signup_service.dart';
+import 'package:gym/state/providers/landingScreen_Provider.dart';
+import 'package:provider/provider.dart';
 
 class CheckEmailVerification extends StatelessWidget {
   final UserCredential userCreditional;
@@ -17,6 +21,7 @@ class CheckEmailVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final prov = context.watch<LandingscreenProvider>();
     final _usersCollection = FirebaseFirestore.instance.collection("users");
 
     void showSnackbarMessage(String message, Color color) {
@@ -56,12 +61,26 @@ class CheckEmailVerification extends StatelessWidget {
             "Email verified succsessfully",
             const Color.fromRGBO(56, 142, 60, 1),
           );
-          await _usersCollection.doc(user.uid).set({
-            "user_id": user.uid,
-            "name": nameController.text.trim(),
-            "email": emailController.text.trim(),
-            "createdAT": FieldValue.serverTimestamp(),
-          });
+          final data = UserModel(
+            emailController.text.trim(),
+            nameController.text.trim(),
+          );
+          final info = await SignupService().saveUserData(
+            uid: user.uid,
+            age: prov.age,
+            gender: prov.gender,
+            name: prov.name,
+            goal: prov.goal,
+            fitnessLevel: prov.fitnessLevel,
+            height: prov.height!.toInt(),
+            issues: prov.issues,
+            workoutsPerWeek: prov.workoutsPerWeek.toInt(),
+            bodyFoucs: prov.bodyFoucs,
+            weight: prov.weight,
+            activityLevel: prov.activityLevel,
+          );
+          await _usersCollection.doc(user.uid).set(data.toSnap());
+
           await Future.delayed(const Duration(milliseconds: 500));
           Navigator.pop(context);
           Navigator.pushReplacement(
