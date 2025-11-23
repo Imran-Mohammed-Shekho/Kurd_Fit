@@ -18,16 +18,24 @@ class LandingscreenProvider extends ChangeNotifier {
   String name = '';
   String gender = '';
   int age = 0;
-  int height = 0;
+  int? height;
   int weight = 0;
-  String exLevel = '';
+  String fitnessLevel = '';
   String issues = '';
   String activityLevel = '';
-  String bodyFoucs = '';
+  List<String> bodyFoucs = [];
   String goal = '';
-  int? workoutDays;
+  double workoutsPerWeek = 5;
+  int selecteHeight = 0;
+  int selectedWeight = 50;
+  int selectedAge = 22;
+  int currentDays = 4;
+  double? selectedDays;
 
-  int selectedIndex = -1;
+  Map<String, int> selectedIndex = {};
+
+  // ignore: non_constant_identifier_names
+  List? BodyFoucsSelecetedIndex = [];
 
   final List pages = [
     GenderSecreen(),
@@ -43,10 +51,57 @@ class LandingscreenProvider extends ChangeNotifier {
     Workoutsdaysinweekscreen(),
     SignupScreen(),
   ];
-
-  void setSelectedIndex(int index) {
-    selectedIndex = index;
+  setCurrentHeight(value) {
+    selecteHeight = value + 100;
     notifyListeners();
+  }
+
+  getinitialItem() {
+    return selecteHeight - 100;
+  }
+
+  setCurrentAge(value) {
+    selectedAge = value + 14;
+    notifyListeners();
+  }
+
+  setWorkoutsPerWeek(value) {
+    workoutsPerWeek = value;
+    notifyListeners();
+  }
+
+  double get getSelectedWorkoutsDay => workoutsPerWeek;
+
+  getinitialItemAge() {
+    return selectedAge - 14;
+  }
+
+  getinitialItemWeight() {
+    return selectedWeight = selectedWeight - 30;
+  }
+
+  setCurrentWeight(value) {
+    selectedWeight = value + 30;
+    notifyListeners();
+  }
+
+  void setBodyFoucsIndex(int index) {
+    if (BodyFoucsSelecetedIndex!.contains(index)) {
+      BodyFoucsSelecetedIndex!.remove(index);
+      notifyListeners();
+    } else {
+      BodyFoucsSelecetedIndex!.add(index);
+      notifyListeners();
+    }
+  }
+
+  void AddSelectedIndex(String key, int index) {
+    selectedIndex[key] = index;
+    notifyListeners();
+  }
+
+  int? getSelected(String key) {
+    return selectedIndex[key];
   }
 
   void setName(String value) {
@@ -74,8 +129,8 @@ class LandingscreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setExlevel(String value) {
-    exLevel = value;
+  void setFitnesslevel(String value) {
+    fitnessLevel = value;
     notifyListeners();
   }
 
@@ -101,13 +156,17 @@ class LandingscreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setWorkoutDays(int value) {
-    workoutDays = value;
+  void setWorkoutDays(double value) {
+    selectedDays = value;
     notifyListeners();
   }
 
   void setBodyFoucs(String value) {
-    bodyFoucs = value;
+    if (bodyFoucs.contains(value)) {
+      return;
+    } else {
+      bodyFoucs.add(value);
+    }
     notifyListeners();
   }
 

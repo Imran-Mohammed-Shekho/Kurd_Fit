@@ -19,6 +19,7 @@ class _IssuesscreenState extends State<Issuesscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = context.read<LandingscreenProvider>();
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -38,14 +39,16 @@ class _IssuesscreenState extends State<Issuesscreen> {
                 {"title": "Low Energy / Fatigue", "icon": Icons.battery_1_bar},
                 {"title": "No Issues", "icon": Icons.check_circle},
               ],
-              onselect: (_) {},
+              onselect: (value) {
+                prov.setIssues(value);
+              },
+              typeKey: "issues",
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                if (prov.issues.isNotEmpty) {
+                  prov.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,

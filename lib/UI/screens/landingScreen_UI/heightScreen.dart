@@ -16,9 +16,10 @@ class Heightscreen extends StatefulWidget {
 
 class _HeightscreenState extends State<Heightscreen> {
   double width = 300;
-  int selecteHeight = 120;
   @override
   Widget build(BuildContext context) {
+    final prov = context.watch<LandingscreenProvider>();
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
@@ -69,10 +70,10 @@ class _HeightscreenState extends State<Heightscreen> {
               flex: 3,
               child: Center(
                 child: Text(
-                  "$selecteHeight",
+                  "${prov.selecteHeight}",
                   style: TextStyle(
                     color: kwhite,
-                    fontSize: 38,
+                    fontSize: 44,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -81,10 +82,10 @@ class _HeightscreenState extends State<Heightscreen> {
 
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                prov.setHeight(prov.selecteHeight);
+                if (prov.height != null) {
+                  prov.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,
@@ -95,16 +96,11 @@ class _HeightscreenState extends State<Heightscreen> {
               child: CupertinoPicker(
                 itemExtent: 40,
                 scrollController: FixedExtentScrollController(
-                  initialItem:
-                      selecteHeight -
-                      100, // conveting selected height to index becouse cupertno picker uses index instead real value
+                  initialItem: prov
+                      .getinitialItem(), // conveting selected height to index becouse cupertno picker uses index instead real value
                 ),
                 onSelectedItemChanged: (value) {
-                  setState(() {
-                    selecteHeight =
-                        value +
-                        100; // if value =10 so sleected height should be 110 cm
-                  });
+                  prov.setCurrentHeight(value);
                 },
                 children: List.generate(
                   121,

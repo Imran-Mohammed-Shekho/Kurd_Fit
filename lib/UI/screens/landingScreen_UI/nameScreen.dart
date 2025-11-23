@@ -65,10 +65,12 @@ class _NamescreenState extends State<Namescreen> {
               padding: EdgeInsets.only(bottom: 20),
               child: buildButtom(
                 ontap: () {
-                  Provider.of<LandingscreenProvider>(
-                    context,
-                    listen: false,
-                  ).changeCurrentIndex();
+                  final prov = context.read<LandingscreenProvider>();
+                  prov.setName(_name);
+
+                  if (prov.name.isNotEmpty) {
+                    prov.changeCurrentIndex();
+                  }
                 },
                 text: "Contine",
                 isTrue: true,

@@ -36,14 +36,21 @@ class _GoalscreenState extends State<Goalscreen> {
                 {"title": "Gain Strength", "icon": Icons.sports_gymnastics},
                 {"title": "Other", "icon": Icons.auto_awesome},
               ],
-              onselect: (_) {},
+              onselect: (value) {
+                context.read<LandingscreenProvider>().setGoal(value);
+              },
+              typeKey: "goal",
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
+                final pro = Provider.of<LandingscreenProvider>(
                   context,
                   listen: false,
-                ).changeCurrentIndex();
+                );
+
+                if (pro.goal.isNotEmpty) {
+                  pro.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,

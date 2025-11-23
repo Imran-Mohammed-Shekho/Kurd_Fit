@@ -19,6 +19,8 @@ class _ActivitylevelscreenState extends State<Activitylevelscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final porv = context.read<LandingscreenProvider>();
+
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -49,14 +51,16 @@ class _ActivitylevelscreenState extends State<Activitylevelscreen> {
                 }, // 6–7 days/week
                 {"title": "Athlete", "icon": Icons.sports_gymnastics},
               ],
-              onselect: (_) {},
+              onselect: (value) {
+                porv.setActivityLevel(value);
+              },
+              typeKey: "active-level",
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                if (porv.activityLevel.isNotEmpty) {
+                  porv.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,

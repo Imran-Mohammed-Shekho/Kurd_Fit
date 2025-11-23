@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
+import 'package:gym/state/providers/landingScreen_Provider.dart';
+import 'package:provider/provider.dart';
 
 const kwhite = Colors.white;
 
@@ -16,10 +18,10 @@ class Workoutsdaysinweekscreen extends StatefulWidget {
 
 class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
   double width = 300;
-  double _currentDays = 7;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final prov = context.watch<LandingscreenProvider>();
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -68,7 +70,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
             SizedBox(height: 20),
             Text(
-              "$_currentDays",
+              "${prov.getSelectedWorkoutsDay}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 50,
@@ -77,12 +79,8 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
 
             Text(
-              "$_currentDays Workout",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: kwhite,
-              ),
+              "${prov.workoutsPerWeek} workout a week",
+              style: TextStyle(fontSize: 20, color: kwhite),
             ),
             Expanded(
               child: SliderTheme(
@@ -102,22 +100,22 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
                   max: 7,
                   min: 1,
 
-                  value: _currentDays,
+                  value: prov.getSelectedWorkoutsDay,
                   onChanged: (value) {
-                    setState(() {
-                      _currentDays = value;
-                    });
+                    prov.setWorkoutsPerWeek(value);
                   },
                 ),
               ),
             ),
             buildButtom(
               ontap: () {
+                prov.setWorkoutDays(prov.getSelectedWorkoutsDay);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignupScreen()),
                 );
               },
+
               text: "Contine",
               isTrue: true,
             ),

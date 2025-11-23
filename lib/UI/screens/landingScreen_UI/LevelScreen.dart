@@ -19,6 +19,8 @@ class _LevelscreenState extends State<Levelscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final porv = context.read<LandingscreenProvider>();
+
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -35,14 +37,16 @@ class _LevelscreenState extends State<Levelscreen> {
                 {"title": "Intermediate", "icon": Icons.fitness_center},
                 {"title": "Advanced", "icon": Icons.whatshot},
               ],
-              onselect: (_) {},
+              onselect: (value) {
+                porv.setFitnesslevel(value);
+              },
+              typeKey: "fitness-level",
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                if (porv.fitnessLevel.isNotEmpty) {
+                  porv.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,

@@ -8,11 +8,13 @@ import 'package:provider/provider.dart';
 class buildListViewOptions extends StatefulWidget {
   final List<Map<String, dynamic>> options;
   final Function(String)? onselect;
+  final String typeKey;
 
   const buildListViewOptions({
     super.key,
     required this.options,
     required this.onselect,
+    required this.typeKey,
   });
 
   @override
@@ -39,10 +41,10 @@ class _buildListViewOptionsState extends State<buildListViewOptions> {
                 title: item["title"],
                 iconData: item["icon"],
                 onselect: (value) {
-                  pro.setSelectedIndex(index);
                   widget.onselect!(value);
+                  pro.AddSelectedIndex(widget.typeKey, index);
                 },
-                isSelected: pro.selectedIndex == index,
+                isSelected: pro.getSelected(widget.typeKey) == index,
               );
             }),
           ),

@@ -28,7 +28,7 @@ class _BodyfocusscreenState extends State<Bodyfocusscreen> {
           children: [
             SizedBox(height: 30),
 
-            buildQuestionText(text: "Choose your focs areas"),
+            buildQuestionText(text: "Choose your foucs areas"),
 
             _buildListViewOptions(
               options: [
@@ -44,10 +44,13 @@ class _BodyfocusscreenState extends State<Bodyfocusscreen> {
             ),
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
+                final prov = Provider.of<LandingscreenProvider>(
                   context,
                   listen: false,
-                ).changeCurrentIndex();
+                );
+                if (prov.BodyFoucsSelecetedIndex!.isNotEmpty) {
+                  prov.changeCurrentIndex();
+                }
               },
               text: "Contine",
               isTrue: true,
@@ -74,10 +77,11 @@ class _buildListViewOptions extends StatefulWidget {
 // ignore: camel_case_types
 class __buildListViewOptionsState extends State<_buildListViewOptions> {
   // ignore: non_constant_identifier_names
-  List? Selectedindex = [];
 
   @override
   Widget build(BuildContext context) {
+    final prov = context.watch<LandingscreenProvider>();
+
     return Expanded(
       flex: 4,
       child: ListView(
@@ -91,13 +95,10 @@ class __buildListViewOptionsState extends State<_buildListViewOptions> {
                 title: item["title"],
                 iconData: item["icon"],
                 onselect: (_) {
-                  if (Selectedindex!.contains(index)) {
-                    Selectedindex!.remove(index);
-                  } else {
-                    Selectedindex!.add(index);
-                  }
+                  prov.setBodyFoucs(item["title"]);
+                  prov.setBodyFoucsIndex(index);
                 },
-                isSelected: Selectedindex!.contains(index),
+                isSelected: prov.BodyFoucsSelecetedIndex!.contains(index),
               );
             }),
           ),

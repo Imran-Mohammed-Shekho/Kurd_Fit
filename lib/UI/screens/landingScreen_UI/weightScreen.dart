@@ -16,10 +16,10 @@ class Weightscreen extends StatefulWidget {
 
 class _WeightscreenState extends State<Weightscreen> {
   double width = 300;
-  int _selectedWeight = 60;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final prov = context.watch<LandingscreenProvider>();
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
       body: Padding(
@@ -69,10 +69,10 @@ class _WeightscreenState extends State<Weightscreen> {
               flex: 3,
               child: Center(
                 child: Text(
-                  "$_selectedWeight",
+                  "${prov.selectedWeight}",
                   style: TextStyle(
                     color: kwhite,
-                    fontSize: 38,
+                    fontSize: 44,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -81,10 +81,8 @@ class _WeightscreenState extends State<Weightscreen> {
 
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                prov.setWeight(prov.selectedWeight);
+                prov.changeCurrentIndex();
               },
               text: "Contine",
               isTrue: true,
@@ -95,16 +93,11 @@ class _WeightscreenState extends State<Weightscreen> {
               child: CupertinoPicker(
                 itemExtent: 40,
                 scrollController: FixedExtentScrollController(
-                  initialItem:
-                      _selectedWeight -
-                      30, // conveting selected eight to index becouse cupertno picker uses index instead real value
+                  initialItem: prov
+                      .getinitialItemWeight(), // conveting selected eight to index becouse cupertno picker uses index instead real value
                 ),
                 onSelectedItemChanged: (value) {
-                  setState(() {
-                    _selectedWeight =
-                        value +
-                        30; // if value =10 so sleected weight should be 40
-                  });
+                  prov.setCurrentWeight(value);
                 },
                 children: List.generate(
                   121,

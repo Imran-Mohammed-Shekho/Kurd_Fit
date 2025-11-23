@@ -16,9 +16,9 @@ class Agescreen extends StatefulWidget {
 
 class _AgescreenState extends State<Agescreen> {
   double width = 300;
-  int _selectedAge = 22;
   @override
   Widget build(BuildContext context) {
+    final prov = context.watch<LandingscreenProvider>();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6157C9),
@@ -69,7 +69,7 @@ class _AgescreenState extends State<Agescreen> {
               flex: 3,
               child: Center(
                 child: Text(
-                  "$_selectedAge",
+                  "${prov.selectedAge}",
                   style: TextStyle(
                     color: kwhite,
                     fontSize: 38,
@@ -81,10 +81,8 @@ class _AgescreenState extends State<Agescreen> {
 
             buildButtom(
               ontap: () {
-                Provider.of<LandingscreenProvider>(
-                  context,
-                  listen: false,
-                ).changeCurrentIndex();
+                prov.setAge(prov.selectedAge);
+                prov.changeCurrentIndex();
               },
               text: "Contine",
               isTrue: true,
@@ -95,16 +93,11 @@ class _AgescreenState extends State<Agescreen> {
               child: CupertinoPicker(
                 itemExtent: 40,
                 scrollController: FixedExtentScrollController(
-                  initialItem:
-                      _selectedAge -
-                      14, // conveting selected eight to index becouse cupertno picker uses index instead real value
+                  initialItem: prov
+                      .getinitialItemAge(), // conveting selected eight to index becouse cupertno picker uses index instead real value
                 ),
                 onSelectedItemChanged: (value) {
-                  setState(() {
-                    _selectedAge =
-                        value +
-                        14; // if value =10 so sleected weight should be 40
-                  });
+                  prov.setCurrentAge(value);
                 },
                 children: List.generate(
                   87,

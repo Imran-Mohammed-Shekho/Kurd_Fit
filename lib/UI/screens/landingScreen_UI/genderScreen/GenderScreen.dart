@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenederListViewOptions.dart';
@@ -35,9 +36,12 @@ class _GenderSecreenState extends State<GenderSecreen> {
                 {"title": "Female", "icon": Icons.female},
                 {"title": "Other", "icon": Icons.transgender},
               ],
+
               onselect: (value) {
-                context.read<LandingscreenProvider>().setGender(value);
+                final pro = context.read<LandingscreenProvider>();
+                pro.setGender(value);
               },
+              typeKey: "gender",
             ),
             buildButtom(
               ontap: () {
