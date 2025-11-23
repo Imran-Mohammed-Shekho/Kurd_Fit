@@ -6,6 +6,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/check_emailVerfication.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/reusableIcon.dart';
 import 'package:gym/services/signup_service.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -122,7 +123,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff6157C9),
+        appBar: AppBar(
+          backgroundColor: const Color.fromRGBO(97, 87, 201, 1),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
+          ),
+        ),
+        backgroundColor: const Color(0xff6157C9),
         body: Form(
           key: _formKey,
           child: ListView(
@@ -132,7 +142,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
               const SizedBox(height: 60),
 
-              _buildLogoImage(size),
+              Reusableicon(icondata: Icons.fitness_center),
 
               const SizedBox(height: 40),
 
@@ -154,12 +164,6 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
-          ),
           Text(
             "Kurd Fit",
             style: GoogleFonts.pacifico(
@@ -178,26 +182,6 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildLogoImage(Size size) {
-    return Center(
-      child: Image.asset(
-        "assets/images/mn.png",
-        width: size.width * 0.25,
-        errorBuilder: (context, error, stackTrace) {
-          return Container(
-            width: size.width * 0.25,
-            height: size.width * 0.25,
-            decoration: BoxDecoration(
-              color: kwhite.withValues(alpha: 0.3),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.fitness_center, size: 100, color: kwhite),
-          );
-        },
       ),
     );
   }

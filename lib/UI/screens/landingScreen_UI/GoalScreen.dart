@@ -31,10 +31,13 @@ class _GoalscreenState extends State<Goalscreen> {
             buildQuestionText(text: "What is your Goal?"),
             buildListViewOptions(
               options: [
-                {"title": "Fat Loss", "icon": Icons.local_fire_department},
                 {"title": "Gain Muscle", "icon": Icons.fitness_center},
-                {"title": "Gain Strength", "icon": Icons.sports_gymnastics},
-                {"title": "Other", "icon": Icons.auto_awesome},
+                {"title": "Burn body fat", "icon": Icons.local_fire_department},
+                {
+                  "title": "Lose fat and gain muscle together",
+                  "icon": Icons.autorenew,
+                },
+                {"title": "General health", "icon": Icons.favorite},
               ],
               onselect: (value) {
                 context.read<LandingscreenProvider>().setGoal(value);

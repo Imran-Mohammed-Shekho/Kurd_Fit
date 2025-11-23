@@ -6,7 +6,7 @@ import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Forget_screen.dart';
-import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
+import 'package:gym/UI/screens/login&SignUP_UI/reusableIcon.dart';
 import 'package:gym/services/Login_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -114,8 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 10),
             _buildLogo(),
+            SizedBox(height: 50),
 
-            const SizedBox(height: 120),
+            Reusableicon(icondata: Icons.lock_outlined),
 
             SizedBox(height: 50),
 
@@ -131,8 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
-            _buildSignUpLink(),
-
+            // _buildSignUpLink(),
             const SizedBox(height: 20),
             _buildTermsText(size),
           ],
@@ -229,7 +229,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildForgotPassword() {
-    return GestureDetector(
+    return InkWell(
+      focusColor: kwhite,
+
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => ForgetScreen()),
@@ -241,6 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             "Forgot Password?",
             style: TextStyle(
+              fontSize: 16,
               decoration: TextDecoration.underline,
               color: Colors.white,
               decorationColor: Colors.white,
@@ -265,26 +268,26 @@ class _LoginScreenState extends State<LoginScreen> {
           );
   }
 
-  Widget _buildSignUpLink() {
-    return InkWell(
-      focusColor: kwhite,
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => SignupScreen()),
-      ),
-      child: const Center(
-        child: Text(
-          "Don't have an account? Sign Up",
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.underline,
-            fontSize: 18,
-            decorationColor: Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildSignUpLink() {
+  //   return InkWell(
+  //     focusColor: kwhite,
+  //     onTap: () => Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (_) => SignupScreen()),
+  //     ),
+  //     child: const Center(
+  //       child: Text(
+  //         "Don't have an account? Sign Up",
+  //         style: TextStyle(
+  //           color: Colors.white,
+  //           decoration: TextDecoration.underline,
+  //           fontSize: 18,
+  //           decorationColor: Colors.white,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildTermsText(Size size) {
     return Padding(
