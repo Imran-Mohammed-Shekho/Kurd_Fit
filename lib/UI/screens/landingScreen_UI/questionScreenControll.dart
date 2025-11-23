@@ -24,8 +24,9 @@ class _QuestionscreencontrollState extends State<Questionscreencontroll> {
 
         leading: IconButton(
           onPressed: () {
-            provider.decrementIndex();
-            if (provider.currentindex == 0) {
+            if (provider.currentindex >= 1) {
+              provider.decrementIndex();
+            } else {
               Navigator.pop(context);
             }
           },

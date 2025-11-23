@@ -17,8 +17,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => LandingscreenProvider()),
-        ChangeNotifierProvider(create: (context) => AppstateProvider()),
+        ChangeNotifierProvider(create: (_) => LandingscreenProvider()),
+        ChangeNotifierProvider(create: (_) => AppstateProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MangeWorkoutsPorovider()),
