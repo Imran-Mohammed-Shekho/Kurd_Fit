@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
@@ -30,22 +31,24 @@ class _ForgetScreenState extends State<ForgetScreen> {
     if (mounted) {
       showDialog(
         context: context,
-        builder: (context) =>
-            Center(child: CircularProgressIndicator(color: Colors.white)),
+        builder: (context) => Center(child: reusableProgressIndicator()),
       );
     }
     try {
       final auth = FirebaseAuth.instance;
 
       await auth.sendPasswordResetEmail(email: _emailController.text);
+      await Future.delayed(Duration(seconds: 3));
       if (!mounted) return;
+
       Navigator.pop(context);
-      await Future.delayed(Duration(seconds: 1));
+
       _showMessag(
         "rest link sccessefully sent to ${_emailController.text}",
         Colors.green,
       );
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
+
       if (mounted) {
         Navigator.push(
           context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
@@ -52,15 +53,11 @@ class _CheckEmailState extends State<CheckEmail> {
                   ontap: () async {
                     showDialog(
                       context: context,
-                      builder: (context) => Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.white,
-                        ),
-                      ),
+                      builder: (context) =>
+                          Center(child: reusableProgressIndicator()),
                     );
-                    await Future.delayed(Duration(seconds: 3));
+                    await Future.delayed(Duration(seconds: 1));
                     if (!mounted) return;
-
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginScreen()),

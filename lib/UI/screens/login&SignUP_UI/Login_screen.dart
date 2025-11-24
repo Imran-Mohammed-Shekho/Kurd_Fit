@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
@@ -256,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLoginButton(Size size) {
     return _isLoading
-        ? const Center(child: CircularProgressIndicator(color: Colors.white))
+        ? const Center(child: reusableProgressIndicator())
         : Center(
             child: buildButtom(
               ontap: () {

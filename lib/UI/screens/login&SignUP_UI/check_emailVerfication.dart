@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 import 'package:gym/data/models/userData.dart';
 import 'package:gym/services/signup_service.dart';
@@ -41,9 +45,7 @@ class CheckEmailVerification extends StatelessWidget {
         await auth.currentUser!.reload();
         showDialog(
           context: context,
-          builder: (context) => Center(
-            child: CircularProgressIndicator(backgroundColor: Colors.white),
-          ),
+          builder: (context) => Center(child: reusableProgressIndicator()),
         );
         await Future.delayed(Duration(seconds: 3));
 
@@ -110,73 +112,54 @@ class CheckEmailVerification extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/Nutback.png"),
-            fit: BoxFit.fill,
-          ),
-        ),
-
-        child: Stack(
+      backgroundColor: backgroundColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: size.height * 0.5,
-                    width: size.width,
-                    child: Image.asset(
-                      "assets/images/chekemail.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Text(
-                    "Check your Email !",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 30),
+            SizedBox(
+              height: size.height * 0.5,
+              width: size.width,
+              child: Image.asset(
+                "assets/images/chekemail.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 30),
+            Text(
+              "Check your Email !",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 34,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 30),
 
-                  Text(
-                    textAlign: TextAlign.center,
-                    "We’ve Sent a Verification  link to your Email Address\n Please Verify your Email .",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                  SizedBox(height: 70),
+            Text(
+              textAlign: TextAlign.center,
+              "We’ve Sent a Verification  link to your Email Address\n Please Verify your Email .",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+            SizedBox(height: 70),
 
-                  GestureDetector(
-                    onTap: () async {
-                      verifiyEmailAndLoginUser();
-                    },
-                    child: _CheckEmailButton(
-                      text: "I Verified",
-                      color: const Color(0xff5B58FB),
-                      textColor: const Color.fromRGBO(255, 255, 255, 1),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignupScreen()),
-                      );
-                    },
-                    child: _CheckEmailButton(
-                      text: "Going back",
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                      textColor: const Color.fromRGBO(0, 0, 0, 1),
-                    ),
-                  ),
-                ],
+            buildButtom(
+              ontap: () => verifiyEmailAndLoginUser(),
+              text: "I verfied",
+              isTrue: false,
+            ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignupScreen()),
+                );
+              },
+              child: _CheckEmailButton(
+                text: "Going back",
+
+                textColor: const Color.fromRGBO(0, 0, 0, 1),
               ),
             ),
           ],
@@ -186,22 +169,13 @@ class CheckEmailVerification extends StatelessWidget {
   }
 }
 
-Widget _CheckEmailButton({
-  required String text,
-  required Color color,
-  required Color textColor,
-}) {
+Widget _CheckEmailButton({required String text, required Color textColor}) {
   return Container(
     width: 350,
     height: 50,
     decoration: BoxDecoration(
-      border: Border.all(
-        color: const Color.fromARGB(255, 146, 146, 146),
-        style: BorderStyle.solid,
-        strokeAlign: BorderSide.strokeAlignCenter,
-      ),
       borderRadius: BorderRadius.circular(20),
-      color: color,
+      color: kwhite.withValues(alpha: 0.8),
     ),
     child: Center(
       child: Text(

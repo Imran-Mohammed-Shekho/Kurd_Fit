@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
@@ -332,7 +333,7 @@ class _SignupScreenState extends State<SignupScreen> {
           // Sign Up Button
           Center(
             child: _isLoading
-                ? const CircularProgressIndicator(color: Color(0xff5B58FB))
+                ? const reusableProgressIndicator()
                 : buildButtom(
                     ontap: () => _signupMethod(),
                     text: "Sign Up",
