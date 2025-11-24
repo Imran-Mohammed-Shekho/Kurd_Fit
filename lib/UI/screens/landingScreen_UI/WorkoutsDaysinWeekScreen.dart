@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
-import 'package:gym/services/signup_service.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
 

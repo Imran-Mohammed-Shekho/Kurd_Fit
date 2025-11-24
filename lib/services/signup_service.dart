@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gym/data/models/userInfoModel.dart';
@@ -13,7 +11,7 @@ class SignupService {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      _auth.currentUser!.sendEmailVerification();
+      await _auth.currentUser!.sendEmailVerification();
 
       return userCredential; // it means verfiy link just sent
     } on FirebaseAuthException catch (e) {
@@ -80,7 +78,6 @@ class SignupService {
 
       return true; // success
     } catch (e) {
-      print("ERROR Saving data: $e");
       return false; // fail
     }
   }

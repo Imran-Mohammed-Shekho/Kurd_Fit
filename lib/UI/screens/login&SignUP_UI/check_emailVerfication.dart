@@ -23,6 +23,7 @@ class CheckEmailVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     final prov = context.watch<LandingscreenProvider>();
     final _usersCollection = FirebaseFirestore.instance.collection("users");
+    final auth = FirebaseAuth.instance;
 
     void showSnackbarMessage(String message, Color color) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -36,8 +37,6 @@ class CheckEmailVerification extends StatelessWidget {
     }
 
     Future<void> verifiyEmailAndLoginUser() async {
-      final auth = FirebaseAuth.instance;
-
       try {
         await auth.currentUser!.reload();
         showDialog(
@@ -65,7 +64,7 @@ class CheckEmailVerification extends StatelessWidget {
             emailController.text.trim(),
             nameController.text.trim(),
           );
-          final info = await SignupService().saveUserData(
+          final result = await SignupService().saveUserData(
             uid: user.uid,
             age: prov.age,
             gender: prov.gender,
@@ -82,13 +81,19 @@ class CheckEmailVerification extends StatelessWidget {
           await _usersCollection.doc(user.uid).set(data.toSnap());
 
           await Future.delayed(const Duration(milliseconds: 500));
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Bottomnavigationbar(),
-            ),
-          );
+          if (result == true) {
+            Navigator.pushReplacement(
+              // ignore: use_build_context_synchronously
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Bottomnavigationbar(),
+              ),
+            );
+          } else {
+            return;
+          }
         } else {
           Navigator.pop(context);
           showSnackbarMessage(
