@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
 
 // ignore: use_key_in_widget_constructors
 class GreetingUser extends StatelessWidget {
@@ -24,12 +25,9 @@ class GreetingUser extends StatelessWidget {
       repeatForever: true,
       animatedTexts: [
         TyperAnimatedText(
-          gretingUser(),
-          speed: Duration(milliseconds: 100),
-          textStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 227, 227, 227),
-          ),
+          gretingUser().toString().toUpperCase(),
+          speed: Duration(milliseconds: 200),
+          textStyle: TextStyle(fontWeight: FontWeight.bold, color: kwhite),
         ),
       ],
     );

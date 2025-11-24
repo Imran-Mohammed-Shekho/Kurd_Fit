@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
+import 'package:gym/UI/screens/landingScreen_UI/ageScreen.dart';
 import 'package:gym/state/providers/workout_provider.dart';
 import 'package:gym/UI/screens/workout_UI/workout_detail.dart';
 
@@ -32,154 +34,145 @@ class _WorkoutsShow extends State<WorkoutsShow> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          width: double.infinity,
+      child: Consumer<MangeWorkoutsPorovider>(
+        builder: (BuildContext context, MangeWorkoutsPorovider value, Widget? child) {
+          if (value.isLoadTargetExercises) {
+            return Center(child: reusableProgressIndicator());
+          } else if (value.TargetExercises.isEmpty) {
+            return Scaffold(
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              body: Center(child: Text("No data found")),
+            );
+          } else {
+            return Scaffold(
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              appBar: AppBar(
+                title: Text(
+                  textAlign: TextAlign.center,
+                  "${value.SelectedWorkOut} workouts",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+                leading: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back_ios, color: kwhite),
+                ),
+              ),
+              body: Column(
+                children: [
+                  SizedBox(
+                    height: size.height / 1.1,
+                    child: ListView.builder(
+                      itemCount: value.TargetExercises.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: ClipRRect(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                              child: SizedBox(
+                                height: 80,
+                                width: double.infinity,
 
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Nutback.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Consumer<MangeWorkoutsPorovider>(
-            builder:
-                (
-                  BuildContext context,
-                  MangeWorkoutsPorovider value,
-                  Widget? child,
-                ) => value.isLoadTargetExercises
-                ? Center(child: CircularProgressIndicator())
-                : value.TargetExercises.isEmpty
-                ? Center(child: Text("NO data found "))
-                : Column(
-                    children: [
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Icon(Icons.arrow_back_ios),
-                            ),
-                          ),
-                          SizedBox(width: 50),
-                          Text(
-                            textAlign: TextAlign.center,
-                            "${value.SelectedWorkOut} workouts",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: value.TargetExercises.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 10,
-                              ),
-                              child: ClipRRect(
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                    sigmaY: 15,
-                                    sigmaX: 15,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.1),
+                                    border: Border.all(
+                                      color: Colors.white.withValues(
+                                        alpha: 0.4,
+                                      ),
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: SizedBox(
-                                    height: 80,
-                                    width: double.infinity,
-
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(
-                                          alpha: 0.1,
-                                        ),
-                                        border: Border.all(
-                                          color: Colors.white.withValues(
-                                            alpha: 0.4,
-                                          ),
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: ListTile(
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => WorkoutDetail(
-                                              value
-                                                  .TargetExercises[index]["gifUrl"],
-                                              value
-                                                  .TargetExercises[index]["name"],
-                                              value
-                                                  .TargetExercises[index]["targetMuscles"][0],
-                                              value
-                                                  .TargetExercises[index]["equipments"][0],
-                                              value
-                                                  .TargetExercises[index]["bodyParts"][0],
-                                              value
-                                                  .TargetExercises[index]["secondaryMuscles"][0],
-                                              value
-                                                  .TargetExercises[index]["instructions"],
-                                            ),
-                                          ),
-                                        ),
-                                        title: Text(
+                                  child: ListTile(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WorkoutDetail(
+                                          value
+                                              .TargetExercises[index]["gifUrl"],
                                           value.TargetExercises[index]["name"],
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w900,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          "10",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                            color: Colors.white54,
-                                          ),
-                                        ),
-                                        leading: SizedBox(
-                                          child: DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              border: Border.all(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                            child: Image.network(
-                                              "${value.TargetExercises[index]["gifUrl"]}",
-                                            ),
-                                          ),
-                                        ),
-
-                                        trailing: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.white,
+                                          value
+                                              .TargetExercises[index]["targetMuscles"][0],
+                                          value
+                                              .TargetExercises[index]["equipments"][0],
+                                          value
+                                              .TargetExercises[index]["bodyParts"][0],
+                                          value
+                                              .TargetExercises[index]["secondaryMuscles"][0],
+                                          value
+                                              .TargetExercises[index]["instructions"],
                                         ),
                                       ),
+                                    ),
+                                    title: Text(
+                                      value.TargetExercises[index]["name"]
+                                          .toString()
+                                          .toUpperCase(),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      "10",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white54,
+                                      ),
+                                    ),
+                                    leading: SizedBox(
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        child: Image.network(
+                                          "${value.TargetExercises[index]["gifUrl"]}",
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                                return Icon(
+                                                  Icons.fitness_center,
+                                                  color: kwhite,
+                                                );
+                                              },
+                                        ),
+                                      ),
+                                    ),
+
+                                    trailing: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                        ),
-                      ),
-
-                      SizedBox(height: 15),
-                    ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-          ),
-        ),
+
+                  SizedBox(height: 15),
+                ],
+              ),
+            );
+          }
+        },
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/about_UI/custom_colors.dart';
+import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 
 ThemeData darkmode = ThemeData(
   brightness: Brightness.dark,
@@ -13,9 +15,9 @@ ThemeData darkmode = ThemeData(
     ),
   ],
   colorScheme: ColorScheme.dark(
-    surface: Colors.black.withValues(alpha: 0.1),
-    onSurface: Colors.white,
-    primary: Color.fromARGB(255, 63, 68, 147),
+    surface: Colors.black,
+    onSurface: kwhite,
+    primary: kwhite.withValues(alpha: 0.1),
   ),
 );
 
@@ -31,8 +33,8 @@ ThemeData lightmode = ThemeData(
     ),
   ],
   colorScheme: ColorScheme.light(
-    surface: Colors.white.withValues(alpha: 0.06),
-    onSurface: Colors.black,
-    primary: Color(0xff727bff),
+    surface: backgroundColor,
+    onSurface: kwhite,
+    primary: kwhite.withValues(alpha: 0.1),
   ),
 );

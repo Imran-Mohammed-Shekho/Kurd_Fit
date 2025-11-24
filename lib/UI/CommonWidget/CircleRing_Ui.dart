@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -46,7 +45,7 @@ class _CircleRingState extends State<CircleRing> {
                         strokeCap: StrokeCap.round,
                         value: 1,
                         valueColor: AlwaysStoppedAnimation(
-                          const Color.fromARGB(255, 255, 255, 255),
+                          Color.fromARGB(255, 196, 189, 255),
                         ),
                         strokeWidth: 25,
                       ),
@@ -56,10 +55,11 @@ class _CircleRingState extends State<CircleRing> {
                       width: 100,
                       height: 100,
                       child: CircularProgressIndicator(
-                        strokeCap: StrokeCap.round,
+                        strokeCap: StrokeCap.butt,
                         value: widget.progress,
+
                         valueColor: AlwaysStoppedAnimation(
-                          const Color.fromARGB(255, 125, 33, 142),
+                          Color.fromARGB(255, 255, 255, 255),
                         ),
                         strokeWidth: 25,
                       ),

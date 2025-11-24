@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 
 class WeekTable extends StatelessWidget {
   final bool isToday;
@@ -20,7 +21,7 @@ class WeekTable extends StatelessWidget {
           height: height,
           width: 40,
           decoration: BoxDecoration(
-            color: isToday ? Colors.purple : Colors.white,
+            color: isToday ? backgroundColor : Colors.white,
             borderRadius: BorderRadius.circular(15),
           ),
         ),

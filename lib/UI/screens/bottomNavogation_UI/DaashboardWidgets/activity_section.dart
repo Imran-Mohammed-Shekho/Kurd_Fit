@@ -10,7 +10,7 @@ class ActivitySection extends StatelessWidget {
       {"day": "Sat", "value": 100, "today": true},
       {"day": "Sun", "value": 130},
       {"day": "Mon", "value": 140},
-      {"day": "Tue", "value": 160},
+      {"day": "Tue", "value": 160, "today": true},
       {"day": "Wed", "value": 60},
       {"day": "Thu", "value": 90},
       {"day": "Fri", "value": 190},
