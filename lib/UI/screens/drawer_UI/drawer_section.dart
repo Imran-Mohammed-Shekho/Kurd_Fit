@@ -1,20 +1,23 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/changePassword_UI/Change_password.dart';
+import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/about_UI/aboutus_screen.dart';
 import 'package:gym/UI/screens/about_UI/custom_colors.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
-import 'package:gym/UI/screens/drawer_UI/language_screen.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+
+const languages = ["English", "Kurdish", "Arabic"];
 
 class drawer_section extends StatefulWidget {
   const drawer_section({super.key});
@@ -154,7 +157,34 @@ class _drawer_sectionState extends State<drawer_section> {
                         ? Color(0xFFAB47BC)
                         : Color(0xFFCE93D8),
                   ),
-                  () => showmodelbottomsheet(context),
+                  () => showCupertinoModalPopup(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                        height: 200,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                          ),
+
+                          child: CupertinoPicker(
+                            itemExtent: 35,
+                            onSelectedItemChanged: (value) {},
+                            children: List.generate(languages.length, (index) {
+                              return Text(
+                                languages[index],
+                                style: TextStyle(color: kwhite),
+                              );
+                            }),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 ListTiles(
                   Text(

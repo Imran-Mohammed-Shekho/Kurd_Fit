@@ -4,6 +4,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 // ignore: camel_case_types
 class buildButtom extends StatelessWidget {
   final VoidCallback ontap;
+  final Color? color;
 
   final String text;
   final bool isTrue;
@@ -12,6 +13,7 @@ class buildButtom extends StatelessWidget {
     required this.ontap,
     required this.text,
     required this.isTrue,
+    this.color,
   });
 
   @override
@@ -20,17 +22,12 @@ class buildButtom extends StatelessWidget {
       onTap: ontap,
       child: SizedBox(
         width: 350,
-        height: 50,
+        height: 60,
 
         child: DecoratedBox(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: const Color.fromARGB(255, 146, 146, 146),
-              style: BorderStyle.solid,
-              strokeAlign: BorderSide.strokeAlignCenter,
-            ),
             borderRadius: BorderRadius.circular(20),
-            color: kwhite.withOpacity(0.2),
+            color: color == null ? kwhite.withValues(alpha: 0.2) : color,
           ),
           child: Stack(
             children: [

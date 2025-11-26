@@ -284,7 +284,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
 
               SizedBox(height: 15),
-              _buildlabes("AI - Powered Tools", 20, true),
+              _buildlabes("AI - Powered Tools", 20, false),
               SizedBox(height: 10),
 
               Center(child: isLoad ? reusableProgressIndicator() : null),
@@ -352,7 +352,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               SizedBox(height: 10),
 
-              _buildlabes("This Week's Progress", 20, true),
+              _buildlabes("This Week's Progress", 20, false),
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
@@ -362,9 +362,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.1),
-                      ),
+
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: ActivitySection(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
 import 'week_table.dart';
 
 class ActivitySection extends StatelessWidget {
@@ -19,9 +20,9 @@ class ActivitySection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.18),
+        color: kwhite.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.4)),
+        border: Border.all(color: kwhite.withValues(alpha: 0.1)),
       ),
 
       child: Column(
