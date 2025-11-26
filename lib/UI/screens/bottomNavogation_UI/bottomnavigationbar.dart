@@ -20,7 +20,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
   final GlobalKey _key = GlobalKey();
   List<Widget> pages = [
     DashboardScreen(),
-    Workouts_Screen(),
+    WorkoutsScreen(),
     App_Shop(),
     ProfileScreen(),
   ];

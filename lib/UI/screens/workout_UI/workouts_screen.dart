@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
-import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
-import 'package:gym/UI/screens/landingScreen_UI/weightScreen.dart';
 import 'package:gym/state/providers/workout_provider.dart';
 import 'package:gym/UI/screens/workout_UI/workouts_show.dart';
 
@@ -22,14 +20,14 @@ List<Map<String, String>> workouts = [
   {"title": "WAIST", "image": "assets/images/abs.png"},
 ];
 
-class Workouts_Screen extends StatefulWidget {
-  const Workouts_Screen({super.key});
+class WorkoutsScreen extends StatefulWidget {
+  const WorkoutsScreen({super.key});
 
   @override
-  State<Workouts_Screen> createState() => _Workouts_ScreenState();
+  State<WorkoutsScreen> createState() => _WorkoutsScreenState();
 }
 
-class _Workouts_ScreenState extends State<Workouts_Screen> {
+class _WorkoutsScreenState extends State<WorkoutsScreen> {
   @override
   void initState() {
     super.initState();
@@ -56,7 +54,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
             "Body Parts",
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w900,
+              // fontWeight: FontWeight.w900,
               color: Colors.white,
             ),
           ),
@@ -92,7 +90,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                                     color: Colors.white.withValues(alpha: 0.1),
                                     border: Border.all(
                                       color: Colors.white.withValues(
-                                        alpha: 0.4,
+                                        alpha: 0.1,
                                       ),
                                     ),
                                     borderRadius: BorderRadius.circular(10),
@@ -121,12 +119,12 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                                     title: Text(
                                       "${workouts[index]["title"]}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.w900,
+                                        // fontWeight: FontWeight.w900,
                                         color: Colors.white,
                                       ),
                                     ),
                                     subtitle: Text(
-                                      "",
+                                      "20x",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         color: Colors.white54,
@@ -134,6 +132,7 @@ class _Workouts_ScreenState extends State<Workouts_Screen> {
                                     ),
                                     leading: Image.asset(
                                       "${workouts[index]["image"]}",
+                                      height: 100,
                                     ),
                                     trailing: Icon(
                                       Icons.arrow_forward_ios,

@@ -49,14 +49,11 @@ class _WorkoutsShow extends State<WorkoutsShow> {
             return Scaffold(
               backgroundColor: Theme.of(context).colorScheme.surface,
               appBar: AppBar(
+                centerTitle: true,
                 title: Text(
                   textAlign: TextAlign.center,
-                  "${value.SelectedWorkOut} workouts",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
+                  "${value.SelectedWorkOut} workouts".toUpperCase(),
+                  style: TextStyle(fontSize: 18, color: kwhite),
                 ),
                 leading: IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -87,7 +84,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                     color: Colors.white.withValues(alpha: 0.1),
                                     border: Border.all(
                                       color: Colors.white.withValues(
-                                        alpha: 0.4,
+                                        alpha: 0.1,
                                       ),
                                     ),
                                     borderRadius: BorderRadius.circular(10),
@@ -118,13 +115,12 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                           .toString()
                                           .toUpperCase(),
                                       style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w900,
+                                        fontSize: 14,
                                         color: Colors.white,
                                       ),
                                     ),
                                     subtitle: Text(
-                                      "10",
+                                      "10x",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         color: Colors.white54,
@@ -135,9 +131,6 @@ class _WorkoutsShow extends State<WorkoutsShow> {
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
                                             10,
-                                          ),
-                                          border: Border.all(
-                                            color: Colors.black,
                                           ),
                                         ),
                                         child: Image.network(

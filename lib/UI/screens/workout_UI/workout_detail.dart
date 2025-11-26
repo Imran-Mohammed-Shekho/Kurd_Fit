@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 
 const style = TextStyle(color: Colors.white);
 
@@ -35,6 +36,12 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            textAlign: TextAlign.center,
+            "Workout Detail ",
+            style: TextStyle(fontSize: 18, color: kwhite),
+          ),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -114,7 +121,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w900,
+                                        // fontWeight: FontWeight.w900,
                                       ),
                                     ),
                                   ),
