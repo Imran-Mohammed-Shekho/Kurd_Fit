@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/shop_UI/addToCard_screen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/UI/screens/shop_UI/Cart_screen.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,130 +23,98 @@ class PreviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          width: double.infinity,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Nutback.png"),
-              fit: BoxFit.cover,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Provider.of<AppstateProvider>(
+                      context,
+                      listen: false,
+                    ).updatePageState(2);
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios),
+                ),
+              ),
             ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () {
-                      Provider.of<AppstateProvider>(
-                        context,
-                        listen: false,
-                      ).updatePageState(2);
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back_ios),
-                  ),
-                ),
+            ClipRRect(
+              child: Hero(
+                tag: "tag$index",
+                child: Image.asset(path, height: 300, width: 300),
               ),
-              ClipRRect(
-                child: Hero(
-                  tag: "tag$index",
-                  child: Image.asset(path, height: 300, width: 300),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                height: 400,
+
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.1),
+
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: 400,
-
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.1),
-
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          "Product Information",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        "Product Information",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
-                      SizedBox(height: 30),
-                      productinfotext("Name : $title"),
-                      SizedBox(height: 10),
-                      productinfotext("Price : $price\$"),
-                      SizedBox(height: 10),
-                      productinfotext("Description : $descrption"),
-                      Spacer(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                    ),
+                    SizedBox(height: 30),
+                    productinfotext("Name : $title"),
+                    SizedBox(height: 10),
+                    productinfotext("Price : $price\$"),
+                    SizedBox(height: 10),
+                    productinfotext("Description : $descrption"),
+                    Spacer(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
 
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: GestureDetector(
-                            onTap: () async {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  backgroundColor: Colors.teal,
-                                  content: Text(
-                                    "Porduct Added To Cart",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              );
-                              await Future.delayed(Duration(seconds: 2));
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AddtocardScreen(),
-                                ),
-                              );
-                            },
-                            child: SizedBox(
-                              height: 60,
-                              width: 330,
-
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: Color(0xff727bff),
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                    color: Colors.white.withValues(alpha: 0.4),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "Add To Cart",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: buildButtom(
+                          ontap: () async {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                behavior: SnackBarBehavior.fixed,
+                                duration: Duration(seconds: 2),
+                                backgroundColor: Colors.green,
+                                content: Text(
+                                  "Porduct Added To Cart",
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                            ),
-                          ),
+                            );
+                            await Future.delayed(Duration(seconds: 3));
+                            Navigator.push(
+                              // ignore: use_build_context_synchronously
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CartScreen(),
+                              ),
+                            );
+                          },
+                          text: "Add To Cart",
+                          isTrue: false,
                         ),
                       ),
-                      SizedBox(height: 20),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 20),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

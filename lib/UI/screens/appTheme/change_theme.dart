@@ -15,9 +15,10 @@ ThemeData darkmode = ThemeData(
     ),
   ],
   colorScheme: ColorScheme.dark(
-    surface: Colors.black,
+    surface: Color(0xFF121212),
     onSurface: kwhite,
     primary: kwhite.withValues(alpha: 0.1),
+    secondary: kwhite.withValues(alpha: 0.1),
   ),
 );
 
@@ -36,5 +37,6 @@ ThemeData lightmode = ThemeData(
     surface: backgroundColor,
     onSurface: kwhite,
     primary: kwhite.withValues(alpha: 0.1),
+    secondary: kwhite,
   ),
 );

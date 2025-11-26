@@ -1,15 +1,14 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
-class Favorite_screen extends StatefulWidget {
-  const Favorite_screen({super.key});
+class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
 
   @override
-  State<Favorite_screen> createState() => _Favorite_screenState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _Favorite_screenState extends State<Favorite_screen> {
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,7 +34,7 @@ class _Favorite_screenState extends State<Favorite_screen> {
 
                 SizedBox(width: 10),
                 Text(
-                  "Favorite Products",
+                  "Products",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -67,7 +66,7 @@ class _Favorite_screenState extends State<Favorite_screen> {
                           children: [
                             SizedBox(height: 10),
                             Text(
-                              "NO favorite products add yet!!",
+                              "NO  products add yet!!",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
