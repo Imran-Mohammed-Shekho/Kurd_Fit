@@ -42,6 +42,7 @@ class _BodyfocusscreenState extends State<Bodyfocusscreen> {
                 {"title": "FullBody", "icon": Icons.fitness_center},
               ],
             ),
+            SizedBox(height: 10),
             buildButtom(
               ontap: () {
                 final prov = Provider.of<LandingscreenProvider>(

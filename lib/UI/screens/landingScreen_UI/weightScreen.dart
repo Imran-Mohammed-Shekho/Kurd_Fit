@@ -21,7 +21,7 @@ class _WeightscreenState extends State<Weightscreen> {
     final size = MediaQuery.of(context).size;
     final prov = context.watch<LandingscreenProvider>();
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -31,7 +31,7 @@ class _WeightscreenState extends State<Weightscreen> {
 
             buildQuestionText(text: "What is your Weight?"),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: SizedBox(
                 height: 100,
                 width: size.width,

@@ -125,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(97, 87, 201, 1),
+          backgroundColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

@@ -56,17 +56,18 @@ class _ActivitylevelscreenState extends State<Activitylevelscreen> {
               },
               typeKey: "active-level",
             ),
-            buildButtom(
-              ontap: () {
-                if (porv.activityLevel.isNotEmpty) {
-                  porv.changeCurrentIndex();
-                }
-              },
-              text: "Contine",
-              isTrue: true,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: buildButtom(
+                ontap: () {
+                  if (porv.activityLevel.isNotEmpty) {
+                    porv.changeCurrentIndex();
+                  }
+                },
+                text: "Contine",
+                isTrue: true,
+              ),
             ),
-
-            SizedBox(height: 40),
           ],
         ),
       ),

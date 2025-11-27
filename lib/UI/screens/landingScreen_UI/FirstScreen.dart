@@ -16,7 +16,7 @@ class _IntroductionState extends State<Introduction> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: ListView(
         children: [
           SizedBox(
@@ -28,60 +28,58 @@ class _IntroductionState extends State<Introduction> {
             ),
           ),
 
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  " Your fitness \njourney starts \nhere",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  textAlign: TextAlign.center,
-                  """ Achieve your fitness goals with\npersonalized workouts and expert\nguidance.""",
-                  style: TextStyle(color: Colors.grey.shade300, fontSize: 14),
-                ),
-                SizedBox(height: 30),
-
-                buildButtom(
-                  ontap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Questionscreencontroll(),
-                      ),
-                    );
-                  },
-                  text: "Contine",
-                  isTrue: true,
-                ),
-                SizedBox(height: 20),
-                InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  ),
-                  child: Text(
-                    "Already Have account ? Login",
-                    style: TextStyle(
-                      color: kwhite,
-                      decoration: TextDecoration.underline,
-                      decorationColor: kwhite,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 40),
-              ],
+          Text(
+            textAlign: TextAlign.center,
+            " Your fitness \njourney starts \nhere",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: 10),
+          Text(
+            textAlign: TextAlign.center,
+            """ Achieve your fitness goals with\npersonalized workouts and expert\nguidance.""",
+            style: TextStyle(color: Colors.grey.shade300, fontSize: 14),
+          ),
+          SizedBox(height: 30),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: buildButtom(
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Questionscreencontroll(),
+                  ),
+                );
+              },
+              text: "Contine",
+              isTrue: true,
+            ),
+          ),
+          SizedBox(height: 20),
+          Center(
+            child: InkWell(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              ),
+              child: Text(
+                "Already Have account ? Login",
+                style: TextStyle(
+                  color: kwhite,
+                  decoration: TextDecoration.underline,
+                  decorationColor: kwhite,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(height: 40),
         ],
       ),
     );

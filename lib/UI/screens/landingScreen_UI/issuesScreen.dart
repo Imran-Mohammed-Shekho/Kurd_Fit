@@ -44,17 +44,18 @@ class _IssuesscreenState extends State<Issuesscreen> {
               },
               typeKey: "issues",
             ),
-            buildButtom(
-              ontap: () {
-                if (prov.issues.isNotEmpty) {
-                  prov.changeCurrentIndex();
-                }
-              },
-              text: "Contine",
-              isTrue: true,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: buildButtom(
+                ontap: () {
+                  if (prov.issues.isNotEmpty) {
+                    prov.changeCurrentIndex();
+                  }
+                },
+                text: "Contine",
+                isTrue: true,
+              ),
             ),
-
-            SizedBox(height: 40),
           ],
         ),
       ),

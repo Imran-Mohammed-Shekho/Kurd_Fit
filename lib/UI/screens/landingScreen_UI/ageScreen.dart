@@ -21,7 +21,7 @@ class _AgescreenState extends State<Agescreen> {
     final prov = context.watch<LandingscreenProvider>();
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -31,14 +31,14 @@ class _AgescreenState extends State<Agescreen> {
 
             buildQuestionText(text: "How old are you?"),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: SizedBox(
                 height: 100,
                 width: size.width,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: kwhite.withOpacity(0.3),
+                    color: kwhite.withValues(alpha: 0.2),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(8),

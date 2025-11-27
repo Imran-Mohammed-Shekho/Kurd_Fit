@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
@@ -22,8 +22,10 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final prov = context.watch<LandingscreenProvider>();
+    final double width = size.width;
+    final double height = size.height;
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -42,7 +44,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: kwhite.withOpacity(0.1),
+                    color: kwhite.withValues(alpha: 0.1),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(8),
@@ -88,11 +90,13 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
                   activeTickMarkColor: Colors.white,
                   inactiveTickMarkColor: Colors.grey,
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
-                  tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 10),
-                  overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
-                  overlayColor: kwhite.withOpacity(0.3),
+                  tickMarkShape: RoundSliderTickMarkShape(
+                    tickMarkRadius: (width < 500 || height < 700) ? 5 : 10,
+                  ),
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 35),
+                  overlayColor: kwhite.withValues(alpha: 0.3),
                   thumbColor: kwhite,
-                  inactiveTrackColor: kwhite.withOpacity(0.2),
+                  inactiveTrackColor: kwhite.withValues(alpha: 0.2),
                   activeTrackColor: kwhite,
                 ),
                 child: Slider(

@@ -20,7 +20,7 @@ class _QuestionscreencontrollState extends State<Questionscreencontroll> {
     final provider = Provider.of<LandingscreenProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff6157C9),
+        backgroundColor: Theme.of(context).colorScheme.surface,
 
         leading: IconButton(
           onPressed: () {
@@ -33,7 +33,7 @@ class _QuestionscreencontrollState extends State<Questionscreencontroll> {
           icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
         ),
       ),
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           buildProgressTracker(size: size),
