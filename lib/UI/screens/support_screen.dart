@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
-import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 
 class CheckEmail extends StatefulWidget {

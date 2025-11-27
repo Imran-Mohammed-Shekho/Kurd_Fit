@@ -5,7 +5,6 @@ import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
 import 'package:gym/data/models/userData.dart';
 import 'package:gym/services/signup_service.dart';

@@ -34,7 +34,6 @@ class _WorkoutsShow extends State<WorkoutsShow> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Consumer<MangeWorkoutsPorovider>(
         builder: (BuildContext context, MangeWorkoutsPorovider value, Widget? child) {

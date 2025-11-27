@@ -4,7 +4,6 @@ import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
-import 'package:gym/UI/screens/landingScreen_UI/questionScreenControll.dart';
 
 import 'package:gym/UI/screens/login&SignUP_UI/check_email.dart';
 
