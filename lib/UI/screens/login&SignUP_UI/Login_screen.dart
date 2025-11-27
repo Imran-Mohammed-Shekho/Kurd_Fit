@@ -107,7 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
                 },
                 icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
               ),

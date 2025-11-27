@@ -110,16 +110,16 @@ class _ChangePasswordState extends State<ChangePassword> {
 
           showDialog(
             context: context,
-            builder: (context) =>
-                Center(child: CircularProgressIndicator(color: Colors.white)),
+            builder: (context) => Center(child: reusableProgressIndicator()),
           );
           await Future.delayed(Duration(seconds: 2));
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
           if (mounted) {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => LoginScreen()),
+              (route) => false,
             );
           }
         },
@@ -128,7 +128,11 @@ class _ChangePasswordState extends State<ChangePassword> {
       showMessage(e.code, kred);
     } catch (e) {
       showMessage("somthinge went wrong ", kred);
-    } finally {}
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   void showMessage(String message, Color color) {

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 
 Future showdLogOutAlert({
   required BuildContext context,
@@ -27,7 +28,7 @@ Future showdLogOutAlert({
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
             child: SizedBox(
-              height: 200,
+              height: 150,
 
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -74,9 +75,7 @@ Future showdLogOutAlert({
                               width: 100,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                    Colors.redAccent,
-                                  ),
+                                  backgroundColor: WidgetStatePropertyAll(kred),
                                 ),
                                 onPressed: onLogoutPressed,
                                 child: Center(
