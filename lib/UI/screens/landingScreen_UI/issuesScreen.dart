@@ -21,7 +21,7 @@ class _IssuesscreenState extends State<Issuesscreen> {
   Widget build(BuildContext context) {
     final prov = context.read<LandingscreenProvider>();
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/payment_UI/adding_paymentmethod_screen.dart';
 
 class PaymentsubscreptionScreen extends StatefulWidget {
@@ -19,144 +20,104 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
         body: SizedBox(
           height: double.infinity,
           width: double.infinity,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/Nutback.png"),
-                fit: BoxFit.cover,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+                  ),
+                  SizedBox(width: 70),
+                  Padding(
+                    padding: EdgeInsetsGeometry.only(),
+                    child: Text(
+                      "payment methods ".toUpperCase(),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
-                    ),
-                    SizedBox(width: 70),
-                    Padding(
-                      padding: EdgeInsetsGeometry.only(),
-                      child: Text(
-                        "payment methods ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
+              SizedBox(height: 15),
+              paymentmethodstext("Your Balance"),
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                  child: SizedBox(
+                    height: 100,
+                    width: 350,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.1),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.2),
                         ),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                paymentmethodstext("Your Balance"),
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                    child: SizedBox(
-                      height: 100,
-                      width: 350,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.1),
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                            children: [
-                              Text(
-                                "\$120.00",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 24,
-                                ),
+                          children: [
+                            Text(
+                              "\$120.00",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 24,
                               ),
+                            ),
 
-                              Text(
-                                "USD",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 18,
-                                ),
+                            Text(
+                              "USD",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 18,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+              ),
+              SizedBox(height: 20),
 
-                paymentmethodstext("Payment Methods "),
+              paymentmethodstext("Payment Methods "),
 
-                paymentmethodsListtiles(),
+              paymentmethodsListtiles(),
 
-                SizedBox(height: 20),
-                paymentmethodsListtiles(),
+              SizedBox(height: 20),
+              paymentmethodsListtiles(),
 
-                Spacer(),
+              Spacer(),
 
-                ADDPMB("Add payment method", context, () {
+              buildButtom(
+                ontap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => AddingPaymentmethodScreen(),
                     ),
                   );
-                }),
-                SizedBox(height: 20),
-              ],
-            ),
+                },
+                text: "Add payment method",
+                isTrue: true,
+              ),
+              SizedBox(height: 20),
+            ],
           ),
         ),
       ),
     );
   }
-}
-
-Widget ADDPMB(String text, BuildContext context, VoidCallback ontap) {
-  return GestureDetector(
-    onTap: ontap,
-    child: SizedBox(
-      height: 50,
-      width: 350,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: const Color(0xff5B58FB),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: const Color(0xffffffff).withValues(alpha: 0.5),
-            style: BorderStyle.solid,
-            strokeAlign: BorderSide.strokeAlignCenter,
-          ),
-        ),
-
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
 }
 
 class paymentmethodsListtiles extends StatelessWidget {

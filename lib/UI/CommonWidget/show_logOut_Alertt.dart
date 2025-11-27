@@ -27,7 +27,7 @@ Future showdLogOutAlert({
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
             child: SizedBox(
-              height: (title == "Log out?" ? 145 : 170),
+              height: 200,
 
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -37,80 +37,83 @@ Future showdLogOutAlert({
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
-                child: Column(
-                  children: [
-                    SizedBox(height: 5),
-                    Center(
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.white,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 5),
+                      Center(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
 
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        message,
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          message,
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: title == "Password Changed"
-                            ? MainAxisAlignment.center
-                            : MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            height: 40,
-                            width: 100,
-                            child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  Colors.redAccent,
+                      SizedBox(height: 4),
+                      Padding(
+                        padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: title == "Password Changed"
+                              ? MainAxisAlignment.center
+                              : MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 40,
+                              width: 100,
+                              child: TextButton(
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    Colors.redAccent,
+                                  ),
                                 ),
-                              ),
-                              onPressed: onLogoutPressed,
-                              child: Center(
-                                child: Text(
-                                  "Logout",
-                                  style: TextStyle(color: Colors.white),
+                                onPressed: onLogoutPressed,
+                                child: Center(
+                                  child: Text(
+                                    "Logout",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          title == "Password Changed"
-                              ? SizedBox()
-                              : SizedBox(
-                                  height: 40,
-                                  width: 100,
-                                  child: TextButton(
-                                    style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                        Colors.green,
+                            title == "Password Changed"
+                                ? SizedBox()
+                                : SizedBox(
+                                    height: 40,
+                                    width: 100,
+                                    child: TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: WidgetStatePropertyAll(
+                                          Colors.green,
+                                        ),
                                       ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Center(
-                                      child: Text(
-                                        "cancel",
-                                        style: TextStyle(color: Colors.white),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Center(
+                                        child: Text(
+                                          "cancel",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

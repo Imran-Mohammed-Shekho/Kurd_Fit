@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/BmiResultScreen.dart';
 import 'package:gym/core/Utils/BMICalculatorBrain.dart';
 
@@ -72,7 +73,7 @@ class _BmiScreenState extends State<BmiScreen>
 
   Widget _buildModelBottomSheet(BuildContext context, Size size) {
     return Container(
-      height: size.height * 0.6,
+      height: size.height * 0.8,
       padding: const EdgeInsets.all(18),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
@@ -80,10 +81,10 @@ class _BmiScreenState extends State<BmiScreen>
           filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.06),
+              color: Colors.white.withValues(alpha: 0.06),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 width: 1.5,
               ),
             ),
@@ -189,26 +190,24 @@ class _BmiScreenState extends State<BmiScreen>
                       );
                       showDialog(
                         context: context,
-                        builder: (context) => Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.deepPurple,
-                            strokeWidth: 5,
-                            strokeCap: StrokeCap.round,
-                          ),
-                        ),
+                        builder: (context) =>
+                            Center(child: reusableProgressIndicator()),
                       );
                       await Future.delayed(Duration(seconds: 2));
-                      if (mounted) Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BmiResultScreen(
-                            bmi.BmiResult(),
-                            bmi.getResult(),
-                            bmi.getInter(),
+                      if (context.mounted) Navigator.pop(context);
+
+                      if (context.mounted) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BmiResultScreen(
+                              bmi.BmiResult(),
+                              bmi.getResult(),
+                              bmi.getInter(),
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     "Calculate",
                     Colors.black,

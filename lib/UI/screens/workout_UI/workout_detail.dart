@@ -53,35 +53,34 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
-            Stack(
-              children: [
-                SizedBox(height: 20),
-                Image.network(
-                  widget.imageurl,
-                  width: double.infinity,
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Column(
-                      children: [
-                        SizedBox(height: 20),
+            SizedBox(
+              height: size.height * 0.7,
+              width: size.width,
+              child: Image.network(
+                widget.imageurl,
+                scale: 5,
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 20),
 
-                        Text("Can't Load images due to server down !"),
-                        Icon(
-                          Icons.sentiment_dissatisfied_sharp,
-                          size: 100,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
+                      Text("Can't Load images due to server down !"),
+                      Icon(
+                        Icons.sentiment_dissatisfied_sharp,
+                        size: 100,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Expanded(
               child: SizedBox(
-                height: size.height * 0.5,
+                height: size.height * 0.6,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),

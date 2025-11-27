@@ -3,12 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/changePassword_UI/Change_password.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/about_UI/aboutus_screen.dart';
-import 'package:gym/UI/screens/about_UI/custom_colors.dart';
+import 'package:gym/UI/screens/appTheme/custom_colors.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
@@ -42,8 +43,7 @@ class _drawer_sectionState extends State<drawer_section> {
   Future<void> _logoutUser() async {
     showDialog(
       context: context,
-      builder: (context) =>
-          Center(child: CircularProgressIndicator(color: Colors.white)),
+      builder: (context) => Center(child: reusableProgressIndicator()),
     );
     try {
       await FirebaseAuth.instance.signOut();
@@ -134,9 +134,7 @@ class _drawer_sectionState extends State<drawer_section> {
                   () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Change_password(),
-                      ),
+                      MaterialPageRoute(builder: (context) => ChangePassword()),
                     );
                   },
                 ),
@@ -186,25 +184,7 @@ class _drawer_sectionState extends State<drawer_section> {
                     },
                   ),
                 ),
-                ListTiles(
-                  Text(
-                    "Change Theme",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Icon(
-                    Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
-                    color: Themeprovider.isDark
-                        ? Color(0xFF9CCC65)
-                        : Color(0xFFC5E1A5),
-                  ),
-                  () {
-                    Themeprovider.changeTheme();
-                  },
-                ),
+
                 Dividers(),
                 ListTiles(
                   Text(

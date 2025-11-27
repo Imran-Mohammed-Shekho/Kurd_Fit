@@ -133,7 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
             icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
           ),
         ),
-        backgroundColor: const Color(0xff6157C9),
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Form(
           key: _formKey,
           child: ListView(

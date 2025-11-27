@@ -16,7 +16,7 @@ class _CheckEmailState extends State<CheckEmail> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Stack(
         children: [
           Center(
@@ -57,7 +57,7 @@ class _CheckEmailState extends State<CheckEmail> {
                           Center(child: reusableProgressIndicator()),
                     );
                     await Future.delayed(Duration(seconds: 1));
-                    if (!mounted) return;
+                    if (!context.mounted) return;
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginScreen()),

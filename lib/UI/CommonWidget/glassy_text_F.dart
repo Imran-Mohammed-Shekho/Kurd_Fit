@@ -28,7 +28,7 @@ class GlassyTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white.withValues(alpha: 0.1),
             border: Border.all(
-              color: Colors.white.withValues(alpha: 0.4),
+              color: Colors.white.withValues(alpha: 0.2),
               strokeAlign: BorderSide.strokeAlignCenter,
               style: BorderStyle.solid,
             ),

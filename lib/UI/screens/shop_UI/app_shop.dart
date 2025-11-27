@@ -20,7 +20,7 @@ class _AppShopState extends State<AppShop> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: Column(
+        body: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -162,14 +162,17 @@ class _AppShopState extends State<AppShop> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: SizedBox(
                 height: size.height / 2,
                 child: GridView.builder(
+                  clipBehavior: Clip.antiAlias,
+                  physics: ScrollPhysics(),
                   itemCount: supplements.length,
+                  shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
@@ -177,27 +180,26 @@ class _AppShopState extends State<AppShop> {
                     childAspectRatio: 1,
                   ),
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
+                    return SizedBox(
+                      height: size.height * 0.4,
+                      width: size.width * 0.4,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
 
-                          MaterialPageRoute(
-                            builder: (context) => PreviewScreen(
-                              supplements[index].imagePath,
+                            MaterialPageRoute(
+                              builder: (context) => PreviewScreen(
+                                supplements[index].imagePath,
 
-                              supplements[index].title,
-                              supplements[index].price,
-                              supplements[index].description,
-                              index,
+                                supplements[index].title,
+                                supplements[index].price,
+                                supplements[index].description,
+                                index,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-
-                      child: SizedBox(
-                        height: 100,
-                        width: 100,
+                          );
+                        },
 
                         child: DecoratedBox(
                           decoration: BoxDecoration(
@@ -212,69 +214,82 @@ class _AppShopState extends State<AppShop> {
                             ],
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8),
+                            padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Colors.red,
-                                        size: 20,
+                                Expanded(
+                                  flex: 1,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.red,
+                                          size: 20,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "${supplements[index].price} \$",
-                                      style: GoogleFonts.pacifico(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 20,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onSurface,
+                                      Text(
+                                        "${supplements[index].price} \$",
+                                        style: GoogleFonts.pacifico(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSecondary,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                Hero(
-                                  tag: "tag$index}",
-                                  child: Image.asset(
-                                    supplements[index].imagePath,
-                                    height: 120,
-                                    width: 120,
-                                    fit: BoxFit.cover,
+                                Expanded(
+                                  flex: 3,
+                                  child: Hero(
+                                    tag: "tag$index}",
+                                    child: Image.asset(
+                                      supplements[index].imagePath,
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
 
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    supplements[index].title,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onSurface,
+                                Expanded(
+                                  flex: 1,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      supplements[index].title,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSecondary,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                Text(
-                                  supplements[index].description,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 12,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onSurface,
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    supplements[index].description,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSecondary,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ],
                             ),

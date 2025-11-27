@@ -80,7 +80,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -88,7 +88,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
             icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
           ),
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
             SizedBox(height: 80),

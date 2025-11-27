@@ -35,7 +35,7 @@ class buildButtom extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   text,
-                  style: TextStyle(color: kwhite, fontSize: 24),
+                  style: TextStyle(color: kwhite, fontSize: 20),
                 ),
               ),
               isTrue

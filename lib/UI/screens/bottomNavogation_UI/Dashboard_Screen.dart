@@ -15,6 +15,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
+import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 const TextStyle headerStyle = TextStyle(
@@ -203,6 +204,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     String? username = Provider.of<ProfileProvider>(context, listen: true).name;
+    final Themeprovider = context.watch<ThemeProvider>();
 
     return SafeArea(
       child: Scaffold(
@@ -223,6 +225,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   KurdFitText(),
                   Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      Themeprovider.changeTheme();
+                    },
+                    icon: Icon(
+                      Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
+                    ),
+                  ),
                   IconButton(
                     onPressed: () {
                       scaffoldKey.currentState!.openEndDrawer();

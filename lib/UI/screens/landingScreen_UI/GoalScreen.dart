@@ -20,7 +20,7 @@ class _GoalscreenState extends State<Goalscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff6157C9),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(

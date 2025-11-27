@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/Dashboard_Screen.dart';
-import 'package:gym/UI/screens/about_UI/custom_colors.dart';
+import 'package:gym/UI/screens/appTheme/custom_colors.dart';
 
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/shop_UI/app_shop.dart';

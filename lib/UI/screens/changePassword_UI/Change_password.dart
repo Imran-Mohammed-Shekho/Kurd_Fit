@@ -2,19 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
+import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 
-class Change_password extends StatefulWidget {
-  const Change_password({super.key});
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({super.key});
 
   @override
-  State<Change_password> createState() => _Change_passwordState();
+  State<ChangePassword> createState() => _ChangePasswordState();
 }
 
-class _Change_passwordState extends State<Change_password> {
+class _ChangePasswordState extends State<ChangePassword> {
   final dialog = drawer_section();
   String newpassword = '';
   int strengthVaule = 0;
@@ -123,9 +126,9 @@ class _Change_passwordState extends State<Change_password> {
         },
       );
     } on FirebaseAuthException catch (e) {
-      showMessage(e.code, Colors.red);
+      showMessage(e.code, kred);
     } catch (e) {
-      showMessage("somthinge went wrong ", Colors.red);
+      showMessage("somthinge went wrong ", kred);
     } finally {}
   }
 
@@ -136,49 +139,30 @@ class _Change_passwordState extends State<Change_password> {
       SnackBar(
         elevation: 0,
         behavior: SnackBarBehavior.fixed,
-        backgroundColor: Colors.transparent,
-        content: ClipRRect(
-          borderRadius: BorderRadius.circular(14),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 14),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [color.withOpacity(0.85), color.withOpacity(0.65)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.3),
-                width: 1,
-              ),
+        backgroundColor: color,
+        content: Row(
+          children: [
+            Icon(
+              color == kred
+                  ? Icons.error_rounded
+                  : color == Colors.orange
+                  ? Icons.warning_amber_rounded
+                  : Icons.check_circle_rounded,
+              color: Colors.white,
+              size: 24,
             ),
-            child: Row(
-              children: [
-                Icon(
-                  color == Colors.red
-                      ? Icons.error_rounded
-                      : color == Colors.orange
-                      ? Icons.warning_amber_rounded
-                      : Icons.check_circle_rounded,
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                message,
+                style: TextStyle(
                   color: Colors.white,
-                  size: 24,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
                 ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    message,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
         duration: Duration(seconds: 2),
       ),
@@ -190,183 +174,171 @@ class _Change_passwordState extends State<Change_password> {
     late Color color = getColor(strengthVaule);
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Nutback.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: ListView(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Bottomnavigationbar(),
-                          ),
-                        );
-                      },
-                      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    ),
-                  ),
-
-                  Text(
-                    "🔐 Change password",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      shadows: [
-                        BoxShadow(
-                          blurRadius: 8,
-                          spreadRadius: 1,
-                          color: Colors.black.withOpacity(0.6),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: ListView(
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Bottomnavigationbar(),
                         ),
-                      ],
+                      );
+                    },
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                  ),
+                ),
+
+                Text(
+                  "🔐 Change password".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    shadows: [
+                      BoxShadow(
+                        blurRadius: 8,
+                        spreadRadius: 1,
+                        color: Colors.black.withOpacity(0.6),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _buildlabel("Current Password"),
+              ),
+            ),
+            SizedBox(height: 10),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: GlassyTextField(
+                "Enter current password",
+                (value) {},
+                60,
+                _currentPassordController,
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _buildlabel("New Password"),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: GlassyTextField(
+                "Enter new passowrd",
+                (password) {
+                  setState(() {
+                    strengthVaule = passwordStrength(password);
+                  });
+                },
+                60,
+                _newPasswordController,
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  for (int i = 0; i < 3; i++)
+                    Expanded(
+                      child: AnimatedContainer(
+                        margin: EdgeInsets.only(right: i < 2 ? 5 : 0),
+                        width: 100,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: strengthVaule > i
+                              ? color
+                              : Colors.white.withOpacity(0.1),
+                          boxShadow: [
+                            if (strengthVaule > i)
+                              BoxShadow(
+                                blurRadius: 8,
+                                spreadRadius: 1,
+                                color: color.withOpacity(0.6),
+                              ),
+                          ],
+                        ),
+                        duration: Duration(milliseconds: 300),
+                      ),
                     ),
+
+                  SizedBox(width: 20),
+                  AnimatedSwitcher(
+                    duration: Duration(milliseconds: 400),
+                    child: Text(
+                      getlabel(strengthVaule),
+                      style: TextStyle(
+                        shadows: [
+                          Shadow(
+                            blurRadius: 8,
+                            color: Colors.black.withOpacity(0.6),
+                          ),
+                        ],
+                        color: color,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    transitionBuilder: (child, animation) =>
+                        FadeTransition(opacity: animation, child: child),
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+            ),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: _buildlabel("Current Password"),
-                ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _buildlabel("Confirm new Password "),
               ),
-              SizedBox(height: 10),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: GlassyTextField(
+                "Confirm new password",
+                (value) {},
+                60,
+                _confirmPassowrdController,
+              ),
+            ),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField(
-                  "Enter current password",
-                  (value) {},
-                  60,
-                  _currentPassordController,
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: _buildlabel("New Password"),
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField(
-                  "Enter new passowrd",
-                  (password) {
-                    setState(() {
-                      strengthVaule = passwordStrength(password);
-                    });
-                  },
-                  60,
-                  _newPasswordController,
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 3; i++)
-                      Expanded(
-                        child: AnimatedContainer(
-                          margin: EdgeInsets.only(right: i < 2 ? 5 : 0),
-                          width: 100,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: strengthVaule > i
-                                ? color
-                                : Colors.white.withOpacity(0.6),
-                            boxShadow: [
-                              if (strengthVaule > i)
-                                BoxShadow(
-                                  blurRadius: 8,
-                                  spreadRadius: 1,
-                                  color: color.withOpacity(0.6),
-                                ),
-                            ],
-                          ),
-                          duration: Duration(milliseconds: 300),
-                        ),
-                      ),
-
-                    SizedBox(width: 20),
-                    AnimatedSwitcher(
-                      duration: Duration(milliseconds: 400),
-                      child: Text(
-                        getlabel(strengthVaule),
-                        style: TextStyle(
-                          shadows: [
-                            Shadow(
-                              blurRadius: 8,
-                              color: Colors.black.withOpacity(0.6),
-                            ),
-                          ],
-                          color: color,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      transitionBuilder: (child, animation) =>
-                          FadeTransition(opacity: animation, child: child),
+            SizedBox(height: 50),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: isLoading
+                  ? Center(child: reusableProgressIndicator())
+                  : buildButtom(
+                      ontap: () {
+                        changePassord();
+                      },
+                      text: "Change Password",
+                      isTrue: false,
                     ),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: _buildlabel("Confirm new Password "),
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: GlassyTextField(
-                  "Confirm new password",
-                  (value) {},
-                  60,
-                  _confirmPassowrdController,
-                ),
-              ),
-
-              SizedBox(height: 50),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: isLoading
-                    ? Center(child: CircularProgressIndicator())
-                    : CommonButton(
-                        () {
-                          changePassord();
-                        },
-                        "Change passowrd",
-                        Colors.white,
-                        false,
-                        Color(0xff727bff),
-                      ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -374,12 +346,5 @@ class _Change_passwordState extends State<Change_password> {
 }
 
 Widget _buildlabel(String label) {
-  return Text(
-    label,
-    style: TextStyle(
-      color: Colors.white,
-      fontSize: 14,
-      fontWeight: FontWeight.w900,
-    ),
-  );
+  return Text(label, style: TextStyle(color: Colors.white, fontSize: 14));
 }

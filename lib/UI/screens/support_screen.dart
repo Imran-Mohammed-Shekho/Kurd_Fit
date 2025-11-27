@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
@@ -56,7 +58,7 @@ class _SupportScreenState extends State<SupportScreen> {
           message,
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
-        backgroundColor: message.startsWith("Your") ? Colors.teal : Colors.red,
+        backgroundColor: message.startsWith("Your") ? Colors.green : kred,
       ),
     );
   }
@@ -65,147 +67,135 @@ class _SupportScreenState extends State<SupportScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/Nutback.png"),
-                fit: BoxFit.cover,
+        body: ListView(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.arrow_back_ios),
               ),
             ),
-            child: ListView(
+            SizedBox(height: 10),
+
+            Center(
+              child: Text(
+                "We are here to help!",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Center(
+              child: Text(
+                textAlign: TextAlign.center,
+                "Have Questions or Need Assistance ?\nReach Out To Us!",
+                style: TextStyle(color: Colors.white, fontSize: 14),
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: GlassyTextField(
+                "Name ",
+                (value) => setState(() {
+                  name = value;
+                }),
+                60,
+                null,
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: GlassyTextField(
+                "Email ",
+                (value) => setState(() {
+                  email = value;
+                }),
+                60,
+                null,
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: GlassyTextField(
+                "write your problem here...",
+                (value) => setState(() {
+                  usermessage = value;
+                }),
+                120,
+                null,
+              ),
+            ),
+            SizedBox(height: 30),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: buildButtom(
+                ontap: () {
+                  _validate();
+                },
+                text: "Submit",
+                isTrue: false,
+              ),
+            ),
+            SizedBox(height: 50),
+            Center(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.white.withValues(alpha: 0.3),
+                      endIndent: 10,
+                      indent: 10,
+                      thickness: 2,
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      "Or",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.white.withValues(alpha: 0.3),
+                      endIndent: 10,
+                      indent: 10,
+                      thickness: 2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 40),
+            Center(
+              child: Text(
+                "Also You can Find Us here",
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
+              ),
+            ),
+            SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Icon(Icons.arrow_back_ios),
-                  ),
-                ),
-                SizedBox(height: 10),
-
-                Center(
-                  child: Text(
-                    "We are here to help!",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Center(
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    "Have Questions or Need Assistance ?\nReach Out To Us!",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GlassyTextField(
-                    "Name ",
-                    (value) => setState(() {
-                      name = value;
-                    }),
-                    60,
-                    null,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GlassyTextField(
-                    "Email ",
-                    (value) => setState(() {
-                      email = value;
-                    }),
-                    60,
-                    null,
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GlassyTextField(
-                    "write your problem here...",
-                    (value) => setState(() {
-                      usermessage = value;
-                    }),
-                    120,
-                    null,
-                  ),
-                ),
-                SizedBox(height: 30),
-
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CommonButton(
-                    () => _validate(),
-                    "submit",
-                    Colors.white,
-                    isload,
-                    Color(0xff727bff),
-                  ),
-                ),
-                SizedBox(height: 50),
-                Center(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          endIndent: 10,
-                          indent: 10,
-                          thickness: 2,
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "Or",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          endIndent: 10,
-                          indent: 10,
-                          thickness: 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 40),
-                Center(
-                  child: Text(
-                    "Also You can Find Us here",
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.5),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    social("assets/images/facebook.png"),
-                    SizedBox(width: 30),
-                    social("assets/images/twitter.png"),
-                    SizedBox(width: 30),
-                    social("assets/images/gmail.png"),
-                  ],
-                ),
+                social("assets/images/facebook.png"),
+                SizedBox(width: 30),
+                social("assets/images/twitter.png"),
+                SizedBox(width: 30),
+                social("assets/images/gmail.png"),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );

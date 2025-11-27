@@ -9,6 +9,8 @@ import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
+const Color kred = Color.fromARGB(255, 148, 10, 0);
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -330,12 +332,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     },
                                     text: "Delete account",
                                     isTrue: false,
-                                    color: const Color.fromARGB(
-                                      255,
-                                      148,
-                                      10,
-                                      0,
-                                    ),
+                                    color: kred,
                                   ),
                                 ),
                               ],

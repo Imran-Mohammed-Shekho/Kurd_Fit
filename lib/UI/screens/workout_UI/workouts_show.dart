@@ -62,8 +62,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
               ),
               body: Column(
                 children: [
-                  SizedBox(
-                    height: size.height / 1.1,
+                  Expanded(
                     child: ListView.builder(
                       itemCount: value.TargetExercises.length,
                       itemBuilder: (context, index) {
