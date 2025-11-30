@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-AppBar reusableAppbar(BuildContext context, String title) {
+AppBar reusableAppbar(
+  BuildContext context,
+  String title,
+  VoidCallback onpressed,
+) {
   return AppBar(
     backgroundColor: Colors.transparent,
     leading: IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
+      onPressed: onpressed,
       icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
     ),
 

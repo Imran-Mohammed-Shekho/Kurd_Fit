@@ -18,7 +18,11 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: reusableAppbar(context, "adding payment method"),
+        appBar: reusableAppbar(context, "adding payment method", () {
+          () {
+            Navigator.pop(context);
+          };
+        }),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [

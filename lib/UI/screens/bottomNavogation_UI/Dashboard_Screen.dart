@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gym/UI/CommonWidget/CircleRing_Ui.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/BmiScreen.dart';
@@ -13,6 +12,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/DaashboardWidgets/greeting_te
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
@@ -254,46 +254,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               SizedBox(height: 10),
 
-              _buildlabes("Your Daily progres", 16, false),
+              _buildlabes("Your Daily progress", 16, false),
               SizedBox(height: 10),
 
               SizedBox(
-                height: 200,
+                height: 140,
                 width: double.infinity,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: CircleRing(
-                        0.9,
-                        "assets/icons/footPrint.svg",
-                        "Steps",
-                        "1,200",
-                      ),
+                    SizedBox(),
+                    resuableCircleCounts(
+                      context,
+                      (1200),
+                      "Calories",
+                      Icons.local_fire_department,
                     ),
-                    SizedBox(width: 40),
-                    Expanded(
-                      flex: 1,
-                      child: CircleRing(0.6, Icons.timer, "Min", "22"),
+                    resuableCircleCounts(context, 74, "Min", Icons.timer),
+                    resuableCircleCounts(
+                      context,
+                      (2000),
+                      "Steps",
+                      "assets/icons/footPrint.svg",
                     ),
-
-                    SizedBox(width: 40),
-
-                    Expanded(
-                      flex: 1,
-                      child: CircleRing(
-                        0.3,
-                        Icons.local_fire_department,
-                        "Kcal",
-                        "800g",
-                      ),
-                    ),
+                    SizedBox(),
                   ],
                 ),
               ),
 
-              SizedBox(height: 15),
               _buildlabes("AI - Powered Tools", 20, false),
               SizedBox(height: 10),
 
@@ -383,6 +371,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Column resuableCircleCounts(
+    BuildContext context,
+    int count,
+    title,
+    dynamic icon,
+  ) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 70,
+          width: 70,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: icon is IconData
+                  ? Icon(icon, size: 42, color: kwhite)
+                  : SvgPicture.asset(icon, height: 35, width: 35),
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(count.toString(), style: TextStyle()),
+        Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ],
     );
   }
 }

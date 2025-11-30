@@ -10,7 +10,7 @@ ThemeData darkmode = ThemeData(
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
       drawerbg: Color(0xff181a65).withValues(alpha: 0.1),
-      bottomNavigationBarBg: Color(0xff0011FF).withValues(alpha: 0.1),
+      bottomNavigationBarBg: Colors.black,
       TextFrombottomNavigationbar: Colors.black,
       buttomColor: LinearGradient(
         colors: [Color(0xFF6A5AE0), Color(0xFF8A73F5)],
@@ -33,7 +33,7 @@ ThemeData lightmode = ThemeData(
     CustomColors(
       ButtonFrombottomNavigationbar: Colors.black,
       drawerbg: Colors.white.withValues(alpha: 0.1),
-      bottomNavigationBarBg: Color(0xff0011FF).withValues(alpha: 0.3),
+      bottomNavigationBarBg: backgroundColor,
       TextFrombottomNavigationbar: Colors.black,
       buttomColor: LinearGradient(
         colors: [kwhite.withValues(alpha: 0.2), kwhite.withValues(alpha: 0.2)],

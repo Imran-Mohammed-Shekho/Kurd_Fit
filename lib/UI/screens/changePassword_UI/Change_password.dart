@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
+import 'package:gym/UI/CommonWidget/reusableAppbar.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
@@ -177,170 +178,134 @@ class _ChangePasswordState extends State<ChangePassword> {
     late Color color = getColor(strengthVaule);
     return SafeArea(
       child: Scaffold(
+        appBar: reusableAppbar(context, "Change Password", () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
+          );
+        }),
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: ListView(
+        body: Column(
           children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Bottomnavigationbar(),
-                        ),
-                      );
-                    },
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                  ),
-                ),
-
-                Text(
-                  "🔐 Change password".toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    shadows: [
-                      BoxShadow(
-                        blurRadius: 8,
-                        spreadRadius: 1,
-                        color: Colors.black.withOpacity(0.6),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 30),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: _buildlabel("Current Password"),
-              ),
-            ),
-            SizedBox(height: 10),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: GlassyTextField(
-                "Enter current password",
-                (value) {},
-                60,
-                _currentPassordController,
-              ),
-            ),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: _buildlabel("New Password"),
-              ),
-            ),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: GlassyTextField(
-                "Enter new passowrd",
-                (password) {
-                  setState(() {
-                    strengthVaule = passwordStrength(password);
-                  });
-                },
-                60,
-                _newPasswordController,
-              ),
-            ),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  for (int i = 0; i < 3; i++)
-                    Expanded(
-                      child: AnimatedContainer(
-                        margin: EdgeInsets.only(right: i < 2 ? 5 : 0),
-                        width: 100,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: strengthVaule > i
-                              ? color
-                              : Colors.white.withOpacity(0.1),
-                          boxShadow: [
-                            if (strengthVaule > i)
-                              BoxShadow(
-                                blurRadius: 8,
-                                spreadRadius: 1,
-                                color: color.withOpacity(0.6),
-                              ),
-                          ],
-                        ),
-                        duration: Duration(milliseconds: 300),
-                      ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: _buildlabel("Current Password"),
                     ),
+                    SizedBox(height: 10),
 
-                  SizedBox(width: 20),
-                  AnimatedSwitcher(
-                    duration: Duration(milliseconds: 400),
-                    child: Text(
-                      getlabel(strengthVaule),
-                      style: TextStyle(
-                        shadows: [
-                          Shadow(
-                            blurRadius: 8,
-                            color: Colors.black.withOpacity(0.6),
+                    GlassyTextField(
+                      "Enter current password",
+                      (value) {},
+                      60,
+                      _currentPassordController,
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: _buildlabel("New Password"),
+                    ),
+                    SizedBox(height: 10),
+                    GlassyTextField(
+                      "Enter new passowrd",
+                      (password) {
+                        setState(() {
+                          strengthVaule = passwordStrength(password);
+                        });
+                      },
+                      60,
+                      _newPasswordController,
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          for (int i = 0; i < 3; i++)
+                            Expanded(
+                              child: AnimatedContainer(
+                                margin: EdgeInsets.only(right: i < 2 ? 5 : 0),
+                                width: 100,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: strengthVaule > i
+                                      ? color
+                                      : Colors.white.withOpacity(0.1),
+                                  boxShadow: [
+                                    if (strengthVaule > i)
+                                      BoxShadow(
+                                        blurRadius: 8,
+                                        spreadRadius: 1,
+                                        color: color.withOpacity(0.6),
+                                      ),
+                                  ],
+                                ),
+                                duration: Duration(milliseconds: 300),
+                              ),
+                            ),
+
+                          SizedBox(width: 20),
+                          AnimatedSwitcher(
+                            duration: Duration(milliseconds: 400),
+                            child: Text(
+                              getlabel(strengthVaule),
+                              style: TextStyle(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ),
+                                ],
+                                color: color,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            transitionBuilder: (child, animation) =>
+                                FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                ),
                           ),
                         ],
-                        color: color,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    transitionBuilder: (child, animation) =>
-                        FadeTransition(opacity: animation, child: child),
-                  ),
-                ],
+
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: _buildlabel("Confirm new Password "),
+                    ),
+                    SizedBox(height: 10),
+
+                    GlassyTextField(
+                      "Confirm new password",
+                      (value) {},
+                      60,
+                      _confirmPassowrdController,
+                    ),
+                  ],
+                ),
               ),
             ),
 
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: _buildlabel("Confirm new Password "),
-              ),
-            ),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: GlassyTextField(
-                "Confirm new password",
-                (value) {},
-                60,
-                _confirmPassowrdController,
-              ),
-            ),
-
-            SizedBox(height: 50),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: isLoading
-                  ? Center(child: reusableProgressIndicator())
-                  : buildButtom(
+            isLoading
+                ? Center(child: reusableProgressIndicator())
+                : Padding(
+                    padding: EdgeInsets.all(16),
+                    child: buildButtom(
                       ontap: () {
                         changePassord();
                       },
                       text: "Change Password",
                       isTrue: false,
                     ),
-            ),
+                  ),
           ],
         ),
       ),

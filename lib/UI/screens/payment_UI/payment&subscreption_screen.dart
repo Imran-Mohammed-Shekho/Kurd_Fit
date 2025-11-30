@@ -21,7 +21,11 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
     final customButtonColor = Theme.of(context).extension<CustomColors>();
     return SafeArea(
       child: Scaffold(
-        appBar: reusableAppbar(context, "payment methods "),
+        appBar: reusableAppbar(context, "payment methods ", () {
+          () {
+            Navigator.pop(context);
+          };
+        }),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [

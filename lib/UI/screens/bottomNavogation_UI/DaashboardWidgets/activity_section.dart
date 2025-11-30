@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
 import 'week_table.dart';
 
@@ -31,12 +32,21 @@ class ActivitySection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Activity", style: TextStyle(color: Colors.white)),
-              Text(
-                "View Activity",
-                style: TextStyle(
-                  color: Colors.white,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.white,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WeekActivity()),
+                  );
+                },
+                hoverColor: Colors.white.withValues(alpha: 0.06),
+                child: Text(
+                  "View Activity",
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.white,
+                  ),
                 ),
               ),
             ],
