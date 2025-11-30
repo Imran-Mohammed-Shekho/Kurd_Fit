@@ -6,12 +6,14 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color bottomNavigationBarBg;
   final Color ButtonFrombottomNavigationbar;
   final Color TextFrombottomNavigationbar;
+  final Gradient buttomColor;
 
   const CustomColors({
     required this.drawerbg,
     required this.bottomNavigationBarBg,
     required this.ButtonFrombottomNavigationbar,
     required this.TextFrombottomNavigationbar,
+    required this.buttomColor,
   });
   @override
   ThemeExtension<CustomColors> copyWith() {
@@ -31,6 +33,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       drawerbg: drawerbg,
       bottomNavigationBarBg: bottomNavigationBarBg,
       TextFrombottomNavigationbar: TextFrombottomNavigationbar,
+      buttomColor: buttomColor,
     );
   }
 }

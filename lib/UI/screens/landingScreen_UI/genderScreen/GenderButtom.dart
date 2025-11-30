@@ -5,6 +5,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 class buildButtom extends StatelessWidget {
   final VoidCallback ontap;
   final Color? color;
+  final Gradient? gradient;
 
   final String text;
   final bool isTrue;
@@ -14,6 +15,7 @@ class buildButtom extends StatelessWidget {
     required this.text,
     required this.isTrue,
     this.color,
+    this.gradient,
   });
 
   @override
@@ -27,8 +29,12 @@ class buildButtom extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: color == null ? kwhite.withValues(alpha: 0.2) : color,
+            color: (color == null && gradient == null)
+                ? kwhite.withValues(alpha: 0.2)
+                : color,
+            gradient: gradient,
           ),
+
           child: Stack(
             children: [
               Align(
