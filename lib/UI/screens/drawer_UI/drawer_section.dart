@@ -82,7 +82,7 @@ class _drawer_sectionState extends State<drawer_section> {
         child: SizedBox(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: colors?.drawerbg ?? Colors.blue,
+              color: kwhite.withValues(alpha: 0.06),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -90,7 +90,7 @@ class _drawer_sectionState extends State<drawer_section> {
               border: Border.all(
                 style: BorderStyle.solid,
 
-                color: Colors.white,
+                color: Colors.white.withValues(alpha: 0.3),
                 strokeAlign: BorderSide.strokeAlignCenter,
               ),
             ),
@@ -101,11 +101,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Enabble Notifications ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.notification_add_rounded,
@@ -119,11 +115,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Change password ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.lock,
@@ -143,11 +135,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Change language",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.language,
@@ -189,11 +177,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Payment & Subscription",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.payment_outlined,
@@ -213,11 +197,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Share App",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.share,
@@ -238,11 +218,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Help & Support",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.support_agent,
@@ -261,11 +237,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "About Us",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.info,
@@ -285,11 +257,7 @@ class _drawer_sectionState extends State<drawer_section> {
                 ListTiles(
                   Text(
                     "Log Out",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
                     Icons.logout_rounded,

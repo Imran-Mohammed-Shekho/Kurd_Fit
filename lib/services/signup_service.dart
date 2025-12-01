@@ -72,12 +72,11 @@ class SignupService {
         activityLevel: activityLevel,
       );
 
-      await _userInfoCollection
-          .doc(uid)
-          .set(data.toJson(), SetOptions(merge: true));
+      await _userInfoCollection.doc(uid).set(data.toJson());
 
       return true; // success
     } catch (e) {
+      print(e);
       return false; // fail
     }
   }

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
@@ -32,8 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final getuserdata = Provider.of<ProfileProvider>(context, listen: false);
-      if (getuserdata.userModel == null) {
-        getuserdata.getUserDataFromFirestore(auth.currentUser!.uid);
+      if (getuserdata.userInfo == null) {
+        getuserdata.getUserInfoFromFirestore(auth.currentUser!.uid);
       }
     });
   }
@@ -51,15 +51,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final auth = FirebaseAuth.instance;
     try {
       await Future.delayed(Duration(seconds: 2));
-      if (mounted) {
-        Navigator.pop(context);
-      }
 
       await auth.currentUser!.delete();
       if (!mounted) return;
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => LoginScreen()),
+        (route) => false,
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == "requires-recent-login") {
@@ -191,151 +189,224 @@ class _ProfileScreenState extends State<ProfileScreen> {
             : Consumer<ProfileProvider>(
                 builder: (BuildContext context, value, Widget? child) {
                   return ListView(
+                    padding: EdgeInsets.all(16),
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 30),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: ClipOval(
-                              child: Container(
-                                height: 125,
-                                width: 125,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    strokeAlign: BorderSide.strokeAlignOutside,
-                                    style: BorderStyle.solid,
-                                    width: 2,
-                                  ),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      "assets/images/Ellipse.png",
-                                    ),
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 60),
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                        size: 60,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                          CircleAvatar(
+                            backgroundImage: AssetImage(
+                              "assets/images/Ellipse.png",
                             ),
+                            radius: 40,
                           ),
                           SizedBox(height: 20),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "${value.userModel?.name}".toUpperCase(),
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white,
-                              ),
+                          Text(
+                            "${value.userInfo?.name}".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
                             ),
                           ),
 
                           SizedBox(height: 10),
 
-                          Align(
-                            alignment: Alignment.topCenter,
+                          Text(
+                            (value.userModel?.email ?? "Unknown"),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Divider(
+                            color: kwhite.withValues(alpha: 0.5),
+                            endIndent: 8,
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             child: Text(
-                              "Fitness enthusiastic ",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
+                              "Personal Information".toUpperCase(),
+                              style: TextStyle(color: kwhite),
+                            ),
+                          ),
+                          _reusableProfileTile(
+                            Icons.person,
+                            "Name",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: value.userInfo?.name ?? "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
                               ),
                             ),
                           ),
-                          SizedBox(height: 30),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: GlassyTextField(
-                              "Name",
-                              (value) {
-                                name = value;
-                              },
-                              60,
-                              null,
+
+                          _reusableProfileTile(
+                            Icons.calendar_today,
+                            "Age",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+
+                              cursorColor: kred,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.age.toString() ?? "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: GlassyTextField(
-                              "Email",
-                              (value) {
-                                setState(() {
-                                  email = value;
-                                });
-                              },
-                              60,
-                              null,
+                          _reusableProfileTile(
+                            CupertinoIcons.person_fill,
+                            "Gender",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.gender.toString() ??
+                                    "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: GlassyTextField(
-                              "Phone +964 07",
-                              (value) {
-                                setState(() {
-                                  phone = value;
-                                });
-                              },
-                              60,
-                              null,
+
+                          _reusableProfileTile(
+                            Icons.fitness_center,
+                            "Weight",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.weight.toString() ??
+                                    "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(height: 60),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: buildButtom(
-                                    ontap: () {},
-                                    text: "Save Changes",
-                                    isTrue: false,
+                          _reusableProfileTile(
+                            Icons.height,
+                            "Height",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.height.toString() ??
+                                    "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Divider(
+                            color: kwhite.withValues(alpha: 0.2),
+                            endIndent: 10,
+                            indent: 10,
+                          ),
+                          _reusableProfileTile(
+                            Icons.track_changes_rounded,
+                            "Goal",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: value.userInfo?.goal ?? "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          _reusableProfileTile(
+                            Icons.accessibility_new_outlined,
+                            "Body Foucs",
+                            () {},
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: SizedBox(
+                                width: 130,
+                                child: TextField(
+                                  textAlign: TextAlign.right,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText:
+                                        value.userInfo?.bodyFoucs.toString() ??
+                                        "Unknown",
+                                    hintStyle: TextStyle(
+                                      color: kwhite,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: buildButtom(
-                                    ontap: () {
-                                      showdLogOutAlert(
-                                        context: context,
-                                        title: "Deleting your Account",
-                                        message:
-                                            "Please be carefull you are going to delete your account . after you click on Red  Button you won't be able to login to that account again .",
-                                        onLogoutPressed: () {
-                                          _deleteUser();
-                                        },
-                                      );
-                                    },
-                                    text: "Delete account",
-                                    isTrue: false,
-                                    color: kred,
-                                  ),
+                          _reusableProfileTile(
+                            Icons.flag_circle_rounded,
+                            "Fitness Level",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.fitnessLevel ?? "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
                                 ),
-                              ],
+                              ),
+                            ),
+                          ),
+                          _reusableProfileTile(
+                            Icons.fitness_center_rounded,
+                            "Workouts per Week",
+                            () {},
+                            TextField(
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText:
+                                    value.userInfo?.workoutsPerWeek
+                                        .toString() ??
+                                    "Unknown",
+                                hintStyle: TextStyle(
+                                  color: kwhite,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -347,4 +418,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+  ListTile _reusableProfileTile(
+    icon,
+    title,
+    VoidCallback ontap,
+    dynamic widget,
+  ) {
+    return ListTile(
+      trailing: SizedBox(width: 130, child: widget),
+      onTap: ontap,
+      leading: SizedBox(
+        height: 30,
+        width: 30,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: DecoratedBox(
+            decoration: BoxDecoration(color: kwhite.withValues(alpha: 0.1)),
+            child: Icon(icon, size: 22),
+          ),
+        ),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: kwhite,
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
+        ),
+      ),
+    );
+  }
 }
+
+
+
+// Padding(
+//                             padding: EdgeInsets.symmetric(horizontal: 25),
+//                             child: Row(
+//                               children: [
+//                                 Expanded(
+//                                   child: buildButtom(
+//                                     ontap: () {
+//                                       showdLogOutAlert(
+//                                         context: context,
+//                                         title: "Deleting your Account",
+//                                         message:
+//                                             "Please be carefull you are going to delete your account . after you click on Red  Button you won't be able to login to that account again .",
+//                                         onLogoutPressed: () {
+//                                           _deleteUser();
+//                                         },
+//                                       );
+//                                     },
+//                                     text: "Delete account",
+//                                     isTrue: false,
+//                                     color: kred,
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),

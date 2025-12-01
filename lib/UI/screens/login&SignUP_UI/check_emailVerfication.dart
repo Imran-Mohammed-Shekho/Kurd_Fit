@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
+import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
@@ -57,10 +58,7 @@ class CheckEmailVerification extends StatelessWidget {
               message: 'User account could not be created',
             );
           }
-          showSnackbarMessage(
-            "Email verified succsessfully",
-            const Color.fromRGBO(56, 142, 60, 1),
-          );
+
           final data = UserModel(
             emailController.text.trim(),
             nameController.text.trim(),
@@ -81,10 +79,15 @@ class CheckEmailVerification extends StatelessWidget {
           );
           await _usersCollection.doc(user.uid).set(data.toSnap());
 
-          await Future.delayed(const Duration(milliseconds: 500));
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
           if (result == true) {
+            await Future.delayed(const Duration(milliseconds: 500));
+
+            showSnackbarMessage(
+              "Email verified succsessfully",
+              const Color.fromRGBO(56, 142, 60, 1),
+            );
             Navigator.pushReplacement(
               // ignore: use_build_context_synchronously
               context,
@@ -93,7 +96,7 @@ class CheckEmailVerification extends StatelessWidget {
               ),
             );
           } else {
-            return;
+            showSnackbarMessage("failed to save user info ", kred);
           }
         } else {
           Navigator.pop(context);
