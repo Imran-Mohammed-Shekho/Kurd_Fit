@@ -5,7 +5,7 @@ import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
 
 class buildProgressTracker extends StatelessWidget {
-  const buildProgressTracker({required this.size});
+  const buildProgressTracker({super.key, required this.size});
 
   final Size size;
 

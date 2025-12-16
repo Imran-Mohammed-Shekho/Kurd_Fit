@@ -4,7 +4,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 class buildQuestionText extends StatelessWidget {
   final String text;
 
-  const buildQuestionText({required this.text});
+  const buildQuestionText({super.key, required this.text});
   @override
   Widget build(BuildContext context) {
     return Center(

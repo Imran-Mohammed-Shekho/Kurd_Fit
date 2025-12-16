@@ -9,6 +9,7 @@ class buildListOptions extends StatelessWidget {
   final bool isSelected;
 
   const buildListOptions({
+    super.key,
     required this.title,
     required this.iconData,
     this.onselect,

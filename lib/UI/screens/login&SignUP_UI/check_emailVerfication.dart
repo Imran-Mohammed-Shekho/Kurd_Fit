@@ -26,7 +26,7 @@ class CheckEmailVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final prov = context.watch<LandingscreenProvider>();
-    final _usersCollection = FirebaseFirestore.instance.collection("users");
+    final usersCollection = FirebaseFirestore.instance.collection("users");
     final auth = FirebaseAuth.instance;
 
     void showSnackbarMessage(String message, Color color) {
@@ -77,7 +77,7 @@ class CheckEmailVerification extends StatelessWidget {
             weight: prov.weight,
             activityLevel: prov.activityLevel,
           );
-          await _usersCollection.doc(user.uid).set(data.toSnap());
+          await usersCollection.doc(user.uid).set(data.toSnap());
 
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
