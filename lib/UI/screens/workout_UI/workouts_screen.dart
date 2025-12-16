@@ -45,115 +45,111 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Text(
-            "Body Parts",
-            style: TextStyle(
-              fontSize: 22,
-              // fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
+        title: Text(
+          "Body Parts",
+          style: TextStyle(
+            fontSize: 22,
+            // fontWeight: FontWeight.w900,
+            color: Colors.white,
           ),
         ),
-        body: Consumer<MangeWorkoutsPorovider>(
-          builder: (context, value, child) {
-            if (value.isloadBodyParts) {
-              return Center(child: reusableProgressIndicator());
-            } else if (value.BodyParts.isEmpty) {
-              return Center(child: Text("no data found "));
-            } else {
-              return Column(
-                children: [
-                  SizedBox(height: 10),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: value.BodyParts.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 10,
-                          ),
-                          child: ClipRRect(
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                              child: SizedBox(
-                                height: 80,
-                                width: double.infinity,
+      ),
+      body: Consumer<MangeWorkoutsPorovider>(
+        builder: (context, value, child) {
+          if (value.isloadBodyParts) {
+            return Center(child: reusableProgressIndicator());
+          } else if (value.BodyParts.isEmpty) {
+            return Center(child: Text("no data found "));
+          } else {
+            return Column(
+              children: [
+                SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: value.BodyParts.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        child: ClipRRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                            child: SizedBox(
+                              height: 80,
+                              width: double.infinity,
 
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.1),
+                                  border: Border.all(
                                     color: Colors.white.withValues(alpha: 0.1),
-                                    border: Border.all(
-                                      color: Colors.white.withValues(
-                                        alpha: 0.1,
-                                      ),
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: ListTile(
-                                    onTap: () {
-                                      final workout =
-                                          Provider.of<MangeWorkoutsPorovider>(
-                                            context,
-                                            listen: false,
-                                          );
-                                      workout.ChangeSelecetedWorkout(
-                                        value.BodyParts[index]["name"],
-                                      );
-                                      workout.TargetExercises.clear();
-                                      workout.FetchTargetExercises(
-                                        workout.SelectedWorkOut,
-                                      );
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => WorkoutsShow(),
-                                        ),
-                                      );
-                                    },
-                                    title: Text(
-                                      "${workouts[index]["title"]}",
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.w900,
-                                        color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: ListTile(
+                                  onTap: () {
+                                    final workout =
+                                        Provider.of<MangeWorkoutsPorovider>(
+                                          context,
+                                          listen: false,
+                                        );
+                                    workout.ChangeSelecetedWorkout(
+                                      value.BodyParts[index]["name"],
+                                    );
+                                    workout.TargetExercises.clear();
+                                    workout.FetchTargetExercises(
+                                      workout.SelectedWorkOut,
+                                    );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WorkoutsShow(),
                                       ),
-                                    ),
-                                    subtitle: Text(
-                                      "20x",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.white54,
-                                      ),
-                                    ),
-                                    leading: Image.asset(
-                                      "${workouts[index]["image"]}",
-                                      height: 100,
-                                    ),
-                                    trailing: Icon(
-                                      Icons.arrow_forward_ios,
+                                    );
+                                  },
+                                  title: Text(
+                                    "${workouts[index]["title"]}",
+                                    style: TextStyle(
+                                      // fontWeight: FontWeight.w900,
                                       color: Colors.white,
                                     ),
+                                  ),
+                                  subtitle: Text(
+                                    "20x",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white54,
+                                    ),
+                                  ),
+                                  leading: Image.asset(
+                                    "${workouts[index]["image"]}",
+                                    height: 100,
+                                  ),
+                                  trailing: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
+                ),
 
-                  SizedBox(height: 15),
-                ],
-              );
-            }
-          },
-        ),
+                SizedBox(height: 15),
+              ],
+            );
+          }
+        },
       ),
     );
   }

@@ -18,10 +18,14 @@ class Workoutplangenerator extends StatefulWidget {
   State<Workoutplangenerator> createState() => _WorkoutplangeneratorState();
 }
 
-class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
+class _WorkoutplangeneratorState extends State<Workoutplangenerator>
+    with SingleTickerProviderStateMixin {
   final _ageController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
+
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   String Goal = "fat_loss";
   String Gender = "female";
@@ -39,6 +43,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red,
+
           content: Text(
             "fill all faileds ",
             style: TextStyle(color: Colors.white),
@@ -98,301 +103,282 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: ListView(
-          padding: EdgeInsets.all(16),
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: const Color(0xFFFFFFFF),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "🔥 AI Workout Generator ",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                ),
-              ),
-            ),
-            Form(
-              child: Column(
-                children: [
-                  _buildText("Age"),
-                  _buildTextFormfields(
-                    controller: _ageController,
-                    hintText: "age",
-                  ),
-                  _buildText("Height/Cm"),
-                  _buildTextFormfields(
-                    controller: _heightController,
-                    hintText: "Height in cm",
-                  ),
-                  _buildText("Weight/Kg"),
-                  _buildTextFormfields(
-                    controller: _weightController,
-                    hintText: "Weight in Kg",
-                  ),
-
-                  _buildText("Goal"),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: Colors.white,
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: Goal,
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "fat_loss",
-                                    child: Text("fat loss".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "muscle gain",
-                                    child: Text("muscle gain".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "strength",
-                                    child: Text("strength".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "general fitness",
-                                    child: Text(
-                                      "general fitness".toUpperCase(),
-                                    ),
-                                  ),
-                                ],
-                                onChanged: (value) =>
-                                    setState(() => Goal = value.toString()),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  _buildText("Gender"),
-
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: kwhite,
-                                ),
-
-                                style: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: Gender,
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "male",
-                                    child: Text("male".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "female",
-                                    child: Text("female".toUpperCase()),
-                                  ),
-                                ],
-                                onChanged: (value) =>
-                                    setState(() => Gender = value.toString()),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  _buildText("Experience"),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: const Color(0xFFFFFFFF),
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: experience,
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "beginner",
-                                    child: Text("beginner".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "intermediate",
-                                    child: Text("intermediate".toUpperCase()),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "advanced",
-                                    child: Text("advanced".toUpperCase()),
-                                  ),
-                                ],
-                                onChanged: (value) => setState(
-                                  () => experience = value.toString(),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  _buildText("How many days do you prefer?"),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: daysPerWeek,
-                                items: ["3", "4", "5", "6"]
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text("$e days"),
-                                      ),
-                                    )
-                                    .toList(),
-
-                                onChanged: (value) =>
-                                    setState(() => daysPerWeek = value!),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 20),
-            buildButtom(
-              ontap: () {
-                generatePlan();
-              },
-              text: "Generate Plan",
-              isTrue: false,
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        title: Text(
+          "🔥 AI Workout Generator ",
+          style: TextStyle(
+            fontSize: 20,
+            color: const Color.fromARGB(255, 255, 255, 255),
+          ),
         ),
+        centerTitle: true,
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
+          Form(
+            child: Column(
+              children: [
+                _buildText("Age"),
+                _buildTextFormfields(
+                  controller: _ageController,
+                  hintText: "age",
+                ),
+                _buildText("Height/Cm"),
+                _buildTextFormfields(
+                  controller: _heightController,
+                  hintText: "Height in cm",
+                ),
+                _buildText("Weight/Kg"),
+                _buildTextFormfields(
+                  controller: _weightController,
+                  hintText: "Weight in Kg",
+                ),
+
+                _buildText("Goal"),
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: Goal,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "fat_loss",
+                                  child: Text("fat loss".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "muscle gain",
+                                  child: Text("muscle gain".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "strength",
+                                  child: Text("strength".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "general fitness",
+                                  child: Text("general fitness".toUpperCase()),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => Goal = value.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildText("Gender"),
+
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: kwhite,
+                              ),
+
+                              style: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: Gender,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "male",
+                                  child: Text("male".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "female",
+                                  child: Text("female".toUpperCase()),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => Gender = value.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildText("Experience"),
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: const Color(0xFFFFFFFF),
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: experience,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "beginner",
+                                  child: Text("beginner".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "intermediate",
+                                  child: Text("intermediate".toUpperCase()),
+                                ),
+                                DropdownMenuItem(
+                                  value: "advanced",
+                                  child: Text("advanced".toUpperCase()),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => experience = value.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildText("How many days do you prefer?"),
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: daysPerWeek,
+                              items: ["3", "4", "5", "6"]
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text("$e days"),
+                                    ),
+                                  )
+                                  .toList(),
+
+                              onChanged: (value) =>
+                                  setState(() => daysPerWeek = value!),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20),
+          buildButtom(
+            ontap: () {
+              generatePlan();
+            },
+            text: "Generate Plan",
+            isTrue: false,
+          ),
+        ],
       ),
     );
   }

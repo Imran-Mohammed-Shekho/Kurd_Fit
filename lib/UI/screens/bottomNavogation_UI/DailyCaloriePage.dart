@@ -72,240 +72,223 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: ListView(
-          padding: EdgeInsets.all(16),
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: const Color(0xFFFFFFFF),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "🔥 Daily Calorie Needed Calculator ",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                ),
-              ),
-            ),
-            Form(
-              child: Column(
-                children: [
-                  _buildText("Age"),
-                  buildTextFormfields(
-                    controller: _ageController,
-                    hintText: "age",
-                  ),
-                  _buildText("Height/Cm"),
-                  buildTextFormfields(
-                    controller: _heightController,
-                    hintText: "Height in cm",
-                  ),
-                  _buildText("Weight/Kg"),
-                  buildTextFormfields(
-                    controller: _weightController,
-                    hintText: "Weight in Kg",
-                  ),
-
-                  _buildText("Goal"),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: Colors.white,
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: Goal,
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "fat_loss",
-                                    child: Text("fat_loss"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "muscle_gain",
-                                    child: Text("muscle_gain"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "strength",
-                                    child: Text("strength"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "general_fitness",
-                                    child: Text("general_fitness"),
-                                  ),
-                                ],
-                                onChanged: (value) =>
-                                    setState(() => Goal = value.toString()),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  _buildText("Gender"),
-
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: kwhite,
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: Gender,
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "male",
-                                    child: Text("male"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "female",
-                                    child: Text("female"),
-                                  ),
-                                ],
-                                onChanged: (value) =>
-                                    setState(() => Gender = value.toString()),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  _buildText("How many days do you prefer?"),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kwhite.withValues(alpha: 0.06),
-                            border: Border.all(
-                              color: kwhite.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                barrierDismissible: true,
-                                dropdownColor: popupDropdownColor,
-                                borderRadius: BorderRadius.circular(16),
-                                icon: Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 40,
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                ),
-
-                                elevation: 15,
-                                style: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                                value: daysPerWeek,
-                                items: ["3", "4", "5", "6"]
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text("$e days"),
-                                      ),
-                                    )
-                                    .toList(),
-
-                                onChanged: (value) =>
-                                    setState(() => daysPerWeek = value!),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 20),
-            buildButtom(
-              ontap: () async {
-                calorieDailyNeededGenerator();
-              },
-              text: "Calculate Daily Calorie",
-              isTrue: false,
-            ),
-          ],
+        title: Text(
+          "🔥 Daily Calorie Needed Calculator ",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
         ),
+        centerTitle: true,
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
+          Form(
+            child: Column(
+              children: [
+                _buildText("Age"),
+                buildTextFormfields(
+                  controller: _ageController,
+                  hintText: "age",
+                ),
+                _buildText("Height/Cm"),
+                buildTextFormfields(
+                  controller: _heightController,
+                  hintText: "Height in cm",
+                ),
+                _buildText("Weight/Kg"),
+                buildTextFormfields(
+                  controller: _weightController,
+                  hintText: "Weight in Kg",
+                ),
+
+                _buildText("Goal"),
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: Goal,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "fat_loss",
+                                  child: Text("fat_loss"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "muscle_gain",
+                                  child: Text("muscle_gain"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "strength",
+                                  child: Text("strength"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "general_fitness",
+                                  child: Text("general_fitness"),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => Goal = value.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildText("Gender"),
+
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: kwhite,
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: Gender,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "male",
+                                  child: Text("male"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "female",
+                                  child: Text("female"),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => Gender = value.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                _buildText("How many days do you prefer?"),
+                SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: kwhite.withValues(alpha: 0.06),
+                          border: Border.all(
+                            color: kwhite.withValues(alpha: 0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              barrierDismissible: true,
+                              dropdownColor: popupDropdownColor,
+                              borderRadius: BorderRadius.circular(16),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                              ),
+
+                              elevation: 15,
+                              style: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
+                              value: daysPerWeek,
+                              items: ["3", "4", "5", "6"]
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text("$e days"),
+                                    ),
+                                  )
+                                  .toList(),
+
+                              onChanged: (value) =>
+                                  setState(() => daysPerWeek = value!),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20),
+          buildButtom(
+            ontap: () async {
+              calorieDailyNeededGenerator();
+            },
+            text: "Calculate Daily Calorie",
+            isTrue: false,
+          ),
+        ],
       ),
     );
   }

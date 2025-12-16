@@ -46,7 +46,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
         buttonBackgroundColor: kwhite.withValues(alpha: 0.5),
         backgroundColor: color?.bottomNavigationBarBg ?? Colors.deepPurple,
         index: appState.currentindex,
-        height: 75,
+        height: 65,
         key: _key,
 
         animationDuration: Duration(milliseconds: 600),

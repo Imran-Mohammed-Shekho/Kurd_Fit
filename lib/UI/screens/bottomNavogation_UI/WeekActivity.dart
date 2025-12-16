@@ -12,7 +12,7 @@ class WeekActivity extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: ListView(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(5),
           children: [
             Align(
               alignment: Alignment.centerLeft,
@@ -63,7 +63,7 @@ class WeekActivity extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildcontainer(
                     "4",
