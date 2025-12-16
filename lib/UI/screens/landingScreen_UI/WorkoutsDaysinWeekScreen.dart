@@ -33,9 +33,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
           children: [
             SizedBox(height: 30),
 
-            buildQuestionText(
-              text: "How often would you like to \n                 workout ?",
-            ),
+            buildQuestionText(text: "How often would you like to workout ?"),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: SizedBox(

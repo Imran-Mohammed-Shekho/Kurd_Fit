@@ -32,9 +32,9 @@ class _HeightscreenState extends State<Heightscreen> {
 
             buildQuestionText(text: "How Tall are you?"),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: SizedBox(
-                height: 100,
+                height: size.height * 0.12,
                 width: size.width,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -43,23 +43,25 @@ class _HeightscreenState extends State<Heightscreen> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Column(
-                      spacing: 5,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "🧠 AI-Powered BMI Analysis ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: kwhite,
-                            fontWeight: FontWeight.w400,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        spacing: 5,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "🧠 AI-Powered BMI Analysis ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: kwhite,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Get an accurate Body Mass Index calculation with intelligent insights based on your personal data.",
-                          style: TextStyle(fontSize: 14, color: kwhite),
-                        ),
-                      ],
+                          Text(
+                            "Get an accurate Body Mass Index calculation with intelligent insights based on your personal data.",
+                            style: TextStyle(fontSize: 14, color: kwhite),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

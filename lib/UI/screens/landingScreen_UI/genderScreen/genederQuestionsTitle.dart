@@ -10,6 +10,7 @@ class buildQuestionText extends StatelessWidget {
     return Center(
       child: Text(
         text,
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: kwhite,
           fontSize: 28,

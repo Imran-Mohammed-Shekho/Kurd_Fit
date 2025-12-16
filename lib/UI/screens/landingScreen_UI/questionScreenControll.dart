@@ -20,6 +20,7 @@ class _QuestionscreencontrollState extends State<Questionscreencontroll> {
     final provider = Provider.of<LandingscreenProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Theme.of(context).colorScheme.surface,
 
         leading: IconButton(

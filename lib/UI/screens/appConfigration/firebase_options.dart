@@ -49,8 +49,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'YOUR-IOS-API-KEY',
-    appId: 'YOUR-IOS-APP-ID',
+    apiKey: 'AIzaSyAkXvhVERPd6NoDfB8tJGyqxeCRLUo6phI',
+    appId: '1:880477009342:ios:4870d1d9605cc9dbc035ef',
     messagingSenderId: '880477009342',
     projectId: 'gym-app-0',
     storageBucket: 'gym-app-0.firebasestorage.app',

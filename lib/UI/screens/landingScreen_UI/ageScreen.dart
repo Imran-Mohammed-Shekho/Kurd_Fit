@@ -42,23 +42,25 @@ class _AgescreenState extends State<Agescreen> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Column(
-                      spacing: 5,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "⚡ AI Fitness Intelligence ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: kwhite,
-                            fontWeight: FontWeight.w400,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        spacing: 5,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "⚡ AI Fitness Intelligence ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: kwhite,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Our system uses smart algorithms to understand your body data and optimize your results.",
-                          style: TextStyle(fontSize: 14, color: kwhite),
-                        ),
-                      ],
+                          Text(
+                            "Our system uses smart algorithms to understand your body data and optimize your results.",
+                            style: TextStyle(fontSize: 14, color: kwhite),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
