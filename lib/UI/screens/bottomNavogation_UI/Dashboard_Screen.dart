@@ -206,169 +206,167 @@ class _DashboardScreenState extends State<DashboardScreen> {
     String? username = Provider.of<ProfileProvider>(context, listen: true).name;
     final Themeprovider = context.watch<ThemeProvider>();
 
-    return SafeArea(
-      child: Scaffold(
-        endDrawerEnableOpenDragGesture: true,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        key: scaffoldKey,
-        endDrawer: AnimatedContainer(
-          duration: Duration(milliseconds: 800),
-          curve: Curves.easeOut,
-          transform: Matrix4.translationValues(0, 0, 0),
-          child: Drawer(child: drawer_section()),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(10),
-          child: ListView(
-            children: [
-              Row(
+    return Scaffold(
+      endDrawerEnableOpenDragGesture: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      key: scaffoldKey,
+      endDrawer: AnimatedContainer(
+        duration: Duration(milliseconds: 800),
+        curve: Curves.easeOut,
+        transform: Matrix4.translationValues(0, 0, 0),
+        child: Drawer(child: drawer_section()),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                KurdFitText(),
+                Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Themeprovider.changeTheme();
+                  },
+                  icon: Icon(
+                    Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    scaffoldKey.currentState!.openEndDrawer();
+                  },
+                  icon: Icon(Icons.menu, color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            SizedBox(
+              height: 20,
+              width: double.infinity,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: isLoading
+                    ? CircularProgressIndicator(color: Colors.amber.shade600)
+                    : GreetingUser(username: username),
+              ),
+            ),
+            SizedBox(height: 10),
+
+            _buildlabes("Your Daily progress", 16, false),
+            SizedBox(height: 10),
+
+            SizedBox(
+              height: 140,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  KurdFitText(),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      Themeprovider.changeTheme();
+                  SizedBox(),
+                  resuableCircleCounts(
+                    context,
+                    (1200),
+                    "Calories",
+                    Icons.local_fire_department,
+                  ),
+                  resuableCircleCounts(context, 74, "Min", Icons.timer),
+                  resuableCircleCounts(
+                    context,
+                    (2000),
+                    "Steps",
+                    "assets/icons/footPrint.svg",
+                  ),
+                  SizedBox(),
+                ],
+              ),
+            ),
+
+            _buildlabes("AI - Powered Tools", 20, false),
+            SizedBox(height: 10),
+
+            Center(child: isLoad ? reusableProgressIndicator() : null),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildContainers(
+                    context,
+                    () {
+                      calculateFoodPlate();
                     },
-                    icon: Icon(
-                      Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
-                    ),
+                    "assets/icons/resturant.svg",
+                    "Food Kcal \nAnalyzer With AI",
                   ),
-                  IconButton(
-                    onPressed: () {
-                      scaffoldKey.currentState!.openEndDrawer();
+                ),
+                SizedBox(width: 30),
+                Expanded(
+                  child: _buildContainers(
+                    context,
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Workoutplangenerator(),
+                        ),
+                      );
                     },
-                    icon: Icon(Icons.menu, color: Colors.white),
+                    Icons.fitness_center,
+                    "Workout Plan Generator ",
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              SizedBox(
-                height: 20,
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildContainers(
+                    context,
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CalorieNeededCalculator(),
+                        ),
+                      );
+                    },
+                    Icons.calculate,
+                    "Daily Calorie Needed Calculator",
+                  ),
+                ),
+                SizedBox(width: 30),
+                Expanded(
+                  child: _buildContainers(
+                    context,
+                    () {
+                      bmiResult(context);
+                    },
+                    Icons.calculate,
+                    "BMI Calculator",
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 10),
+
+            _buildlabes("This Week's Progress", 20, false),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
+              child: SizedBox(
+                height: 300,
                 width: double.infinity,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: isLoading
-                      ? CircularProgressIndicator(color: Colors.amber.shade600)
-                      : GreetingUser(username: username),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ActivitySection(),
                 ),
               ),
-              SizedBox(height: 10),
-
-              _buildlabes("Your Daily progress", 16, false),
-              SizedBox(height: 10),
-
-              SizedBox(
-                height: 140,
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(),
-                    resuableCircleCounts(
-                      context,
-                      (1200),
-                      "Calories",
-                      Icons.local_fire_department,
-                    ),
-                    resuableCircleCounts(context, 74, "Min", Icons.timer),
-                    resuableCircleCounts(
-                      context,
-                      (2000),
-                      "Steps",
-                      "assets/icons/footPrint.svg",
-                    ),
-                    SizedBox(),
-                  ],
-                ),
-              ),
-
-              _buildlabes("AI - Powered Tools", 20, false),
-              SizedBox(height: 10),
-
-              Center(child: isLoad ? reusableProgressIndicator() : null),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildContainers(
-                      context,
-                      () {
-                        calculateFoodPlate();
-                      },
-                      "assets/icons/resturant.svg",
-                      "Food Kcal \nAnalyzer With AI",
-                    ),
-                  ),
-                  SizedBox(width: 30),
-                  Expanded(
-                    child: _buildContainers(
-                      context,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Workoutplangenerator(),
-                          ),
-                        );
-                      },
-                      Icons.fitness_center,
-                      "Workout Plan Generator ",
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildContainers(
-                      context,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CalorieNeededCalculator(),
-                          ),
-                        );
-                      },
-                      Icons.calculate,
-                      "Daily Calorie Needed Calculator",
-                    ),
-                  ),
-                  SizedBox(width: 30),
-                  Expanded(
-                    child: _buildContainers(
-                      context,
-                      () {
-                        bmiResult(context);
-                      },
-                      Icons.calculate,
-                      "BMI Calculator",
-                    ),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 10),
-
-              _buildlabes("This Week's Progress", 20, false),
-
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
-                child: SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: ActivitySection(),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

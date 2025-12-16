@@ -15,7 +15,7 @@ class Reusableicon extends StatelessWidget {
           color: kwhite.withValues(alpha: 0.1),
           shape: BoxShape.circle,
         ),
-        child: Icon(icondata, size: 100, color: kwhite.withValues(alpha: 0.8)),
+        child: Icon(icondata, size: 70, color: kwhite.withValues(alpha: 0.8)),
       ),
     );
   }

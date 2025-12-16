@@ -122,38 +122,37 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
         ),
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: Form(
-          key: _formKey,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              _buildHeaderSection(),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            _buildHeaderSection(),
 
-              const SizedBox(height: 60),
+            const SizedBox(height: 60),
 
-              Reusableicon(icondata: Icons.fitness_center),
+            Reusableicon(icondata: Icons.fitness_center),
 
-              const SizedBox(height: 40),
+            const SizedBox(height: 40),
 
-              _buildFormFieldsSection(),
+            _buildFormFieldsSection(),
 
-              SizedBox(height: size.height * 0.059),
+            SizedBox(height: size.height * 0.059),
 
-              _buildActionSection(size),
-            ],
-          ),
+            _buildActionSection(size),
+          ],
         ),
       ),
     );

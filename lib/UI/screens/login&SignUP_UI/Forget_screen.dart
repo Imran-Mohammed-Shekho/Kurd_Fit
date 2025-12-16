@@ -76,66 +76,59 @@ class _ForgetScreenState extends State<ForgetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: Column(
-          children: [
-            SizedBox(height: 80),
-            Text(
-              "Forgot your password?",
-
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: kwhite,
-              ),
-            ),
-
-            SizedBox(height: 20),
-
-            Text(
-              textAlign: TextAlign.center,
-              """Enter your email below to receive a\npassword reset link.""",
-
-              style: TextStyle(
-                fontSize: 14,
-                color: kwhite.withValues(alpha: 0.5),
-              ),
-            ),
-            SizedBox(height: 50),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
-                child: GlassyTextField(
-                  "Email",
-                  (value) {},
-                  60,
-                  _emailController,
-                ),
-              ),
-            ),
-            Spacer(),
-            buildButtom(
-              ontap: () {
-                restPassword();
-              },
-              text: "Send",
-              isTrue: false,
-            ),
-            SizedBox(height: 50),
-          ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
         ),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Column(
+        children: [
+          SizedBox(height: 80),
+          Text(
+            "Forgot your password?",
+
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: kwhite,
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          Text(
+            textAlign: TextAlign.center,
+            """Enter your email below to receive a\npassword reset link.""",
+
+            style: TextStyle(
+              fontSize: 14,
+              color: kwhite.withValues(alpha: 0.5),
+            ),
+          ),
+          SizedBox(height: 50),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+              child: GlassyTextField("Email", (value) {}, 60, _emailController),
+            ),
+          ),
+          Spacer(),
+          buildButtom(
+            ontap: () {
+              restPassword();
+            },
+            text: "Send",
+            isTrue: false,
+          ),
+          SizedBox(height: 50),
+        ],
       ),
     );
   }

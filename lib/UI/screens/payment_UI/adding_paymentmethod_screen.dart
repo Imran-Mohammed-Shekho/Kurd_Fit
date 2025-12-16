@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym/UI/CommonWidget/reusableAppbar.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
@@ -18,11 +17,11 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: reusableAppbar(context, "adding payment method", () {
-          () {
-            Navigator.pop(context);
-          };
-        }),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          title: Text("Adding payment method", style: TextStyle(fontSize: 18)),
+          centerTitle: true,
+        ),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [

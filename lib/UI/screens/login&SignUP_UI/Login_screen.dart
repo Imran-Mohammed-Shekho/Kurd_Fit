@@ -95,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(surfaceTintColor: Colors.transparent),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Form(
         key: _formKey,
@@ -102,19 +103,6 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.zero,
 
           children: [
-            SizedBox(height: 10),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {
-                  if (Navigator.canPop(context)) {
-                    Navigator.pop(context);
-                  }
-                },
-                icon: Icon(Icons.arrow_back_ios_new, color: kwhite),
-              ),
-            ),
-            SizedBox(height: 10),
             _buildLogo(),
             SizedBox(height: 50),
 

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:gym/UI/CommonWidget/reusableAppbar.dart';
 import 'package:gym/UI/screens/appTheme/custom_colors.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/payment_UI/adding_paymentmethod_screen.dart';
@@ -21,11 +20,11 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
     final customButtonColor = Theme.of(context).extension<CustomColors>();
     return SafeArea(
       child: Scaffold(
-        appBar: reusableAppbar(context, "payment methods ", () {
-          () {
-            Navigator.pop(context);
-          };
-        }),
+        appBar: AppBar(
+          title: Text("Payment & Subscription", style: TextStyle(fontSize: 18)),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
