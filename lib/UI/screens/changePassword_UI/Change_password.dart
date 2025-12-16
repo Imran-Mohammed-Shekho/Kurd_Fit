@@ -18,7 +18,7 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  final dialog = drawer_section();
+  final dialog = DrawerSection();
   String newpassword = '';
   int strengthVaule = 0;
   bool isLoading = false;

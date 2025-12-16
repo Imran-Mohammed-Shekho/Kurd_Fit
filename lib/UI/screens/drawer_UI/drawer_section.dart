@@ -20,14 +20,14 @@ import 'package:share_plus/share_plus.dart';
 
 const languages = ["English", "Kurdish", "Arabic"];
 
-class drawer_section extends StatefulWidget {
-  const drawer_section({super.key});
+class DrawerSection extends StatefulWidget {
+  const DrawerSection({super.key});
 
   @override
-  State<drawer_section> createState() => _drawer_sectionState();
+  State<DrawerSection> createState() => _DrawerSectionState();
 }
 
-class _drawer_sectionState extends State<drawer_section> {
+class _DrawerSectionState extends State<DrawerSection> {
   bool isLoad = false;
 
   void _showMessage(String message, Color color) {

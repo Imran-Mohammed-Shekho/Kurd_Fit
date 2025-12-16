@@ -7,15 +7,13 @@ class DrawerHeaderr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DrawerHeader(
-      child: Center(
-        child: GestureDetector(
-          onTap: () => Provider.of<AppstateProvider>(
-            context,
-            listen: false,
-          ).updatePageState(3),
-          child: Icon(Icons.person, color: Colors.white, size: 100),
-        ),
+    return Center(
+      child: GestureDetector(
+        onTap: () => Provider.of<AppstateProvider>(
+          context,
+          listen: false,
+        ).updatePageState(3),
+        child: Icon(Icons.person, color: Colors.white, size: 100),
       ),
     );
   }

@@ -2,7 +2,9 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
+import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
@@ -52,109 +54,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       await auth.currentUser!.delete();
       if (!mounted) return;
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-        (route) => false,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "requires-recent-login") {
-        _showMessage(
-          "requires-recent-login",
-          const Color.fromRGBO(244, 67, 54, 1),
-        );
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            insetPadding: EdgeInsets.all(20),
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-            content: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                child: SizedBox(
-                  height: 200,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: kwhite.withOpacity(0.2),
-                      border: Border.all(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 10),
-                          Center(
-                            child: Text(
-                              "Please read the info below",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+          insetPadding: EdgeInsets.all(20),
+
+          backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+          content: ClipRRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+              child: SizedBox(
+                height: 100,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: kwhite.withOpacity(0.06),
+                    border: Border.all(color: kwhite.withValues(alpha: 0.06)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 10),
+                        Center(
+                          child: Text(
+                            "Please read the info below",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),
-                          SizedBox(height: 10),
+                        ),
+                        SizedBox(height: 10),
 
-                          Center(
-                            child: Text(
-                              "you need to login again to able delete your account ",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
+                        Center(
+                          child: Text(
+                            "you need to login again to able delete your account ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),
+                        ),
 
-                          Center(
-                            child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  const Color.fromRGBO(244, 67, 54, 1),
+                        Center(
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                const Color.fromRGBO(244, 67, 54, 1),
+                              ),
+                            ),
+                            onPressed: () async {
+                              showDialog(
+                                context: context,
+                                builder: (context) => Center(
+                                  child: CircularProgressIndicator(
+                                    backgroundColor: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              onPressed: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => Center(
-                                    child: CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                    ),
-                                  ),
-                                );
-                                await Future.delayed(Duration(seconds: 2));
-                                Navigator.pop(context);
+                              );
+                              await Future.delayed(Duration(seconds: 2));
+                              if (!mounted) return;
 
-                                if (mounted) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginScreen(),
-                                    ),
-                                  );
-                                }
-                              },
-                              child: Center(
-                                child: Text(
-                                  "Logout",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(
-                                      255,
-                                      255,
-                                      255,
-                                      1,
-                                    ),
-                                  ),
+                              Navigator.pop(context);
+
+                              if (!mounted) return;
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                                (route) => false,
+                              );
+                            },
+                            child: Center(
+                              child: Text(
+                                "Logout",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           ),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "requires-recent-login") {
+        _showMessage(
+          "requires-recent-login",
+          const Color.fromRGBO(244, 67, 54, 1),
         );
       } else {
         _showMessage(e.code, const Color.fromRGBO(244, 67, 54, 1));
@@ -408,6 +402,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(height: 20),
+                      buildButtom(
+                        ontap: () {
+                          showdLogOutAlert(
+                            context: context,
+                            title: "Warning",
+                            message:
+                                " Are you sure you want to delete your account?",
+                            onLogoutPressed: () {
+                              _deleteUser();
+                            },
+                          );
+                        },
+                        text: "delete account",
+                        isTrue: false,
+                        color: kred,
                       ),
                     ],
                   );

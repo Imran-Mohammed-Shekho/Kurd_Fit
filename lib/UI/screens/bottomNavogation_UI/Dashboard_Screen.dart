@@ -214,7 +214,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         duration: Duration(milliseconds: 800),
         curve: Curves.easeOut,
         transform: Matrix4.translationValues(0, 0, 0),
-        child: Drawer(child: drawer_section()),
+        child: Drawer(child: DrawerSection()),
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
