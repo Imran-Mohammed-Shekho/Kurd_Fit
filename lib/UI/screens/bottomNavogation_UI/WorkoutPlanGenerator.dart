@@ -107,7 +107,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         title: Text(
-          "🔥 AI Workout Generator ",
+          "🔥 Workout Generator ",
           style: TextStyle(
             fontSize: 20,
             color: const Color.fromARGB(255, 255, 255, 255),

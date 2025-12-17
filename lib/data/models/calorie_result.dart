@@ -1,6 +1,6 @@
 class CalorieResult {
-  final double Bmr;
-  final double Tdee;
+  final int Bmr;
+  final int Tdee;
   final int RecommendedCalories;
 
   final List<dynamic> note;

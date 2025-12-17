@@ -142,10 +142,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
         builder: (context) => AlertDialog(
           insetPadding: EdgeInsets.all(20),
-          backgroundColor: Colors.white.withValues(alpha: 0.1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
 
           content: SingleChildScrollView(
             child: Column(

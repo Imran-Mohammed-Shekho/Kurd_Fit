@@ -163,12 +163,15 @@ class _AnimatedCalorieSheetState extends State<_AnimatedCalorieSheet>
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-            color: Colors.white,
+        Expanded(
+          child: Text(
+            softWrap: true,
+            label,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+              color: Colors.white,
+            ),
           ),
         ),
         icon is IconData

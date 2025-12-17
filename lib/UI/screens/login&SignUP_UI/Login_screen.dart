@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
@@ -29,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// ------------ LOGIN ------------
   Future<void> _loginMethod() async {
+    final _auth = FirebaseAuth.instance;
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
@@ -42,9 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = false);
 
-    if (errorMessage == null) {
+    if (errorMessage == null && _auth.currentUser!.emailVerified) {
       _showSuccessSnack();
       await Future.delayed(Duration(seconds: 1));
+      if (!mounted) return;
 
       Navigator.pushReplacement(
         context,
@@ -52,11 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       _showErrorSnack(errorMessage);
+      _auth.currentUser!.delete();
     }
   }
 
   /// ------------ SNACKS ------------
-  void _showErrorSnack(String message) {
+  void _showErrorSnack(message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.red,

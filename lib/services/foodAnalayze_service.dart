@@ -24,7 +24,7 @@ class FoodAnalyzeService {
     changeloding(true);
     // Null check for imagefile
     if (imagefile == null) {
-      debugPrint("No image file provided");
+      debugPrint("the uploaded image has no data ");
       return null;
     }
 
@@ -34,7 +34,10 @@ class FoodAnalyzeService {
       queryParameters: {"key": imageBbkey, "expiration": 3600.toString()},
     );
 
-    final request = http.MultipartRequest("POST", uri); // Fixed: uppercase POST
+    final http.MultipartRequest request = http.MultipartRequest(
+      "POST",
+      uri,
+    ); // Fixed: uppercase POST
 
     request.files.add(
       http.MultipartFile.fromBytes(
@@ -94,7 +97,7 @@ class FoodAnalyzeService {
     );
 
     if (imageUrl == null) {
-      debugPrint("Image upload failed");
+      debugPrint("can't create image url");
       return null; // Fixed: added return
     }
 

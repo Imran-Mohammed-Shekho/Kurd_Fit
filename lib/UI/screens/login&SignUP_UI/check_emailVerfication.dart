@@ -43,11 +43,12 @@ class CheckEmailVerification extends StatelessWidget {
     Future<void> verifiyEmailAndLoginUser() async {
       try {
         await auth.currentUser!.reload();
+        if (!context.mounted) return;
         showDialog(
           context: context,
           builder: (context) => Center(child: reusableProgressIndicator()),
         );
-        await Future.delayed(Duration(seconds: 3));
+        await Future.delayed(Duration(seconds: 1));
 
         final user = userCreditional.user;
 
@@ -82,7 +83,7 @@ class CheckEmailVerification extends StatelessWidget {
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
           if (result == true) {
-            await Future.delayed(const Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 200));
 
             showSnackbarMessage(
               "Email verified succsessfully",
@@ -99,6 +100,7 @@ class CheckEmailVerification extends StatelessWidget {
             showSnackbarMessage("failed to save user info ", kred);
           }
         } else {
+          if (!context.mounted) return;
           Navigator.pop(context);
           showSnackbarMessage(
             "Please Verify your email and Try again!",
@@ -153,6 +155,13 @@ class CheckEmailVerification extends StatelessWidget {
             SizedBox(height: 20),
             GestureDetector(
               onTap: () async {
+                final user = FirebaseAuth.instance;
+
+                if (user.currentUser == null ||
+                    !user.currentUser!.emailVerified) {
+                  await user.currentUser!.delete();
+                }
+                if (!context.mounted) return;
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignupScreen()),
