@@ -173,258 +173,256 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: isLoad
-            ? Center(child: CircularProgressIndicator())
-            : Consumer<ProfileProvider>(
-                builder: (BuildContext context, value, Widget? child) {
-                  return ListView(
-                    padding: EdgeInsets.all(16),
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: AssetImage(
-                              "assets/images/Ellipse.png",
-                            ),
-                            radius: 40,
+    return Scaffold(
+      appBar: AppBar(title: Text("Profile")),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: isLoad
+          ? Center(child: CircularProgressIndicator())
+          : Consumer<ProfileProvider>(
+              builder: (BuildContext context, value, Widget? child) {
+                return ListView(
+                  padding: EdgeInsets.all(16),
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage(
+                            "assets/images/Ellipse.png",
                           ),
-                          SizedBox(height: 20),
-                          Text(
-                            "${value.userInfo?.name}".toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
+                          radius: 40,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          "${value.userInfo?.name}".toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
                           ),
+                        ),
 
-                          SizedBox(height: 10),
+                        SizedBox(height: 10),
 
-                          Text(
-                            (value.userModel?.email ?? "Unknown"),
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white.withValues(alpha: 0.8),
-                            ),
+                        Text(
+                          (value.userModel?.email ?? "Unknown"),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white.withValues(alpha: 0.8),
                           ),
-                          SizedBox(height: 10),
-                          Divider(
-                            color: kwhite.withValues(alpha: 0.5),
-                            endIndent: 8,
-                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(
+                          color: kwhite.withValues(alpha: 0.5),
+                          endIndent: 8,
+                        ),
 
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Text(
-                              "Personal Information".toUpperCase(),
-                              style: TextStyle(color: kwhite),
-                            ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            "Personal Information".toUpperCase(),
+                            style: TextStyle(color: kwhite),
                           ),
-                          _reusableProfileTile(
-                            Icons.person,
-                            "Name",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
+                        ),
+                        _reusableProfileTile(
+                          Icons.person,
+                          "Name",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
 
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: value.userInfo?.name ?? "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: value.userInfo?.name ?? "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
+                        ),
 
-                          _reusableProfileTile(
-                            Icons.calendar_today,
-                            "Age",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
+                        _reusableProfileTile(
+                          Icons.calendar_today,
+                          "Age",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
 
-                              cursorColor: kred,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.age.toString() ?? "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                            cursorColor: kred,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.age.toString() ?? "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
-                          _reusableProfileTile(
-                            CupertinoIcons.person_fill,
-                            "Gender",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
+                        ),
+                        _reusableProfileTile(
+                          CupertinoIcons.person_fill,
+                          "Gender",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
 
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.gender.toString() ??
-                                    "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.gender.toString() ??
+                                  "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
+                        ),
 
-                          _reusableProfileTile(
-                            Icons.fitness_center,
-                            "Weight",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
+                        _reusableProfileTile(
+                          Icons.fitness_center,
+                          "Weight",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
 
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.weight.toString() ??
-                                    "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.weight.toString() ??
+                                  "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
-                          _reusableProfileTile(
-                            Icons.height,
-                            "Height",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.height.toString() ??
-                                    "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                        ),
+                        _reusableProfileTile(
+                          Icons.height,
+                          "Height",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.height.toString() ??
+                                  "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
+                        ),
 
-                          Divider(
-                            color: kwhite.withValues(alpha: 0.2),
-                            endIndent: 10,
-                            indent: 10,
-                          ),
-                          _reusableProfileTile(
-                            Icons.track_changes_rounded,
-                            "Goal",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: value.userInfo?.goal ?? "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                        Divider(
+                          color: kwhite.withValues(alpha: 0.2),
+                          endIndent: 10,
+                          indent: 10,
+                        ),
+                        _reusableProfileTile(
+                          Icons.track_changes_rounded,
+                          "Goal",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: value.userInfo?.goal ?? "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
+                        ),
 
-                          _reusableProfileTile(
-                            Icons.accessibility_new_outlined,
-                            "Body Foucs",
-                            () {},
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: SizedBox(
-                                width: 130,
-                                child: TextField(
-                                  textAlign: TextAlign.right,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:
-                                        value.userInfo?.bodyFoucs.toString() ??
-                                        "Unknown",
-                                    hintStyle: TextStyle(
-                                      color: kwhite,
-                                      fontWeight: FontWeight.w300,
-                                    ),
+                        _reusableProfileTile(
+                          Icons.accessibility_new_outlined,
+                          "Body Foucs",
+                          () {},
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: SizedBox(
+                              width: 130,
+                              child: TextField(
+                                textAlign: TextAlign.right,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText:
+                                      value.userInfo?.bodyFoucs.toString() ??
+                                      "Unknown",
+                                  hintStyle: TextStyle(
+                                    color: kwhite,
+                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          _reusableProfileTile(
-                            Icons.flag_circle_rounded,
-                            "Fitness Level",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.fitnessLevel ?? "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                        ),
+                        _reusableProfileTile(
+                          Icons.flag_circle_rounded,
+                          "Fitness Level",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.fitnessLevel ?? "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
-                          _reusableProfileTile(
-                            Icons.fitness_center_rounded,
-                            "Workouts per Week",
-                            () {},
-                            TextField(
-                              textAlign: TextAlign.right,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText:
-                                    value.userInfo?.workoutsPerWeek
-                                        .toString() ??
-                                    "Unknown",
-                                hintStyle: TextStyle(
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                        ),
+                        _reusableProfileTile(
+                          Icons.fitness_center_rounded,
+                          "Workouts per Week",
+                          () {},
+                          TextField(
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText:
+                                  value.userInfo?.workoutsPerWeek.toString() ??
+                                  "Unknown",
+                              hintStyle: TextStyle(
+                                color: kwhite,
+                                fontWeight: FontWeight.w300,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      buildButtom(
-                        ontap: () {
-                          showdLogOutAlert(
-                            context: context,
-                            title: "Warning",
-                            message:
-                                " Are you sure you want to delete your account?",
-                            onLogoutPressed: () {
-                              _deleteUser();
-                            },
-                          );
-                        },
-                        text: "delete account",
-                        isTrue: false,
-                        color: kred,
-                      ),
-                    ],
-                  );
-                },
-              ),
-      ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    buildButtom(
+                      ontap: () {
+                        showdLogOutAlert(
+                          context: context,
+                          title: "Warning",
+                          message:
+                              " Are you sure you want to delete your account?",
+                          onLogoutPressed: () {
+                            _deleteUser();
+                          },
+                        );
+                      },
+                      text: "delete account",
+                      isTrue: false,
+                      color: kred,
+                    ),
+                  ],
+                );
+              },
+            ),
     );
   }
 
