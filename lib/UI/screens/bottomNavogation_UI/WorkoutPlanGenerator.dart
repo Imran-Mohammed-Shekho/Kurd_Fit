@@ -24,8 +24,8 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
 
-  late AnimationController _controller;
-  late Animation<double> _animation;
+  // late AnimationController _controller;
+  // late Animation<double> _animation;
 
   String Goal = "fat_loss";
   String Gender = "female";

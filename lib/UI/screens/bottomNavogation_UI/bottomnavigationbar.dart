@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/Dashboard_Screen.dart';
@@ -25,7 +28,80 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     AppShop(),
     ProfileScreen(),
   ];
+  bool _offlineshown = false;
+  bool _onlineshown = false;
+
   List<String> lables = ["Dashboard", "Workouts", "Gym Shop", "Profile"];
+  late Timer _timer;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+      final connected = await hasinternet();
+      if (!mounted) return;
+      if (!connected && !_offlineshown) {
+        _offlineshown = true;
+        _onlineshown = false;
+        _matrialBannerOffline();
+      }
+      if (connected && _offlineshown && !_onlineshown && mounted) {
+        _onlineshown = true;
+        _offlineshown = false;
+        ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+
+        _matrialBannerOnline();
+      }
+    });
+  }
+
+  Future<bool> hasinternet() async {
+    try {
+      final result = await InternetAddress.lookup("google.com");
+      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  void _matrialBannerOffline() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        backgroundColor: kred,
+        content: Row(
+          children: [
+            Icon(Icons.wifi_off, color: kwhite),
+            Text("No intenet connection", style: TextStyle(color: kwhite)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _matrialBannerOnline() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.green,
+        content: Row(
+          children: [
+            Icon(Icons.check_circle, color: kwhite),
+            Text("Connection Back", style: TextStyle(color: kwhite)),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +117,6 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
 
     return Scaffold(
       body: pages[appState.currentindex],
-
       bottomNavigationBar: CurvedNavigationBar(
         buttonBackgroundColor: kwhite.withValues(alpha: 0.5),
         backgroundColor: color?.bottomNavigationBarBg ?? Colors.deepPurple,
