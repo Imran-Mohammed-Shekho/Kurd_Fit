@@ -13,6 +13,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
+import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
@@ -277,14 +278,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   resuableCircleCounts(
                     context,
                     (1200),
-                    "Calories",
+                    AppLocalizations.of(context).calorie,
                     Icons.local_fire_department,
                   ),
-                  resuableCircleCounts(context, 74, "Min", Icons.timer),
+                  resuableCircleCounts(
+                    context,
+                    74,
+                    AppLocalizations.of(context).min,
+                    Icons.timer,
+                  ),
                   resuableCircleCounts(
                     context,
                     (2000),
-                    "Steps",
+                    AppLocalizations.of(context).steps,
                     "assets/icons/footPrint.svg",
                   ),
                   SizedBox(),

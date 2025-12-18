@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym/l10n/app_localizations.dart';
 
 const rapidKey = '10d6b90ef6msh134fca0010d37dfp1a46d9jsn553d2c054522';
 const imageBbKey = 'b842897ab573fc9973f7e73e7b4460f6';
@@ -18,8 +19,9 @@ class KurdFitText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Text(
-      "Kurd  Fit",
+      l10n.appName,
       style: GoogleFonts.pacifico(
         color: Colors.white,
         fontSize: 34,
