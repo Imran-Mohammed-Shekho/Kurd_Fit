@@ -72,7 +72,11 @@ class BmiResultScreen extends StatelessWidget {
                       Text(
                         resultText.toUpperCase(),
                         style: TextStyle(
-                          color: const Color.fromARGB(255, 4, 236, 12),
+                          color: (resultText == "Normal"
+                              ? const Color.fromARGB(255, 4, 236, 12)
+                              : resultText == "Overweight"
+                              ? const Color.fromARGB(255, 255, 41, 26)
+                              : const Color.fromARGB(255, 255, 41, 26)),
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),

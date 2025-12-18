@@ -117,13 +117,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  // Future<bool> hasInternet() async {
+  //   final result = await Connectivity().checkConnectivity();
+  //   return result != ConnectivityResult.none;
+  // }
+
   Future calculateFoodPlate() async {
     final service = FoodAnalyzeService(
       changeloding: (value) => setState(() {
         isLoad = value;
       }),
     );
-
+    // if (!connected) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       duration: Duration(seconds: 2),
+    //       content: Text("internet connection failed "),
+    //       backgroundColor: kred,
+    //     ),
+    //   );
+    //   return;
+    // }
+    ;
     final result = await service.analyzeFoodPlate(
       rapidApiKey: rapidKey,
       imageBapiKey: imageBbKey,
