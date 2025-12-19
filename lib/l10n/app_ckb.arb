@@ -4,9 +4,129 @@
     "calorie":"کالۆری",
     "min":"خولەک",
     "steps":"هنگاو",
-    "your":"هی تۆ ",
-    "all":"aall",
-    "x":"x",
-    "t":"k",
-    "j":"m"
+  "password": "وشەی نهێنی",
+  "logout": "چوونەدەرەوە",
+  "goodEvening":"ئێوارە باش",
+  "goodMorning":"بەیانیت باش",
+  "yourDailyprogress":"ئەرکی ڕۆژانەت",
+  "goodAfternoon"
+  :"نیوەڕۆت باش",
+  "foodKcalAnalyzerWithAI":"هەژمار کردنی کالۆری خۆراک لە رگای زیرەکی دەست کرد ",
+  "cancel": "پاشگەزبوونەوە",
+  "passwordChanged": "وشەی نهێنی گۆڕدرا",
+
+  "startWorkout": "دەستپێکردنی ڕاهێنان",
+  "nutritionCalculator": "ژمێرەری خۆراک",
+
+  "fillNutritionDetails": "زانیارییەکان پڕبکەوە بۆ وەرگرتنی\nپلانی خۆراکی ڕۆژانەت",
+
+  "age": "تەمەن",
+  "gender": "ڕەگەز",
+  "weight": "کێش",
+  "height": "باڵا",
+  "calculate": "ژمێردن",
+  "yourResult": "ئەنجامەکەت",
+
+  "help": "یارمەتی",
+  "fillAllFields": "تکایە هەموو خانەکان پڕبکەرەوە",
+
+  "name": "ناو",
+  "email": "ئیمەیڵ",
+  "userMessage": "نامەی بەکارهێنەر",
+  "createdAt": "دروستکراوە لە",
+
+  "messageSent": "نامەکەت نێردرا!",
+  "weAreHereToHelp": "ئێمە لێرەین بۆ یارمەتیدان!",
+  "contactUs": "پرسیارت هەیە یان پێویستت بە یارمەتییە؟\nپەیوەندیمان پێوە بکە!",
+
+  "submit": "ناردن",
+  "or": "یان",
+
+  "emailVerifiedSuccessfully": "ئیمەیڵ بە سەرکەوتوویی پشتڕاستکرایەوە",
+  "accountCreatedSuccessfully": "هەژمار بە سەرکەوتوویی دروستکرا!",
+  "checkYourEmail": "سەیری ئیمەیڵەکەت بکە!",
+
+  "verificationEmailSent": "بەستەری پشتڕاستکردنەوە نێردرا بۆ ئیمەیڵەکەت",
+
+  "login": "چوونەژوورەوە",
+  "signUp": "تۆمارکردن",
+  "alreadyHaveAccount": "هەژمارت هەیە؟ چوونەژوورەوە",
+
+  "enterEmail": "ئیمەیڵ بنووسە",
+  "invalidEmail": "ئیمەیڵی هەڵە",
+  "enterPassword": "وشەی نهێنی بنووسە",
+  "forgotPassword": "وشەی نهێنیت لەبیرچووە؟",
+
+  "loggedInSuccessfully": "بە سەرکەوتوویی چوویتە ژوورەوە!",
+
+  "passwordTooShort": "وشەی نهێنی دەبێت لانیکەم ٦ پیت بێت",
+
+  "passwordResetSent": "بەستەری گەڕانەوەی وشەی نهێنی نێردرا",
+
+  "changePassword": "گۆڕینی وشەی نهێنی",
+  "currentPassword": "وشەی نهێنی ئێستا",
+  "newPassword": "وشەی نهێنی نوێ",
+  "confirmPassword": "پشتڕاستکردنەوەی وشەی نهێنی",
+
+  "passwordsDoNotMatch": "وشەی نهێنی یەکناگرنەوە",
+  "chooseStrongerPassword": "وشەی نهێنیی بەهێزتر هەڵبژێرە",
+
+  "whatIsYourGoal": "ئامانجەکەت چییە؟",
+  "gainMuscle": "گەشەکردنی ماسولکە",
+  "burnFat": "سووتاندنی چەوری",
+  "generalHealth": "تەندروستی گشتی",
+
+  "continue1": "بەردەوامبوون",
+
+  "fitnessJourneyStarts": "گەشتی تەندروستیت\nئێستا دەستپێدەکات",
+
+  "howOftenWorkout": "چەند جار دەتەوێت ڕاهێنان بکەیت؟",
+
+  "chooseFitnessLevel": "ئاستی تەندروستیت هەڵبژێرە",
+  "beginner": "سەرەتایی",
+  "intermediate": "ناوەند",
+  "advanced": "پێشکەوتوو",
+
+  "howTallAreYou": "چەند باڵایت؟",
+
+  "aiPoweredBmi": "شیکردنەوەی BMI بە هێزی AI",
+  "activity":"چالاکی",
+  "whatIsYourName": "ناوت چییە؟",
+  "enterYourName": "تکایە ناوەکەت لێرە بنووسە",
+"viewActivity":"بینینی چالاکی",
+  "whatIsYourWeight": "کێشەکەت چەندە؟",
+"thisWeekProgress":" ئەنجامی ئەم هەفتەیە",
+  "healthIssues": "کێشەکانی تەندروستی",
+  "backPain": "ئازاری پشت",
+  "kneePain": "ئازاری ئەژنۆ",
+  "shoulderPain": "ئازاری شان",
+  "noIssues": "هیچ کێشەیەک نییە",
+
+  "activityLevel": "ئاستی چالاکی",
+  "sedentary": "بێچالاکی",
+  "lightActivity": "چالاکی سووک",
+  "moderateActivity": "چالاکی مامناوەند",
+  "veryActive": "زۆر چالاک",
+  "athlete": "وەرزشوان",
+
+  "howOldAreYou": "چەند ساڵەتە؟",
+
+  "male": "نێر",
+  "female": "مێ",
+  "other": "هیتر",
+
+  "dailyCalorieCalculator": "ژمێرەری کالۆری پێویستی ڕۆژانە",
+  "bmiCalculator": "ژمێرەری BMI",
+  "workoutPlanGenerator": "دروستکەری پلانی ڕاهێنان",
+
+  "internetConnectionFailed": "هێڵی ئینتەرنێت شکستی هێنا",
+  "noInternetConnection": "هێڵی ئینتەرنێت نییە",
+  "connectionBack": "هێڵ گەڕایەوە",
+
+  "close": "داخستن",
+  "dashboard": "داشبۆرد",
+  "workouts": "ڕاهێنانەکان",
+  "profile": "پرۆفایل"
+
+
 }

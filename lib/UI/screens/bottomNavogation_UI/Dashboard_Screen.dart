@@ -215,6 +215,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10 = AppLocalizations.of(context);
     String? username = Provider.of<ProfileProvider>(context, listen: true).name;
     final Themeprovider = context.watch<ThemeProvider>();
 
@@ -265,7 +266,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             SizedBox(height: 10),
 
-            _buildlabes("Your Daily progress", 16, false),
+            _buildlabes(l10.yourDailyprogress, 16, false),
             SizedBox(height: 10),
 
             SizedBox(
@@ -278,19 +279,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   resuableCircleCounts(
                     context,
                     (1200),
-                    AppLocalizations.of(context).calorie,
+                    l10.calorie,
+
                     Icons.local_fire_department,
                   ),
-                  resuableCircleCounts(
-                    context,
-                    74,
-                    AppLocalizations.of(context).min,
-                    Icons.timer,
-                  ),
+                  resuableCircleCounts(context, 74, l10.min, Icons.timer),
                   resuableCircleCounts(
                     context,
                     (2000),
-                    AppLocalizations.of(context).steps,
+                    l10.steps,
                     "assets/icons/footPrint.svg",
                   ),
                   SizedBox(),
@@ -298,7 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
 
-            _buildlabes("AI - Powered Tools", 20, false),
+            // _buildlabes("AI - Powered Tools", 20, false),
             SizedBox(height: 10),
 
             Center(child: isLoad ? reusableProgressIndicator() : null),
@@ -311,7 +308,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       calculateFoodPlate();
                     },
                     "assets/icons/resturant.svg",
-                    "Food Kcal \nAnalyzer With AI",
+                    l10.foodKcalAnalyzerWithAI,
                   ),
                 ),
                 SizedBox(width: 30),
@@ -327,7 +324,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       );
                     },
                     Icons.fitness_center,
-                    "Workout Plan Generator ",
+                    l10.workoutPlanGenerator,
                   ),
                 ),
               ],
@@ -347,7 +344,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       );
                     },
                     Icons.calculate,
-                    "Daily Calorie Needed Calculator",
+                    l10.dailyCalorieCalculator,
                   ),
                 ),
                 SizedBox(width: 30),
@@ -358,7 +355,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       bmiResult(context);
                     },
                     Icons.calculate,
-                    "BMI Calculator",
+                    l10.bmiCalculator,
                   ),
                 ),
               ],
@@ -366,7 +363,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
             SizedBox(height: 10),
 
-            _buildlabes("This Week's Progress", 20, false),
+            _buildlabes(l10.thisWeekProgress, 20, false),
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
@@ -451,7 +448,6 @@ Widget _buildContainers(
               child: Padding(
                 padding: EdgeInsets.only(left: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(height: 10),
                     Align(

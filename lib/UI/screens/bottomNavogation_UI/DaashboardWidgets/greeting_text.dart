@@ -1,28 +1,30 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
+import 'package:gym/l10n/app_localizations.dart';
 
 // ignore: use_key_in_widget_constructors
 class GreetingUser extends StatelessWidget {
   final String username;
   const GreetingUser({required this.username, super.key});
 
-  gretingUser() {
-    final int time = DateTime.now().hour;
-
-    if (time < 12) {
-      return "Good Morning $username 👋!";
-    } else if (time < 17) {
-      return "Good Afternoon $username 😎";
-    } else {
-      return "Good Evening $username 🌙";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final l10 = AppLocalizations.of(context);
+    gretingUser() {
+      final int time = DateTime.now().hour;
+
+      if (time < 12) {
+        return " ${l10.goodMorning}$username 👋!";
+      } else if (time < 17) {
+        return "${l10.goodAfternoon} $username 😎";
+      } else {
+        return "${l10.goodEvening} $username 🌙";
+      }
+    }
+
     return AnimatedTextKit(
-      repeatForever: true,
+      totalRepeatCount: 3,
       animatedTexts: [
         TyperAnimatedText(
           gretingUser().toString().toUpperCase(),

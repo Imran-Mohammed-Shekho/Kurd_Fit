@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
+import 'package:gym/l10n/app_localizations.dart';
 import 'week_table.dart';
 
 class ActivitySection extends StatelessWidget {
@@ -8,6 +9,8 @@ class ActivitySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10 = AppLocalizations.of(context);
+
     final List<Map<String, dynamic>> days = [
       {"day": "Sat", "value": 100, "today": true},
       {"day": "Sun", "value": 130},
@@ -31,7 +34,7 @@ class ActivitySection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Activity", style: TextStyle(color: Colors.white)),
+              Text(l10.activity, style: TextStyle(color: Colors.white)),
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -41,7 +44,7 @@ class ActivitySection extends StatelessWidget {
                 },
                 hoverColor: Colors.white.withValues(alpha: 0.06),
                 child: Text(
-                  "View Activity",
+                  l10.viewActivity,
                   style: TextStyle(
                     color: Colors.white,
                     decoration: TextDecoration.underline,

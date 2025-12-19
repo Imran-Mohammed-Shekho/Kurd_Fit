@@ -14,11 +14,12 @@ import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
+import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-const languages = ["English", "Kurdish", "Arabic"];
+const languages = ["English", "Kurdish"];
 
 class DrawerSection extends StatefulWidget {
   const DrawerSection({super.key});
@@ -69,6 +70,7 @@ class _DrawerSectionState extends State<DrawerSection> {
 
   @override
   Widget build(BuildContext context) {
+    int temIndexLanguage = 0;
     final Themeprovider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).extension<CustomColors>();
 
@@ -144,6 +146,8 @@ class _DrawerSectionState extends State<DrawerSection> {
                         : Color(0xFFCE93D8),
                   ),
                   () => showCupertinoModalPopup(
+                    barrierDismissible: true,
+
                     context: context,
                     builder: (BuildContext context) {
                       return SizedBox(
@@ -157,15 +161,50 @@ class _DrawerSectionState extends State<DrawerSection> {
                             ),
                           ),
 
-                          child: CupertinoPicker(
-                            itemExtent: 35,
-                            onSelectedItemChanged: (value) {},
-                            children: List.generate(languages.length, (index) {
-                              return Text(
-                                languages[index],
-                                style: TextStyle(color: kwhite),
-                              );
-                            }),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: CupertinoPicker(
+                                  itemExtent: 35,
+
+                                  onSelectedItemChanged: (value) {
+                                    setState(() {
+                                      temIndexLanguage = value;
+                                    });
+                                  },
+                                  children: List.generate(languages.length, (
+                                    index,
+                                  ) {
+                                    return Text(
+                                      languages[index],
+                                      style: TextStyle(color: kwhite),
+                                    );
+                                  }),
+                                ),
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TextButton(
+                                  child: Text(
+                                    "Don",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: kwhite,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    final pro = Provider.of<LanguageProvider>(
+                                      context,
+                                      listen: false,
+                                    );
+
+                                    pro.changeLanguage(temIndexLanguage);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );

@@ -4,11 +4,133 @@
   "calorie":"calorie",
   "min":"Min",
   "steps":"steps",
-  "your":"your",
-  "all":"eng",
-  "x":"j",
-  "t":"kl",
-  "j":"mk"
+  "password": "Password",
+  "logout": "Logout",
+  "cancel": "Cancel",
+  "goodEvening":"Good evening",
+  "goodMorning":"Good Morning",
+  "goodAfternoon"
+  :"Good Afternoon",
+  "yourDailyprogress":"yourDailyprogress",
+  "thisWeekProgress":"This Week's Progress",
+  "passwordChanged": "Password changed",
+"foodKcalAnalyzerWithAI":"Food Kcal/nAnalyzer With AI",
+  "startWorkout": "Start workout",
+  "nutritionCalculator": "Nutrition calculator",
+  "activity":"Activity",
+  "viewActivity":"View Activity",
 
+  "fillNutritionDetails": "Fill in the details below to get your\ndaily nutrition plan",
+
+  "age": "Age",
+  "gender": "Gender",
+  "weight": "Weight",
+  "height": "Height",
+  "calculate": "Calculate",
+  "yourResult": "Your result",
+
+  "help": "Help",
+  "fillAllFields": "Please fill all fields",
+
+  "name": "Name",
+  "email": "Email",
+  "userMessage": "User message",
+  "createdAt": "Created at",
+
+  "messageSent": "Your message has been sent!",
+  "weAreHereToHelp": "We are here to help!",
+  "contactUs": "Have questions or need assistance?\nReach out to us!",
+
+  "submit": "Submit",
+  "or": "Or",
+
+  "emailVerifiedSuccessfully": "Email verified successfully",
+  "accountCreatedSuccessfully": "Account created successfully!",
+  "checkYourEmail": "Check your email!",
+
+  "verificationEmailSent": "A verification link has been sent to your email",
+
+  "login": "Login",
+  "signUp": "Sign up",
+  "alreadyHaveAccount": "Already have an account? Login",
+
+  "enterEmail": "Enter email",
+  "invalidEmail": "Invalid email",
+  "enterPassword": "Enter password",
+  "forgotPassword": "Forgot password?",
+
+  "loggedInSuccessfully": "Logged in successfully!",
+
+  "passwordTooShort": "Password must be at least 6 characters",
+
+  "passwordResetSent": "Password reset link sent",
+
+  "changePassword": "Change password",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "confirmPassword": "Confirm password",
+
+  "passwordsDoNotMatch": "Passwords do not match",
+  "chooseStrongerPassword": "Choose a stronger password",
+
+  "whatIsYourGoal": "What is your goal?",
+  "gainMuscle": "Gain muscle",
+  "burnFat": "Burn fat",
+  "generalHealth": "General health",
+
+  "continue1": "Continue",
+
+  "fitnessJourneyStarts": "Your fitness journey\nstarts now",
+
+  "howOftenWorkout": "How often would you like to work out?",
+
+  "chooseFitnessLevel": "Choose your fitness level",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced",
+
+  "howTallAreYou": "How tall are you?",
+
+  "aiPoweredBmi": "AI-powered BMI analysis",
+
+  "whatIsYourName": "What is your name?",
+  "enterYourName": "Please enter your name here",
+
+  "whatIsYourWeight": "What is your weight?",
+
+  "healthIssues": "Health issues",
+  "backPain": "Back pain",
+  "kneePain": "Knee pain",
+  "shoulderPain": "Shoulder pain",
+  "noIssues": "No issues",
+
+  "activityLevel": "Activity level",
+  "sedentary": "Sedentary",
+  "lightActivity": "Light activity",
+  "moderateActivity": "Moderate activity",
+  "veryActive": "Very active",
+  "athlete": "Athlete",
+
+  "howOldAreYou": "How old are you?",
+
+  "male": "Male",
+  "female": "Female",
+  "other": "Other",
+
+  "dailyCalorieCalculator": "Daily calorie\n calculator",
+  "bmiCalculator": "BMI calculator",
+  "workoutPlanGenerator": "Workout plan generator",
+
+  "internetConnectionFailed": "Internet connection failed",
+  "noInternetConnection": "No internet connection",
+  "connectionBack": "Connection restored",
+
+  "close": "Close",
+  "dashboard": "Dashboard",
+  "workouts": "Workouts",
+  "profile": "Profile"
+
+
+ 
   
 }
