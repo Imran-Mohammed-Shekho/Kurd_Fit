@@ -257,16 +257,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
             SizedBox(
               height: 20,
               width: double.infinity,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: isLoading
-                    ? CircularProgressIndicator(color: Colors.amber.shade600)
-                    : GreetingUser(username: username),
-              ),
+              child: isLoading
+                  ? CircularProgressIndicator(color: Colors.amber.shade600)
+                  : GreetingUser(username: username),
             ),
             SizedBox(height: 10),
 
-            _buildlabes(l10.yourDailyprogress, 16, false),
+            _buildlabes(l10.yourDailyprogress, 16, true),
             SizedBox(height: 10),
 
             SizedBox(
@@ -435,32 +432,32 @@ Widget _buildContainers(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
 
-          child: SizedBox(
-            height: 40,
-            width: 200,
-
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 20),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: _buildIcon(icon),
                     ),
                     SizedBox(height: 8),
-                    Text(
-                      text,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
 
@@ -496,15 +493,12 @@ Widget _buildIcon(icon) {
 }
 
 Widget _buildlabes(String label, double size, bool isbold) {
-  return Align(
-    alignment: Alignment.centerLeft,
-    child: Text(
-      label,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: size,
-        fontWeight: isbold ? FontWeight.bold : FontWeight.normal,
-      ),
+  return Text(
+    label,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: size,
+      fontWeight: isbold ? FontWeight.bold : FontWeight.normal,
     ),
   );
 }

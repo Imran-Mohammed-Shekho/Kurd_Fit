@@ -9,7 +9,7 @@ class AppLocalizationsCkb extends AppLocalizations {
   AppLocalizationsCkb([String locale = 'ckb']) : super(locale);
 
   @override
-  String get appName => 'کورد فیتنیس';
+  String get appName => 'Kurd Fitness';
 
   @override
   String get calorie => 'کالۆری';
