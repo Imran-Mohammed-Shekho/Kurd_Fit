@@ -9,7 +9,6 @@ import 'package:gym/UI/screens/changePassword_UI/Change_password.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/about_UI/aboutus_screen.dart';
-import 'package:gym/UI/screens/appTheme/custom_colors.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
@@ -72,7 +71,7 @@ class _DrawerSectionState extends State<DrawerSection> {
   Widget build(BuildContext context) {
     int temIndexLanguage = 0;
     final Themeprovider = context.watch<ThemeProvider>();
-    final colors = Theme.of(context).extension<CustomColors>();
+    // final colors = Theme.of(context).extension<CustomColors>();
 
     return ClipRRect(
       borderRadius: BorderRadius.only(
