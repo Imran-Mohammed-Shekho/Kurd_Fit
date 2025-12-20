@@ -161,7 +161,7 @@ abstract class AppLocalizations {
   /// No description provided for @yourDailyprogress.
   ///
   /// In en, this message translates to:
-  /// **'yourDailyprogress'**
+  /// **'Your Daily progress'**
   String get yourDailyprogress;
 
   /// No description provided for @thisWeekProgress.
