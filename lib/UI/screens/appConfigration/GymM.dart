@@ -18,31 +18,37 @@ class Gym extends StatelessWidget {
     final platform = const LocalPlatform();
     final allowedP = kIsWeb || platform.isAndroid || platform.isIOS;
     final lang = Provider.of<LanguageProvider>(context);
-    return Consumer<ThemeProvider>(
-      builder: (BuildContext context, value, Widget? child) {
-        return AnimatedSwitcher(
-          duration: Duration(seconds: 2),
-          transitionBuilder: (child, animation) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-          child: MaterialApp(
-            key: ValueKey(context.watch<LanguageProvider>().selectedLnaguage),
-            localizationsDelegates: const [
-              ...AppLocalizations.localizationsDelegates,
-              ...CkbLocalizations.localizationsDelegates,
-            ],
-            locale: Locale(lang.selectedLnaguage),
-            supportedLocales: AppLocalizations.supportedLocales,
-            debugShowCheckedModeBanner: false,
-            themeMode: value.themeMode,
-            theme: lightmode,
-            darkTheme: darkmode,
-            onGenerateTitle: (context) => AppLocalizations.of(context).appName,
-
-            home: allowedP ? const SplashScreen() : const UnsupportedPlatform(),
-          ),
+    final theme = context.watch<ThemeProvider>();
+    return AnimatedSwitcher(
+      duration: Duration(seconds: 2),
+      transitionBuilder: (child, animation) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.98, end: 1).animate(animation),
+          child: FadeTransition(opacity: animation, child: child),
         );
       },
+      child: AnimatedTheme(
+        key: ValueKey((theme.themeMode, lang.selectedLnaguage)),
+        duration: Duration(milliseconds: 100),
+        curve: Curves.easeInOut,
+
+        data: theme.themeMode == ThemeMode.dark ? darkmode : lightmode,
+        child: MaterialApp(
+          localizationsDelegates: const [
+            ...AppLocalizations.localizationsDelegates,
+            ...CkbLocalizations.localizationsDelegates,
+          ],
+          locale: Locale(lang.selectedLnaguage),
+          supportedLocales: AppLocalizations.supportedLocales,
+          debugShowCheckedModeBanner: false,
+          themeMode: theme.themeMode,
+          theme: lightmode,
+          darkTheme: darkmode,
+          onGenerateTitle: (context) => AppLocalizations.of(context).appName,
+
+          home: allowedP ? const SplashScreen() : const UnsupportedPlatform(),
+        ),
+      ),
     );
   }
 }
