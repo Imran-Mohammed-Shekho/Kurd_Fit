@@ -112,14 +112,17 @@
   "athlete": "Athlete",
 
   "howOldAreYou": "How old are you?",
-
+  "aboutUs":"About Us",
   "male": "Male",
   "female": "Female",
   "other": "Other",
-
+  "payment":"Payment",
+  "shareApp":"Share App",
+  "enabbleNotifications":"Enabble Notifications",
   "dailyCalorieCalculator": "Daily calorie\n calculator",
   "bmiCalculator": "BMI calculator",
   "workoutPlanGenerator": "Workout plan generator",
+  "changelanguage":"Change language",
 
   "internetConnectionFailed": "Internet connection failed",
   "noInternetConnection": "No internet connection",

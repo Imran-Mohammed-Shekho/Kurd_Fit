@@ -13,6 +13,7 @@ import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
+import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +71,9 @@ class _DrawerSectionState extends State<DrawerSection> {
   @override
   Widget build(BuildContext context) {
     int temIndexLanguage = 0;
+    // ignore: non_constant_identifier_names
     final Themeprovider = context.watch<ThemeProvider>();
+    final l10 = AppLocalizations.of(context);
     // final colors = Theme.of(context).extension<CustomColors>();
 
     return ClipRRect(
@@ -101,7 +104,7 @@ class _DrawerSectionState extends State<DrawerSection> {
 
                 ListTiles(
                   Text(
-                    "Enabble Notifications ",
+                    l10.enabbleNotifications,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -115,7 +118,7 @@ class _DrawerSectionState extends State<DrawerSection> {
 
                 ListTiles(
                   Text(
-                    "Change password ",
+                    l10.changePassword,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -135,7 +138,7 @@ class _DrawerSectionState extends State<DrawerSection> {
 
                 ListTiles(
                   Text(
-                    "Change language",
+                    l10.changelanguage,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -214,7 +217,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                 Dividers(),
                 ListTiles(
                   Text(
-                    "Payment & Subscription",
+                    l10.payment,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -234,7 +237,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                 ),
                 ListTiles(
                   Text(
-                    "Share App",
+                    l10.shareApp,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -255,7 +258,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                 Dividers(),
                 ListTiles(
                   Text(
-                    "Help & Support",
+                    l10.help,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -274,7 +277,7 @@ class _DrawerSectionState extends State<DrawerSection> {
 
                 ListTiles(
                   Text(
-                    "About Us",
+                    l10.aboutUs,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -294,7 +297,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                 Dividers(),
                 ListTiles(
                   Text(
-                    "Log Out",
+                    l10.logout,
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   Icon(
@@ -306,7 +309,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                   () {
                     showdLogOutAlert(
                       context: context,
-                      title: "Log out?",
+                      title: l10.logout,
                       message:
                           "You will need to sign in again next time.\n Continue?",
 

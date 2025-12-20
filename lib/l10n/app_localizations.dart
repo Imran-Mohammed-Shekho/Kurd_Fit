@@ -602,6 +602,12 @@ abstract class AppLocalizations {
   /// **'How old are you?'**
   String get howOldAreYou;
 
+  /// No description provided for @aboutUs.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get aboutUs;
+
   /// No description provided for @male.
   ///
   /// In en, this message translates to:
@@ -620,6 +626,24 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get other;
 
+  /// No description provided for @payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get payment;
+
+  /// No description provided for @shareApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share App'**
+  String get shareApp;
+
+  /// No description provided for @enabbleNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabble Notifications'**
+  String get enabbleNotifications;
+
   /// No description provided for @dailyCalorieCalculator.
   ///
   /// In en, this message translates to:
@@ -637,6 +661,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Workout plan generator'**
   String get workoutPlanGenerator;
+
+  /// No description provided for @changelanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get changelanguage;
 
   /// No description provided for @internetConnectionFailed.
   ///

@@ -264,6 +264,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get howOldAreYou => 'How old are you?';
 
   @override
+  String get aboutUs => 'About Us';
+
+  @override
   String get male => 'Male';
 
   @override
@@ -273,6 +276,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get other => 'Other';
 
   @override
+  String get payment => 'Payment';
+
+  @override
+  String get shareApp => 'Share App';
+
+  @override
+  String get enabbleNotifications => 'Enabble Notifications';
+
+  @override
   String get dailyCalorieCalculator => 'Daily calorie\n calculator';
 
   @override
@@ -280,6 +292,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get workoutPlanGenerator => 'Workout plan generator';
+
+  @override
+  String get changelanguage => 'Change language';
 
   @override
   String get internetConnectionFailed => 'Internet connection failed';

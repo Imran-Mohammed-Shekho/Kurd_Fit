@@ -266,6 +266,9 @@ class AppLocalizationsCkb extends AppLocalizations {
   String get howOldAreYou => 'چەند ساڵەتە؟';
 
   @override
+  String get aboutUs => 'دەربارەی ئیمە';
+
+  @override
   String get male => 'نێر';
 
   @override
@@ -275,6 +278,15 @@ class AppLocalizationsCkb extends AppLocalizations {
   String get other => 'هیتر';
 
   @override
+  String get payment => 'پارە دان';
+
+  @override
+  String get shareApp => 'هاوبەشکردنی بەرنامە';
+
+  @override
+  String get enabbleNotifications => 'چالاک کردنی ئاگادارکردنەوە کان';
+
+  @override
   String get dailyCalorieCalculator => 'ژمێرەری کالۆری پێویستی ڕۆژانە';
 
   @override
@@ -282,6 +294,9 @@ class AppLocalizationsCkb extends AppLocalizations {
 
   @override
   String get workoutPlanGenerator => 'دروستکەری پلانی ڕاهێنان';
+
+  @override
+  String get changelanguage => 'گۆڕینی زمان';
 
   @override
   String get internetConnectionFailed => 'هێڵی ئینتەرنێت شکستی هێنا';
