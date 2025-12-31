@@ -7,21 +7,9 @@ Designed with performance, security, and scalability in mind.
 ---
 
 ## 📸 App Screenshots
+![Login Screen](assets/images/showcase.png)
 
-### 🔐 Authentication
-![Login Screen](images/login.png)
 
-### 🏠 Home Dashboard
-![Home Screen](images/home.png)
-
-### 🏃 Workouts
-![Workouts Screen](images/workouts.png)
-
-### 🥗 Diet Plans
-![Diet Plans Screen](images/diet.png)
-
-### 💳 Subscriptions
-![Subscription Screen](images/subscription.png)
 
 ---
 
@@ -32,6 +20,7 @@ Designed with performance, security, and scalability in mind.
 - User profile management
 - Fitness goal tracking
 - Progress history
+- Multi-language support (Kurdish & English)
 
 ### 🏃 Workout Management
 - Predefined workout plans
@@ -65,7 +54,7 @@ Designed with performance, security, and scalability in mind.
 
 ### Frontend
 - **Flutter**
-- Clean Architecture
+- MVC Architecture
 - Responsive UI
 - UI/UX designed with **Figma**
 
@@ -78,27 +67,6 @@ Designed with performance, security, and scalability in mind.
   - Backend logic
   - Automation scripts
 
----
-
-## 🧱 Project Architecture
-
-The project follows **Clean Architecture** principles for scalability and maintainability.
-
-lib/
-│── core/
-│── data/
-│ ├── models/
-│ ├── repositories/
-│── domain/
-│ ├── entities/
-│ ├── usecases/
-│── presentation/
-│ ├── screens/
-│ ├── widgets/
-│── main.dart
-
-yaml
-Copy code
 
 ---
 
@@ -116,7 +84,7 @@ request.auth != null && request.auth.uid == resource.data.userId
 1️⃣ Clone Repository
 bash
 Copy code
-git clone https://github.com/yourusername/kurdFitness.git
+git clone https://github.com/Imran-Mohammed-Shekho/Kurd_Fit.git
 cd kurdFitness
 2️⃣ Install Dependencies
 bash
@@ -151,10 +119,6 @@ AI-based workout recommendations
 
 Multi-language support (Kurdish & English)
 
-Admin dashboard
-
-📄 License
-This project is developed for educational and portfolio purposes.
 
 👨‍💻 Author
 Engineer Imran
