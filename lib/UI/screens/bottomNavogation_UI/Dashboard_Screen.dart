@@ -67,7 +67,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildInfoCard(List<Widget> children) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(4),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),

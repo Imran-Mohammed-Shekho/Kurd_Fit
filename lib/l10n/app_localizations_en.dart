@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goodAfternoon => 'Good Afternoon';
 
   @override
-  String get yourDailyprogress => 'Your Daily progress';
+  String get yourDailyprogress => 'Your Daily Progress';
 
   @override
   String get thisWeekProgress => 'This Week\'s Progress';

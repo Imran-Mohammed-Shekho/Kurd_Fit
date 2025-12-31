@@ -174,7 +174,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Profile")),
+      appBar: AppBar(
+        leading: SizedBox(),
+        surfaceTintColor: Colors.transparent,
+        title: Text("Profile"),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: isLoad
           ? Center(child: CircularProgressIndicator())

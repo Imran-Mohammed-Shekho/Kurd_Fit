@@ -55,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       _showErrorSnack(errorMessage);
-      _auth.currentUser!.delete();
+      if (_auth.currentUser != null) {
+        _auth.currentUser!.delete();
+      }
     }
   }
 
