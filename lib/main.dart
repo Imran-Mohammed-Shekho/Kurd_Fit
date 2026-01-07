@@ -36,7 +36,7 @@ Future<void> initializeFirebase() async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
-      print('Firebase Initialized');
+      print('Firebase Initialized ');
     }
   } catch (e) {
     print('Firebase init error: $e');
