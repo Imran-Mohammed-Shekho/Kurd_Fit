@@ -20,7 +20,7 @@ class Gym extends StatelessWidget {
     final lang = Provider.of<LanguageProvider>(context);
     final theme = context.watch<ThemeProvider>();
     return AnimatedSwitcher(
-      duration: Duration(milliseconds: 120),
+      duration: Duration(milliseconds: 50),
       transitionBuilder: (child, animation) {
         return ScaleTransition(
           scale: Tween<double>(begin: 0.98, end: 1).animate(animation),
@@ -29,7 +29,7 @@ class Gym extends StatelessWidget {
       },
       child: AnimatedTheme(
         key: ValueKey((theme.themeMode, lang.selectedLnaguage)),
-        duration: Duration(milliseconds: 100),
+        duration: Duration(milliseconds: 50),
         curve: Curves.easeInOut,
 
         data: theme.themeMode == ThemeMode.dark ? darkmode : lightmode,
