@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
-
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gym/UI/CommonWidget/common.dart';
@@ -46,12 +46,72 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      _initPush();
       // ignore: use_build_context_synchronously
       final name = Provider.of<ProfileProvider>(context, listen: false);
       if (name.userModel == null) {
         name.getUserDataFromFirestore(FirebaseAuth.instance.currentUser!.uid);
       }
     });
+  }
+
+  Future<void> _initPush() async {
+    try {
+      final messaging = FirebaseMessaging.instance;
+
+      // 1) Ask permission (iOS needs this)
+      final settings = await messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+      debugPrint('Notification permission: ${settings.authorizationStatus}');
+
+      // If user denied, don't continue
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        debugPrint('User denied notification permission');
+        return;
+      }
+
+      // 2) IMPORTANT: Register with APNS
+      // This ensures APNS token is generated before getToken()
+      await messaging.setAutoInitEnabled(true);
+
+      // 3) Wait a moment for APNS token to arrive (common on first run)
+      // Then get APNS token (optional debug)
+      String? apnsToken;
+      try {
+        apnsToken = await messaging.getAPNSToken();
+        print("this the APNS token :$apnsToken");
+      } catch (e) {
+        debugPrint('APNS token error (expected on first run): $e');
+      }
+
+      // Retry getting APNS token with proper error handling
+      int tries = 0;
+      while (apnsToken == null && tries < 10) {
+        await Future.delayed(const Duration(milliseconds: 500));
+        try {
+          apnsToken = await messaging.getAPNSToken();
+        } catch (e) {
+          debugPrint('APNS token retry failed: $e');
+        }
+        tries++;
+      }
+      debugPrint('APNS token after retries: $apnsToken');
+
+      // 4) Now get the FCM token - this is more reliable
+      try {
+        final fcmToken = await messaging.getToken();
+        print('FCM token: $fcmToken');
+        // TODO: send fcmToken to Laravel API and store it
+      } catch (e) {
+        debugPrint('FCM token error: $e');
+      }
+    } catch (e) {
+      debugPrint('Push notification initialization error: $e');
+    }
   }
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -139,7 +199,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     //   );
     //   return;
     // }
-    ;
     final result = await service.analyzeFoodPlate(
       rapidApiKey: rapidKey,
       imageBapiKey: imageBbKey,
@@ -238,8 +297,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 KurdFitText(),
                 Spacer(),
                 IconButton(
-                  onPressed: () {
-                    Themeprovider.changeTheme();
+                  onPressed: () async {
+                    // Themeprovider.changeTheme();
+                    var token = await checkApns();
+
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.black,
+                          title: Text("apns token "),
+                          content: Text("token is :$token"),
+                        );
+                      },
+                    );
                   },
                   icon: Icon(
                     Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
@@ -501,4 +572,44 @@ Widget _buildlabes(String label, double size, bool isbold) {
       fontWeight: isbold ? FontWeight.bold : FontWeight.normal,
     ),
   );
+}
+
+Future checkApns() async {
+  try {
+    final messaging = FirebaseMessaging.instance;
+
+    // Ask permission (required)
+    final settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    print('Permission: ${settings.authorizationStatus}');
+
+    if (settings.authorizationStatus != AuthorizationStatus.authorized) {
+      print('❌ Notifications not authorized');
+      return;
+    }
+
+    // Try to get APNS token with error handling
+    String? apnsToken;
+    try {
+      apnsToken = await messaging.getAPNSToken();
+    } catch (e) {
+      print('⚠️ APNS token error (may arrive later): $e');
+      apnsToken = null;
+    }
+
+    if (apnsToken == null) {
+      print('❌ APNS token NOT generated yet');
+    } else {
+      print('✅ APNS token generated: $apnsToken');
+    }
+
+    return apnsToken;
+  } catch (e) {
+    print('❌ checkApns error: $e');
+    return null;
+  }
 }

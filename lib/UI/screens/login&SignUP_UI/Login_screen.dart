@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// ------------ LOGIN ------------
   Future<void> _loginMethod() async {
-    final _auth = FirebaseAuth.instance;
+    final auth = FirebaseAuth.instance;
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = false);
 
-    if (errorMessage == null && _auth.currentUser!.emailVerified) {
+    if (errorMessage == null && auth.currentUser!.emailVerified) {
       _showSuccessSnack();
       await Future.delayed(Duration(seconds: 1));
       if (!mounted) return;
@@ -55,8 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       _showErrorSnack(errorMessage);
-      if (_auth.currentUser != null) {
-        _auth.currentUser!.delete();
+      if (auth.currentUser != null) {
+        auth.currentUser!.delete();
       }
     }
   }

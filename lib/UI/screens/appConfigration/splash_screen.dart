@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Center(
         child: FadeTransition(
           opacity: _fade,
@@ -58,14 +58,24 @@ class _SplashScreenState extends State<SplashScreen>
               Expanded(flex: 1, child: SizedBox()),
               Expanded(
                 flex: 3,
-                child: Image.asset("assets/icons/app.png", height: 500),
+                child: SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: Image.asset("assets/icons/sp.png", height: 400),
+                ),
               ),
 
               Spacer(),
-              Expanded(
-                flex: 1,
-                child: Image.asset("assets/icons/brand.png", height: 120),
+              Text(
+                "Kurd Fitness",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
+
+              Text(
+                "Version 1.0",
+                style: TextStyle(fontWeight: FontWeight.normal),
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),

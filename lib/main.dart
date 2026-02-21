@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -37,6 +38,21 @@ Future<void> initializeFirebase() async {
       );
 
       print('Firebase Initialized ');
+
+      // Request notification permissions and initialize messaging
+      await FirebaseMessaging.instance.requestPermission(
+        alert: true,
+        announcement: true,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+
+      // Get the FCM token
+      final token = await FirebaseMessaging.instance.getToken();
+      print('FCM Token: $token');
     }
   } catch (e) {
     print('Firebase init error: $e');

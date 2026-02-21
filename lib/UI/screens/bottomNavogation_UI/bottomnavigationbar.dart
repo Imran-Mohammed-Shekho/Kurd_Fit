@@ -38,7 +38,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
     // TODO: implement initState
     super.initState();
 
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
       final connected = await hasinternet();
       if (!mounted) return;
       if (!connected && !_offlineshown) {
