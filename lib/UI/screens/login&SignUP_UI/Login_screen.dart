@@ -44,7 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = false);
 
-    if (errorMessage == null && auth.currentUser!.emailVerified) {
+    if (errorMessage != null) {
+      _showErrorSnack(errorMessage);
+      return;
+    }
+
+    final user = auth.currentUser;
+    if (user != null && user.emailVerified) {
       _showSuccessSnack();
       await Future.delayed(Duration(seconds: 1));
       if (!mounted) return;
@@ -53,12 +59,11 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
         MaterialPageRoute(builder: (context) => Bottomnavigationbar()),
       );
-    } else {
-      _showErrorSnack(errorMessage);
-      if (auth.currentUser != null) {
-        auth.currentUser!.delete();
-      }
+      return;
     }
+
+    _showErrorSnack("Please verify your email before logging in.");
+    await auth.signOut();
   }
 
   /// ------------ SNACKS ------------

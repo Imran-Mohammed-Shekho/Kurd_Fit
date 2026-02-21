@@ -103,6 +103,27 @@ Download configuration files
 bash
 Copy code
 flutter run
+
+## 🔒 Security Setup (Required)
+
+This app no longer stores third-party API secrets in source code.
+
+Use one of these options:
+
+1. Preferred: backend proxy (recommended for production)
+```bash
+flutter run --dart-define=FOOD_ANALYSIS_PROXY_URL=https://your-backend.example.com/food/analyze
+```
+
+2. Temporary local fallback (not recommended for production)
+```bash
+flutter run \
+  --dart-define=ALLOW_DIRECT_FOOD_ANALYSIS=true \
+  --dart-define=RAPID_API_KEY=YOUR_RAPID_API_KEY \
+  --dart-define=IMGBB_API_KEY=YOUR_IMGBB_API_KEY
+```
+
+If old keys were committed before, rotate/revoke them immediately in the provider dashboards.
 🎨 Design
 Clean & modern fitness-focused UI
 

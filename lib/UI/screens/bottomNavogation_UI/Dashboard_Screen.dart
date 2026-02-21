@@ -13,6 +13,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
+import 'package:gym/core/config/app_config.dart';
 import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
@@ -184,6 +185,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
   // }
 
   Future calculateFoodPlate() async {
+    if (!AppConfig.canAnalyzeFood) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "Food analyzer is not configured yet. Contact support.",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+      return;
+    }
+
     final service = FoodAnalyzeService(
       changeloding: (value) => setState(() {
         isLoad = value;
@@ -199,16 +213,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
     //   );
     //   return;
     // }
-    final result = await service.analyzeFoodPlate(
-      rapidApiKey: rapidKey,
-      imageBapiKey: imageBbKey,
-    );
+    final result = await service.analyzeFoodPlate();
 
     if (!mounted) {
       return;
     }
 
-    if (result != null) {
+    if (result != null && result["result"] != null) {
       final nutrition = result['result']['total_nutrition'];
       final foods = (result['result']['foods_identified'] as List?) ?? [];
 
@@ -269,6 +280,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "Could not analyze this image right now. Try again later.",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
     }
   }
 
@@ -297,21 +318,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 KurdFitText(),
                 Spacer(),
                 IconButton(
-                  onPressed: () async {
-                    // Themeprovider.changeTheme();
-                    var token = await checkApns();
-
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.black,
-                          title: Text("apns token "),
-                          content: Text("token is :$token"),
-                        );
-                      },
-                    );
-                  },
+                  onPressed: Themeprovider.changeTheme,
+                  tooltip: Themeprovider.isDark
+                      ? "Switch to light mode"
+                      : "Switch to dark mode",
                   icon: Icon(
                     Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
                   ),
@@ -572,44 +582,4 @@ Widget _buildlabes(String label, double size, bool isbold) {
       fontWeight: isbold ? FontWeight.bold : FontWeight.normal,
     ),
   );
-}
-
-Future checkApns() async {
-  try {
-    final messaging = FirebaseMessaging.instance;
-
-    // Ask permission (required)
-    final settings = await messaging.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-    print('Permission: ${settings.authorizationStatus}');
-
-    if (settings.authorizationStatus != AuthorizationStatus.authorized) {
-      print('❌ Notifications not authorized');
-      return;
-    }
-
-    // Try to get APNS token with error handling
-    String? apnsToken;
-    try {
-      apnsToken = await messaging.getAPNSToken();
-    } catch (e) {
-      print('⚠️ APNS token error (may arrive later): $e');
-      apnsToken = null;
-    }
-
-    if (apnsToken == null) {
-      print('❌ APNS token NOT generated yet');
-    } else {
-      print('✅ APNS token generated: $apnsToken');
-    }
-
-    return apnsToken;
-  } catch (e) {
-    print('❌ checkApns error: $e');
-    return null;
-  }
 }
