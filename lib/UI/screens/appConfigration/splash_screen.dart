@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:gym/UI/screens/appConfigration/AuthGate.dart';
+import 'package:gym/UI/screens/appConfigration/language_selection_screen.dart';
 import 'package:gym/core/Utils/localized_text.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,7 +35,9 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AuthGate()),
+        MaterialPageRoute(
+          builder: (context) => const LanguageSelectionScreen(),
+        ),
       );
     });
   }

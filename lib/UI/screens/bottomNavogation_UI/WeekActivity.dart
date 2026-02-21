@@ -7,6 +7,15 @@ class WeekActivity extends StatelessWidget {
   const WeekActivity({super.key});
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final horizontalPadding = size.width < 360 ? 8.0 : 10.0;
+    final spacing = size.width < 360 ? 8.0 : 10.0;
+    final cardWidth =
+        ((size.width - (horizontalPadding * 2) - (spacing * 2)) / 3).clamp(
+          92.0,
+          160.0,
+        );
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -31,7 +40,7 @@ class WeekActivity extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   onPressed: () {},
@@ -40,12 +49,20 @@ class WeekActivity extends StatelessWidget {
                     color: const Color(0xFFFFFFFF),
                   ),
                 ),
-                Text(
-                  tr(context, "Oct 23 -Oct 29 , 2025"),
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        tr(context, "Oct 23 -Oct 29 , 2025"),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
 
@@ -60,15 +77,18 @@ class WeekActivity extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Wrap(
+                spacing: spacing,
+                runSpacing: 10,
+                alignment: WrapAlignment.center,
                 children: [
                   _buildcontainer(
                     "4",
                     Icon(Icons.fitness_center, color: Colors.green, size: 40),
                     "Workout",
                     context,
+                    width: cardWidth,
                   ),
                   _buildcontainer(
                     "609",
@@ -79,12 +99,14 @@ class WeekActivity extends StatelessWidget {
                     ),
                     "Calorie",
                     context,
+                    width: cardWidth,
                   ),
                   _buildcontainer(
                     "4h 23M",
                     Icon(Icons.timer_rounded, size: 40, color: Colors.red),
                     "Duration",
                     context,
+                    width: cardWidth,
                   ),
                 ],
               ),
@@ -121,11 +143,11 @@ Widget _buildListTiles(bool isLast, context) {
       ),
       child: ListTile(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildListTileData("200", "Calorie", context),
-            _buildListTileData("45", "min", context),
-            _buildListTileData("2,400", "Steps", context),
+            Expanded(child: _buildListTileData("200", "Calorie", context)),
+            Expanded(child: _buildListTileData("45", "min", context)),
+            Expanded(child: _buildListTileData("2,400", "Steps", context)),
           ],
         ),
 
@@ -157,15 +179,28 @@ Widget _buildListTileData(String number, String text, BuildContext context) {
     children: [
       Text(number, style: TextStyle(color: kwhite)),
       SizedBox(height: 10),
-      Text(tr(context, text), style: TextStyle(color: kwhite)),
+      FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          tr(context, text),
+          style: TextStyle(color: kwhite),
+          maxLines: 1,
+        ),
+      ),
     ],
   );
 }
 
-Widget _buildcontainer(String text, dynamic icon, String type, context) {
+Widget _buildcontainer(
+  String text,
+  dynamic icon,
+  String type,
+  context, {
+  double width = 110,
+}) {
   return SizedBox(
     height: 150,
-    width: 110,
+    width: width,
     child: DecoratedBox(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
@@ -212,6 +247,9 @@ Widget _buildText(
 ) {
   return Text(
     tr(context, text),
+    maxLines: 1,
+    overflow: TextOverflow.ellipsis,
+    textAlign: TextAlign.center,
     style: TextStyle(
       color: kwhite,
       fontSize: fontSize,

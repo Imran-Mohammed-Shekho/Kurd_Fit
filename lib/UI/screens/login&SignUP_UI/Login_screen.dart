@@ -150,24 +150,43 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLogo() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Kurd Fit",
-            style: GoogleFonts.pacifico(
-              color: Colors.white,
-              fontSize: 34,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            tr(context, "Training, Gym, Strength"),
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final titleSize = constraints.maxWidth < 340 ? 28.0 : 34.0;
+          final subtitleSize = constraints.maxWidth < 340 ? 13.0 : 14.0;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Kurd Fit",
+                  style: GoogleFonts.pacifico(
+                    color: Colors.white,
+                    fontSize: titleSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  tr(context, "Training, Gym, Strength"),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: subtitleSize,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

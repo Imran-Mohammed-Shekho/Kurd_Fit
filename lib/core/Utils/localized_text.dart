@@ -375,6 +375,9 @@ const Map<String, String> _ckbFallback = {
   "Buy Now": "ئێستا بکڕە",
   "English": "ئینگلیزی",
   "Kurdish": "کوردی",
+  "Choose your language": "زمانەکەت هەڵبژێرە",
+  "Select app language before continuing.":
+      "پێش بەردەوامبوون، زمانی ئەپ هەڵبژێرە.",
   "Done": "تەواو",
   "Please read the info below": "تکایە زانیارییەکانی خوارەوە بخوێنەوە",
   "you need to login again to able delete your account ":
