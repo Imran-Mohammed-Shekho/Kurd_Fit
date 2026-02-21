@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/ageScreen.dart';
 import 'package:gym/state/providers/workout_provider.dart';
@@ -41,7 +42,7 @@ class _WorkoutsShow extends State<WorkoutsShow> {
         } else if (value.TargetExercises.isEmpty) {
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.surface,
-            body: Center(child: Text("No data found")),
+            body: Center(child: Text(tr(context, "No data found"))),
           );
         } else {
           return Scaffold(
@@ -50,7 +51,8 @@ class _WorkoutsShow extends State<WorkoutsShow> {
               centerTitle: true,
               title: Text(
                 textAlign: TextAlign.center,
-                "${value.SelectedWorkOut} workouts".toUpperCase(),
+                "${value.SelectedWorkOut} ${tr(context, "Workouts")}"
+                    .toUpperCase(),
                 style: TextStyle(fontSize: 18, color: kwhite),
               ),
               leading: IconButton(

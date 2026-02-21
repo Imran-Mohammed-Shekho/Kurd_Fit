@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 
 const style = TextStyle(color: Colors.white);
@@ -38,7 +39,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
         centerTitle: true,
         title: Text(
           textAlign: TextAlign.center,
-          "Workout Detail ",
+          tr(context, "Workout Detail "),
           style: TextStyle(fontSize: 18, color: kwhite),
         ),
         leading: IconButton(
@@ -65,7 +66,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                   children: [
                     SizedBox(height: 20),
 
-                    Text("Can't Load images due to server down !"),
+                    Text(tr(context, "Can't Load images due to server down !")),
                     Icon(
                       Icons.sentiment_dissatisfied_sharp,
                       size: 100,
@@ -115,7 +116,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "Workout Details",
+                                    tr(context, "Workout Details"),
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -125,34 +126,37 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                                 ),
                                 SizedBox(height: 20),
 
-                                Text("Name : ${widget.name}", style: style),
+                                Text(
+                                  "${tr(context, "Name")} : ${widget.name}",
+                                  style: style,
+                                ),
                                 SizedBox(height: 10),
                                 Text(
-                                  "Body Part : ${widget.bodyParts}",
+                                  "${tr(context, "Body Part :")} ${widget.bodyParts}",
                                   style: style,
                                 ),
                                 SizedBox(height: 10),
 
                                 Text(
-                                  "Equipments: ${widget.equipments}",
+                                  "${tr(context, "Equipments:")} ${widget.equipments}",
                                   style: style,
                                 ),
                                 SizedBox(height: 10),
 
                                 Text(
-                                  "TargetMuscles: ${widget.targetMuscles}",
+                                  "${tr(context, "TargetMuscles:")} ${widget.targetMuscles}",
                                   style: style,
                                 ),
                                 SizedBox(height: 10),
 
                                 Text(
-                                  "SecondaryMuscles: ${widget.secondaryMuscles}",
+                                  "${tr(context, "SecondaryMuscles:")} ${widget.secondaryMuscles}",
                                   style: style,
                                 ),
                                 SizedBox(height: 10),
 
                                 Text(
-                                  "Instructions:\n${widget.instructions[0]}",
+                                  "${tr(context, "Instructions:")}\n${widget.instructions[0]}",
                                   style: style,
                                 ),
                                 Text(

@@ -1,5 +1,6 @@
 // ignore: camel_case_types
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 
 class buildListOptions extends StatelessWidget {
@@ -35,7 +36,11 @@ class buildListOptions extends StatelessWidget {
           ),
           child: Center(
             child: ListTile(
-              title: Text(title, style: TextStyle(fontSize: 18, color: kwhite)),
+              // Keep raw `title` for selection logic; localize only display text.
+              title: Text(
+                tr(context, title),
+                style: TextStyle(fontSize: 18, color: kwhite),
+              ),
               trailing: Icon(iconData, color: kwhite, size: 32),
               onTap: () => onselect!(title),
             ),

@@ -4,6 +4,7 @@ import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/screens/shop_UI/favorite_screen.dart';
 import 'package:gym/UI/screens/shop_UI/preview_screen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/data/models/supplement_class.dart';
 
 class AppShop extends StatefulWidget {
@@ -67,7 +68,7 @@ class _AppShopState extends State<AppShop> {
                     child: RichText(
                       textAlign: TextAlign.justify,
                       text: TextSpan(
-                        text: "Discount  ",
+                        text: tr(context, "Discount"),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
@@ -75,7 +76,7 @@ class _AppShopState extends State<AppShop> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: "20% off\n",
+                            text: tr(context, "20% off\n"),
                             style: GoogleFonts.pacifico(
                               fontSize: 18,
                               fontWeight: FontWeight.w900,
@@ -83,7 +84,7 @@ class _AppShopState extends State<AppShop> {
                             ),
                           ),
                           TextSpan(
-                            text: "On This  products",
+                            text: tr(context, "On This  products"),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -130,7 +131,7 @@ class _AppShopState extends State<AppShop> {
 
                         child: Center(
                           child: Text(
-                            "Buy Now",
+                            tr(context, "Buy Now"),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -152,7 +153,7 @@ class _AppShopState extends State<AppShop> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Text(
-                "Products",
+                tr(context, "Products"),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
@@ -264,7 +265,7 @@ class _AppShopState extends State<AppShop> {
                                   child: Text(
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    supplements[index].title,
+                                    tr(context, supplements[index].title),
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Theme.of(
@@ -277,7 +278,7 @@ class _AppShopState extends State<AppShop> {
                               Expanded(
                                 flex: 1,
                                 child: Text(
-                                  supplements[index].description,
+                                  tr(context, supplements[index].description),
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 12,

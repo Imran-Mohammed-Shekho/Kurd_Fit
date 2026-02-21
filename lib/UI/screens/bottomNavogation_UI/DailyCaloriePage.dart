@@ -7,6 +7,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutPlanGenerator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/weightScreen.dart';
 import 'package:gym/core/Utils/DailyCalorieCalculator.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/data/models/calorie_model.dart';
 import 'package:gym/data/models/calorie_result.dart';
 
@@ -38,7 +39,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
         SnackBar(
           backgroundColor: Colors.red,
           content: Text(
-            "fill all faileds ",
+            tr(context, "fill all faileds "),
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -77,7 +78,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
         surfaceTintColor: Colors.transparent,
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
-          "🔥 Daily Calorie Needed Calculator ",
+          "🔥 ${tr(context, "Daily Calorie Needed Calculator")}",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
         ),
         centerTitle: true,
@@ -89,23 +90,23 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
           Form(
             child: Column(
               children: [
-                _buildText("Age"),
+                _buildText(context, "Age"),
                 buildTextFormfields(
                   controller: _ageController,
                   hintText: "age",
                 ),
-                _buildText("Height/Cm"),
+                _buildText(context, "Height/Cm"),
                 buildTextFormfields(
                   controller: _heightController,
                   hintText: "Height in cm",
                 ),
-                _buildText("Weight/Kg"),
+                _buildText(context, "Weight/Kg"),
                 buildTextFormfields(
                   controller: _weightController,
                   hintText: "Weight in Kg",
                 ),
 
-                _buildText("Goal"),
+                _buildText(context, "Goal"),
                 SizedBox(
                   height: 60,
                   width: double.infinity,
@@ -143,19 +144,19 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                               items: [
                                 DropdownMenuItem(
                                   value: "fat_loss",
-                                  child: Text("fat_loss"),
+                                  child: Text(tr(context, "fat loss")),
                                 ),
                                 DropdownMenuItem(
                                   value: "muscle_gain",
-                                  child: Text("muscle_gain"),
+                                  child: Text(tr(context, "muscle gain")),
                                 ),
                                 DropdownMenuItem(
                                   value: "strength",
-                                  child: Text("strength"),
+                                  child: Text(tr(context, "strength")),
                                 ),
                                 DropdownMenuItem(
                                   value: "general_fitness",
-                                  child: Text("general_fitness"),
+                                  child: Text(tr(context, "general fitness")),
                                 ),
                               ],
                               onChanged: (value) =>
@@ -167,7 +168,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                     ),
                   ),
                 ),
-                _buildText("Gender"),
+                _buildText(context, "Gender"),
 
                 SizedBox(
                   height: 60,
@@ -206,11 +207,11 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                               items: [
                                 DropdownMenuItem(
                                   value: "male",
-                                  child: Text("male"),
+                                  child: Text(tr(context, "male")),
                                 ),
                                 DropdownMenuItem(
                                   value: "female",
-                                  child: Text("female"),
+                                  child: Text(tr(context, "female")),
                                 ),
                               ],
                               onChanged: (value) =>
@@ -223,7 +224,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                   ),
                 ),
 
-                _buildText("How many days do you prefer?"),
+                _buildText(context, "How many days do you prefer?"),
                 SizedBox(
                   height: 60,
                   width: double.infinity,
@@ -262,7 +263,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
                                   .map(
                                     (e) => DropdownMenuItem(
                                       value: e,
-                                      child: Text("$e days"),
+                                      child: Text("$e ${tr(context, "day")}"),
                                     ),
                                   )
                                   .toList(),
@@ -285,7 +286,7 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
             ontap: () async {
               calorieDailyNeededGenerator();
             },
-            text: "Calculate Daily Calorie",
+            text: tr(context, "Calculate Daily Calorie"),
             isTrue: false,
           ),
         ],
@@ -294,13 +295,13 @@ class _CalorieNeededCalculatorState extends State<CalorieNeededCalculator> {
   }
 }
 
-Widget _buildText(String text) {
+Widget _buildText(BuildContext context, String text) {
   return Padding(
     padding: EdgeInsets.only(top: 10, bottom: 10),
     child: Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        text,
+        tr(context, text),
         style: TextStyle(
           color: const Color(0xFFFFFFFF),
           fontWeight: FontWeight.normal,
@@ -344,7 +345,7 @@ class buildTextFormfields extends StatelessWidget {
                   controller: controller,
                   autofocus: true,
                   decoration: InputDecoration(
-                    hintText: hintText,
+                    hintText: tr(context, hintText),
                     hintStyle: TextStyle(fontSize: 14),
                     border: InputBorder.none,
 

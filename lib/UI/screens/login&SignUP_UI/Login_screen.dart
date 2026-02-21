@@ -8,6 +8,7 @@ import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Forget_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/reusableIcon.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/services/Login_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.red,
-        content: Text(message, style: TextStyle(color: Colors.white)),
+        content: Text(
+          tr(context, message.toString()),
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
@@ -81,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
       SnackBar(
         backgroundColor: Colors.green,
         content: Text(
-          "Logged in successfully!",
+          tr(context, "Logged in successfully!"),
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -90,14 +94,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// ------------ VALIDATORS ------------
   String? _emailValidator(String? value) {
-    if (value == null || value.isEmpty) return "Enter email";
-    if (!_emailRegex.hasMatch(value)) return "Invalid email";
+    if (value == null || value.isEmpty) return tr(context, "Enter email");
+    if (!_emailRegex.hasMatch(value)) return tr(context, "Invalid email");
     return null;
   }
 
   String? _passwordValidator(String? value) {
-    if (value == null || value.isEmpty) return "Enter password";
-    if (value.length < 6) return "Password must be at least 6 chars";
+    if (value == null || value.isEmpty) return tr(context, "Enter password");
+    if (value.length < 6) {
+      return tr(context, "Password must be at least 6 chars");
+    }
     return null;
   }
 
@@ -157,8 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            "Training, Gym, Strength",
+          Text(
+            tr(context, "Training, Gym, Strength"),
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
@@ -173,9 +179,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: TextFormField(
           controller: _emailController,
           validator: _emailValidator,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: "Email",
+            labelText: tr(context, "Email"),
             prefixIcon: Icon(Icons.person, color: Colors.white),
             labelStyle: TextStyle(color: Colors.white),
           ),
@@ -194,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
           obscureText: _obscureText,
           decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: "Password",
+            labelText: tr(context, "Password"),
             labelStyle: TextStyle(color: Colors.white),
             prefixIcon: Icon(Icons.lock, color: Colors.white),
             suffixIcon: IconButton(
@@ -242,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Align(
           alignment: Alignment.centerRight,
           child: Text(
-            "Forgot Password?",
+            tr(context, "Forgot Password?"),
             style: TextStyle(
               fontSize: 16,
               decoration: TextDecoration.underline,
@@ -293,8 +299,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildTermsText(Size size) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-      child: const Text(
-        "By logging in, you agree to our Terms of Service & Privacy Policy.",
+      child: Text(
+        tr(
+          context,
+          "By logging in, you agree to our Terms of Service & Privacy Policy.",
+        ),
         style: TextStyle(color: Colors.white70),
         textAlign: TextAlign.center,
       ),

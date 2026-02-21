@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class GlassyTextField extends StatelessWidget {
   final String hintText;
@@ -44,7 +45,7 @@ class GlassyTextField extends StatelessWidget {
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: hintText,
+                hintText: tr(context, hintText),
                 hintStyle: TextStyle(
                   color: Colors.white.withValues(alpha: 0.7),
                   fontSize: 14,

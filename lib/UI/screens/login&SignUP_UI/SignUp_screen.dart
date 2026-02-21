@@ -8,6 +8,7 @@ import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/check_emailVerfication.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/reusableIcon.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/services/signup_service.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -78,7 +79,10 @@ class _SignupScreenState extends State<SignupScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.red.shade700,
-        content: Text(message, style: const TextStyle(color: Colors.white)),
+        content: Text(
+          tr(context, message),
+          style: const TextStyle(color: Colors.white),
+        ),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 4),
       ),
@@ -87,33 +91,33 @@ class _SignupScreenState extends State<SignupScreen> {
 
   String? _validateName(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your name';
+      return tr(context, 'Please enter your name');
     }
     if (value.trim().length < 2) {
-      return 'Name must be at least 2 characters';
+      return tr(context, 'Name must be at least 2 characters');
     }
     if (!_nameRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid name (letters and spaces only)';
+      return tr(context, 'Please enter a valid name (letters and spaces only)');
     }
     return null;
   }
 
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email';
+      return tr(context, 'Please enter your email');
     }
     if (!_emailRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid email address';
+      return tr(context, 'Please enter a valid email address');
     }
     return null;
   }
 
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return tr(context, 'Please enter your password');
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+      return tr(context, 'Password must be at least 6 characters');
     }
     return null;
   }
@@ -174,7 +178,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           const SizedBox(height: 10),
           Text(
-            "Training, Gym, Strength",
+            tr(context, "Training, Gym, Strength"),
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -228,7 +232,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(Icons.person, color: Colors.white),
-                labelText: "Full name ",
+                labelText: tr(context, "Full name"),
                 labelStyle: TextStyle(color: Colors.white),
               ),
               validator: _validateName,
@@ -264,7 +268,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(Icons.email, color: Colors.white),
-                labelText: "Email",
+                labelText: tr(context, "Email"),
                 labelStyle: TextStyle(color: Colors.white),
               ),
               validator: _validateEmail,
@@ -301,7 +305,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(Icons.person, color: Colors.white),
-                labelText: "Password ",
+                labelText: tr(context, "Password"),
                 labelStyle: TextStyle(color: Colors.white),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -357,7 +361,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
               child: Text(
-                "Already have an account? Login",
+                tr(context, "Already have an account? Login"),
                 style: TextStyle(
                   color: _isLoading ? Colors.white60 : Colors.white,
                   fontSize: 16,
@@ -381,8 +385,11 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget _buildTermsText(Size size) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-      child: const Text(
-        "By signing up, you agree to our Terms Of Service & Privacy Policy.",
+      child: Text(
+        tr(
+          context,
+          "By signing up, you agree to our Terms Of Service & Privacy Policy.",
+        ),
         style: TextStyle(color: Colors.white70),
         textAlign: TextAlign.center,
       ),

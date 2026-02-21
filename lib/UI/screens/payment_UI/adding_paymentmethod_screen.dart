@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
@@ -19,7 +20,10 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Text("Adding payment method", style: TextStyle(fontSize: 18)),
+          title: Text(
+            tr(context, "Adding payment method"),
+            style: TextStyle(fontSize: 18),
+          ),
           centerTitle: true,
         ),
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -31,13 +35,13 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    _buildTexts("Cardholder Name "),
+                    _buildTexts(context, "Cardholder Name"),
                     addingpaymentmethods_container(
                       "name on card",
                       Icon(Icons.person, color: Colors.white),
                     ),
 
-                    _buildTexts("Card Number "),
+                    _buildTexts(context, "Card Number"),
                     addingpaymentmethods_container(
                       "XXXX-XXXX-XXXX-XXXX",
                       Icon(Icons.lock, color: Colors.white),
@@ -50,7 +54,10 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Date", style: TextStyle(color: Colors.white)),
+                            Text(
+                              tr(context, "Date"),
+                              style: TextStyle(color: Colors.white),
+                            ),
 
                             SizedBox(
                               width: 130,
@@ -64,7 +71,10 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("CVV", style: TextStyle(color: Colors.white)),
+                            Text(
+                              tr(context, "CVV"),
+                              style: TextStyle(color: Colors.white),
+                            ),
                             SizedBox(
                               width: 130,
                               child: addingpaymentmethods_container(
@@ -89,7 +99,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Total :".toUpperCase(),
+                          tr(context, "Total :").toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         Column(
@@ -136,7 +146,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                     SnackBar(
                       backgroundColor: kred,
                       content: Text(
-                        "Coming Soon !",
+                        tr(context, "Coming Soon !"),
                         style: TextStyle(
                           color: kwhite,
                           fontWeight: FontWeight.bold,
@@ -145,7 +155,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                     ),
                   );
                 },
-                text: "Pay Now",
+                text: tr(context, "Pay Now"),
                 isTrue: false,
                 gradient: LinearGradient(
                   colors: [Color(0xFF6A5AE0), Color(0xFF8A73F5)],
@@ -186,12 +196,15 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
     );
   }
 
-  Padding _buildTexts(String text) {
+  Padding _buildTexts(BuildContext context, String text) {
     return Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: Text(text, style: TextStyle(fontSize: 14, color: Colors.white)),
+        child: Text(
+          tr(context, text),
+          style: TextStyle(fontSize: 14, color: Colors.white),
+        ),
       ),
     );
   }
@@ -220,7 +233,7 @@ class _AddingPaymentmethodScreenState extends State<AddingPaymentmethodScreen> {
                 border: InputBorder.none,
                 prefixIcon: icon,
                 hint: Text(
-                  hint,
+                  tr(context, hint),
                   style: TextStyle(fontSize: 14, color: Colors.white),
                 ),
               ),

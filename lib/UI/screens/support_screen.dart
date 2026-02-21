@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/glassy_text_F.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
@@ -24,7 +25,7 @@ class _SupportScreenState extends State<SupportScreen> {
 
   Future<void> _validate() async {
     if (name.isEmpty || email.isEmpty || usermessage.isEmpty) {
-      _showesnackbar("fill all text boxes please! ");
+      _showesnackbar(tr(context, "fill all text boxes please! "));
       return;
     } else {
       setState(() {
@@ -45,19 +46,22 @@ class _SupportScreenState extends State<SupportScreen> {
       setState(() {
         isload = false;
 
-        _showesnackbar("Your message has been sent !");
+        _showesnackbar(
+          tr(context, "Your message has been sent !"),
+          isSuccess: true,
+        );
       });
     }
   }
 
-  void _showesnackbar(String message) {
+  void _showesnackbar(String message, {bool isSuccess = false}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           message,
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
-        backgroundColor: message.startsWith("Your") ? Colors.green : kred,
+        backgroundColor: isSuccess ? Colors.green : kred,
       ),
     );
   }
@@ -79,7 +83,7 @@ class _SupportScreenState extends State<SupportScreen> {
 
             Center(
               child: Text(
-                "We are here to help!",
+                tr(context, "We are here to help!"),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
@@ -91,7 +95,10 @@ class _SupportScreenState extends State<SupportScreen> {
             Center(
               child: Text(
                 textAlign: TextAlign.center,
-                "Have Questions or Need Assistance ?\nReach Out To Us!",
+                tr(
+                  context,
+                  "Have Questions or Need Assistance ?\nReach Out To Us!",
+                ),
                 style: TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
@@ -99,7 +106,7 @@ class _SupportScreenState extends State<SupportScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: GlassyTextField(
-                "Name ",
+                "Name",
                 (value) => setState(() {
                   name = value;
                 }),
@@ -111,7 +118,7 @@ class _SupportScreenState extends State<SupportScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: GlassyTextField(
-                "Email ",
+                "Email",
                 (value) => setState(() {
                   email = value;
                 }),
@@ -139,7 +146,7 @@ class _SupportScreenState extends State<SupportScreen> {
                 ontap: () {
                   _validate();
                 },
-                text: "Submit",
+                text: tr(context, "Submit"),
                 isTrue: false,
               ),
             ),
@@ -157,7 +164,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   ),
                   Center(
                     child: Text(
-                      "Or",
+                      tr(context, "Or"),
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -179,7 +186,7 @@ class _SupportScreenState extends State<SupportScreen> {
             SizedBox(height: 40),
             Center(
               child: Text(
-                "Also You can Find Us here",
+                tr(context, "Also You can Find Us here"),
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
               ),
             ),

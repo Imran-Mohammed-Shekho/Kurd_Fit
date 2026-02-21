@@ -5,6 +5,7 @@ import 'package:gym/UI/CommonWidget/common.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/BmiResultScreen.dart';
 import 'package:gym/core/Utils/BMICalculatorBrain.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 Future<void> bmiResult(BuildContext context) {
   return showModalBottomSheet(
@@ -94,7 +95,7 @@ class _BmiScreenState extends State<BmiScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    " Your BMI Calclator",
+                    tr(context, "Your BMI Calculator"),
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
@@ -109,7 +110,7 @@ class _BmiScreenState extends State<BmiScreen>
                       Padding(
                         padding: EdgeInsetsGeometry.all(10),
                         child: Text(
-                          "Height",
+                          tr(context, "Height"),
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
@@ -117,7 +118,7 @@ class _BmiScreenState extends State<BmiScreen>
                       Padding(
                         padding: EdgeInsetsGeometry.all(5),
                         child: Text(
-                          "${_Height.toStringAsFixed(0)} cm",
+                          "${_Height.toStringAsFixed(0)} ${tr(context, "cm")}",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -148,7 +149,7 @@ class _BmiScreenState extends State<BmiScreen>
                       Padding(
                         padding: EdgeInsetsGeometry.all(10),
                         child: Text(
-                          "Weight",
+                          tr(context, "Weight"),
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
@@ -156,7 +157,7 @@ class _BmiScreenState extends State<BmiScreen>
                       Padding(
                         padding: EdgeInsetsGeometry.all(5),
                         child: Text(
-                          "${_Weight.toStringAsFixed(0)} Kg",
+                          "${_Weight.toStringAsFixed(0)} ${tr(context, "Kg")}",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -209,7 +210,7 @@ class _BmiScreenState extends State<BmiScreen>
                         );
                       }
                     },
-                    "Calculate",
+                    tr(context, "Calculate"),
                     Colors.black,
                     false,
                     Colors.white,

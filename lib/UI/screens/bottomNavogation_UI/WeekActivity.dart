@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gym/UI/screens/landingScreen_UI/WorkoutsDaysinWeekScreen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class WeekActivity extends StatelessWidget {
   const WeekActivity({super.key});
@@ -40,7 +41,7 @@ class WeekActivity extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Oct 23 -Oct 29 , 2025",
+                  tr(context, "Oct 23 -Oct 29 , 2025"),
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -89,10 +90,7 @@ class WeekActivity extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            Text(
-              "Daily BreakDown",
-              style: TextStyle(color: kwhite, fontSize: 20),
-            ),
+            _buildText("Daily BreakDown", 20, false, false, context),
             SizedBox(height: 10),
             Column(
               children: [
@@ -125,9 +123,9 @@ Widget _buildListTiles(bool isLast, context) {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildListTileData("200", "Calorie"),
-            _buildListTileData("45", "min"),
-            _buildListTileData("2,400", "Steps"),
+            _buildListTileData("200", "Calorie", context),
+            _buildListTileData("45", "min", context),
+            _buildListTileData("2,400", "Steps", context),
           ],
         ),
 
@@ -154,12 +152,12 @@ Widget _buildListTiles(bool isLast, context) {
   );
 }
 
-Widget _buildListTileData(String number, String text) {
+Widget _buildListTileData(String number, String text, BuildContext context) {
   return Column(
     children: [
       Text(number, style: TextStyle(color: kwhite)),
       SizedBox(height: 10),
-      Text(text, style: TextStyle(color: kwhite)),
+      Text(tr(context, text), style: TextStyle(color: kwhite)),
     ],
   );
 }
@@ -213,7 +211,7 @@ Widget _buildText(
   context,
 ) {
   return Text(
-    text,
+    tr(context, text),
     style: TextStyle(
       color: kwhite,
       fontSize: fontSize,

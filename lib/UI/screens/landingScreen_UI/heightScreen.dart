@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -49,7 +50,7 @@ class _HeightscreenState extends State<Heightscreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "🧠 AI-Powered BMI Analysis ",
+                            tr(context, "🧠 AI-Powered BMI Analysis"),
                             style: TextStyle(
                               fontSize: 20,
                               color: kwhite,
@@ -57,7 +58,10 @@ class _HeightscreenState extends State<Heightscreen> {
                             ),
                           ),
                           Text(
-                            "Get an accurate Body Mass Index calculation with intelligent insights based on your personal data.",
+                            tr(
+                              context,
+                              "Get an accurate Body Mass Index calculation with intelligent insights based on your personal data.",
+                            ),
                             style: TextStyle(fontSize: 14, color: kwhite),
                           ),
                         ],
@@ -108,7 +112,7 @@ class _HeightscreenState extends State<Heightscreen> {
                   121,
                   (index) => Center(
                     child: Text(
-                      "${100 + index} cm",
+                      "${100 + index} ${tr(context, "cm")}",
                       style: TextStyle(color: kwhite),
                     ),
                   ),

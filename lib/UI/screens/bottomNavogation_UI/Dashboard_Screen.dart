@@ -14,6 +14,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/DailyCaloriePage.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 import 'package:gym/core/config/app_config.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/services/foodAnalayze_service.dart';
 import 'package:gym/state/providers/profile_provider.dart';
@@ -187,10 +188,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Future calculateFoodPlate() async {
     if (!AppConfig.canAnalyzeFood) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           backgroundColor: Colors.red,
           content: Text(
-            "Food analyzer is not configured yet. Contact support.",
+            tr(
+              context,
+              "Food analyzer is not configured yet. Contact support.",
+            ),
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -236,25 +240,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Total Nutrition Card
                 _buildInfoCard([
                   _buildNutritionRow(
-                    "🔥 Calories",
+                    tr(context, "🔥 Calories"),
                     "${nutrition['total_calories']} kcal",
                   ),
                   _buildNutritionRow(
-                    "💪 Protein",
+                    tr(context, "💪 Protein"),
                     "${nutrition['total_protein']} g",
                   ),
                   _buildNutritionRow(
-                    "🍞 Carbs",
+                    tr(context, "🍞 Carbs"),
                     "${nutrition['total_carbs']} g",
                   ),
-                  _buildNutritionRow("🧈 Fats", "${nutrition['total_fats']} g"),
-                  _buildNutritionRow("🌿 Fiber", "${nutrition['fiber']} g"),
+                  _buildNutritionRow(
+                    tr(context, "🧈 Fats"),
+                    "${nutrition['total_fats']} g",
+                  ),
+                  _buildNutritionRow(
+                    tr(context, "🌿 Fiber"),
+                    "${nutrition['fiber']} g",
+                  ),
                 ]),
 
                 SizedBox(height: 15),
 
                 Text(
-                  "🥗 Food Breakdown",
+                  tr(context, "🥗 Food Breakdown"),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -265,7 +275,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                 if (foods.isEmpty)
                   Text(
-                    "No foods detected.",
+                    tr(context, "No foods detected."),
                     style: TextStyle(color: Colors.white70),
                   ),
                 ...foods.map((food) => _buildFoodItemCard(food)),
@@ -275,17 +285,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text("Close", style: TextStyle(color: Colors.white)),
+              child: Text(
+                tr(context, "Close"),
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           backgroundColor: Colors.red,
           content: Text(
-            "Could not analyze this image right now. Try again later.",
+            tr(
+              context,
+              "Could not analyze this image right now. Try again later.",
+            ),
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -319,9 +335,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Spacer(),
                 IconButton(
                   onPressed: Themeprovider.changeTheme,
-                  tooltip: Themeprovider.isDark
-                      ? "Switch to light mode"
-                      : "Switch to dark mode",
                   icon: Icon(
                     Themeprovider.isDark ? Icons.light_mode : Icons.dark_mode,
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({super.key});
@@ -32,7 +33,7 @@ class _CheckEmailState extends State<CheckEmail> {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  "Check your Email !",
+                  tr(context, "Check your Email !"),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
@@ -43,7 +44,10 @@ class _CheckEmailState extends State<CheckEmail> {
 
                 Text(
                   textAlign: TextAlign.center,
-                  "We’ve Sent a Password rest link to your Email Address\n Please Check your Inbox.",
+                  tr(
+                    context,
+                    "We’ve Sent a Password rest link to your Email Address\n Please Check your Inbox.",
+                  ),
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
                 SizedBox(height: 70),
@@ -62,7 +66,7 @@ class _CheckEmailState extends State<CheckEmail> {
                       MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
-                  text: "Back to login",
+                  text: tr(context, "Back to login"),
                   isTrue: false,
                 ),
               ],

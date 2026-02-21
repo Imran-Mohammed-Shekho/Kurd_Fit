@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 
 class buildQuestionText extends StatelessWidget {
@@ -9,7 +10,7 @@ class buildQuestionText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        text,
+        tr(context, text),
         textAlign: TextAlign.center,
         style: TextStyle(
           color: kwhite,

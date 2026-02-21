@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
@@ -25,8 +26,8 @@ class BmiResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.surface,
       appBar: AppBar(
-        title: const Text(
-          "BMI Calculator  ",
+        title: Text(
+          tr(context, "BMI Calculator"),
           style: TextStyle(
             fontSize: 22,
             color: Color(0xFFFFFFFF),
@@ -41,8 +42,8 @@ class BmiResultScreen extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: const Text(
-              "YOUR RESULT  ",
+            child: Text(
+              tr(context, "YOUR RESULT"),
               style: TextStyle(
                 fontSize: 20,
                 color: Color(0xFFFFFFFF),
@@ -70,7 +71,7 @@ class BmiResultScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        resultText.toUpperCase(),
+                        tr(context, resultText).toUpperCase(),
                         style: TextStyle(
                           color: (resultText == "Normal"
                               ? const Color.fromARGB(255, 4, 236, 12)
@@ -90,7 +91,7 @@ class BmiResultScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        interpretation,
+                        tr(context, interpretation),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 16,

@@ -9,6 +9,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/bottomnavigationbar.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_section.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -69,16 +70,16 @@ class _ChangePasswordState extends State<ChangePassword> {
     if (_confirmPassowrdController.text.isEmpty ||
         _newPasswordController.text.isEmpty ||
         _currentPassordController.text.isEmpty) {
-      showMessage("Please Fill all faileds ", Colors.red);
+      showMessage(tr(context, "Please Fill all faileds "), Colors.red);
       return;
     }
     if (_newPasswordController.text != _confirmPassowrdController.text) {
-      showMessage("Passords dose not match ❌", Colors.red);
+      showMessage(tr(context, "Passords dose not match ❌"), Colors.red);
       return;
     }
 
     if (_newPasswordController.text.length < 6) {
-      showMessage("Choose Stronger Password", Colors.red);
+      showMessage(tr(context, "Choose Stronger Password"), Colors.red);
       return;
     }
     try {
@@ -99,13 +100,13 @@ class _ChangePasswordState extends State<ChangePassword> {
       if (!mounted) return;
 
       showMessage(
-        "Your Password has been updated Please Login again",
+        tr(context, "Your Password has been updated Please Login again"),
         Colors.green,
       );
       showdLogOutAlert(
         context: context,
-        title: "Password Changed",
-        message: "please try again",
+        title: tr(context, "Password Changed"),
+        message: tr(context, "please try again"),
         onLogoutPressed: () async {
           Navigator.pop(context);
 
@@ -126,9 +127,9 @@ class _ChangePasswordState extends State<ChangePassword> {
         },
       );
     } on FirebaseAuthException catch (e) {
-      showMessage(e.code, kred);
+      showMessage(tr(context, e.code), kred);
     } catch (e) {
-      showMessage("somthinge went wrong ", kred);
+      showMessage(tr(context, "somthinge went wrong "), kred);
     } finally {
       setState(() {
         isLoading = false;
@@ -194,7 +195,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: _buildlabel("Current Password"),
+                      child: _buildlabel(context, "Current Password"),
                     ),
                     SizedBox(height: 10),
 
@@ -207,7 +208,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     SizedBox(height: 10),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: _buildlabel("New Password"),
+                      child: _buildlabel(context, "New Password"),
                     ),
                     SizedBox(height: 10),
                     GlassyTextField(
@@ -253,7 +254,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           AnimatedSwitcher(
                             duration: Duration(milliseconds: 400),
                             child: Text(
-                              getlabel(strengthVaule),
+                              tr(context, getlabel(strengthVaule)),
                               style: TextStyle(
                                 shadows: [
                                   Shadow(
@@ -279,7 +280,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     SizedBox(height: 10),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: _buildlabel("Confirm new Password "),
+                      child: _buildlabel(context, "Confirm new Password "),
                     ),
                     SizedBox(height: 10),
 
@@ -313,6 +314,9 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 }
 
-Widget _buildlabel(String label) {
-  return Text(label, style: TextStyle(color: Colors.white, fontSize: 14));
+Widget _buildlabel(BuildContext context, String label) {
+  return Text(
+    tr(context, label),
+    style: TextStyle(color: Colors.white, fontSize: 14),
+  );
 }

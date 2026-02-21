@@ -13,13 +13,12 @@ import 'package:gym/UI/screens/drawer_UI/drawer_header.dart';
 import 'package:gym/UI/screens/drawer_UI/drawer_listtiles.dart';
 import 'package:gym/UI/screens/payment_UI/payment&subscreption_screen.dart';
 import 'package:gym/UI/screens/support_screen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/state/providers/language_provider.dart';
 import 'package:gym/state/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-
-const languages = ["English", "Kurdish"];
 
 class DrawerSection extends StatefulWidget {
   const DrawerSection({super.key});
@@ -174,9 +173,11 @@ class _DrawerSectionState extends State<DrawerSection> {
                                       temIndexLanguage = value;
                                     });
                                   },
-                                  children: List.generate(languages.length, (
-                                    index,
-                                  ) {
+                                  children: List.generate(2, (index) {
+                                    final languages = [
+                                      tr(context, "English"),
+                                      tr(context, "Kurdish"),
+                                    ];
                                     return Text(
                                       languages[index],
                                       style: TextStyle(color: kwhite),
@@ -189,7 +190,7 @@ class _DrawerSectionState extends State<DrawerSection> {
                                 padding: EdgeInsets.only(bottom: 10),
                                 child: TextButton(
                                   child: Text(
-                                    "Don",
+                                    tr(context, "Done"),
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: kwhite,
@@ -248,9 +249,11 @@ class _DrawerSectionState extends State<DrawerSection> {
                   ),
                   () async => await SharePlus.instance.share(
                     ShareParams(
-                      title: "Gym App By Imran Mohammed ",
-                      text:
-                          'Check out my Gym App! Download it here: https://play.google.com/store/apps/details?id=com.example.gym_app',
+                      title: tr(context, "Gym App By Imran Mohammed "),
+                      text: tr(
+                        context,
+                        "Check out my Gym App! Download it here: https://play.google.com/store/apps/details?id=com.example.gym_app",
+                      ),
                     ),
                   ),
                 ),
@@ -310,8 +313,10 @@ class _DrawerSectionState extends State<DrawerSection> {
                     showdLogOutAlert(
                       context: context,
                       title: l10.logout,
-                      message:
-                          "You will need to sign in again next time.\n Continue?",
+                      message: tr(
+                        context,
+                        "You will need to sign in again next time.\n Continue?",
+                      ),
 
                       onLogoutPressed: () async {
                         Navigator.pop(context);

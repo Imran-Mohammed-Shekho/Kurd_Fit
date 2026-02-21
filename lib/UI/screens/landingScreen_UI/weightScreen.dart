@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -47,7 +48,7 @@ class _WeightscreenState extends State<Weightscreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "💪 Smart Weight Evaluation",
+                          tr(context, "💪 Smart Weight Evaluation"),
                           style: TextStyle(
                             fontSize: 20,
                             color: kwhite,
@@ -55,7 +56,10 @@ class _WeightscreenState extends State<Weightscreen> {
                           ),
                         ),
                         Text(
-                          "Your weight helps us calculate your ideal BMI and generate a precise fitness roadmap.",
+                          tr(
+                            context,
+                            "Your weight helps us calculate your ideal BMI and generate a precise fitness roadmap.",
+                          ),
                           style: TextStyle(fontSize: 14, color: kwhite),
                         ),
                       ],
@@ -103,7 +107,7 @@ class _WeightscreenState extends State<Weightscreen> {
                   121,
                   (index) => Center(
                     child: Text(
-                      "${30 + index} kg",
+                      "${30 + index} ${tr(context, "kg")}",
                       style: TextStyle(color: kwhite),
                     ),
                   ),

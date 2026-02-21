@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/core/Utils/browser_mobile.dart';
 import 'package:gym/core/Utils/browser_stub.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/data/models/workout_requestModel.dart';
 
 class Workoutgeneratedresult extends StatelessWidget {
@@ -29,7 +30,7 @@ class Workoutgeneratedresult extends StatelessWidget {
         centerTitle: true,
         surfaceTintColor: Colors.transparent,
         title: Text(
-          "Workout plan is ready !",
+          tr(context, "Workout plan is ready !"),
           style: TextStyle(color: const Color(0xFFFFFFFF), fontSize: 20),
         ),
       ),
@@ -52,7 +53,7 @@ class Workoutgeneratedresult extends StatelessWidget {
                     ),
                     child: ListTile(
                       title: Text(
-                        e.key,
+                        tr(context, e.key.toString()),
                         style: TextStyle(
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
@@ -80,7 +81,10 @@ class Workoutgeneratedresult extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
-                  "You can check image on internet follow this link",
+                  tr(
+                    context,
+                    "You can check image on internet follow this link",
+                  ),
                   style: TextStyle(color: Colors.white),
                 ),
               ),

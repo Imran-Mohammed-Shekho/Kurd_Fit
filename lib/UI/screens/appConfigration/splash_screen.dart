@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/appConfigration/AuthGate.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -72,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen>
               ),
 
               Text(
-                "Version 1.0",
+                tr(context, "Version 1.0"),
                 style: TextStyle(fontWeight: FontWeight.normal),
               ),
               SizedBox(height: 20),

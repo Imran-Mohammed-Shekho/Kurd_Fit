@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "🔥 Train Smarter, Not Harder ",
+                          tr(context, "🔥 Train Smarter, Not Harder"),
                           style: TextStyle(
                             fontSize: 20,
                             color: kwhite,
@@ -59,7 +60,10 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
                           ),
                         ),
                         Text(
-                          "Choose how often you want to work out and we’ll adjust intensity for maximum results.",
+                          tr(
+                            context,
+                            "Choose how often you want to work out and we’ll adjust intensity for maximum results.",
+                          ),
                           style: TextStyle(fontSize: 14, color: kwhite),
                         ),
                       ],
@@ -79,7 +83,7 @@ class _WorkoutsdaysinweekscreenState extends State<Workoutsdaysinweekscreen> {
             ),
 
             Text(
-              "${prov.workoutsPerWeek} workout a week",
+              "${prov.workoutsPerWeek} ${tr(context, "workout a week")}",
               style: TextStyle(fontSize: 20, color: kwhite),
             ),
             Expanded(

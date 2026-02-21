@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 
 Future showdLogOutAlert({
@@ -66,7 +67,9 @@ Future showdLogOutAlert({
                       Padding(
                         padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
                         child: Row(
-                          mainAxisAlignment: title == "Password Changed"
+                          mainAxisAlignment:
+                              title == "Password Changed" ||
+                                  title == tr(context, "Password Changed")
                               ? MainAxisAlignment.center
                               : MainAxisAlignment.spaceBetween,
                           children: [
@@ -80,13 +83,14 @@ Future showdLogOutAlert({
                                 onPressed: onLogoutPressed,
                                 child: Center(
                                   child: Text(
-                                    "Logout",
+                                    tr(context, logoutText),
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
                             ),
-                            title == "Password Changed"
+                            title == "Password Changed" ||
+                                    title == tr(context, "Password Changed")
                                 ? SizedBox()
                                 : SizedBox(
                                     height: 40,
@@ -102,7 +106,7 @@ Future showdLogOutAlert({
                                       },
                                       child: Center(
                                         child: Text(
-                                          "cancel",
+                                          tr(context, cancelText),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),

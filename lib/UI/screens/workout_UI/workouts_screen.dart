@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/state/providers/workout_provider.dart';
 import 'package:gym/UI/screens/workout_UI/workouts_show.dart';
@@ -50,7 +51,7 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
-          "Body Parts",
+          tr(context, "Body Parts"),
           style: TextStyle(
             fontSize: 22,
             // fontWeight: FontWeight.w900,
@@ -63,7 +64,7 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
           if (value.isloadBodyParts) {
             return Center(child: reusableProgressIndicator());
           } else if (value.BodyParts.isEmpty) {
-            return Center(child: Text("no data found "));
+            return Center(child: Text(tr(context, "no data found ")));
           } else {
             return Column(
               children: [
@@ -114,7 +115,7 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
                                     );
                                   },
                                   title: Text(
-                                    "${workouts[index]["title"]}",
+                                    tr(context, workouts[index]["title"] ?? ""),
                                     style: TextStyle(
                                       // fontWeight: FontWeight.w900,
                                       color: Colors.white,

@@ -10,6 +10,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/weightScreen.dart';
 import 'package:gym/UI/screens/shop_UI/app_shop.dart';
 import 'package:gym/UI/screens/workout_UI/workouts_screen.dart';
+import 'package:gym/l10n/app_localizations.dart';
 import 'package:gym/state/providers/appState_Provider.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +93,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
   }
 
   void _matrialBannerOffline() async {
+    final l10n = AppLocalizations.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: Duration(seconds: 3),
@@ -99,7 +101,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
         content: Row(
           children: [
             Icon(Icons.wifi_off, color: kwhite),
-            Text("No intenet connection", style: TextStyle(color: kwhite)),
+            Text(l10n.noInternetConnection, style: TextStyle(color: kwhite)),
           ],
         ),
       ),
@@ -107,6 +109,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
   }
 
   void _matrialBannerOnline() async {
+    final l10n = AppLocalizations.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: Duration(seconds: 3),
@@ -114,7 +117,7 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar> {
         content: Row(
           children: [
             Icon(Icons.check_circle, color: kwhite),
-            Text("Connection Back", style: TextStyle(color: kwhite)),
+            Text(l10n.connectionBack, style: TextStyle(color: kwhite)),
           ],
         ),
       ),

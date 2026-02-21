@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym/UI/CommonWidget/show_logOut_Alertt.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/Login_screen.dart';
@@ -78,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(height: 10),
                         Center(
                           child: Text(
-                            "Please read the info below",
+                            tr(context, "Please read the info below"),
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
@@ -88,7 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         Center(
                           child: Text(
-                            "you need to login again to able delete your account ",
+                            tr(
+                              context,
+                              "you need to login again to able delete your account ",
+                            ),
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
@@ -127,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             child: Center(
                               child: Text(
-                                "Logout",
+                                tr(context, "Logout"),
                                 style: TextStyle(
                                   color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
@@ -147,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } on FirebaseAuthException catch (e) {
       if (e.code == "requires-recent-login") {
         _showMessage(
-          "requires-recent-login",
+          tr(context, "Please login again before deleting your account."),
           const Color.fromRGBO(244, 67, 54, 1),
         );
       } else {
@@ -177,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         leading: SizedBox(),
         surfaceTintColor: Colors.transparent,
-        title: Text("Profile"),
+        title: Text(tr(context, "Profile")),
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: isLoad
@@ -209,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(height: 10),
 
                         Text(
-                          (value.userModel?.email ?? "Unknown"),
+                          (value.userModel?.email ?? tr(context, "Unknown")),
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white.withValues(alpha: 0.8),
@@ -224,7 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           child: Text(
-                            "Personal Information".toUpperCase(),
+                            tr(context, "Personal Information").toUpperCase(),
                             style: TextStyle(color: kwhite),
                           ),
                         ),
@@ -237,7 +241,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: value.userInfo?.name ?? "Unknown",
+                              hintText:
+                                  value.userInfo?.name ??
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -257,7 +263,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  value.userInfo?.age.toString() ?? "Unknown",
+                                  value.userInfo?.age.toString() ??
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -276,7 +283,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               border: InputBorder.none,
                               hintText:
                                   value.userInfo?.gender.toString() ??
-                                  "Unknown",
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -296,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               border: InputBorder.none,
                               hintText:
                                   value.userInfo?.weight.toString() ??
-                                  "Unknown",
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -314,7 +321,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               border: InputBorder.none,
                               hintText:
                                   value.userInfo?.height.toString() ??
-                                  "Unknown",
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -336,7 +343,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             textAlign: TextAlign.right,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: value.userInfo?.goal ?? "Unknown",
+                              hintText:
+                                  value.userInfo?.goal ??
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -359,7 +368,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   border: InputBorder.none,
                                   hintText:
                                       value.userInfo?.bodyFoucs.toString() ??
-                                      "Unknown",
+                                      tr(context, "Unknown"),
                                   hintStyle: TextStyle(
                                     color: kwhite,
                                     fontWeight: FontWeight.w300,
@@ -378,7 +387,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  value.userInfo?.fitnessLevel ?? "Unknown",
+                                  value.userInfo?.fitnessLevel ??
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -396,7 +406,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               border: InputBorder.none,
                               hintText:
                                   value.userInfo?.workoutsPerWeek.toString() ??
-                                  "Unknown",
+                                  tr(context, "Unknown"),
                               hintStyle: TextStyle(
                                 color: kwhite,
                                 fontWeight: FontWeight.w300,
@@ -411,9 +421,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ontap: () {
                         showdLogOutAlert(
                           context: context,
-                          title: "Warning",
-                          message:
-                              " Are you sure you want to delete your account?",
+                          title: tr(context, "Warning"),
+                          message: tr(
+                            context,
+                            "Are you sure you want to delete your account?",
+                          ),
                           onLogoutPressed: () {
                             _deleteUser();
                           },
@@ -451,7 +463,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       title: Text(
-        title,
+        tr(context, title.toString()),
         style: TextStyle(
           color: kwhite,
           fontWeight: FontWeight.w400,
@@ -461,8 +473,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-
-
 
 // Padding(
 //                             padding: EdgeInsets.symmetric(horizontal: 25),

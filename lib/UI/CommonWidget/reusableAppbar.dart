@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 AppBar reusableAppbar(
   BuildContext context,
@@ -13,7 +14,7 @@ AppBar reusableAppbar(
     ),
 
     title: Text(
-      title.toUpperCase(),
+      tr(context, title).toUpperCase(),
       style: TextStyle(color: Colors.white, fontSize: 16),
     ),
     centerTitle: true,

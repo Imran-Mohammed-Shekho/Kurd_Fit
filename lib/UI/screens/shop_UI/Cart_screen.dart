@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -15,7 +16,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Products",
+          tr(context, "Products"),
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
@@ -43,7 +44,7 @@ class _CartScreenState extends State<CartScreen> {
                         children: [
                           SizedBox(height: 10),
                           Text(
-                            "NO  products add yet!!",
+                            tr(context, "NO  products add yet!!"),
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ],

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/appTheme/custom_colors.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/payment_UI/adding_paymentmethod_screen.dart';
@@ -21,7 +22,10 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Payment & Subscription", style: TextStyle(fontSize: 18)),
+          title: Text(
+            tr(context, "Payment & Subscription"),
+            style: TextStyle(fontSize: 18),
+          ),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surface,
         ),
@@ -34,7 +38,7 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    paymentmethodstext("Your Balance"),
+                    paymentmethodstext(context, "Your Balance"),
 
                     SizedBox(
                       height: 100,
@@ -75,7 +79,7 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
                     ),
 
                     SizedBox(height: 20),
-                    paymentmethodstext("Payment Methods "),
+                    paymentmethodstext(context, "Payment Methods"),
                     paymentmethodsListtiles(),
                     paymentmethodsListtiles(),
                     SizedBox(height: 20),
@@ -95,7 +99,7 @@ class _PaymentsubscreptionScreenState extends State<PaymentsubscreptionScreen> {
                     ),
                   );
                 },
-                text: "Add payment method",
+                text: tr(context, "Add payment method"),
                 isTrue: true,
                 gradient: customButtonColor!.buttomColor,
               ),
@@ -128,14 +132,14 @@ class paymentmethodsListtiles extends StatelessWidget {
               ),
               child: ListTile(
                 title: Text(
-                  "Credit Card ",
+                  tr(context, "Credit Card"),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 subtitle: Text(
-                  "visa ending in 9783",
+                  tr(context, "visa ending in 9783"),
                   style: TextStyle(color: Colors.white),
                 ),
                 leading: Icon(Icons.wallet, color: Colors.white),
@@ -149,12 +153,15 @@ class paymentmethodsListtiles extends StatelessWidget {
   }
 }
 
-Widget paymentmethodstext(String text) {
+Widget paymentmethodstext(BuildContext context, String text) {
   return Align(
     alignment: Alignment.centerLeft,
     child: Padding(
       padding: EdgeInsetsGeometry.only(bottom: 10),
-      child: Text(text, style: TextStyle(fontSize: 16, color: Colors.white)),
+      child: Text(
+        tr(context, text),
+        style: TextStyle(fontSize: 16, color: Colors.white),
+      ),
     ),
   );
 }

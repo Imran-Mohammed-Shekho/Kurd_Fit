@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/ageScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/shop_UI/Cart_screen.dart';
@@ -34,7 +35,10 @@ class PreviewScreen extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: Text("Product Preview ", style: TextStyle(fontSize: 20)),
+        title: Text(
+          tr(context, "Product Preview"),
+          style: TextStyle(fontSize: 20),
+        ),
       ),
 
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -64,16 +68,20 @@ class PreviewScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Text(
-                      "Product Information",
+                      tr(context, "Product Information"),
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
                   SizedBox(height: 30),
-                  productinfotext("Name : $title"),
+                  productinfotext(
+                    "${tr(context, "Name")} : ${tr(context, title)}",
+                  ),
                   SizedBox(height: 10),
-                  productinfotext("Price : $price\$"),
+                  productinfotext("${tr(context, "Price :")} $price\$"),
                   SizedBox(height: 10),
-                  productinfotext("Description : $descrption"),
+                  productinfotext(
+                    "${tr(context, "Description :")} ${tr(context, descrption)}",
+                  ),
                   Spacer(),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -88,7 +96,7 @@ class PreviewScreen extends StatelessWidget {
                               duration: Duration(seconds: 2),
                               backgroundColor: Colors.green,
                               content: Text(
-                                "Porduct Added To Cart",
+                                tr(context, "Porduct Added To Cart"),
                                 style: TextStyle(color: kwhite),
                               ),
                             ),
@@ -102,7 +110,7 @@ class PreviewScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        text: "Add To Cart",
+                        text: tr(context, "Add To Cart"),
                         isTrue: false,
                       ),
                     ),

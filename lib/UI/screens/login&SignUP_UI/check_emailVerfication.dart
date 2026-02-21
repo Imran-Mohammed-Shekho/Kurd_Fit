@@ -7,6 +7,7 @@ import 'package:gym/UI/screens/bottomNavogation_UI/profile_screen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/heightScreen.dart';
 import 'package:gym/UI/screens/login&SignUP_UI/SignUp_screen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/data/models/userData.dart';
 import 'package:gym/services/signup_service.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -86,7 +87,7 @@ class CheckEmailVerification extends StatelessWidget {
             await Future.delayed(const Duration(milliseconds: 200));
 
             showSnackbarMessage(
-              "Email verified succsessfully",
+              tr(context, "Email verified succsessfully"),
               const Color.fromRGBO(56, 142, 60, 1),
             );
             Navigator.pushReplacement(
@@ -97,13 +98,13 @@ class CheckEmailVerification extends StatelessWidget {
               ),
             );
           } else {
-            showSnackbarMessage("failed to save user info ", kred);
+            showSnackbarMessage(tr(context, "failed to save user info "), kred);
           }
         } else {
           if (!context.mounted) return;
           Navigator.pop(context);
           showSnackbarMessage(
-            "Please Verify your email and Try again!",
+            tr(context, "Please Verify your email and Try again!"),
             const Color.fromRGBO(244, 67, 54, 1),
           );
         }
@@ -131,7 +132,7 @@ class CheckEmailVerification extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Text(
-              "Check your Email !",
+              tr(context, "Check your Email !"),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 34,
@@ -142,14 +143,17 @@ class CheckEmailVerification extends StatelessWidget {
 
             Text(
               textAlign: TextAlign.center,
-              "We’ve Sent a Verification  link to your Email Address\n Please Verify your Email .",
+              tr(
+                context,
+                "We’ve Sent a Verification  link to your Email Address\n Please Verify your Email .",
+              ),
               style: TextStyle(color: Colors.white, fontSize: 14),
             ),
             SizedBox(height: 70),
 
             buildButtom(
               ontap: () => verifiyEmailAndLoginUser(),
-              text: "I verfied",
+              text: tr(context, "I verfied"),
               isTrue: false,
             ),
             SizedBox(height: 20),
@@ -168,7 +172,7 @@ class CheckEmailVerification extends StatelessWidget {
                 );
               },
               child: _CheckEmailButton(
-                text: "Going back",
+                text: tr(context, "Going back"),
 
                 textColor: const Color.fromRGBO(0, 0, 0, 1),
               ),

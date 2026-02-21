@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -48,7 +49,7 @@ class _AgescreenState extends State<Agescreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "⚡ AI Fitness Intelligence ",
+                            tr(context, "⚡ AI Fitness Intelligence"),
                             style: TextStyle(
                               fontSize: 20,
                               color: kwhite,
@@ -56,7 +57,10 @@ class _AgescreenState extends State<Agescreen> {
                             ),
                           ),
                           Text(
-                            "Our system uses smart algorithms to understand your body data and optimize your results.",
+                            tr(
+                              context,
+                              "Our system uses smart algorithms to understand your body data and optimize your results.",
+                            ),
                             style: TextStyle(fontSize: 14, color: kwhite),
                           ),
                         ],
@@ -105,7 +109,7 @@ class _AgescreenState extends State<Agescreen> {
                   87,
                   (index) => Center(
                     child: Text(
-                      "${14 + index} years",
+                      "${14 + index} ${tr(context, "years")}",
                       style: TextStyle(color: kwhite),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WeekActivity.dart';
 import 'package:gym/UI/screens/landingScreen_UI/GoalScreen.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/l10n/app_localizations.dart';
 import 'week_table.dart';
 
@@ -62,7 +63,7 @@ class ActivitySection extends StatelessWidget {
             children: days.map((d) {
               return WeekTable(
                 isToday: d["today"] ?? false,
-                label: d["day"].toString(),
+                label: tr(context, d["day"].toString()),
                 height: (d["value"] as int).toDouble(),
               );
             }).toList(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 
 // ignore: camel_case_types
@@ -40,7 +41,7 @@ class buildButtom extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  text,
+                  tr(context, text),
                   style: TextStyle(color: kwhite, fontSize: 20),
                 ),
               ),

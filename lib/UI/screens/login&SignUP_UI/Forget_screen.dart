@@ -6,6 +6,7 @@ import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderScreen.dart';
 
 import 'package:gym/UI/screens/login&SignUP_UI/check_email.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});
@@ -21,10 +22,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
 
   Future restPassword() async {
     if (_emailController.text.isEmpty) {
-      _showMessag("Please enter your email address", Colors.red);
+      _showMessag(tr(context, "Please enter your email address"), Colors.red);
       return;
     } else if (!_emailRegex.hasMatch(_emailController.text)) {
-      _showMessag("Please enter vailde email", Colors.red);
+      _showMessag(tr(context, "Please enter vailde email"), Colors.red);
       return;
     }
     if (mounted) {
@@ -43,7 +44,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
       Navigator.pop(context);
 
       _showMessag(
-        "rest link sccessefully sent to ${_emailController.text}",
+        "${tr(context, "rest link sccessefully sent to")} ${_emailController.text}",
         Colors.green,
       );
       await Future.delayed(Duration(seconds: 1));
@@ -57,7 +58,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
     } on FirebaseAuthException catch (e) {
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
-      _showMessag(e.code, Colors.red);
+      _showMessag(tr(context, e.code), Colors.red);
     } catch (e) {
       _showMessag(e, Colors.red);
     } finally {}
@@ -91,7 +92,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
         children: [
           SizedBox(height: 80),
           Text(
-            "Forgot your password?",
+            tr(context, "Forgot your password?"),
 
             style: TextStyle(
               fontSize: 30,
@@ -104,7 +105,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
 
           Text(
             textAlign: TextAlign.center,
-            """Enter your email below to receive a\npassword reset link.""",
+            tr(
+              context,
+              "Enter your email below to receive a\npassword reset link.",
+            ),
 
             style: TextStyle(
               fontSize: 14,
@@ -124,7 +128,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
             ontap: () {
               restPassword();
             },
-            text: "Send",
+            text: tr(context, "Send"),
             isTrue: false,
           ),
           SizedBox(height: 50),

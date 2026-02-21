@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class AboutusScreen extends StatefulWidget {
   const AboutusScreen({super.key});
@@ -66,6 +67,11 @@ class aboutuscontiners extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isKurdish = Localizations.localeOf(context).languageCode == "ckb";
+    final localizedSubtitle = isKurdish
+        ? _ckbAboutContent[title] ?? subtitle
+        : subtitle;
+
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
@@ -89,7 +95,7 @@ class aboutuscontiners extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      title,
+                      tr(context, title),
                       style: TextStyle(
                         fontSize: 20,
                         color: Theme.of(context).colorScheme.onSurface,
@@ -101,7 +107,7 @@ class aboutuscontiners extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       textAlign: TextAlign.left,
-                      subtitle,
+                      localizedSubtitle,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
@@ -116,3 +122,10 @@ class aboutuscontiners extends StatelessWidget {
     );
   }
 }
+
+const Map<String, String> _ckbAboutContent = {
+  "Our Mission":
+      "لە Kurd Fit دا، ئامانجمان توانابەخشینە بە تاکەکان لە کوردستان و دەرەوە بۆ ژیانێکی تەندروستتر و بەهێزتر و دڵنیاتر. هەوڵدەدەین فیتنەس بۆ هەمووان دەستپێگەیشتوو بێت، چ سەرەتای ڕێگاکەت بێت یان بەدوای باشترین ئەنجامی کەسیی خۆتەوە بیت. لە ڕێگەی ڕێنمایی شارەزا، پلانی ڕاهێنانی کەسی، پشتگیری خۆراک و هەستی کۆمەڵگەیی بەهێز، خزمەتگوزاری دەکەین بۆ دروستکردنی کەلتووری تەندروستی و بەردەوامبوون و پەرەپێدانی خۆیی. Kurd Fit تەنها ئەپی جیم نییە، هاوبەشێکی ڕاستەقینەیە بۆ دەرخستنی توانا تەواوەکانت.",
+  "Our History":
+      "Kurd Fit لە بیرۆکەیەکی سادەوە دەستپێکرد: هێنانی ئامرازە فیتنەسییە جیهانییەکان بۆ خەڵکی کوردستان بە شێوەیەک کە هەم ناوخۆیی بێت و هەم هان‌دەر. دامەزراوەکە لەلایەن تیمێک لە ڕاهێنەر و پەرەپێدەران دروستکرا بۆ پڕکردنەوەی بۆشایی نێوان جیمە کڵاسیکییەکان و چارەسەری مۆدێرنی فیتنەسی دیجیتاڵ.\nلە سەرەتاوە، بینینەکەمان ڕوون بوو: ڕێنمایی فیتنەس هەمیشە و لە هەر شوێنێک بەردەست بێت. بە شتێکی بچووک دەستپێکرد، بە تۆمارکردنی سادەی ڕاهێنان و ئامۆژگاری خۆراک، بەڵام بە خێرایی گەشەکرد بۆ پلاتفۆرمێکی تەواوی فیتنەس کە هەموو قۆناغەکانی گەشتی تەندروستی پشتگیری دەکات.\nئەمڕۆ Kurd Fit وەک یەکەم ئەپی فیتنەسی ناوخۆیی وەستاوه بۆ توانابەخشینی کۆمەڵگەکەمان بە تەکنەلۆژیای پێشکەوتوو، شانازی کەلتووری و پابەندی هاوبەش بۆ ژیانێکی تەندروستتر.",
+};

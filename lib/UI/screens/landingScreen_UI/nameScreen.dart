@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, unused_field
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/genederQuestionsTitle.dart';
 import 'package:gym/state/providers/landingScreen_Provider.dart';
@@ -53,7 +54,10 @@ class _NamescreenState extends State<Namescreen> {
                       cursorHeight: 34,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                        hintText: "Please Enter your name right here ..",
+                        hintText: tr(
+                          context,
+                          "Please Enter your name right here ..",
+                        ),
                         border: InputBorder.none,
                         hintStyle: TextStyle(
                           color: Colors.grey.shade400,

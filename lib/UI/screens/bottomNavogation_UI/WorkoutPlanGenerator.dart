@@ -5,6 +5,7 @@ import 'package:gym/UI/CommonWidget/resuableProgressIndicator.dart';
 import 'package:gym/UI/screens/bottomNavogation_UI/WorkoutGeneratedResult.dart';
 import 'package:gym/UI/screens/landingScreen_UI/LevelScreen.dart';
 import 'package:gym/UI/screens/landingScreen_UI/genderScreen/GenderButtom.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 import 'package:gym/data/models/workout_requestModel.dart';
 import 'package:gym/services/AI_workout_generator_service.dart';
 
@@ -45,7 +46,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
           backgroundColor: Colors.red,
 
           content: Text(
-            "fill all faileds ",
+            tr(context, "fill all faileds "),
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -107,7 +108,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         title: Text(
-          "🔥 Workout Generator ",
+          "🔥 ${tr(context, "Workout Generator")}",
           style: TextStyle(
             fontSize: 20,
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -122,23 +123,23 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
           Form(
             child: Column(
               children: [
-                _buildText("Age"),
+                _buildText(context, "Age"),
                 _buildTextFormfields(
                   controller: _ageController,
                   hintText: "age",
                 ),
-                _buildText("Height/Cm"),
+                _buildText(context, "Height/Cm"),
                 _buildTextFormfields(
                   controller: _heightController,
                   hintText: "Height in cm",
                 ),
-                _buildText("Weight/Kg"),
+                _buildText(context, "Weight/Kg"),
                 _buildTextFormfields(
                   controller: _weightController,
                   hintText: "Weight in Kg",
                 ),
 
-                _buildText("Goal"),
+                _buildText(context, "Goal"),
                 SizedBox(
                   height: 60,
                   width: double.infinity,
@@ -176,19 +177,19 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                               items: [
                                 DropdownMenuItem(
                                   value: "fat_loss",
-                                  child: Text("fat loss".toUpperCase()),
+                                  child: Text(tr(context, "fat loss")),
                                 ),
                                 DropdownMenuItem(
                                   value: "muscle gain",
-                                  child: Text("muscle gain".toUpperCase()),
+                                  child: Text(tr(context, "muscle gain")),
                                 ),
                                 DropdownMenuItem(
                                   value: "strength",
-                                  child: Text("strength".toUpperCase()),
+                                  child: Text(tr(context, "strength")),
                                 ),
                                 DropdownMenuItem(
                                   value: "general fitness",
-                                  child: Text("general fitness".toUpperCase()),
+                                  child: Text(tr(context, "general fitness")),
                                 ),
                               ],
                               onChanged: (value) =>
@@ -200,7 +201,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                     ),
                   ),
                 ),
-                _buildText("Gender"),
+                _buildText(context, "Gender"),
 
                 SizedBox(
                   height: 60,
@@ -238,11 +239,11 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                               items: [
                                 DropdownMenuItem(
                                   value: "male",
-                                  child: Text("male".toUpperCase()),
+                                  child: Text(tr(context, "male")),
                                 ),
                                 DropdownMenuItem(
                                   value: "female",
-                                  child: Text("female".toUpperCase()),
+                                  child: Text(tr(context, "female")),
                                 ),
                               ],
                               onChanged: (value) =>
@@ -254,7 +255,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                     ),
                   ),
                 ),
-                _buildText("Experience"),
+                _buildText(context, "Experience"),
                 SizedBox(
                   height: 60,
                   width: double.infinity,
@@ -292,15 +293,15 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                               items: [
                                 DropdownMenuItem(
                                   value: "beginner",
-                                  child: Text("beginner".toUpperCase()),
+                                  child: Text(tr(context, "beginner")),
                                 ),
                                 DropdownMenuItem(
                                   value: "intermediate",
-                                  child: Text("intermediate".toUpperCase()),
+                                  child: Text(tr(context, "intermediate")),
                                 ),
                                 DropdownMenuItem(
                                   value: "advanced",
-                                  child: Text("advanced".toUpperCase()),
+                                  child: Text(tr(context, "advanced")),
                                 ),
                               ],
                               onChanged: (value) =>
@@ -312,7 +313,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                     ),
                   ),
                 ),
-                _buildText("How many days do you prefer?"),
+                _buildText(context, "How many days do you prefer?"),
                 SizedBox(
                   height: 60,
                   width: double.infinity,
@@ -352,7 +353,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
                                   .map(
                                     (e) => DropdownMenuItem(
                                       value: e,
-                                      child: Text("$e days"),
+                                      child: Text("$e ${tr(context, "day")}"),
                                     ),
                                   )
                                   .toList(),
@@ -375,7 +376,7 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
             ontap: () {
               generatePlan();
             },
-            text: "Generate Plan",
+            text: tr(context, "Generate Plan"),
             isTrue: false,
           ),
         ],
@@ -384,13 +385,13 @@ class _WorkoutplangeneratorState extends State<Workoutplangenerator>
   }
 }
 
-Widget _buildText(String text) {
+Widget _buildText(BuildContext context, String text) {
   return Padding(
     padding: EdgeInsets.only(top: 10, bottom: 10),
     child: Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        text,
+        tr(context, text),
         style: TextStyle(
           color: const Color(0xFFFFFFFF),
           fontWeight: FontWeight.normal,
@@ -432,7 +433,7 @@ class _buildTextFormfields extends StatelessWidget {
                   controller: controller,
                   autofocus: true,
                   decoration: InputDecoration(
-                    hintText: hintText,
+                    hintText: tr(context, hintText),
                     hintStyle: TextStyle(fontSize: 14),
                     border: InputBorder.none,
 

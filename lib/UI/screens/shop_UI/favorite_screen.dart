@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gym/core/Utils/localized_text.dart';
 
 class Favorite_screen extends StatefulWidget {
   const Favorite_screen({super.key});
@@ -35,7 +36,7 @@ class _Favorite_screenState extends State<Favorite_screen> {
 
                 SizedBox(width: 10),
                 Text(
-                  "Favorite Products",
+                  tr(context, "Favorite Products"),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -67,7 +68,7 @@ class _Favorite_screenState extends State<Favorite_screen> {
                           children: [
                             SizedBox(height: 10),
                             Text(
-                              "NO favorite products add yet!!",
+                              tr(context, "NO favorite products add yet!!"),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
