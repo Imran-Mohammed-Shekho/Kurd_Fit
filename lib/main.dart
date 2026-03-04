@@ -50,7 +50,6 @@ Future<void> initializeFirebase() async {
         sound: true,
       );
 
-      // Get the FCM token
       final token = await FirebaseMessaging.instance.getToken();
       print('FCM Token: $token');
     }
